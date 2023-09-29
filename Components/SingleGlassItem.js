@@ -2,20 +2,14 @@ import React from "react";
 import SlideOnHover from "./Swiper/SlideOnHover";
 import { IoIosShareAlt } from "react-icons/io";
 import { AiOutlineHeart } from "react-icons/ai";
-const data = [
-  { src: "/1 (1).jpeg" },
-  { src: "/1 (2).jpeg" },
-  { src: "/1 (3).jpeg" },
-  { src: "/1 (4).jpeg" },
-  { src: "/1 (5).jpeg" },
-];
 
 const SingleGlassItem = ({ value }) => {
+  const imageArray = value?.product_images.split(',')
   return (
     <div className="hover:shadow-xl">
       <div className="relative lg:w-[320px] lg:h-[260px]">
         <div className="p-2 w-[94%] pt-3">
-          <SlideOnHover data={data} />
+          <SlideOnHover data={imageArray} />
         </div>
 
         {/* Detail  */}
@@ -29,7 +23,7 @@ const SingleGlassItem = ({ value }) => {
             </p>
             <p className="">
               <span className="font-semibold">Lens Width :</span>{" "}
-              <span className="font-semibold text-xs">55 MM</span>
+              <span className="font-semibold text-xs">{value?.frame_width} MM</span>
             </p>
             <p className="">
               <span className="font-semibold">Frame Size :</span>{" "}
@@ -43,7 +37,7 @@ const SingleGlassItem = ({ value }) => {
               <span className="h-4 w-4 bg-red-600 rounded-full border p-[2px]"></span>
             </div>
             <div className="font-semibold text-center text-base">
-              $ {value?.product_price}
+              $ {value?.discounted_price}
             </div>
             <div className="flex items-center text-xl justify-evenly">
               <span className="cursor-pointer">

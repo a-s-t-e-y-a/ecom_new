@@ -6,17 +6,17 @@ import React, { useState } from "react";
 
 const index = () => {
   const [data, setData] = useState([]);
-  React.useEffect(() => {
-    fetchData();
-  }, []);
   const fetchData = () => {
     axios
       .get("http://35.91.33.157:3333/api/products?page=1&itemsPerPage=20")
       .then((result) => {
-        setData(result?.data);
+        setData(result?.data?.data);
+        console.log(result?.data?.data[0]);
       });
   };
-  
+  React.useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <Layout>
       <section className="flex h-auto space-x-3">
