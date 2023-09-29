@@ -1,36 +1,37 @@
-import Filter from '@/Components/Filter'
-import SingleGlassItem from '@/Components/SingleGlassItem'
-import Layout from '@/Layout/Layout'
-import React from 'react'
+import Filter from "@/Components/Filter";
+import SingleGlassItem from "@/Components/SingleGlassItem";
+import Layout from "@/Layout/Layout";
+import axios from "axios";
+import React, { useState } from "react";
 
 const index = () => {
+  const [data, setData] = useState([]);
+  const fetchData = () => {
+    axios
+      .get("http://35.91.33.157:3333/api/products?page=1&itemsPerPage=20")
+      .then((result) => {
+        setData(result?.data?.data);
+        console.log(result?.data?.data[0]);
+      });
+  };
+  React.useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <Layout>
-        <section className='flex h-auto space-x-3'>
-            <div className=''>
-                <Filter />
-            </div>
-            <div className='flex items-center justify-between flex-wrap space-y-5'>
-                <SingleGlassItem />
-                <SingleGlassItem />
-                <SingleGlassItem />
-                <SingleGlassItem />
-                <SingleGlassItem />
-                <SingleGlassItem />
-                <SingleGlassItem />
-                <SingleGlassItem />
-                <SingleGlassItem />
-                <SingleGlassItem />
-                <SingleGlassItem />
-                <SingleGlassItem />
-                <SingleGlassItem />
-                <SingleGlassItem />
-                <SingleGlassItem />
-                <SingleGlassItem />
-            </div>
-        </section>
+      <section className="flex h-auto space-x-3">
+        <div className="">
+          <Filter />
+        </div>
+        <div className="flex items-center justify-between flex-wrap space-y-5">
+          {data &&
+            data.map((val, index) => (
+              <SingleGlassItem key={index} value={val} />
+            ))}
+        </div>
+      </section>
     </Layout>
-  )
-}
+  );
+};
 
-export default index
+export default index;
