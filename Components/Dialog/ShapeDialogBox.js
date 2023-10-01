@@ -3,6 +3,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { useForm } from "react-hook-form";
 import { useDispatch } from 'react-redux';
 import { addShape } from "@/Slices/shapeSlice";
+import FileInput from "../Admin/FileInput";
 
 
 const ShapeDialogBox = ({ onCancel }) => {
@@ -15,19 +16,21 @@ const ShapeDialogBox = ({ onCancel }) => {
         Add Shapes
       </h1>
       <form 
-        className="flex items-center justify-between gap-6 px-6 pb-6"
+        className="flex flex-col items-center justify-between gap-6 px-6 pb-6"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <TextField label="Shape" name="shape" id="shape" size="small" {...register("shape")} />
-
-        <button
-          type="submit"
-          className="text-white bg-sky-400 hover:bg-sky-500  focus:outline-none font-medium rounded-lg text-sm inline-flex items-center px-5 py-2 text-center mr-2"
-        //   onClick={}
-          onSubmit={handleSubmit}
-        >
-          Add <AddIcon className="ml-1 font-bold text-base" />
-        </button>
+        <FileInput title=""/>
+        <div className="flex items-center justify-between gap-2">
+          <TextField label="Shape" name="shape" id="shape" size="small" {...register("shape")} />
+          <button
+            type="submit"
+            className="text-white bg-sky-400 hover:bg-sky-500  focus:outline-none font-medium rounded-lg text-sm inline-flex items-center px-5 py-2 text-center mr-2"
+          //   onClick={}
+            onSubmit={handleSubmit}
+          >
+            Add <AddIcon className="ml-1 font-bold text-base" />
+          </button>
+        </div>
       </form>
       <button
         type="button"

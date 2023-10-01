@@ -1,13 +1,13 @@
-import IconButton from '@/Components/Admin/IconButton';
-import CouponManagerDialogBox from '@/Components/Dialog/CouponManagerDialogBox';
-import Modal from '@/Components/Dialog/Modal';
+import IconButton from '@/components/Admin/IconButton';
+import CouponManagerDialogBox from '@/components/Dialog/CouponManagerDialogBox';
+import Modal from '@/components/Dialog/Modal';
 import AdminLayout from '@/Layout/AdminLayout'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { useState } from 'react';
 import { SiCodeproject } from 'react-icons/si';
 import { useSelector } from 'react-redux';
 
-const couponManager = () => {
+const CouponManager = () => {
     const couponsData = useSelector((state)=> state.coupon)
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(!open);
@@ -18,7 +18,6 @@ const couponManager = () => {
                 { <CouponManagerDialogBox onCancel={onHide} /> }
             </Modal>
             <div>
-
                 <div onClick={handleOpen}>
                     <IconButton label="Add Coupons" icon={<SiCodeproject/>}/>
                 </div>
@@ -89,4 +88,4 @@ const couponManager = () => {
     )
 }
 
-export default couponManager
+export default CouponManager

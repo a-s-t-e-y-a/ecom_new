@@ -1,4 +1,4 @@
-import ProductDetailTable from "@/Components/Admin/ProductDetailTable";
+import ProductDetailTable from "@/components/Admin/ProductDetailTable";
 import AdminLayout from "@/Layout/AdminLayout";
 import { IconButton, InputAdornment, TextField } from "@mui/material";
 import { useRouter } from "next/router";
@@ -6,7 +6,7 @@ import React from "react";
 import { BiSearch } from "react-icons/bi";
 
 
-const productDetail = () => {
+const ProductDetail = () => {
   const router =  useRouter()
   return (
     <AdminLayout>
@@ -62,4 +62,4 @@ const productDetail = () => {
   );
 };
 
-export default productDetail;
+export default ProductDetail;

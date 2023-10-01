@@ -4,11 +4,12 @@ import FileInput from '../Admin/FileInput';
 import { TextField } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import AddIcon from "@mui/icons-material/Add";
+import { addPowerType } from '@/Slices/powerTypeSlice';
 
 const PowerTypesDialogBox = ({ onCancel }) => {
     const { register, handleSubmit } = useForm();
     const dispatch = useDispatch()
-  const onSubmit = data => dispatch(addCoupon(data.powerType));
+  const onSubmit = data => dispatch(addPowerType(data.powerType));
   return (
     <div className="relative border tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
       <h1 className="text-md font-semibold text-center text-gray-700 mt-3">

@@ -1,5 +1,6 @@
 import { Fragment } from 'react'
 import { Menu, Transition } from '@headlessui/react'
+import Link from 'next/link'
 // import { ChevronDownIcon } from '@heroicons/react/20/solid'
 
 function classNames(...classes) {
@@ -27,12 +28,12 @@ const MenuComponent = (props) => {
         leaveTo="transform scale-95 opacity-0"
       >
         <Menu.Items className="absolute -right-24 z-10 mt-2 w-56 origin-top-left rounded-md bg-white shadow-lg ring-1 focus:outline-none">
-        {items.map((link) => (
+        {items.map((link,i) => (
           /* Use the `active` state to conditionally style the active item. */
-          <div className="py-1 text-center">
+          <div key={i} className="py-1 text-center">
             <Menu.Item key={link.href} as={Fragment}>
             {({ active }) => (
-              <a
+              <Link
                 href={link.href}
                 className={classNames(
                   active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
@@ -40,7 +41,7 @@ const MenuComponent = (props) => {
                 )}
               >
                 {link.label} 
-              </a>
+              </Link>
             )}
           </Menu.Item>
           </div>

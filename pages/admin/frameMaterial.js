@@ -1,6 +1,6 @@
-import IconButton from '@/Components/Admin/IconButton'
-import FrameMaterialDialogBox from '@/Components/Dialog/FrameMaterialDialogBox';
-import Modal from '@/Components/Dialog/Modal';
+import IconButton from '@/components/Admin/IconButton'
+import FrameMaterialDialogBox from '@/components/Dialog/FrameMaterialDialogBox';
+import Modal from '@/components/Dialog/Modal';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import AdminLayout from '@/Layout/AdminLayout'
 import { useState } from 'react';
@@ -8,7 +8,7 @@ import { CgFramer } from 'react-icons/cg';
 import { useSelector } from 'react-redux';
 
 
-const frameMaterial = () => {
+const FrameMaterial = () => {
     const frameData = useSelector((state)=> state.frameMaterial)
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(!open);
@@ -37,4 +37,4 @@ const frameMaterial = () => {
     )
 }
 
-export default frameMaterial
+export default FrameMaterial

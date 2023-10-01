@@ -1,13 +1,12 @@
 import Head from "next/head";
-import Header from "@/Components/Header/Header";
-import Header1 from "@/Components/Header/Header1";
-import Footer from "@/Components/Footer/Footer";
-import { useRouter } from "next/router"
-
-
+import Header from "@/components/Header/Header";
+import Header1 from "@/components/Header/Header1";
+import Footer from "@/components/Footer/Footer";
+import { useRouter } from "next/router";
+import WhatsappIcon from "@/components/WhatsappIcon";
 
 const Layout = ({ children }) => {
-  const router = useRouter()
+  const router = useRouter();
   return (
     <>
       <Head>
@@ -16,15 +15,14 @@ const Layout = ({ children }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {
-        router.pathname === "/" ? <Header /> : <Header1 />
-      }
-      <main className="w-[97%] mx-auto">
+      {router.pathname === "/" ? <Header /> : <Header1 />}
+      <main className="w-[97%] mx-auto min-h-screen">
         {children}
       </main>
+      <WhatsappIcon />
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;

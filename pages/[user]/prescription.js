@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { Avatar } from "@material-tailwind/react";
-import UserSideBar from '@/Components/SideBar/UserSideBar';
+import UserSideBar from '@/components/SideBar/UserSideBar';
 import { HiOutlineDocumentPlus } from "react-icons/hi2"
 import { VscCloudUpload } from "react-icons/vsc"
-import PrescriptionFormDialog from '@/Components/Dialog/PrescriptionFormDialog';
-import PrescriptionImgDialog from '@/Components/Dialog/PrescriptionImgDialog';
+import PrescriptionFormDialog from '@/components/Dialog/PrescriptionFormDialog';
+import PrescriptionImgDialog from '@/components/Dialog/PrescriptionImgDialog';
 
 
-const prescription = () => {
+const Prescription = () => {
     const [openPreForm, setOpenPreForm] = useState(false);
     const [openPreImg, setOpenPreImg] = useState(false);
     const handleOpenForm = () => setOpenPreForm(!openPreForm);
@@ -78,4 +78,4 @@ const prescription = () => {
     )
 }
 
-export default prescription
+export default Prescription

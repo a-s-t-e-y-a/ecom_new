@@ -1,6 +1,6 @@
-import IconButton from "@/Components/Admin/IconButton";
-import LensDetailDialogBox from "@/Components/Dialog/LensDetailDialogBox";
-import Modal from "@/Components/Dialog/Modal";
+import IconButton from "@/components/Admin/IconButton";
+import LensDetailDialogBox from "@/components/Dialog/LensDetailDialogBox";
+import Modal from "@/components/Dialog/Modal";
 import AdminLayout from "@/Layout/AdminLayout";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { TbEdit } from "react-icons/tb";
@@ -9,7 +9,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { MdOutlineLensBlur } from "react-icons/md";
 import { useSelector } from "react-redux";
 
-const lensDetail = () => {
+const LensDetail = () => {
   const lensDetailData = useSelector((state) => state.lensDetail);
   const [data, updateData] = useState(lensDetailData);
 
@@ -154,4 +154,4 @@ const lensDetail = () => {
   );
 };
 
-export default lensDetail;
+export default LensDetail;

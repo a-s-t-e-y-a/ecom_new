@@ -8,7 +8,7 @@ import MultipleSelect from '../Admin/MultipleSelect';
 
 const ProductCategoriesNameOption = ["SunGlasses" , "Computer Glasses"]
 const ProductBrandNameOption = ["Normal" , "Trends"]
-const PowerTypeOption = [1,2,3]
+const LensFeatureOption = ["1LensFeature","2LensFeature","And so on"]
 
 const LensDetailDialogBox = ({ onCancel }) => {
     const { register, handleSubmit } = useForm();
@@ -24,12 +24,12 @@ const LensDetailDialogBox = ({ onCancel }) => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="grid grid-cols-3 items-center justify-between gap-3">
-            <FileInput title="Lens"/>
+            <FileInput title="Lens" />
             <MultipleSelect label="Product Categories Name" options={ProductCategoriesNameOption}/>
             <MultipleSelect label="Brand Name" options={ProductBrandNameOption}/>
         
             <TextField fullWidth label="Lens Heading" name="lensHeading" id="lensHeading" size="small" {...register("lensHeading")} sx={{minWidth:300}}/>
-            <MultipleSelect label="Power Type" options={PowerTypeOption}/>
+            <MultipleSelect label="Lens Feature" options={LensFeatureOption}/>
             <TextField fullWidth label="Power Range" name="powerRange" id="powerRange" size="small" {...register("powerRange")} sx={{minWidth:300}}/>
 
             <TextField fullWidth label="Price" name="price" id="price" size="small" {...register("price")} sx={{minWidth:300}}/>
@@ -40,11 +40,11 @@ const LensDetailDialogBox = ({ onCancel }) => {
             <TextField fullWidth label="Anti Scratch Coating " name="antiScratchCoating" id="antiScratchCoating" size="small" {...register("antiScratchCoating")} sx={{minWidth:300}}/>
             <TextField fullWidth label="UV Protextion" name="uvprotection" id="uvprotection" size="small" {...register("uvprotection")} sx={{minWidth:300}}/>
 
-            <TextField fullWidth label="Both Side Anti Glare Coating " name="bothSideAntiGlareCoating" id="bothSideAntiGlareCoating" size="small" {...register("bothSideAntiGlareCoating")} sx={{minWidth:300}}/>
             <TextField fullWidth label="Both Side Anti Reflective Coating" name="bothSideAntiReflectiveCoating" id="bothSideAntiReflectiveCoating" size="small" {...register("bothSideAntiReflectiveCoating")} sx={{minWidth:300}}/>
             <TextField fullWidth label="Water and Dust Repellent" name="waterAndDustRepellent" id="waterAndDustRepellent" size="small" {...register("waterAndDustRepellent")} sx={{minWidth:300}}/>
-
             <TextField fullWidth label="Breakage & Crack Resistant" name="breakageAndCrackResistance" id="breakageAndCrackResistance" size="small" {...register("breakageAndCrackResistance")} sx={{minWidth:300}}/>
+
+            <TextField fullWidth label="LensID" name="bothSideAntiGlareCoating" id="bothSideAntiGlareCoating" size="small" {...register("bothSideAntiGlareCoating")} sx={{minWidth:300}}/>
 
         </div>
         

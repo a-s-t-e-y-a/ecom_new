@@ -1,102 +1,31 @@
 import React from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation} from 'swiper';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import LensPlanFeature from '../Lens/LensPlanFeature';
+import SinglePowerType from '../Lens/SinglePowerType'
 
-
-const LensFormStep2 = ({onNext, onPrev}) => {
+const LensFormStep2 = ({ onNext,  onPrev,}) => {
   return (
-    <div className='flex justify-center'>
-        <div className='text-gray-800 w-[98%] h-auto my-2'>
-            <h1 className='text-center font-semibold tracking-wide text-xl py-3'>Select Your Lens</h1>
-
-            <div className='w-[83%] mx-auto h-auto border flex'>
-                <div className='w-[25%] border'>
-                    <ul className='text-sm font-semibold tracking-wider text-gray-700'>
-                        <li className='flex items-center justify-center h-[180px] text-4xl shadow sm py-4 cursor-pointer tracking-wider'>
-                            Lens Features
-                        </li>
-                        <li className='flex items-center shadow-sm px-3 py-[7px]'>
-                            <span></span>
-                            <span>Warrenty Period</span>
-                        </li>
-                        <li className='flex items-center shadow-sm px-3 py-[7px]'>
-                            <span></span>
-                            <span>Index/Thickness</span>
-                        </li>
-                        <li className='flex items-center shadow-sm px-3 py-[7px]'>
-                            <span></span>
-                            <span>Blue Light Blocker</span>
-                        </li>
-                        <li className='flex items-center shadow-sm px-3 py-[7px]'>
-                            <span></span>
-                            <span>Power Range</span>
-                        </li>
-                        <li className='flex items-center shadow-sm px-3 py-[7px]'>
-                            <span></span>
-                            <span>Anti Scratch Coating</span>
-                        </li>
-                        <li className='flex items-center shadow-sm px-3 py-[7px]'>
-                            <span></span>
-                            <span>Both Side Anti Glare Coating</span>
-                        </li>
-                        <li className='flex items-center shadow-sm px-3 py-[7px]'>
-                            <span></span>
-                            <span>Both Side Anti Refelective Coating</span>
-                        </li>
-                        <li className='flex items-center shadow-sm px-3 py-[7px]'>
-                            <span></span>
-                            <span>UV Protection</span>
-                        </li>
-                        <li className='flex items-center shadow-sm px-3 py-[7px]'>
-                            <span></span>
-                            <span>Water & Dust Protection</span>
-                        </li>
-                    </ul>
-                </div>
-                <div className='w-[75%]'>
-                    <Swiper
-                        modules={[Navigation]}
-                        navigation
-                        slidesPerView={3}
-                    >
-                        <SwiperSlide className='border'>
-                            <LensPlanFeature />
-                        </SwiperSlide>  
-                        <SwiperSlide className='border'>
-                            <LensPlanFeature />
-                        </SwiperSlide> 
-                        <SwiperSlide className='border'>
-                            <LensPlanFeature />
-                        </SwiperSlide> 
-                        <SwiperSlide className='border'>
-                            <LensPlanFeature />
-                        </SwiperSlide> 
-                        <SwiperSlide className='border'>
-                            <LensPlanFeature />
-                        </SwiperSlide> 
-                    </Swiper>
-                </div>
-            </div>
-
-
-            <div className='flex items-center justify-between pt-7 '>
-                <button 
-                    onClick={onPrev}
-                    className='px-3 py-1 text-sm bg-gray-700 text-white rounded-md tracking-wide flex mx-auto'
-                >
-                    Previous
-                </button>
-                <button 
-                    onClick={onNext}
-                    className='px-3 py-1 text-sm bg-gray-700 text-white rounded-md tracking-wide flex mx-auto'
-                >
-                    Next
-                </button>
-            </div>
+    <div className='space-y-6 text-gray-800 w-[100%] h-[100vh] mt-20'>
+        <h1 className='text-xl font-semibold tracking-wide text-center'>Select Lens Feature</h1>
+        <div className='space-y-3 h-[320px] overflow-auto scrollbar-hide'>
+            <SinglePowerType src="/1 (1).jpeg" title="Single Vision/Powered Eyeglasses" description="For distance or near vision" />
+            <SinglePowerType src="/1 (2).jpeg" title="Zero Power Eyeglasses" description="Fashion or Protection from Glare/Computer Screens etc." />
+            <SinglePowerType src="/1 (3).jpeg" title="Bifocal/Progressive Eyeglasses" description="Distance & Near vision in same lenses." />
         </div>
+
+        <div className='flex items-center justify-between pt-7 w-[81%] mx-auto'>
+            <button 
+                onClick={onPrev}
+                className='px-3 py-1 text-sm bg-gray-700 text-white rounded-md tracking-wide flex mx-auto'
+            >
+                Previous
+            </button>
+            <button 
+                onClick={onNext}
+                className='px-3 py-1 text-sm bg-gray-700 text-white rounded-md tracking-wide flex mx-auto'
+            >
+                Continue
+            </button>
+        </div>
+
     </div>
   )
 }

@@ -71,17 +71,6 @@ export default function Example() {
                             />
                         </div>
 
-                        <div className="w-auto">
-                            <Input
-                                label="Confirm Password"
-                                type={show ? 'type' : "password"}
-                                name="confirm-password"
-                                id="confirm-password"
-                                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg   w-full p-2.5 focus:outline-none focus:ring-0" required=""
-                                icon={show ? <AiFillEye onClick={() => setShow(!show)} className='text-gray-600' /> : <AiFillEyeInvisible onClick={() => setShow(!show)} className='text-gray-600' />}
-                                {...register("confirm-password", { required: true })}
-                            />
-                        </div>
 
                         <div class="flex items-center">
                             <input

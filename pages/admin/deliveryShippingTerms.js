@@ -1,17 +1,22 @@
-import QuillEditor from "@/Components/Admin/QuillEditor";
-import AdminLayout from "@/Layout/AdminLayout";
-import { useState } from "react";
+import IconButton from '@/components/Admin/IconButton'
+import QuillEditor from '@/components/Admin/QuillEditor'
+import AdminLayout from '@/Layout/AdminLayout'
+import React from 'react'
+import { TbTruckReturn } from 'react-icons/tb'
 
-const deliveryShippingTerms = () => {
+const DeliveryShippingTerms = () => {
   return (
     <AdminLayout>
-      <div>
         <div>
-            <QuillEditor />
+            <div>
+                <IconButton label="Delivery Shipping Terms" icon={<TbTruckReturn/>}/>
+            </div>
+            <div className='mt-6 flex items-center gap-3 flex-wrap w-full'>
+                <QuillEditor />
+            </div>
         </div>
-      </div>
     </AdminLayout>
-  );
-};
+  )
+}
 
-export default deliveryShippingTerms;
+export default DeliveryShippingTerms

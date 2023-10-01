@@ -3,34 +3,34 @@ import {TbEdit} from "react-icons/tb"
 import {MdDelete} from "react-icons/md"
 
 const data = [
-    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",LensMaterial:"Demo Polycarbonate",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
-    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",LensMaterial:"Demo Polycarbonate",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
-    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",LensMaterial:"Demo Polycarbonate",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
-    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",LensMaterial:"Demo Polycarbonate",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
-    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",LensMaterial:"Demo Polycarbonate",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
-    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",LensMaterial:"Demo Polycarbonate",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
-    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",LensMaterial:"Demo Polycarbonate",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
-    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",LensMaterial:"Demo Polycarbonate",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
-    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",LensMaterial:"Demo Polycarbonate",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
-    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",LensMaterial:"Demo Polycarbonate",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
-    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",LensMaterial:"Demo Polycarbonate",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
-    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",LensMaterial:"Demo Polycarbonate",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
-    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",LensMaterial:"Demo Polycarbonate",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
-    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",LensMaterial:"Demo Polycarbonate",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
-    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",LensMaterial:"Demo Polycarbonate",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
-    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",LensMaterial:"Demo Polycarbonate",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
-    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",LensMaterial:"Demo Polycarbonate",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
-    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",LensMaterial:"Demo Polycarbonate",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
-    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",LensMaterial:"Demo Polycarbonate",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
-    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",LensMaterial:"Demo Polycarbonate",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
-    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",LensMaterial:"Demo Polycarbonate",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
-    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",LensMaterial:"Demo Polycarbonate",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
-    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",LensMaterial:"Demo Polycarbonate",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
-    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",LensMaterial:"Demo Polycarbonate",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
-    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",LensMaterial:"Demo Polycarbonate",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
-    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",LensMaterial:"Demo Polycarbonate",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
-    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",LensMaterial:"Demo Polycarbonate",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
-    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",LensMaterial:"Demo Polycarbonate",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
+    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
+    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
+    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
+    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
+    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
+    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
+    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
+    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
+    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
+    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
+    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
+    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
+    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
+    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
+    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
+    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
+    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
+    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
+    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
+    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
+    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
+    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
+    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
+    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
+    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
+    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
+    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
+    {SNo:1,InStock:"In Stock",Quantity:10,Categories:"Rounded",Brand:"Mine",ModalNumber:1241,Price:230,Shape:"Rounded",FrameMaterial:"Metal",FrameWidth:23,LensWidth:10,LensHeight:9,Color:"Blue"},
 ]
 const ProductDetailTable = () => {
   return (
@@ -48,7 +48,6 @@ const ProductDetailTable = () => {
             <th className="py-2 border">Model No.</th>
             <th className="py-2 border">Price</th>
             <th className="py-2 border">Shape</th>
-            <th className="py-2 border">L Material</th>
             <th className="py-2 border">F Material</th>
             <th className="py-2 border">F Width</th>
             <th className="py-2 border">L Width</th>
@@ -74,7 +73,6 @@ const ProductDetailTable = () => {
             <td className="py-2 border">{data.ModalNumber}</td>
             <td className="py-2 border">{data.Price}</td>
             <td className="py-2 border">{data.Shape}</td>
-            <td className="py-2 border">{data.LensMaterial}</td>
             <td className="py-2 border">{data.FrameMaterial}</td>
             <td className="py-2 border">{data.FrameWidth}</td>
             <td className="py-2 border">{data.LensWidth}</td>

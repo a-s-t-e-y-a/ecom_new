@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import React from 'react'
 import { motion } from "framer-motion"
+
 const data = [
     {
         src: "sunglasses.png",
@@ -49,7 +50,6 @@ const GlassesType = () => {
                     </div>
                 ))
             }
-            
         </motion.div>
     )
 }

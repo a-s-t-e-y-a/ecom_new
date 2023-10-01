@@ -4,6 +4,10 @@ const initialState = [
     {
         ProductCategoriesName : ["SunGlasses","Computer Glasses"],
         ProductBrandName : ["Latest","Normal"]
+    },
+    {
+        ProductCategoriesName : ["Computer Glasses"],
+        ProductBrandName : ["Normal"]
     }
 ]
 

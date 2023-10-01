@@ -6,6 +6,7 @@ import frameMaterialSlice from "@/Slices/frameMaterialSlice"
 import couponSlice from "@/Slices/couponSlice"
 import powerTypeSlice from "@/Slices/powerTypeSlice"
 import lensDetailSlice from "@/Slices/lensDetailSlice"
+import categoriesSlice from "@/Slices/categoriesSlice"
 
 export const store = configureStore({
     reducer : {
@@ -16,5 +17,6 @@ export const store = configureStore({
         coupon : couponSlice,
         powerType : powerTypeSlice,
         lensDetail : lensDetailSlice,
+        categories : categoriesSlice,
     }
 })

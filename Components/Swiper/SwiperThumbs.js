@@ -13,7 +13,7 @@ const SwiperThumbs = () => {
             >
                     {
                         TransparentGlass.map((item, index) => (
-                            <div>
+                            <div key={index}>
                                 <img src={item.src} className="w-[90%]" />
                                 {/* <p className="legend">{item.title}</p> */}
                             </div>

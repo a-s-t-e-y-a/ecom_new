@@ -3,7 +3,7 @@ import SinglePowerType from '../Lens/SinglePowerType'
 
 const LensFormStep1 = ({ onNext, onCancel }) => {
   return (
-    <div className='space-y-6 text-gray-800 mx-10 my-16'>
+    <div className='space-y-6 text-gray-800 w-[100%] h-[100vh] mt-20'>
         <h1 className='text-xl font-semibold tracking-wide text-center'>Select Power Type</h1>
         <div className='space-y-3 h-[320px] overflow-auto scrollbar-hide'>
             <SinglePowerType src="/1 (1).jpeg" title="Single Vision/Powered Eyeglasses" description="For distance or near vision" />

@@ -20,14 +20,13 @@ export default function Slider() {
         spaceBetween={20}
         loop={true}
         navigation={true}
-        
         modules={[Navigation]}
         className="mySwiper"
       >
         {
           GlassesType.map((slide, index) => (
             <SwiperSlide key={index} className='relative px-1 py-4 bg-white'>
-              <div className="text-center flex-flex-col gap-4">
+              <div className="text-center flex flex-col items-center justify-center gap-4">
                 <div className='px-2'>
                   <img className='h-full w-56' src={slide.src} alt="" />
                 </div>

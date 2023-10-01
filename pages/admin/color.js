@@ -1,13 +1,13 @@
-import IconButton from '@/Components/Admin/IconButton';
-import Modal from '@/Components/Dialog/Modal';
-import ColorDialogBox from '@/Components/Dialog/ColorDialogBox';
+import IconButton from '@/components/Admin/IconButton';
+import Modal from '@/components/Dialog/Modal';
+import ColorDialogBox from '@/components/Dialog/ColorDialogBox';
 import AdminLayout from '@/Layout/AdminLayout'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { useState } from 'react';
 import { IoColorPaletteOutline } from 'react-icons/io5';
 import { useSelector } from 'react-redux';
 
-const color = () => {
+const Color = () => {
     const colorsData = useSelector((state)=> state.color)
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(!open);
@@ -36,4 +36,4 @@ const color = () => {
     )
 }
 
-export default color
+export default Color

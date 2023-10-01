@@ -1,7 +1,7 @@
 import React from 'react'
 import { Avatar } from "@material-tailwind/react";
-import UserSideBar from '@/Components/SideBar/UserSideBar';
-import MyOrder from '@/Components/User/MyOrder';
+import UserSideBar from '@/components/SideBar/UserSideBar';
+import MyOrder from '@/components/User/MyOrder';
 
 const myorder = () => {
   return (

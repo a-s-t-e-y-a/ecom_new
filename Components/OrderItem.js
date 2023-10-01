@@ -51,37 +51,23 @@ const OrderItem = () => {
                 <table className="min-w-full text-left text-xs font-light tracking-wide">
                   <thead className="border-b font-medium">
                     <tr>
-                      <th scope="col" className="px-4 py-2">
-                        #
-                      </th>
-                      <th scope="col" className="px-4 py-2">
-                        Spherical (SPH)
-                      </th>
-                      <th scope="col" className="px-4 py-2">
-                        Cylindrical (CYL)
-                      </th>
-                      <th scope="col" className="px-4 py-2">
-                        Pupil Distance (PD)
-                      </th>
-                      <th scope="col" className="px-4 py-2">
-                        Add
-                      </th>
+                      <th scope="col" className="px-4 py-2">#</th>
+                      <th scope="col" className="px-4 py-2">Spherical (SPH)</th>
+                      <th scope="col" className="px-4 py-2">Cylindrical (CYL)</th>
+                      <th scope="col" className="px-4 py-2">Pupil Distance (PD)</th>
+                      <th scope="col" className="px-4 py-2">Add</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr className="border-b">
-                      <td className="whitespace-nowrap px-4 py-2 font-medium">
-                        RIGHT
-                      </td>
+                      <td className="whitespace-nowrap px-4 py-2 font-medium">RIGHT</td>
                       <td className="whitespace-nowrap px-4 py-2">1.75</td>
                       <td className="whitespace-nowrap px-4 py-2">0.00</td>
                       <td className="whitespace-nowrap px-4 py-2">29</td>
                       <td className="whitespace-nowrap px-4 py-2">25</td>
                     </tr>
                     <tr className="border-b">
-                      <td className="whitespace-nowrap px-4 py-2 font-medium">
-                        LEFT
-                      </td>
+                      <td className="whitespace-nowrap px-4 py-2 font-medium">LEFT</td>
                       <td className="whitespace-nowrap px-4 py-2">-1.50</td>
                       <td className="whitespace-nowrap px-4 py-2">0.00</td>
                       <td className="whitespace-nowrap px-4 py-2">29.5</td>

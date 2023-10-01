@@ -1,13 +1,17 @@
-import SingleItem from "@/Components/SingleItem/SingleItem";
-import SwiperThumbs from "@/Components/Swiper/SwiperThumbs";
+import SingleItem from "@/components/SingleItem/SingleItem";
+import SwiperThumbs from "@/components/Swiper/SwiperThumbs";
 import Layout from "@/Layout/Layout";
 import React from "react";
 import { HiOutlineShoppingCart } from "react-icons/hi"
 import { IoIosShareAlt } from 'react-icons/io'
-
-import SwiperContainer from "@/Components/Swiper/SwiperContainer";
-import SingleItemDescription from "@/Components/SingleItem/SingleItemDescription";
-import LensForm from "@/Components/LensForm/LensForm";
+import { AiOutlineHeart } from "react-icons/ai";
+import SwiperContainer from "@/components/Swiper/SwiperContainer";
+import LensForm from "@/components/LensForm/LensForm";
+import Specification from "@/components/SingleItem/Specification";
+import Description from "@/components/SingleItem/Description";
+import WriteReview from "@/components/SingleItem/WriteReview";
+import ProductTag from "@/components/SingleItem/ProductTag";
+import TabPanel from "@/components/Tab/TabPanel";
 
 
 const SingleItemData = [
@@ -15,6 +19,14 @@ const SingleItemData = [
     { src: "/1 (2).jpeg", title: "Lens Width", width: "45 MM" },
     { src: "/1 (3).jpeg", title: "Lens Height", width: "51 MM" },
 ];
+
+const TabPanelOption = [
+    { label: "SPECIFICATION", component: Specification },
+    { label: "DESCRIPTION", component: Description },
+    { label: "WRITE REVIEW", component: WriteReview },
+    { label: "PRODUCTS TAGS", component: ProductTag },
+]
+
 const SingleProduct = () => {
     const [isOpen,setIsOpen] = React.useState(false)
     return (
@@ -26,11 +38,14 @@ const SingleProduct = () => {
                     <div className="col-span-2 h-[20rem]">
                         <SwiperThumbs />
                     </div>
-                    
+
                     {/* Detail  */}
                     <div className="flex flex-col h-full w-[90%] mx-auto py-6 justify-between">
                         <div className="flex flex-col gap-2">
-                            <h1>Hydra S</h1>
+                            <div className="flex items-center justify-between">
+                                <h1>Hydra S</h1>
+                                <span className="text-xl font-semibold cursor-pointer"><AiOutlineHeart className="" /></span>
+                            </div>
                             <div className="flex items-center justify-between">
                                 <p className="text-sm font-semibold">Blue Transparent</p>
                                 <span className="font-semibold tracking-wider text-lg">
@@ -41,9 +56,11 @@ const SingleProduct = () => {
 
                         <div className="px-8 flex flex-col gap-6">
                             <div className="flex items-center justify-between text-sm">
-                                <p>
-                                    Color : <span>Black</span>
-                                </p>
+                                <div className='flex items-center justify-center gap-2'>
+                                    <span className='h-5 w-5 bg-blue-600 rounded-full border p-[2px]'></span>
+                                    <span className='h-5 w-5 bg-green-600 rounded-full border p-[2px]'></span>
+                                    <span className='h-5 w-5 bg-red-600 rounded-full border p-[2px]'></span>
+                                </div>
                                 <span>Medium (134 mm)</span>
                             </div>
                             <div className="flex items-center justify-between">
@@ -64,7 +81,7 @@ const SingleProduct = () => {
                             <button className="flex items-center justify-center gap-2 bg-gray-700 hover:bg-gray-800 text-white p-2 rounded-md">
                                 <HiOutlineShoppingCart strokeWidth={2} className="h-4 w-4" /> Buy on Whatsapp
                             </button>
-                            <button 
+                            <button
                                 className="flex items-center justify-center gap-2 bg-gray-700 hover:bg-gray-800 text-white p-2 rounded-md"
                                 onClick = {() => setIsOpen(true)}
                             >
@@ -98,10 +115,9 @@ const SingleProduct = () => {
                     <SwiperContainer />
                 </div>
 
-                <div className="h-[30rem] grid grid-cols-7 gap-2">
-                    <div className="col-span-5 border py-3">
-                        <SingleItemDescription />
-
+                <div className="h-[35rem] grid grid-cols-7 gap-2">
+                    <div className="col-span-5 shadow-md pr-2">
+                        <TabPanel TabPanelOption={TabPanelOption}/>
                     </div>
                     <div className="col-span-2">
                         Images

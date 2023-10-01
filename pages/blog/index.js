@@ -1,21 +1,21 @@
-import BlogItem from '@/Components/Blog/BlogItem'
-import BlogSideBar from '@/Components/Blog/BlogSideBar'
+import BlogItem from '@/components/Blog/BlogItem'
+import BlogSideBar from '@/components/Blog/BlogSideBar'
 import React from 'react'
 import {useRouter} from "next/router"
 
 const index = () => {
-  const router = useRouter()
+  // const router = useRouter()
 
   return (
     <div className='w-screen h-screen bg-white'>
         <div className='text-gray-800 relative'>
 
-            <span 
+            {/* <span 
               className="absolute top-9 right-10 bg-gray-500 hover:bg-indigo-500 px-4 py-1 cursor-pointer text-white rounded-md tracking-wide font-semibold"
               onClick={()=>router.push("/blog/create")}
             >
               Create Blog
-            </span>
+            </span> */}
 
 
             {/* Header/Heading */}
