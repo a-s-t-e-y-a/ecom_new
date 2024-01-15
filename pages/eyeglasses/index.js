@@ -1,9 +1,50 @@
-import React from 'react'
+/* eslint-disable react-hooks/rules-of-hooks */
+import Filter from "@/Components/Filter";
+import SingleGlassItem from "@/Components/SingleGlassItem";
+import Layout from "@/Layout/Layout";
+import axios from "axios";
+import React, { useState } from "react";
+import { useRouter } from "next/router";
 
 const index = () => {
-  return (
-    <div>index</div>
-  )
-}
+  const [data, setData] = useState([]);
 
-export default index
+  const router = useRouter();
+
+  const navigateToSingleProduct = (id) => {
+    router.push(`/product/${id}`);
+  };
+  const fetchData = () => {
+    axios
+      .get("http://3.24.191.174:5000/api/categories/1?pageSize=15&page=1")
+      .then((result) => {
+        setData(result?.data?.data.products);
+      });
+  };
+  React.useEffect(() => {
+    fetchData();
+  }, []);
+  return (
+    <Layout>
+      <section className="flex h-auto space-x-3">
+        <div className="">
+          <Filter />
+        </div>
+        <div className="flex items-center justify-between flex-wrap">
+          {data &&
+            data.map((val, index) => (
+              <div
+                key={index}
+                onClick={() => navigateToSingleProduct(val?.p_id
+                  )}
+              >
+                <SingleGlassItem value={val} />
+              </div>
+            ))}
+        </div>
+      </section>
+    </Layout>
+  );
+};
+
+export default index;

@@ -1,20 +1,14 @@
 import React from "react";
 import SlideOnHover from "./Swiper/SlideOnHover";
 import { IoIosShareAlt } from "react-icons/io";
-const data = [
-	{ src: "/1 (1).jpeg" },
-	{ src: "/1 (2).jpeg" },
-	{ src: "/1 (3).jpeg" },
-	{ src: "/1 (4).jpeg" },
-	{ src: "/1 (5).jpeg" },
-];
 
-const SingleGlassItem = () => {
+const SingleGlassItem = ({value}) => {
+	const imageArray = value?.product_images.split(',')
 	return (
 		<div className="hover:shadow-xl rounded-md">
 			<div className="relative space-y-3">
 				<div className="p-2 w-[95%] pt-3">
-					<SlideOnHover data={data} />
+					<SlideOnHover data={imageArray} />
 				</div>
 
 				{/* Detail  */}

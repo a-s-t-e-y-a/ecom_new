@@ -5,24 +5,51 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import { BsFillPersonFill } from 'react-icons/bs'
 import { useForm } from "react-hook-form";
 import { useRouter } from 'next/router';
+import axios from "axios";
+import {env} from '@/next.config'
 
 
 export default function Example() {
     const [show, setShow] = useState(false)
     const router = useRouter()
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
+    const {BASE_URL} = env;
+    const { register, handleSubmit, watch, formState: { errors } } = useForm()
+    
+    const onSubmit = async (data) => {
+        try {
+            const response = await axios.post(
+                `${BASE_URL}auth/login`,
+                {
+                    email: data?.email,
+                    password: data?.password,
+                }
+            );
+            console.log(response, "response");
+            if (response?.data?.data) {
+                localStorage.setItem("user_info", JSON.stringify(response?.data?.data?.token));
+                router.push("/");
+            } else {
+                alert("User not exist");
+            }
+            setMessage(response.data.message || "Logged successfully!"); // Set success message
+            // Depending on the response, you can do:
+        } catch (error) {
+            // console.log(error);
+            alert(error, "Invalid credential");
+            // setMessage(error.response?.data?.message || 'Invalid credential'); // Set error message from API or a generic one
+        }
+    }
     return (
         <section className='bg-gray-50 '>
             <Card color="transparent" className="border-2 border-gray-500 flex flex-col items-center justify-center px-6 py-6 mx-auto md:h-screen lg:py-0">
                 <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
-                    <Image 
-                        className="" 
-                        src="/logo.png" 
-                        alt="Logo" height={200} width={350} priority 
-                        onClick={()=>router.push("/")}
+                    <Image
+                        className=""
+                        src="/logo.png"
+                        alt="Logo" height={200} width={350} priority
+                        onClick={() => router.push("/")}
                     />
-                        
+
                 </a>
                 <Card className='px-6 py-6 border-2 rounded-lg'>
                     <Typography color="blue-gray" className="text-sm font-semibold">
