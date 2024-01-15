@@ -16,7 +16,7 @@ const index = () => {
   };
   const fetchData = () => {
     axios
-      .get("http://3.24.191.174:5000/api/categories/2")
+      .get("http://3.24.191.174:5000/api/categories/4")
       .then((result) => {
         setData(result?.data?.data.products);
       });

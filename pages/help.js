@@ -1,11 +1,11 @@
 import Layout from '@/Layout/Layout'
-import TabPanel from '@/components/Tab/TabPanel'
-import Cancellation from '@/components/Help/Cancellation';
-import RefundPolicy from '@/components/Help/RefundPolicy';
-import GuideToBuy from '@/components/Help/GuideToBuy';
-import PrivacyPolicy from '@/components/Help/PrivacyPolicy';
-import DeliveryandShippingTime from '@/components/Help/DeliveryandShippingTime';
-import EasyReturnPolicy from '@/components/Help/EasyReturnPolicy';
+import TabPanel from '@/Components/Tab/TabPanel'
+import Cancellation from '@/Components/Help/Cancellation';
+import RefundPolicy from '@/Components/Help/RefundPolicy';
+import GuideToBuy from '@/Components/Help/GuideToBuy';
+import PrivacyPolicy from '@/Components/Help/PrivacyPolicy';
+import DeliveryandShippingTime from '@/Components/Help/DeliveryandShippingTime';
+import EasyReturnPolicy from '@/Components/Help/EasyReturnPolicy';
 
 const help = () => {
   const TabPanelOption = [

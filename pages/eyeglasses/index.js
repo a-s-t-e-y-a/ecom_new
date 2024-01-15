@@ -30,13 +30,12 @@ const index = () => {
         <div className="">
           <Filter />
         </div>
-        <div className="flex items-center justify-between flex-wrap">
+        <div className="grid grid-cols-4 h-fit gap-3 gap-y-5">
           {data &&
             data.map((val, index) => (
               <div
                 key={index}
-                onClick={() => navigateToSingleProduct(val?.p_id
-                  )}
+                onClick={() => navigateToSingleProduct(val?.p_id)}
               >
                 <SingleGlassItem value={val} />
               </div>

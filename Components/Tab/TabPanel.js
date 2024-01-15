@@ -6,7 +6,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const TabPanel = ({TabPanelOption}) => {
+const TabPanel = ({TabPanelOption, productData}) => {
   
   return (
     <div className="w-full px-2 sm:px-0">
