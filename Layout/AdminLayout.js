@@ -1,5 +1,5 @@
-import AdminNavBar from '@/components/Admin/AdminNavBar'
-import AdminSideBar from '@/components/Admin/AdminSideBar'
+import AdminNavBar from '@/Components/Admin/AdminNavBar'
+import AdminSideBar from '@/Components/Admin/AdminSideBar'
 import React from 'react'
 
 const AdminLayout = ({children}) => {

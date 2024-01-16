@@ -5,7 +5,7 @@ import { TiFilter } from "react-icons/ti";
 import { AnimatePresence, motion } from "framer-motion";
 
 const Filter = () => {
-  const [display, setDisplay] = React.useState(true);
+  const [display, setDisplay] = React.useState(false);
   return (
     <motion.div
       className={`relative ${display ? "" : "border rounded-md"} space-x-2 `}

@@ -30,7 +30,7 @@ const index = () => {
         <div className="">
           <Filter />
         </div>
-        <div className="grid grid-cols-4 h-fit gap-3 gap-y-5">
+        <div className="grid grid-cols-3 h-fit gap-3 gap-y-5">
           {data &&
             data.map((val, index) => (
               <div

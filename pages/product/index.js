@@ -4,11 +4,12 @@ import Layout from '@/Layout/Layout'
 import React from 'react'
 import { useRouter } from "next/router";
 import axios from "axios";
+import { env } from '@/next.config';
 
 
 const index = () => {
   const [data, setData] = React.useState([]);
-
+  const {BASE_URL} = env
   const router = useRouter();
   // first comment to test
   const navigateToSingleProduct = (id) => {
@@ -16,7 +17,7 @@ const index = () => {
   };
   const fetchData = () => {
     axios
-      .get("http://3.24.191.174:5000/api/products?page=&itemsPerPage=20")
+      .get(`${BASE_URL}products?page=&itemsPerPage=20`)
       .then((result) => {
         setData(result?.data?.data);
       });

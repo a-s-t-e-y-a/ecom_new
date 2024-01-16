@@ -1,9 +1,9 @@
 import Head from "next/head";
-import Header from "@/components/Header/Header";
-import Header1 from "@/components/Header/Header1";
-import Footer from "@/components/Footer/Footer";
+import Header from "@/Components/Header/Header";
+import Header1 from "@/Components/Header/Header1";
+import Footer from "@/Components/Footer/Footer";
 import { useRouter } from "next/router";
-import WhatsappIcon from "@/components/WhatsappIcon";
+import WhatsappIcon from "@/Components/WhatsappIcon";
 
 const Layout = ({ children }) => {
   const router = useRouter();

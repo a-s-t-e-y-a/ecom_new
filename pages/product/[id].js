@@ -14,6 +14,7 @@ import ProductTag from "@/Components/SingleItem/ProductTag";
 import TabPanel from "@/Components/Tab/TabPanel";
 import { useRouter } from "next/router";
 import axios from "axios";
+import { env } from "@/next.config";
 
 const TabPanelOption = [
     { label: "SPECIFICATION", component: Specification },
@@ -51,14 +52,14 @@ const colorMapping = {
 const SingleProduct = () => {
     const [isOpen, setIsOpen] = React.useState(false);
     const [productData, setProductdata] = React.useState(null);
-
+    const {BASE_URL} = env
     const router = useRouter();
     const { id } = router.query;
     const phoneNumber = "9097773221";
     const productURL = productData?.product_url ?? "";
-    const BASE_URL = `https://akkukachasma.com/eyewear/`;
+    const BASE_URI = `https://akkukachasma.com/eyewear/`;
     const message = encodeURIComponent(
-        `Hello! I'm interested in one of your products. Please contact me! ${BASE_URL}${productURL}`
+        `Hello! I'm interested in one of your products. Please contact me! ${BASE_URI}${productURL}`
     );
     const whatsappLink = `https://wa.me/${phoneNumber}?text=${message}`;
 
@@ -71,7 +72,7 @@ const SingleProduct = () => {
             const fetchProductData = async () => {
                 try {
                     const res = await axios.get(
-                        `http://3.24.191.174:5000/api/products/${id}`
+                        `${BASE_URL}products/${id}`
                     );
                     console.log(res?.data);
                     setProductdata(res?.data);
@@ -85,18 +86,16 @@ const SingleProduct = () => {
 
     const addToCart = (productId, isLens = false) => {
         // Construct the object based on whether it's a lens or product
-        if (typeof window !== "undefined") {
-            // Code that uses localStorage
-            const value = localStorage.getItem("user_info");
-            const postData = { p_id: productId };
-            axios
-                .post("http://3.24.191.174:5000/api/cart", postData, {
-                    headers: {
-                        authorization: `Bearer ${value} `,
-                    },
-                })
-                .then((result) => console.log(result?.data, "result?.data"));
-        }
+        let value = localStorage.getItem("user_info");
+        value = JSON.parse(value)
+        const postData = { p_id: productId };
+        axios
+            .post(`${BASE_URL}cart`, postData, {
+                headers: {
+                    authorization: `Bearer ${value} `,
+                },
+            })
+            .then((result) => console.log(result?.data, "result?.data"));
     };
 
     const SingleItemData = [
@@ -224,7 +223,7 @@ const SingleProduct = () => {
 
                 <div className="h-[35rem] grid grid-cols-7 gap-2">
                     <div className="col-span-5 shadow-md pr-2">
-                        <TabPanel TabPanelOption={TabPanelOption} TableData={productData}/>
+                        <TabPanel TabPanelOption={TabPanelOption} TableData={productData} />
                     </div>
                     <div className="col-span-2">
                         Images
