@@ -24,14 +24,14 @@ export default function Example() {
                     password: data?.password,
                 }
             );
-            console.log(response, "response");
+            console.log(response?.data?.data?.info_user, "response");
             if (response?.data?.data) {
                 localStorage.setItem("user_info", JSON.stringify(response?.data?.data?.token));
+                localStorage.setItem('user_data', JSON.stringify(response?.data?.data?.info_user))
                 router.push("/");
             } else {
                 alert("User not exist");
             }
-            setMessage(response?.data?.message || "Logged successfully!"); // Set success message
             // Depending on the response, you can do:
         } catch (error) {
             // console.log(error);
