@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { Avatar } from "@material-tailwind/react";
-import UserSideBar from '@/components/SideBar/UserSideBar';
+import UserSideBar from '@/Components/SideBar/UserSideBar';
 import { HiOutlineDocumentPlus } from "react-icons/hi2"
 import { VscCloudUpload } from "react-icons/vsc"
-import PrescriptionFormDialog from '@/components/Dialog/PrescriptionFormDialog';
-import PrescriptionImgDialog from '@/components/Dialog/PrescriptionImgDialog';
+import PrescriptionFormDialog from '@/Components/Dialog/PrescriptionFormDialog';
+import PrescriptionImgDialog from '@/Components/Dialog/PrescriptionImgDialog';
 
 
 const Prescription = () => {

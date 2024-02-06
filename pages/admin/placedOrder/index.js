@@ -1,4 +1,4 @@
-import OrderedTable from "@/components/Admin/OrderedTable";
+import OrderedTable from "@/Components/Admin/OrderedTable";
 import AdminLayout from "@/Layout/AdminLayout";
 import { IconButton, InputAdornment, TextField } from "@mui/material";
 import React from "react";

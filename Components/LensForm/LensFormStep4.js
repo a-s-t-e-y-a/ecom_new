@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { HiOutlineDocumentPlus } from "react-icons/hi2";
 import { VscCloudUpload } from "react-icons/vsc";
-import PrescriptionFormDialog from "@/components/Dialog/PrescriptionFormDialog";
-import PrescriptionImgDialog from "@/components/Dialog/PrescriptionImgDialog";
+import PrescriptionFormDialog from "@/Components/Dialog/PrescriptionFormDialog";
+import PrescriptionImgDialog from "@/Components/Dialog/PrescriptionImgDialog";
 
 const LensFormStep2 = ({ onNext, onPrev, onCancel }) => {
   const [openPreForm, setOpenPreForm] = useState(false);

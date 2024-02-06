@@ -1,7 +1,7 @@
 import React from 'react'
-import FileInput from '@/components/Admin/FileInput'
-import MultipleSelect from '@/components/Admin/MultipleSelect'
-import SelectComponent from '@/components/Admin/SelectComponent'
+import FileInput from '@/Components/Admin/FileInput'
+import MultipleSelect from '@/Components/Admin/MultipleSelect'
+import SelectComponent from '@/Components/Admin/SelectComponent'
 import { TextField } from '@mui/material'
 import AddIcon from "@mui/icons-material/Add";
 

@@ -1,4 +1,4 @@
-import IconButton from '@/components/Admin/IconButton'
+import IconButton from '@/Components/Admin/IconButton'
 import AdminLayout from '@/Layout/AdminLayout'
 import React from 'react'
 import { HiOutlineNewspaper } from 'react-icons/hi'

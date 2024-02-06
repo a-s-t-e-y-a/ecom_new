@@ -62,11 +62,12 @@ export default function Example() {
                         <div className="w-auto">
                             <Input
                                 label="Email"
+                                labelClassName="mx-4"
                                 type="email"
                                 name="email"
                                 id="email"
-                                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg  w-full p-2.5  focus:outline-none focus:ring-0"
-                                icon={<BsFillPersonFill className='text-gray-600' />}
+                                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg  w-full pl-5 py-2.5  focus:outline-none focus:ring-0"
+                                icon={<BsFillPersonFill className='text-gray-600 relative top-3'/>}
                                 {...register("email", { required: true })}
                             />
                         </div>
@@ -78,7 +79,7 @@ export default function Example() {
                                 name="password"
                                 id="password"
                                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg w-full p-2.5 focus:outline-none focus:ring-0" required=""
-                                icon={show ? <AiFillEye onClick={() => setShow(!show)} className='text-gray-600' /> : <AiFillEyeInvisible onClick={() => setShow(!show)} className='text-gray-600' />}
+                                icon={show ? <AiFillEye onClick={() => setShow(!show)} className='text-gray-600' /> : <AiFillEyeInvisible onClick={() => setShow(!show)} className='text-gray-600 relative top-3' />}
                                 {...register("password", { required: true })}
                             />
                         </div>

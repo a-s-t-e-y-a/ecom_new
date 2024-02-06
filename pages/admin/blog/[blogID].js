@@ -1,9 +1,9 @@
 import React from 'react'
 import { TextField } from "@mui/material";
-import QuillEditor from '@/components/Admin/QuillEditor'
+import QuillEditor from '@/Components/Admin/QuillEditor'
 import { useForm } from 'react-hook-form';
 import AddIcon from "@mui/icons-material/Add";
-import FileInput from '@/components/Admin/FileInput';
+import FileInput from '@/Components/Admin/FileInput';
 import { RiCloseCircleLine } from "react-icons/ri"
 import { useRouter } from 'next/navigation';
 

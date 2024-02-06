@@ -1,6 +1,6 @@
-import IconButton from '@/components/Admin/IconButton';
-import Modal from '@/components/Dialog/Modal';
-import ColorDialogBox from '@/components/Dialog/ColorDialogBox';
+import IconButton from '@/Components/Admin/IconButton';
+import Modal from '@/Components/Dialog/Modal';
+import ColorDialogBox from '@/Components/Dialog/ColorDialogBox';
 import AdminLayout from '@/Layout/AdminLayout'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { useState } from 'react';

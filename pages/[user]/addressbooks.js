@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Avatar } from "@material-tailwind/react";
-import UserSideBar from '@/components/SideBar/UserSideBar';
+import UserSideBar from '@/Components/SideBar/UserSideBar';
 import {BsPlus} from "react-icons/bs"
-import FormDialog from '@/components/Dialog/FormDialog';
+import FormDialog from '@/Components/Dialog/FormDialog';
 import {HiPencil} from "react-icons/hi"
 import {MdDeleteForever} from "react-icons/md"
 

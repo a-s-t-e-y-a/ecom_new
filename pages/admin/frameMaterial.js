@@ -1,6 +1,6 @@
-import IconButton from '@/components/Admin/IconButton'
-import FrameMaterialDialogBox from '@/components/Dialog/FrameMaterialDialogBox';
-import Modal from '@/components/Dialog/Modal';
+import IconButton from '@/Components/Admin/IconButton'
+import FrameMaterialDialogBox from '@/Components/Dialog/FrameMaterialDialogBox';
+import Modal from '@/Components/Dialog/Modal';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import AdminLayout from '@/Layout/AdminLayout'
 import { useState } from 'react';

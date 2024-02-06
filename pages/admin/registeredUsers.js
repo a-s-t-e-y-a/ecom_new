@@ -1,5 +1,5 @@
 import AdminLayout from '@/Layout/AdminLayout'
-import IconButton from '@/components/Admin/IconButton';
+import IconButton from '@/Components/Admin/IconButton';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import React from 'react'
 import { CiUser } from 'react-icons/ci'

@@ -1,5 +1,5 @@
-import IconButton from '@/components/Admin/IconButton'
-import BlogItem from '@/components/Blog/BlogItem';
+import IconButton from '@/Components/Admin/IconButton'
+import BlogItem from '@/Components/Blog/BlogItem';
 import AdminLayout from '@/Layout/AdminLayout'
 import { useRouter } from 'next/router';
 import React from 'react'

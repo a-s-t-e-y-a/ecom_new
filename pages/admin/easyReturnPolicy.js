@@ -1,5 +1,5 @@
-import IconButton from '@/components/Admin/IconButton'
-import QuillEditor from '@/components/Admin/QuillEditor'
+import IconButton from '@/Components/Admin/IconButton'
+import QuillEditor from '@/Components/Admin/QuillEditor'
 import AdminLayout from '@/Layout/AdminLayout'
 import React from 'react'
 import { MdPolicy } from 'react-icons/md'

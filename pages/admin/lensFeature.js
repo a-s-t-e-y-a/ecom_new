@@ -1,7 +1,7 @@
-import IconButton from "@/components/Admin/IconButton";
-import PowerType from "@/components/Admin/PowerType";
-import Modal from "@/components/Dialog/Modal";
-import LensFeatureDialogBox from "@/components/Dialog/LensFeatureDialogBox";
+import IconButton from "@/Components/Admin/IconButton";
+import PowerType from "@/Components/Admin/PowerType";
+import Modal from "@/Components/Dialog/Modal";
+import LensFeatureDialogBox from "@/Components/Dialog/LensFeatureDialogBox";
 import AdminLayout from "@/Layout/AdminLayout";
 import React from "react";
 import { useState } from "react";

@@ -1,7 +1,7 @@
-import IconButton from '@/components/Admin/IconButton';
-import BrandDialogBox from '@/components/Dialog/BrandDialogBox';
+import IconButton from '@/Components/Admin/IconButton';
+import BrandDialogBox from '@/Components/Dialog/BrandDialogBox';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import Modal from '@/components/Dialog/Modal';
+import Modal from '@/Components/Dialog/Modal';
 import AdminLayout from '@/Layout/AdminLayout'
 import { useState } from 'react';
 import { TbBrandAdonisJs } from 'react-icons/tb';

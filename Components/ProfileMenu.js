@@ -6,7 +6,7 @@ import {
   Avatar,
   Typography,
 } from "@material-tailwind/react";
-import {CgProfile,MdOutlineBusinessCenter,GoSignOut} from "../components/Global/Icons"
+import {CgProfile,MdOutlineBusinessCenter,GoSignOut} from "../Components/Global/Icons"
 import { useRouter } from "next/router";
 
 

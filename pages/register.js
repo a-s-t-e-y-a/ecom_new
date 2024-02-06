@@ -39,7 +39,7 @@ export default function Example() {
                                 name="name"
                                 id="name"
                                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg  w-full p-2.5  focus:outline-none focus:ring-0"
-                                icon={<BsFillPersonFill className='text-gray-600' />}
+                                icon={<BsFillPersonFill className='text-gray-600 relative top-3' />}
                                 {...register("name", { required: true })}
                             />
                         </div>
@@ -50,7 +50,7 @@ export default function Example() {
                                 name="email"
                                 id="email"
                                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg  w-full p-2.5  focus:outline-none focus:ring-0"
-                                icon={<MdOutlineAlternateEmail className='text-gray-600' />}
+                                icon={<MdOutlineAlternateEmail className='text-gray-600 relative top-3' />}
                                 {...register("email", { required: true })}
                             />
                         </div>
@@ -62,7 +62,7 @@ export default function Example() {
                                 name="password"
                                 id="password"
                                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg w-full p-2.5 focus:outline-none focus:ring-0" required=""
-                                icon={show ? <AiFillEye onClick={() => setShow(!show)} className='text-gray-600'/> : <AiFillEyeInvisible onClick={() => setShow(!show)} className='text-gray-600'/>}
+                                icon={show ? <AiFillEye onClick={() => setShow(!show)} className='text-gray-600 relative top-3'/> : <AiFillEyeInvisible onClick={() => setShow(!show)} className='text-gray-600 relative top-3'/>}
                                 {...register("password", { required: true })}
                             />
                         </div>
@@ -73,7 +73,7 @@ export default function Example() {
                                 name="confirm-password"
                                 id="confirm-password"
                                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg   w-full p-2.5 focus:outline-none focus:ring-0" required=""
-                                icon={show ? <AiFillEye onClick={() => setShow(!show)} className='text-gray-600'/> : <AiFillEyeInvisible onClick={() => setShow(!show)} className='text-gray-600'/>}
+                                icon={show ? <AiFillEye onClick={() => setShow(!show)} className='text-gray-600 relative top-3'/> : <AiFillEyeInvisible onClick={() => setShow(!show)} className='text-gray-600 relative top-3'/>}
                                 {...register("confirm-password", { required: true })}
                             />
                         </div>
@@ -83,9 +83,9 @@ export default function Example() {
                                 id="link-checkbox" 
                                 type="checkbox" 
                                 value="" 
-                                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded "
+                                className="w-4 h-4 text-blue-600  bg-gray-100 border-gray-300 rounded "
                             />
-                            <label htmlFor="link-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree with the <a href="#" class="text-blue-600 dark:text-blue-500 hover:underline">terms and conditions</a>.</label>
+                            <label htmlFor="link-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree with the <a href="#" class="text-blue-600  dark:text-blue-500 hover:underline">terms and conditions</a>.</label>
                         </div>
                         <Button type="submit" className="my-6 bg-gray-900 text-white py-2 text-sm font-normal tracking-wider" fullWidth>
                             Register

@@ -1,5 +1,5 @@
 import AdminLayout from '@/Layout/AdminLayout'
-import OrderItem from '@/components/OrderItem'
+import OrderItem from '@/Components/OrderItem'
 import React from 'react'
 
 const PlacedOrderDetail = () => {

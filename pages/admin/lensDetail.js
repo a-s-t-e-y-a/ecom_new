@@ -1,6 +1,6 @@
-import IconButton from "@/components/Admin/IconButton";
-import LensDetailDialogBox from "@/components/Dialog/LensDetailDialogBox";
-import Modal from "@/components/Dialog/Modal";
+import IconButton from "@/Components/Admin/IconButton";
+import LensDetailDialogBox from "@/Components/Dialog/LensDetailDialogBox";
+import Modal from "@/Components/Dialog/Modal";
 import AdminLayout from "@/Layout/AdminLayout";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { TbEdit } from "react-icons/tb";

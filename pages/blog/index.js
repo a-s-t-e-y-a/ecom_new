@@ -1,5 +1,5 @@
-import BlogItem from '@/components/Blog/BlogItem'
-import BlogSideBar from '@/components/Blog/BlogSideBar'
+import BlogItem from '@/Components/Blog/BlogItem'
+import BlogSideBar from '@/Components/Blog/BlogSideBar'
 import React from 'react'
 import {useRouter} from "next/router"
 

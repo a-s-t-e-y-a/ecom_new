@@ -1,7 +1,7 @@
-import IconButton from "@/components/Admin/IconButton";
-import PowerType from "@/components/Admin/PowerType";
-import Modal from "@/components/Dialog/Modal";
-import PowerTypesDialogBox from "@/components/Dialog/PowerTypesDialogBox";
+import IconButton from "@/Components/Admin/IconButton";
+import PowerType from "@/Components/Admin/PowerType";
+import Modal from "@/Components/Dialog/Modal";
+import PowerTypesDialogBox from "@/Components/Dialog/PowerTypesDialogBox";
 import AdminLayout from "@/Layout/AdminLayout";
 import React from "react";
 import { useState } from "react";
