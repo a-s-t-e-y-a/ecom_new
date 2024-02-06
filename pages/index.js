@@ -1,5 +1,5 @@
-import GlassesType from "@/Components/GlassesType";
-import Slider from "@/components/Swiper/Slider";
+import GlassesType from "Components/GlassesType";
+import Slider from "@/Components/Swiper/Slider";
 import SwiperContainer from "@/Components/Swiper/SwiperContainer";
 import Layout from "@/Layout/Layout";
 import Image from "next/image";
@@ -26,7 +26,7 @@ export default function Home() {
         <div className="flex items-center justify-between gap-2 h-[200px] overflow-hidden my-1">
           <p className="flex flex-col font-bold text-5xl text-center">
             <span>EYEGLASSES</span>
-            <span className="font-semibold">TREND</span>
+            <span className="font-semibold ">TREND</span>
           </p>
           <Slider />
         </div>

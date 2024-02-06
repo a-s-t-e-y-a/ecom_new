@@ -4,7 +4,7 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { BsFillPersonFill } from "react-icons/bs";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { motion } from "framer-motion";
-import Slider from "@/components/Swiper/Slider";
+import Slider from "../Swiper/Slider";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import CartDialog from "../Dialog/CartDialog";
