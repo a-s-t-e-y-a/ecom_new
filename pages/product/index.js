@@ -7,7 +7,7 @@ import axios from "axios";
 import { env } from '@/next.config';
 
 
-const index = () => {
+const Index = () => {
   const [data, setData] = React.useState([]);
   const {BASE_URL} = env
   const router = useRouter();
@@ -47,4 +47,4 @@ const index = () => {
   )
 }
 
-export default index
+export default Index
