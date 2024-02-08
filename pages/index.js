@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import GlassesType from "@/Components/GlassesType";
-=======
-import GlassesType from "Components/GlassesType";
->>>>>>> refs/remotes/origin/main
 import Slider from "@/Components/Swiper/Slider";
 import SwiperContainer from "@/Components/Swiper/SwiperContainer";
 import Layout from "@/Layout/Layout";

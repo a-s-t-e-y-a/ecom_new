@@ -4,11 +4,7 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { BsFillPersonFill } from "react-icons/bs";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { motion } from "framer-motion";
-<<<<<<< HEAD
 import Slider from "@/Components/Swiper/Slider";
-=======
-import Slider from "../Swiper/Slider";
->>>>>>> refs/remotes/origin/main
 import { useRouter } from "next/router";
 import { useState } from "react";
 import CartDialog from "../Dialog/CartDialog";
@@ -18,7 +14,7 @@ const Header1 = () => {
   return (
     <>
       <CartDialog open={open} setOpen={setOpen} />
-      <div className="w-[97%] mx-auto">
+      <div className="w-[97%] mx-auto my-2">
         <header className=" mx-auto h-36 mb-6">
           <div className="flex items-center justify-between py-4">
             {/* Image  */}
@@ -29,9 +25,9 @@ const Header1 = () => {
                 onClick={() => router.push("/")}
               />
             </div>
-            <div className="h-full w-[60%]">
+            {/* <div className="h-full w-[60%]">
               <Slider />
-            </div>
+            </div> */}
             <div className="flex items-center gap-3 text-2xl text-gray-700">
               <motion.span whileTap={{ scale: 0.8 }}>
                 <BsFillPersonFill />

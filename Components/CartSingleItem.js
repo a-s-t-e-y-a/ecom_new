@@ -5,8 +5,8 @@ import { useEffect, useState } from "react";
 const CartSingleItem = () => {
   const [cartProducts, setCartProducts] = useState([]);
   const { BASE_URL } = env
-  const user_info = JSON.parse(localStorage.getItem("user_info"));
-  console.log(user_info)
+  // const user_info = JSON.parse(localStorage.getItem("user_info"));
+  // console.log(user_info)
   const removeItem = (id) => {
     axios
       .delete(`${BASE_URL}cart/${id}`, {
@@ -21,21 +21,27 @@ const CartSingleItem = () => {
       });
   };
 
-  const fetchData = () => {
-    axios
-      .get(`${BASE_URL}cart`, {
-        headers: {
-          authorization: `Bearer ${user_info}`,
-        },
-      })
-      .then((result) => {
-        setCartProducts(result?.data?.data);
-      });
+  // const fetchData = () => {
+  //   axios
+  //     .get(`${BASE_URL}cart`, {
+  //       headers: {
+  //         authorization: `Bearer ${user_info}`,
+  //       },
+  //     })
+  //     .then((result) => {
+  //       setCartProducts(result?.data?.data);
+  //     });
 
-  }
+  // }
 
+    const localGetData= async ()=>{
+      const value = localStorage.getItem('Productid')
+      console.log(value);
+      // setCartProducts({value})
+    }
   useEffect(() => {
-    fetchData()
+    // fetchData()
+    localGetData()
   }, []);
   return (
     <div>
