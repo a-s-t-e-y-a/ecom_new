@@ -21,15 +21,15 @@ const PageLinks = [
 ]
 
 const SunGlassLinks = [
-    {
-        label : 'Gender',
-        subItems : [
-            { href: "/sunglasses/men", label: 'Men' },
-            { href: "/sunglasses/women", label: 'Women' },
-            { href: "/sunglasses/kids", label: 'Kids' },
-            { href: "/sunglasses/men-women", label: 'Both(M/F)' },
-        ]
-    },
+    // {
+    //     label : 'Gender',
+    //     subItems : [
+    //         { href: "/sunglasses/men", label: 'Men' },
+    //         { href: "/sunglasses/women", label: 'Women' },
+    //         { href: "/sunglasses/kids", label: 'Kids' },
+    //         { href: "/sunglasses/men-women", label: 'Both(M/F)' },
+    //     ]
+    // },
     {
         label : 'Shape1',
         subItems : [
@@ -62,15 +62,15 @@ const SunGlassLinks = [
 ]
 
 const EyeGlassLinks = [
-    {
-        label : 'Gender',
-        subItems : [
-            { href: "/eyeglasses/men", label: 'Men' },
-            { href: "/eyeglasses/women", label: 'Women' },
-            { href: "/eyeglasses/kids", label: 'Kids' },
-            { href: "/eyeglasses/men-women", label: 'Both(M/F)' },
-        ]
-    },
+    // {
+    //     label : 'Gender',
+    //     subItems : [
+    //         { href: "/eyeglasses/men", label: 'Men' },
+    //         { href: "/eyeglasses/women", label: 'Women' },
+    //         { href: "/eyeglasses/kids", label: 'Kids' },
+    //         { href: "/eyeglasses/men-women", label: 'Both(M/F)' },
+    //     ]
+    // },
     {
         label : 'Shape1',
         subItems : [
@@ -103,15 +103,15 @@ const EyeGlassLinks = [
 ]
 
 const KidsGlassLinks = [
-    {
-        label : 'Gender',
-        subItems : [
-            { href: "/kidsglasses/men", label: 'Men' },
-            { href: "/kidsglasses/women", label: 'Women' },
-            { href: "/kidsglasses/kids", label: 'Kids' },
-            { href: "/kidsglasses/men-women", label: 'Both(M/F)' },
-        ]
-    },
+    // {
+    //     label : 'Gender',
+    //     subItems : [
+    //         { href: "/kidsglasses/men", label: 'Men' },
+    //         { href: "/kidsglasses/women", label: 'Women' },
+    //         { href: "/kidsglasses/kids", label: 'Kids' },
+    //         { href: "/kidsglasses/men-women", label: 'Both(M/F)' },
+    //     ]
+    // },
     {
         label : 'Shape1',
         subItems : [
@@ -144,15 +144,15 @@ const KidsGlassLinks = [
 ]
 
 const ComputerGlassLinks = [
-    {
-        label : 'Gender',
-        subItems : [
-            { href: "/computerglasses/men", label: 'Men' },
-            { href: "/computerglasses/women", label: 'Women' },
-            { href: "/computerglasses/kids", label: 'Kids' },
-            { href: "/computerglasses/men-women", label: 'Both(M/F)' },
-        ]
-    },
+    // {
+    //     label : 'Gender',
+    //     subItems : [
+    //         { href: "/computerglasses/men", label: 'Men' },
+    //         { href: "/computerglasses/women", label: 'Women' },
+    //         { href: "/computerglasses/kids", label: 'Kids' },
+    //         { href: "/computerglasses/men-women", label: 'Both(M/F)' },
+    //     ]
+    // },
     {
         label : 'Shape1',
         subItems : [
