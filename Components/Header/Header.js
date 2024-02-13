@@ -281,10 +281,10 @@ const Header = () => {
                         >
                                 Try@Home
                         </div>
-                        <div className="cursor-pointer">
+                        {/* <div className="cursor-pointer">
                             <MenuComponent title="Pages" items={PageLinks} />
                         </div>
-                        <div className="cursor-pointer">Blog</div>
+                        <div className="cursor-pointer">Blog</div> */}
                     </div>
                 </div>
 
