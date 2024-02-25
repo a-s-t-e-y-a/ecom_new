@@ -7,10 +7,11 @@ import { useRouter } from "next/router"
 import ProfileMenu from '../ProfileMenu';
 import MenuComponent from '../MenuComponent';
 import CartDialog from '../Dialog/CartDialog';
-import { useState } from 'react';
+import { useState, memo, useCallback } from 'react';
 import MenuComponentNested from '../MenuComponentNested';
 
 
+const MemoizedCartDialog = memo(CartDialog);
 
 
 const PageLinks = [
@@ -189,9 +190,14 @@ const Header = () => {
     const [open, setOpen] = useState(false)
     const router = useRouter()
     const {user} = router.query
+    const handleOpenCartDialog = useCallback(() => { // Added callback to handle opening cart dialog
+        setOpen(true);
+    }, []);
     return (
         <>
-            <CartDialog open={open} setOpen={setOpen} />
+            {/* <CartDialog open={open} setOpen={setOpen}  <MemoizedCartDialog open={open} setOpen={setOpen} />/>
+             */}
+              <MemoizedCartDialog open={open} setOpen={setOpen} />
             <header className='flex flex-col w-[97%] mx-auto'>
 
                 {/* Top Part */}
