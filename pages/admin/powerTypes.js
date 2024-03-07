@@ -24,7 +24,7 @@ const PowerTypes = () => {
         </div>
         <div className="mt-10 grid grid-cols-2 items-center gap-5 w-full">
           {
-            data&&data.map((index,item)=>(
+            data&&data.map((item,index)=>(
                <PowerType key={index} src={item.image} title={item.name} description={item.description} />
             ))
           }
