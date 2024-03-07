@@ -3,7 +3,7 @@ import SingleGlassItem from '@/Components/SingleGlassItem'
 import Layout from '@/Layout/Layout'
 import React from 'react'
 import { useRouter } from "next/router";
-import useGetAllProducts from '@/utils/queries/common/UseProductGetAll';
+import useGetAllProducts from '@/utils/queries/admin/UseProductGetAll';
 import Loader from '@/Components/Loader';
 
 

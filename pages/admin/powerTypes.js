@@ -3,12 +3,13 @@ import PowerType from "@/Components/Admin/PowerType";
 import Modal from "@/Components/Dialog/Modal";
 import PowerTypesDialogBox from "@/Components/Dialog/PowerTypesDialogBox";
 import AdminLayout from "@/Layout/AdminLayout";
+import useGetAllPowerType from "@/utils/queries/usePowerType";
 import React from "react";
 import { useState } from "react";
 import { GiPowerRing } from "react-icons/gi";
 
 const PowerTypes = () => {
-  // const brandData = useSelector((state)=> state.brand)
+  const {data , isLoading,isError} = useGetAllPowerType()
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);
@@ -22,11 +23,12 @@ const PowerTypes = () => {
           <IconButton label="Add Power Types" icon={<GiPowerRing />} />
         </div>
         <div className="mt-10 grid grid-cols-2 items-center gap-5 w-full">
-            <PowerType src="/1 (1).jpeg" title="Single Vision/Powered Eyeglasses" description="For distance or near vision" />
-            <PowerType src="/1 (1).jpeg" title="Single Vision/Powered Eyeglasses" description="For distance or near vision" />
-            <PowerType src="/1 (1).jpeg" title="Single Vision/Powered Eyeglasses" description="For distance or near vision" />
-            <PowerType src="/1 (1).jpeg" title="Single Vision/Powered Eyeglasses" description="For distance or near vision" />
-        </div>
+          {
+            data&&data.map((index,item)=>(
+               <PowerType key={index} src={item.image} title={item.name} description={item.description} />
+            ))
+          }
+                   </div>
       </div>
     </AdminLayout>
   );

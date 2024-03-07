@@ -1,25 +1,31 @@
-import axios from 'axios';
+import axios from "axios";
+// import { getCookie } from "cookies-next"
+// import { toast } from "react-toastify"
 
-const baseURL = 'http://localhost:5000/api'; // Your default base URL goes here
+let token;
+export const baseURL = "http://localhost:5000/api/"
 
-const axiosInstance = axios.create({
+export const Imageapi = axios.create({
+  // withCredentials: true,
   baseURL,
-  // You can add other configurations here if needed
+  headers: {
+    // token: token ? token : getCookie("token"),
+    "Content-Type": "multipart/formdata",
+  },
 });
 
-// Add a request interceptor to include the token from localStorage in every request
-axiosInstance.interceptors.request.use(
-  config => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
+const api = axios.create({
+  // withCredentials: true,
+  baseURL,
+  headers: {
+    // token: token ? token : getCookie("token"),
+    "Content-Type": "application/json",
   },
-  error => {
-    return Promise.reject(error);
-  }
-);
+});
 
-export default axiosInstance;
+// export const showErrorMessage = (error) => {
+//   const message = error?.response?.data?.message || error?.message || "Something went wrong";
+//   toast.error(message);
+// }
 
+export default api;

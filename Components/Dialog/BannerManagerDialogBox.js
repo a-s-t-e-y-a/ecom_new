@@ -1,6 +1,5 @@
 import React from 'react'
 import FileInput from '@/Components/Admin/FileInput'
-import MultipleSelect from '@/Components/Admin/MultipleSelect'
 import SelectComponent from '@/Components/Admin/SelectComponent'
 import { TextField } from '@mui/material'
 import AddIcon from "@mui/icons-material/Add";
@@ -26,8 +25,8 @@ const BannerManagerDialogBox = ({ onCancel }) => {
             <SelectComponent label="ForWhichPage" options={OnWhichPage} />
         </div>
         <div className='flex items-center justify-between gap-5'>
-            <MultipleSelect label="ProductCategoriesName" options={ProductCategoriesName}/>
-            <MultipleSelect label="ProductBrandName" options={ProductBrandName}/>
+            // <MultipleSelect label="ProductCategoriesName" options={ProductCategoriesName}/>
+            // <MultipleSelect label="ProductBrandName" options={ProductBrandName}/>
         </div>
         
         <div className='flex items-center justify-between gap-5'>

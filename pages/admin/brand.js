@@ -6,9 +6,10 @@ import AdminLayout from '@/Layout/AdminLayout'
 import { useState } from 'react';
 import { TbBrandAdonisJs } from 'react-icons/tb';
 import { useSelector } from 'react-redux';
+import useGetAllBrands from '@/utils/queries/useBrandsGetAll';
 
 const Brand = () => {
-    const brandData = useSelector((state)=> state.brand)
+    const {data, isLoading } = useGetAllBrands()
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(!open);
     const onHide = () =>  setOpen(false) 
@@ -35,15 +36,15 @@ const Brand = () => {
                     </div>
                     <div className='w-[70%] border rounded-md shadow-md px-5 py-2 flex flex-col items-center justify-between bg-gray-50 gap-5'>
                        {
-                        brandData.map((item,index)=>( 
+                        data&&data.map((item,index)=>( 
                             <div key={index} className='w-full relative flex items-center justify-between'>
                                 <div className='text-base tracking-wide font-semibold flex flex-col items-center justify-center -gap-3'>
                                     <span className='text-xs text-gray-400 tracking-wider opacity-0'>Brand Name</span>
-                                    <span className='text-gray-600 font-semibold text-sm -mt-4 z-5'>{item.ProductBrandName[0]}</span>
+                                    <span className='text-gray-600 font-semibold text-sm -mt-4 z-5'>{item.brand_name}</span>
                                 </div>
                                 <div className='text-base tracking-wide font-semibold flex flex-col items-center justify-center -gap-3'>
                                     <span className='text-xs text-gray-400 tracking-wider opacity-0'>Product Categories Name</span>
-                                    <span className='text-gray-600 font-semibold text-sm -mt-4 z-5'>{item.ProductCategoriesName[0]}</span>
+                                    <span className='text-gray-600 font-semibold text-sm -mt-4 z-5'>{item.categories_id.name}</span>
                                 </div>
                                 <div className='text-base tracking-wide font-semibold flex flex-col items-center justify-center -gap-3'>
                                     <span className='text-xs text-gray-400 tracking-wider opacity-0'>Action</span>

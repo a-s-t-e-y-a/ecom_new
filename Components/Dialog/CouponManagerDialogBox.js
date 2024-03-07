@@ -2,7 +2,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { useForm } from "react-hook-form";
 import { useDispatch } from 'react-redux';
 import { addCoupon } from "@/Slices/couponSlice";
-import MultipleSelect from "../Admin/MultipleSelect";
+// import MultipleSelect from "../Admin/MultipleSelect";
 import { TextField } from "@mui/material";
 
 
@@ -25,8 +25,8 @@ const CouponManagerDialogBox = ({ onCancel }) => {
         
         <TextField fullWidth label="Coupon Name" name="couponName" id="couponName" size="small" {...register("couponName")} sx={{minWidth:300}}/>
         <div className="flex items-center justify-between gap-2">
-            <MultipleSelect label="ProductCategoriesName" options={ProductCategoriesNameOption}/>
-            <MultipleSelect label="BrandName" options={ProductBrandNameOption}/>
+            // <MultipleSelect label="ProductCategoriesName" options={ProductCategoriesNameOption}/>
+            // <MultipleSelect label="BrandName" options={ProductBrandNameOption}/>
         </div>
         <div className="flex items-center justify-between gap-2">
             <TextField label="Validity" name="validity" id="validity" size="small" {...register("validity")} sx={{minWidth:300}}/>

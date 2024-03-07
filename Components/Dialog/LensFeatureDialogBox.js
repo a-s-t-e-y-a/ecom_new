@@ -4,14 +4,28 @@ import FileInput from '../Admin/FileInput';
 import { TextField } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import AddIcon from "@mui/icons-material/Add";
-import MultipleSelect from '../Admin/MultipleSelect';
+import SingleSelectPowerType from '../Admin/powerTypeMultipleSelect';
+import useGetAllLensFeature from '@/utils/queries/useLensFeature';
+import useGetAllPowerType from '@/utils/queries/usePowerType';
+import useCreateLenseFeature from '@/utils/mutations/useCreateLensFeature';
+import Loader from '../Loader';
 
 const PowerType = ["BiFocal", "No Frame"]
 
 const LensFeatureDialogBox = ({ onCancel }) => {
     const { register, handleSubmit } = useForm();
-    const dispatch = useDispatch()
-  const onSubmit = data => console.log(data);
+    const {mutate, isPending} = useCreateLenseFeature()
+  const {data } = useGetAllPowerType()
+  const onSubmit = async(data)=>{
+    console.log(data)
+    const formData = new FormData()
+    formData.append('data',JSON.stringify({'power_type_id':data.power_type_id,'title':data.title,'description':data.description}))
+    formData.append('file',data.file[0])
+    mutate(formData)
+  }
+  if(isPending){
+    return <Loader/>
+  }
   return (
     <div className="relative border tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
       <h1 className="text-md font-semibold text-center text-gray-700 mt-3">
@@ -21,8 +35,8 @@ const LensFeatureDialogBox = ({ onCancel }) => {
         className="flex flex-col items-center justify-between gap-6 px-6 pb-6"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <FileInput title=""/>
-        <MultipleSelect label="Power Type" options={PowerType} />
+        <FileInput title="" register={register}/>
+        <SingleSelectPowerType label="Power Type" options={data} register={register} name='power_type_id'/>
         <TextField fullWidth label="Title" name="title" id="title" size="small" {...register("title")} sx={{minWidth:300}}/>
         <TextField fullWidth label="Description" name="description" id="description" size="small" {...register("description")} sx={{minWidth:300}}/>
         
@@ -30,7 +44,6 @@ const LensFeatureDialogBox = ({ onCancel }) => {
         <button
           type="submit"
           className="text-white bg-sky-400 hover:bg-sky-500  focus:outline-none font-medium rounded-lg text-sm inline-flex items-center px-5 py-2 text-center mr-2"
-          //   onClick={}
           onSubmit={handleSubmit}
         >
           Add <AddIcon className="ml-1 font-bold text-base" />

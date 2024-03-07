@@ -3,13 +3,23 @@ import AddIcon from "@mui/icons-material/Add";
 import { useForm } from "react-hook-form";
 import { useDispatch } from 'react-redux';
 import { addColor } from "@/Slices/colorSlice";
+import Loader from "../Loader";
+import useCreateColor from "@/utils/mutations/useCreateColor";
 
 
 
 const ColorDialogBox = ({ onCancel }) => {
     const dispatch = useDispatch()
     const { register, handleSubmit} = useForm();
-    const onSubmit = data => dispatch(addColor(data.color));
+    const { mutate, isPending , isError} = useCreateColor()
+    const onSubmit = async (data) => {
+    console.log(data)
+    await mutate(data)
+  }
+if(isPending){
+    return <Loader/>
+  }
+
   return (
     <div className="relative border p-2 tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
       <h1 className="text-md font-semibold text-center text-gray-700 mt-3">
@@ -19,7 +29,7 @@ const ColorDialogBox = ({ onCancel }) => {
         className="flex items-center justify-between gap-6 px-6 pb-6"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <TextField label="Color" name="color" id="color" size="small" {...register("color")} />
+        <TextField label="Color" name="color" id="color" size="small" {...register("name")} />
 
         <button
           type="submit"

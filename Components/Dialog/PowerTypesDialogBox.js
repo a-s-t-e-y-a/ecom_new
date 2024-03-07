@@ -5,11 +5,18 @@ import { TextField } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import AddIcon from "@mui/icons-material/Add";
 import { addPowerType } from '@/Slices/powerTypeSlice';
+import useCreatePowerType from '@/utils/mutations/useCreatePowerTypes';
 
 const PowerTypesDialogBox = ({ onCancel }) => {
     const { register, handleSubmit } = useForm();
+  const {mutate} = useCreatePowerType()
     const dispatch = useDispatch()
-  const onSubmit = data => dispatch(addPowerType(data.powerType));
+  const onSubmit = async(data)=>{
+    const formData = new FormData()
+    formData.append('file',data.file[0])
+    formData.append('data',JSON.stringify({'name':data.name,'description':data.description}))
+    await mutate(formData)
+  }
   return (
     <div className="relative border tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
       <h1 className="text-md font-semibold text-center text-gray-700 mt-3">
@@ -19,8 +26,8 @@ const PowerTypesDialogBox = ({ onCancel }) => {
         className="flex flex-col items-center justify-between gap-6 px-6 pb-6"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <FileInput title=""/>
-        <TextField fullWidth label="Title" name="title" id="title" size="small" {...register("title")} sx={{minWidth:300}}/>
+        <FileInput title="" register={register}/>
+        <TextField fullWidth label="Title" name="title" id="title" size="small" {...register("name")} sx={{minWidth:300}}/>
         <TextField fullWidth label="Description" name="description" id="description" size="small" {...register("description")} sx={{minWidth:300}}/>
         
         

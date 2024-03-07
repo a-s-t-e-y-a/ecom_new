@@ -1,23 +1,28 @@
 import ProductDetailTable from "@/Components/Admin/ProductDetailTable";
+import ProductDetailDialog from "@/Components/Dialog/productDetails";
 import AdminLayout from "@/Layout/AdminLayout";
-import { IconButton, InputAdornment, TextField } from "@mui/material";
-import { useRouter } from "next/router";
-import React from "react";
+import IconButton from "@/Components/Admin/IconButton";
+import Modal from "@/Components/Dialog/Modal";
+import {  InputAdornment, TextField } from "@mui/material";
+import { MdOutlineLensBlur } from "react-icons/md";
+import React, { useState } from "react";
 import { BiSearch } from "react-icons/bi";
 
 
 const ProductDetail = () => {
-  const router =  useRouter()
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(!open);
+  const onHide = () => setOpen(false);
   return (
     <AdminLayout>
+       <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
+        {<ProductDetailDialog onCancel={onHide} />}
+      </Modal>
       <div>
-        <div className="flex items-center">
-          <button 
-            onClick={()=>router.push("/admin/addProductDetail")}
-            className="px-4 py-2 text-white bg-sky-400 hover:bg-indigo-500 tracking-wide text-sm rounded-md font-semibold">
-            Add Product Detail
-          </button>
-          <div></div>
+         <div>
+          <span onClick={handleOpen}>
+            <IconButton label="Add product details" icon={<MdOutlineLensBlur />} />
+          </span>
         </div>
         <div className="mt-2">
           <div className="flex items-center justify-between">

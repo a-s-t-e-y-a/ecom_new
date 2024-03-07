@@ -17,45 +17,40 @@ const MenuProps = {
   },
 };
 
-
-function getStyles(item, data, theme) {
+function getStyles(item, selectedItem, theme) {
   return {
-    fontWeight:
-      data.indexOf(item) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
+    fontWeight: item.products_categories_id === selectedItem ? theme.typography.fontWeightMedium : theme.typography.fontWeightRegular,
   };
 }
 
-export default function MultipleSelect({label,options}) {
+export default function SingleSelectStyle({ label, options ,register,name}) {
   const theme = useTheme();
-  const [data, setData] = React.useState([]);
+  const [selectedItem, setSelectedItem] = React.useState('');
 
   const handleChange = (event) => {
-    const { target: { value },} = event;
-    setData( typeof value === 'string' ? value.split(',') : value,);
+    setSelectedItem(event.target.value);
   };
- 
+
   return (
     <div>
-      <FormControl sx={{ width:298 }} size='small'>
+      <FormControl sx={{ width: 298 }} size="small">
         <InputLabel id={label}>{label}</InputLabel>
         <Select
+          {...register(name)}
           labelId={label}
           id={label}
-          multiple
-          value={data}
+          value={selectedItem}
           onChange={handleChange}
           input={<OutlinedInput label={label} />}
           MenuProps={MenuProps}
         >
-          {options.map((item) => (
+          {options&&options.map((item) => (
             <MenuItem
-              key={item}
-              value={item}
-              style={getStyles(item, data, theme)}
+              key={item.id}
+              value={item.id}
+              style={getStyles(item, selectedItem, theme)}
             >
-              {item}
+              {item.name}
             </MenuItem>
           ))}
         </Select>

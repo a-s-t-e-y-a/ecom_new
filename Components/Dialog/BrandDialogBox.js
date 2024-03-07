@@ -3,15 +3,27 @@ import AddIcon from "@mui/icons-material/Add";
 import { useForm } from "react-hook-form";
 import { useDispatch } from 'react-redux';
 import { addBrand } from "@/Slices/brandSlice";
-import MultipleSelect from "../Admin/MultipleSelect";
+// import MultipleSelect from "../Admin/MultipleSelect";
+import useGetAllCategories from "@/utils/queries/useCategoriesGetAll";
+import useCreateBrand from "@/utils/mutations/useCreateBrand";
+import { MdWarehouse } from "react-icons/md";
+import Loader from "../Loader";
 
 const ProductCategoriesNameOption = ["SunGlasses" , "Computer Glasses"]
 const ProductBrandNameOption = ["Normal" , "Trends"]
 
 const BrandDialogBox = ({ onCancel }) => {
-    const dispatch = useDispatch()
+    const {data , isLoading } = useGetAllCategories()
     const { register, handleSubmit} = useForm();
-    const onSubmit = data => dispatch(addBrand(data.brand));
+  const {mutate,isPending, isError} = useCreateBrand()
+    const onSubmit = async(data)=>{
+    console.log(data)
+    await mutate(data)
+  }
+  if(isPending){
+    return <Loader/>
+  }
+  
   return (
     <div className="relative border p-2 tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
       <h1 className="text-md font-semibold text-center text-gray-700 mt-3">
@@ -21,9 +33,9 @@ const BrandDialogBox = ({ onCancel }) => {
         className="flex items-center justify-between gap-6 px-6 pb-6"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <MultipleSelect label="ProductCategoriesName" options={ProductCategoriesNameOption}/>
+        // <MultipleSelect label="ProductCategoriesName" options={data} register={register}/>
         
-        <TextField label="Brand Name" name="brand" id="brand" size="small" {...register("brand")} sx={{minWidth:300}}/> 
+        <TextField label="Brand Name" name="brand" id="brand" size="small" {...register("brand_name")} sx={{minWidth:300}}/> 
 
 
         <button

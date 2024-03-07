@@ -21,7 +21,7 @@ const LensDetail = () => {
     items.splice(result.destination.index, 0, reorderedItem);
 
     updateData(items);
-  }
+  }  
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);

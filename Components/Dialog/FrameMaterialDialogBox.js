@@ -1,15 +1,21 @@
 import { TextField } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useForm } from "react-hook-form";
-import { useDispatch } from 'react-redux';
-import { addFrame } from "@/Slices/frameMaterialSlice";
+import Loader from "../Loader";
+import useCreateMaterial from "@/utils/mutations/useCreateMaterial";
 
 
 
 const FrameMaterialDialogBox = ({ onCancel }) => {
-    const dispatch = useDispatch()
+    const {mutate , isLoading , isError} = useCreateMaterial()
     const { register, handleSubmit} = useForm();
-    const onSubmit = data => dispatch(addFrame(data.frameMaterial));
+    const onSubmit = async (data)=>{
+    console.log(data)
+    await mutate(data)
+  }
+  if(isLoading){
+    return <Loader/>
+  }
   return (
     <div className="relative border p-2 tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
       <h1 className="text-md font-semibold text-center text-gray-700 mt-3">
@@ -19,7 +25,7 @@ const FrameMaterialDialogBox = ({ onCancel }) => {
         className="flex items-center justify-between gap-6 px-6 pb-6"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <TextField label="Shape" name="frameMaterial" id="frameMaterial" size="small" {...register("frameMaterial")} />
+        <TextField label="Shape" name="frameMaterial" id="frameMaterial" size="small" {...register("name")} />
 
         <button
           type="submit"
