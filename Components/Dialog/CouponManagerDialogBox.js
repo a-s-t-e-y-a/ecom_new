@@ -25,8 +25,8 @@ const CouponManagerDialogBox = ({ onCancel }) => {
         
         <TextField fullWidth label="Coupon Name" name="couponName" id="couponName" size="small" {...register("couponName")} sx={{minWidth:300}}/>
         <div className="flex items-center justify-between gap-2">
-            // <MultipleSelect label="ProductCategoriesName" options={ProductCategoriesNameOption}/>
-            // <MultipleSelect label="BrandName" options={ProductBrandNameOption}/>
+            {/* <MultipleSelect label="ProductCategoriesName" options={ProductCategoriesNameOption}/> */}
+            {/* <MultipleSelect label="BrandName" options={ProductBrandNameOption}/> */}
         </div>
         <div className="flex items-center justify-between gap-2">
             <TextField label="Validity" name="validity" id="validity" size="small" {...register("validity")} sx={{minWidth:300}}/>

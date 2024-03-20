@@ -25,8 +25,8 @@ const BannerManagerDialogBox = ({ onCancel }) => {
             <SelectComponent label="ForWhichPage" options={OnWhichPage} />
         </div>
         <div className='flex items-center justify-between gap-5'>
-            // <MultipleSelect label="ProductCategoriesName" options={ProductCategoriesName}/>
-            // <MultipleSelect label="ProductBrandName" options={ProductBrandName}/>
+            {/* <MultipleSelect label="ProductCategoriesName" options={ProductCategoriesName}/> */}
+            {/* <MultipleSelect label="ProductBrandName" options={ProductBrandName}/> */}
         </div>
         
         <div className='flex items-center justify-between gap-5'>

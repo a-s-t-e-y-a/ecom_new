@@ -10,6 +10,7 @@ import { MdWarehouse } from "react-icons/md";
 import Loader from "../Loader";
 
 const ProductCategoriesNameOption = ["SunGlasses" , "Computer Glasses"]
+
 const ProductBrandNameOption = ["Normal" , "Trends"]
 
 const BrandDialogBox = ({ onCancel }) => {
@@ -33,11 +34,8 @@ const BrandDialogBox = ({ onCancel }) => {
         className="flex items-center justify-between gap-6 px-6 pb-6"
         onSubmit={handleSubmit(onSubmit)}
       >
-        // <MultipleSelect label="ProductCategoriesName" options={data} register={register}/>
-        
+        {/* <MultipleSelect label="ProductCategoriesName" options={data} register={register}/> */}
         <TextField label="Brand Name" name="brand" id="brand" size="small" {...register("brand_name")} sx={{minWidth:300}}/> 
-
-
         <button
           type="submit"
           className="text-white bg-sky-400 hover:bg-sky-500  focus:outline-none font-medium rounded-lg text-sm inline-flex items-center px-5 py-2 text-center mr-2"

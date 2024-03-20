@@ -22,7 +22,7 @@ body {
 }
 
 @tailwind base;
-@tailwind Components;
+@tailwind components;
 @tailwind utilities;
 
 /* Slider  */
@@ -61,6 +61,7 @@ body {
 }
 .s-container .swiper-button-prev{
   left : 1rem;
+  
 }
 .s-container .swiper-button-next{
   right : 1rem;
@@ -68,6 +69,16 @@ body {
 .s-container .swiper-button-prev , .s-container .swiper-button-next{
   color :black ;
   width: 10px;
+}
+
+.swiper-button-next::after,  .swiper-button-prev::after{
+  font-size: 24px !important;
+}
+.swiper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-inline:100px;
 }
 
 /* carousel Thumb */
@@ -83,3 +94,11 @@ body {
 .carousel .control-dots .dot.selected, .carousel .control-dots .dot:hover{
   background: rgb(46, 45, 45);
 }
+
+
+@media screen and (min-width:"768px") {
+  .mySwiper .swiper-button-next::after, .mySwiper  .swiper-button-prev::after{
+   
+    font-size: 60px !important;
+  }
+} 
