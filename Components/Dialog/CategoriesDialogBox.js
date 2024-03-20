@@ -7,13 +7,11 @@ import { addCategory } from "@/Slices/categoriesSlice";
 import useCreateCategories from "@/utils/mutations/useCreateCategories";
 import { LocalActivityTwoTone } from "@mui/icons-material";
 import Loader from "../Loader";
-import useGetAllCategories from "@/utils/queries/useCategoriesGetAll";
 
 const CategoriesDialogBox = ({ onCancel, setOpen }) => {
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
-  const { refetch } = useGetAllCategories();
-  const { mutate, isPending, isError, isSuccess } = useCreateCategories();
+  const { mutate, isPending, isError } = useCreateCategories();
   const onSubmit = async (data) => {
     const formData = new FormData();
     formData.append("data", JSON.stringify({ name: data.name }));
@@ -27,10 +25,6 @@ const CategoriesDialogBox = ({ onCancel, setOpen }) => {
   }
   if (isError) {
     return <>Error occurred</>;
-  }
-  if (isSuccess) {
-    console.log(isSuccess)
-    refetch();
   }
   return (
     <div className="relative border p-2 tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">

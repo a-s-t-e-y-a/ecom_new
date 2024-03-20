@@ -12,10 +12,15 @@ import { MdCategory } from "react-icons/md";
 import { toast } from "react-toastify";
 
 const Categories = () => {
-  const { data: categories, isLoading, isError, refetch } = useGetAllCategories();
+  const {
+    data: categories,
+    isLoading,
+    isError,
+    refetch,
+  } = useGetAllCategories();
   const [open, setOpen] = useState(false);
-  const router = useRouter()
-  
+  const router = useRouter();
+
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);
   if (isLoading) {
@@ -29,8 +34,9 @@ const Categories = () => {
       const response = await api.delete(
         `/categories/${data?.products_categories_id}`
       );
-      console.log(response)
-      useGetAllCategories()
+      if (response) {
+        useGetAllCategories();
+      }
       toast.success(response.data.message); // Use toast.success for success messages
     } catch (error) {
       toast.error(error); // Display error message if deletion fails
@@ -40,7 +46,10 @@ const Categories = () => {
   return (
     <AdminLayout>
       <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
-        <CategoriesDialogBox onCancel={onHide} setOpen={setOpen}/>
+        <CategoriesDialogBox
+          onCancel={onHide}
+          setOpen={setOpen}
+        />
       </Modal>
       <div>
         <div onClick={handleOpen}>
