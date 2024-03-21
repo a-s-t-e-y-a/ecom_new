@@ -10,12 +10,12 @@ export default function Home() {
   return (
     <Layout>
       <section className="flex flex-col h-auto gap-7">
-        {/* <GlassesType categoryItems={category} /> */}
-        <div className="flex flex-wrap items-center justify-between gap-2 h-[200px] overflow-hidden my-1">
-          <p className="flex flex-col font-bold text-5xl text-center">
-            <span>EYEGLASSES</span>
-            <span className="font-semibold ">TREND</span>
+        <GlassesType categoryItems={category} />
+        <div >
+          <p className="  text-5xl text-center">EYEGLASSES
+         
           </p>
+          <p className=" text-center  text-5xl  font-semibold mb-5">TREND</p>
           <Slider/>
         </div>
 

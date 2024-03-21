@@ -8,6 +8,7 @@ import Slider from "@/Components/Swiper/Slider";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import CartDialog from "../Dialog/CartDialog";
+import Image from "next/image";
 const Header1 = () => {
   const [open, setOpen] = useState(false);
   const router = useRouter();
@@ -19,9 +20,11 @@ const Header1 = () => {
           <div className="flex items-center justify-between py-4">
             {/* Image  */}
             <div>
-              <img
+              <Image
+              width={500}
+              height={500}
                 src="/logo.png"
-                className="h-7 w-auto cursor-pointer"
+                className=" object-contain "
                 onClick={() => router.push("/")}
               />
             </div>
