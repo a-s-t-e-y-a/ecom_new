@@ -41,7 +41,7 @@ export default function Example() {
     }
     return (
         <section className='bg-gray-50 '>
-            <Card color="transparent" className="border-2 border-gray-500 flex flex-col items-center justify-center px-6 py-6 mx-auto md:h-screen lg:py-0">
+            <Card color="transparent" className=" flex flex-col items-center justify-center px-6 py-6 mx-auto h-screen lg:py-0">
                 <a href="#" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
                     <Image
                         className=""
@@ -51,7 +51,7 @@ export default function Example() {
                     />
 
                 </a>
-                <Card className='px-6 py-6 border-2 rounded-lg'>
+                <Card className='px-6 py-6 rounded-lg'>
                     <Typography color="blue-gray" className="text-sm font-semibold">
                         Join with Us
                     </Typography>

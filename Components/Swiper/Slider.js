@@ -16,7 +16,7 @@ export default function Slider() {
     router.push(`/product?name=${itemName}`);
   }
   return (
-    <div className="swiper md:w-[70vw]">
+    <div className="swiper w-full">
       <Swiper
         slidesPerView={4}
         centeredSlides={false}
@@ -30,7 +30,7 @@ export default function Slider() {
       >
         {
           GlassesType.map((slide, index) => (
-            <SwiperSlide key={index} className='relative px-1 py-4 bg-white'>
+            <SwiperSlide key={index} className=' shadow-lg min-[100px]: px-1 py-4 bg-white'>
               <div className="text-center flex flex-col items-center justify-center gap-4">
                 <div className='px-2' onClick={()=>handleClick(slide)}>
                   <img className='h-full w-56' src={slide.src} alt="" />

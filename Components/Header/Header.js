@@ -249,12 +249,12 @@ const Header = () => {
             <BsFillTelephonePlusFill />
             +918188881661
           </div>
-          <div className=" flex   w-full md:grow md:w-0 justify-between">
+          <div className=" flex flex-col md:flex-row items-center   w-full md:grow md:w-0 justify-around">
             <Image
               src={"/logo.png"}
               width={500}
               height={500}
-              className="w-[200px] "
+              className=" object-contain mb-3  "
               alt=""
             />
             <div>
@@ -265,7 +265,7 @@ const Header = () => {
 
         {/* Bottom Part  */}
         <div className="flex items-center justify-between mb-4 py-2 rounded-lg w-full  overflow-x-auto">
-          <div className="flex items-center  md:justify-center   text-sm font-semibold tracking-wide w-full ">
+          <div className="flex items-center  md:justify-center   text-sm  md:text-lg font-semibold tracking-wide w-full ">
             <div
               className="cursor-pointer"
               // onClick={()=>router.push("/accessories")}
@@ -300,7 +300,7 @@ const Header = () => {
               <MenuComponentNested title="SunGlasses" items={SunGlassLinks} />
             </div>
             <div
-              className="cursor-pointer inline-flex justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm  ring-gray-300 hover:bg-gray-50"
+              className="cursor-pointer inline-flex justify-center gap-x-1.5 rounded-md bg-white px-3 py-2  text-sm  md:text-lg  font-semibold text-gray-900 shadow-sm  ring-gray-300 hover:bg-gray-50"
               onClick={() => router.push("/tryHome")}
             >
               Try@Home

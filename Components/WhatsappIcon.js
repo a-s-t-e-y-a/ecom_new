@@ -4,10 +4,10 @@ import React from "react";
 
 const WhatsappIcon = () => {
   return (
-    <div className="fixed right-5 bottom-6 rounded-full" style={{ zIndex: "1000" }}>
+    <div className="fixed right-2 bottom-14 rounded-full" style={{ zIndex: "1000" }}>
       <Tooltip title="WhatsApp Now">
         <IconButton>
-            <img src="whatsapp.gif" alt="Contact" className="mix-blend-multiply"/>
+            <img src="whatsapp.gif" alt="Contact" className="  "/>
         </IconButton>
       </Tooltip>
     </div>
