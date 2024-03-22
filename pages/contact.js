@@ -1,16 +1,8 @@
 import ContactForm from '@/Components/ContactForm';
 import Layout from '@/Layout/Layout'
-import useCreateContact from '@/utils/mutations/useCreateContact';
 import React from 'react';
-import { useForm } from "react-hook-form";
 
 const Contact = () => {
-  const {register, handleSubmit} = useForm();
-  const {mutate} = useCreateContact()
-  const onSubmit = async (data) => {
-    console.log(data)
-    mutate(data)
-  }
   return (
     <Layout>
       <div className=' flex flex-col lg:flex-row justify-center gap-10  px-10'>

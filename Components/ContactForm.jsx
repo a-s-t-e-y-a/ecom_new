@@ -3,12 +3,16 @@ import React from 'react'
 import { useForm } from 'react-hook-form';
 
 const ContactForm = () => {
-    const { register, handleSubmit } = useForm();
-    const { mutate } = useCreateContact();
+    const { register, handleSubmit, reset } = useForm();
+    const { mutate, isSuccess } = useCreateContact();
 
     const onSubmit = (data) => {
         console.log(data);
         mutate(data);
+        if(isSuccess){
+            console.log("Log of reset successful")
+            reset()
+        }
     };
     return (
         <div >
@@ -18,15 +22,15 @@ const ContactForm = () => {
                     <div className="relative z-0 w-full mb-6 group">
                         <input
                             type="text"
-                            name="firstname"
-                            id="firstname"
+                            name="firstName"
+                            id="firstName"
                             className="block py-2 px-0 w-full text-sm text-black bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                             placeholder=" "
-                            {...register("firstname", { required: true })}
+                            {...register("firstName", { required: true })}
                             required
                         />
                         <label
-                            for="firstname"
+                            for="firstName"
                             className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                         >
                             First Name
@@ -35,15 +39,15 @@ const ContactForm = () => {
                     <div className="relative z-0 w-full mb-6 group">
                         <input
                             type="text"
-                            name="lastname"
-                            id="lastname"
+                            name="lastName"
+                            id="lastName"
                             className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                             placeholder=" "
                             required
-                            {...register("lastname", { required: true })}
+                            {...register("lastName", { required: true })}
                         />
                         <label
-                            for="lastname"
+                            for="lastName"
                             className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                         >
                             Last Name
@@ -71,15 +75,15 @@ const ContactForm = () => {
                     <div className="relative z-0 w-full mb-6 group">
                         <input
                             type="text"
-                            name="phonenumber"
-                            id="phonenumber"
+                            name="phoneNo"
+                            id="phoneNo"
                             className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                             placeholder=" "
                             required
-                            {...register("phonenumber", { required: true })}
+                            {...register("phoneNo", { required: true })}
                         />
                         <label
-                            for="phonenumber"
+                            for="phoneNo"
                             className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                         >
                             Phone No.
@@ -143,15 +147,15 @@ const ContactForm = () => {
                     <div className="relative z-0 w-full mb-6 group">
                         <input
                             type="text"
-                            name="pincode"
-                            id="pincode"
+                            name="zipCode"
+                            id="zipCode"
                             className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                             placeholder=" "
                             required
-                            {...register("pincode", { required: true })}
+                            {...register("zipCode", { required: true })}
                         />
                         <label
-                            for="pincode"
+                            for="zipCode"
                             className="peer-focus:font-medium absolute text-sm  text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                         >
                             Zip/Pin Code
