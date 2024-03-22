@@ -35,7 +35,7 @@ const Categories = () => {
         `/categories/${data?.products_categories_id}`
       );
       if (response) {
-        useGetAllCategories();
+        refetch();
       }
       toast.success(response.data.message); // Use toast.success for success messages
     } catch (error) {
