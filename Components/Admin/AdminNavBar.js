@@ -14,20 +14,20 @@ const AdminNavBar = () => {
     setDate(new Date().toLocaleDateString())
   },[date])
   return (
-    <div className="bg-gray-50 px-3 py-1 rounded-lg m-5 flex items-center justify-between">
+    <div className="bg-gray-50 px-3 py-1 rounded-lg m-5 flex items-center justify-around">
       <div className="flex items-center gap-5">
         <span className="text-sm text-gray-700 tracking-wide">
-            <span className="font-semibold">Date : <span className="font-normal">{date}</span></span>
+            <span className="font-semibold hidden md:inline">Date : <span className="font-normal">{date}</span></span>
         </span>
-        <span className="text-sm text-gray-700 tracking-wide flex items-center">
-            <span className="font-semibold">Time : </span>
+        <span className="text-sm text-gray-700 tracking-wide  items-center hidden lg:flex">
+            <span className="font-semibold ">Time : </span>
             <span className="font-normal flex-inline"> <ShowTime /></span>
         </span>
       </div>
-      <div>
-        <img  src="/logo.png" className="h-5"/>
+      <div className="w-[150px] h-[20px] ps-3">
+        <img  src="/logo.png" className="w-full h-full "/>
       </div>
-      <Stack direction="row" spacing={3}>
+      <Stack direction="row" >
         <Tooltip title="Cart">
           <IconButton aria-label="cart" size="small">
             <Badge badgeContent={4} color="primary">
@@ -42,12 +42,12 @@ const AdminNavBar = () => {
             </Badge>
           </IconButton>
         </Tooltip>
-        <div className="flex items-center justify-between gap-3">
-            <div className="flex flex-col items-center text-base tracking-wide">
+        <div className="flex items-center justify-between gap-3  ms-3">
+            <div className="lg:flex flex-col items-center text-base tracking-wide hidden">
                 <span className="text-gray-700 font-semibold">Ankit Singh</span>
                 <span className="text-[12px] -mt-1">Available</span>
             </div>
-            <Avatar alt="Admin" src="/" className="border p-1" />
+            <Avatar alt="Admin" src="/" className="border p-1 ms-3 " />
         </div>
       </Stack>
     </div>

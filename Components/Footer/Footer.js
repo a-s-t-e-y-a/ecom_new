@@ -49,7 +49,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1  md:grid-cols-3 shadow-sm  px-2 gap-x-3 bg-gray-200 py-8">
+      <div className="grid grid-cols-1  md:grid-cols-3 shadow-sm  px-5 gap-x-3 bg-gray-200 py-8">
         <div className="flex flex-col items-center md:items-start w-full justify-center  py-3 mb-4  -mt-6 ">
           <Image
             src="/logo.png"

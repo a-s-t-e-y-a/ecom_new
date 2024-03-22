@@ -19,13 +19,13 @@ const ProductDetail = () => {
         {<ProductDetailDialog onCancel={onHide} />}
       </Modal>
       <div>
-         <div>
+         <div className=" ms-10">
           <span onClick={handleOpen}>
             <IconButton label="Add product details" icon={<MdOutlineLensBlur />} />
           </span>
         </div>
         <div className="mt-2">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between px-10">
             <span className="text-md tracking-wide font-bold">
               All Product Detail
             </span>

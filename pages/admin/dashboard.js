@@ -16,10 +16,10 @@ const dashboard = () => {
     <AdminLayout>
         <div className='space-y-6'>
             <div className='flex items-center' >
-                <h1 className='text-4xl font-bold tracking-wide'>Dashboard</h1>
+                <h1 className='text-4xl font-bold px-10 tracking-wide'>Dashboard</h1>
                 <div></div>
             </div>
-            <div className='grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-5'>
+            <div className='grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 px-10 gap-5'>
                 {
                     items.map((item,id)=>(
                         <div key={id}>

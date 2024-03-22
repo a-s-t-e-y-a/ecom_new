@@ -43,7 +43,7 @@ const ProductDetailDialog = ({ onCancel }) => {
     console.log(data)
   }
   return (
-    <div className="relative border tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
+    <div className="relative border mt-[1100px] md:mt-[300px] rounded-md shadow-lg w-full md:w-auto h-[calc(100%-1rem)] max-h-full">
       <h1 className="text-md font-semibold text-center text-gray-700 mt-3">
         Add Products Detail
       </h1>
@@ -51,7 +51,7 @@ const ProductDetailDialog = ({ onCancel }) => {
         className="flex flex-col items-center justify-between gap-6 px-6 pb-6"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <div className="grid grid-cols-2 items-center justify-between gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-2  items-center justify-between w-full gap-3">
           <FileInput title="Main Image" register={register} />
           <FileInput title="Other imsges" register={register} />
           <TextField fullWidth label="Model name" name="product_model_name" id="product_model_name"  {...register("product_model_name")} sx={{ minWidth: 300 }} />
