@@ -35,7 +35,7 @@ const Categories = () => {
         `/categories/${data?.products_categories_id}`
       );
       if (response) {
-        useGetAllCategories();
+        refetch(); // Call refetch to update categories after deletion
       }
       toast.success(response.data.message); // Use toast.success for success messages
     } catch (error) {

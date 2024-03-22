@@ -2,8 +2,7 @@ import Layout from '@/Layout/Layout'
 import useCreateContact from '@/utils/mutations/useCreateContact';
 import React from 'react';
 import { useForm } from "react-hook-form";
-
-const contact = () => {
+const Contact = () => {
   const {register, handleSubmit} = useForm();
   const {mutate} = useCreateContact()
   const onSubmit = async (data) => {
@@ -201,4 +200,4 @@ const contact = () => {
   )
 }
 
-export default contact
+export default Contact

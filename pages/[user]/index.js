@@ -1,11 +1,11 @@
-"use client;"
+
 import React, { useState } from 'react'
 import { Avatar } from "@material-tailwind/react";
 import UserSideBar from '@/Components/SideBar/UserSideBar';
 import AccountInformation from '@/Components/User/AccountInformation';
 
 
-const index = () => {
+const Index = () => {
     // Sidebar active state change events 
     const [Show, setShow] = useState(false);
 
@@ -37,4 +37,4 @@ const index = () => {
   )
 }
 
-export default index
+export default Index
