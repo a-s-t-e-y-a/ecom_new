@@ -4,13 +4,15 @@ import SwiperContainer from "@/Components/Swiper/SwiperContainer";
 import Layout from "@/Layout/Layout";
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import useGetAllCategories from "@/utils/queries/useCategoriesGetAll";
+
 import api from "@/api";
 
 export default function Home() {
   return (
     <Layout>
       <section className="flex flex-col h-auto gap-7">
-        <GlassesType categoryItems={category} />
+        {/* <GlassesType categoryItems={category} /> */}
         <div >
           <p className="  text-5xl text-center">EYEGLASSES
          
@@ -127,9 +129,9 @@ export default function Home() {
             alt=""
             className="w-full h-auto object-cover"
           />
-          <div className="absolute top-8 left-[35%] text-center space-y-2">
-            <p className="text-xl text-gray-500">save up to 30% off</p>
-            <p className="font-bold text-6xl text-sky-400">
+          <div className="absolute top-5 left-1/2 -translate-x-1/2  text-center space-y-2">
+            <p className="text-sm min-[500]:text-lg md:text-xl text-gray-500">save up to 30% off</p>
+            <p className="font-bold text-2xl min-[500]:text-4xl md:text-6xl text-sky-400">
               women<span className="text-blue-700">fashion</span>
             </p>
           </div>
@@ -188,7 +190,7 @@ export default function Home() {
               <h1 className="tracking-wide text-xl text-center">
                 <span className="uppercase text-gray-600 mr-2">
                   Best Seller
-                </span>{" "}
+                </span>
                 <span className="border-b-2 border-gray-700">Kids Glasses</span>
               </h1>
             </div>

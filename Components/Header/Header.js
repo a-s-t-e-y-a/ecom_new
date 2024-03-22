@@ -265,7 +265,7 @@ const Header = () => {
 
         {/* Bottom Part  */}
         <div className="flex items-center justify-between mb-4 py-2 rounded-lg w-full  overflow-x-auto">
-          <div className="flex items-center  md:justify-center   text-sm  md:text-lg font-semibold tracking-wide w-full ">
+          <div className="flex items-center  lg:justify-center   text-sm  md:text-lg font-semibold tracking-wide w-full ">
             <div
               className="cursor-pointer"
               // onClick={()=>router.push("/accessories")}

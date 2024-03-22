@@ -68,10 +68,10 @@ const AdminSideBar = () => {
   return (
     <div
       className={` ${
-        open ? "w-64" : "w-20 "
-      } bg-gray-100 h-screen p-4  pt-7 relative duration-300 border-r `}
+        open ? "w-64" : " w-10 "
+      } bg-gray-100 h-screen   pt-7 fixed z-10  duration-300 border-r `}
     >
-      <div className="flex gap-x-4 items-center text-gray-700 pb-3">
+      <div className="flex gap-x-10 items-center text-gray-700 pb-3">
         <span
           className={`pl-2 cursor-pointer duration-500 ${
             open && "rotate-[360deg]"
@@ -80,29 +80,29 @@ const AdminSideBar = () => {
           <FaGlasses onClick={() => setOpen(!open)} />
         </span>
         <h1
-          className={`origin-left font-bold  tracking-wider text-xl duration-200 ${
+          className={`origin-left font-bold  tracking-wider text-xs text-nowrap md:text-normal duration-200 ${
             !open && "scale-0"
           }`}
         >
           Admin Room
         </h1>
       </div>
-      <div className="pt-2 h-[88vh] overflow-y-auto scrollbar-hide tracking-wide">
+      <div className="pt-2 overflow-y-auto scrollbar-hide tracking-wide">
         {Menus.map((Menu, index) => {
           const isActive = pathname.startsWith(Menu.link);
           return (
             <Link
               key={index}
               scroll={false}
-              className={`flex  ${ open ? "rounded-md" : "rounded-full" }  p-1 cursor-pointer hover:bg-gray-50 text-gray-600 text-base items-center gap-x-2 
-            			${index === 0 && "bg-light-white"} ${isActive ? "bg-white pr-0" : ""}`}
+              className={`block ${ open ? "rounded-md" : "  w-10  rounded-full" } flex items-center cursor-pointer hover:bg-gray-50 text-gray-600 
+            			${index === 0 && "bg-light-white"} ${isActive ? "bg-white " : ""}`}
               href={Menu.link}
             >
               <Tooltip title={Menu.title} placement="right">
                 <IconButton>
                   {/* {Menu.icon} */}
                   <span
-                    className={`${ open ? "text-xl" : "text-2xl"} outline-0 border-none`}>
+                    className={`${ open ? "text-xs text-nowrap md:text-normal" : "text-sm md:text-2xl"}  border-none`}>
                     {Menu.icon}
                   </span>
                 </IconButton>
@@ -110,7 +110,7 @@ const AdminSideBar = () => {
               <span
                 className={`${
                   !open && "hidden"
-                } origin-left duration-200 font-semibold`}
+                }  duration-200 font-semibold text-xs text-nowrap md:text-normal`}
               >
                 {Menu.title}
               </span>
