@@ -9,9 +9,9 @@ const Filter = () => {
 
   return (
     <motion.div
-      className={`relative ${display ? "" : "border rounded-md"} space-x-2 `}
+      className={`relative ${display ? " w-full md:w-auto" : "border rounded-md"} space-x-2 `}
       animate={{
-        width: display ? "24px" : "320px",
+      
         transition: {
           duration: 0.6,
           type: "spring",
