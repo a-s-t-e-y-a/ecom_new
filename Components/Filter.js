@@ -9,7 +9,7 @@ const Filter = () => {
 
   return (
     <motion.div
-      className={`relative ${display ? " w-full md:w-auto" : "w-[24px]  border rounded-md"} space-x-2 `}
+      className={`  sticky z-20 ${display ? " w-[24px] left-10  " : " w-screen lg:w-[300px]  border rounded-md"} space-x-2 `}
       animate={{
       
         transition: {
