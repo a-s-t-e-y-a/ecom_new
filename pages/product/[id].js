@@ -15,6 +15,7 @@ import TabPanel from "@/Components/Tab/TabPanel";
 import { useRouter } from "next/router";
 import axios from "axios";
 import { env } from "@/next.config";
+import { toast } from 'react-toastify'
 
 const TabPanelOption = [
     { label: "SPECIFICATION", component: Specification },
@@ -74,10 +75,9 @@ const SingleProduct = () => {
                     const res = await axios.get(
                         `${BASE_URL}products/${id}`
                     );
-                    console.log(res?.data);
                     setProductdata(res?.data);
                 } catch (error) {
-                    console.error("Error fetching product data:", error);
+                    toast.error("Error fetching product data:", error)
                 }
             };
             fetchProductData();

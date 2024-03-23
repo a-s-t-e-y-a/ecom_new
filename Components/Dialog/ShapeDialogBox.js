@@ -10,13 +10,11 @@ import Loader from "../Loader";
 const ShapeDialogBox = ({ onCancel }) => {
     const {mutate, isPending}= useCreateShape()
     const { register, handleSubmit} = useForm();
-    const onSubmit = async(data)=> {
-    console.log(data)
+    const onSubmit = (data)=> {
     const formData = new FormData()
     formData.append('data',JSON.stringify({"name":data.name}))
     formData.append('file',data.file[0])
-    console.log(formData)
-    await mutate(formData)
+    mutate(formData)
 
   } 
   if(isPending){

@@ -36,7 +36,6 @@ const CartSingleItem = () => {
 
     const localGetData= async ()=>{
       const value = localStorage.getItem('Productid')
-      console.log(value + `abc`);
       // setCartProducts({value})
     }
   useEffect(() => {

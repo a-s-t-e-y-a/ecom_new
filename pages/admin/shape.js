@@ -15,13 +15,15 @@ const Shape = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);
-  console.log(data);
+
   if (isLoading) {
     return <Loader />;
-  }
+  };
+
   if (isError) {
     return <>Error ...</>;
-  }
+  };
+  
   return (
     <AdminLayout>
       <Modal isOpen={open} closeModal={onHide} fullWidth={false}>

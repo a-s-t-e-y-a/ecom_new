@@ -1,12 +1,13 @@
 import Image from 'next/image'
 import React, { useState } from 'react'
-import { Card, Input, Checkbox, Button, Typography } from "@material-tailwind/react";
+import { Card, Input, Button, Typography } from "@material-tailwind/react";
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import { BsFillPersonFill } from 'react-icons/bs'
 import { useForm } from "react-hook-form";
 import { useRouter } from 'next/router';
 import axios from "axios";
 import { env } from '@/next.config'
+import { toast } from 'react-toastify'
 
 
 export default function Example() {
@@ -24,18 +25,16 @@ export default function Example() {
                     password: data?.password,
                 }
             );
-            console.log(response?.data?.data?.info_user, "response");
             if (response?.data?.data) {
                 localStorage.setItem("user_info", JSON.stringify(response?.data?.data?.token));
                 localStorage.setItem('user_data', JSON.stringify(response?.data?.data?.info_user))
                 router.push("/");
             } else {
-                alert("User not exist");
+                toast.error("User not exist")
             }
             // Depending on the response, you can do:
         } catch (error) {
-            // console.log(error);
-            alert(error, "Invalid credential");
+            toast.error(error)
             // setMessage(error.response?.data?.message || 'Invalid credential'); // Set error message from API or a generic one
         }
     }

@@ -17,9 +17,8 @@ const BrandDialogBox = ({ onCancel }) => {
     const {data , isLoading } = useGetAllCategories()
     const { register, handleSubmit} = useForm();
   const {mutate,isPending, isError} = useCreateBrand()
-    const onSubmit = async(data)=>{
-    console.log(data)
-    await mutate(data)
+    const onSubmit = (data)=>{
+    mutate(data)
   }
   if(isPending){
     return <Loader/>

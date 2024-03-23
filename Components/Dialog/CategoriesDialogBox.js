@@ -16,7 +16,6 @@ const CategoriesDialogBox = ({ onCancel, setOpen }) => {
     const formData = new FormData();
     formData.append("data", JSON.stringify({ name: data.name }));
     formData.append("file", data.file[0]);
-    console.log(data);
     setOpen(false);
     await mutate(formData);
   };

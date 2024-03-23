@@ -9,9 +9,8 @@ import useCreateMaterial from "@/utils/mutations/useCreateMaterial";
 const FrameMaterialDialogBox = ({ onCancel }) => {
     const {mutate , isLoading , isError} = useCreateMaterial()
     const { register, handleSubmit} = useForm();
-    const onSubmit = async (data)=>{
-    console.log(data)
-    await mutate(data)
+    const onSubmit = (data)=>{
+    mutate(data)
   }
   if(isLoading){
     return <Loader/>

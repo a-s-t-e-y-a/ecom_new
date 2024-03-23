@@ -12,9 +12,8 @@ const ColorDialogBox = ({ onCancel }) => {
     const dispatch = useDispatch()
     const { register, handleSubmit} = useForm();
     const { mutate, isPending , isError} = useCreateColor()
-    const onSubmit = async (data) => {
-    console.log(data)
-    await mutate(data)
+    const onSubmit = (data) => {
+    mutate(data)
   }
 if(isPending){
     return <Loader/>

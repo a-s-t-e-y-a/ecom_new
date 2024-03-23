@@ -18,14 +18,12 @@ const LensDetailDialogBox = ({ onCancel }) => {
     const {data:brand , isLoading:brandLoading , isError:errorBrand} = useGetAllBrands()
     const {data:categories} = useGetAllCategories()
     const {data:lens_feature} = useGetAllLensFeature()
-    const onSubmit = async(data)=>{
-    console.log(data)
+    const onSubmit = (data)=>{
     const formData = new FormData()
     formData.append('file',data.file[0])
     const stringifiedData = JSON.stringify(jsonData, (key, value) => key !== 'file' ? value : undefined);
     formData.append('data',stringifiedData)
-    console.log(formData)
-    await mutate(formData)
+    mutate(formData)
   }
   return (
     <div className="relative border tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
