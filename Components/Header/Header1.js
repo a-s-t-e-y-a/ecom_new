@@ -15,7 +15,7 @@ const Header1 = () => {
   return (
     <>
       <CartDialog open={open} setOpen={setOpen} />
-      <div className="w-[97%] mx-auto my-2">
+      <div className=" mx-auto my-2">
         <header className=" mx-auto h-36 mb-6">
           <div className="flex items-center justify-between py-4">
             {/* Image  */}

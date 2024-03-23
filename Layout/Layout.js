@@ -16,7 +16,7 @@ const Layout = ({ children }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {router.pathname === "/" ? <Header /> : <Header1 />}
-      <main className="w-[97%] mx-auto min-h-screen">
+      <main className=" mx-auto min-h-screen">
         {children}
       </main>
       <WhatsappIcon />

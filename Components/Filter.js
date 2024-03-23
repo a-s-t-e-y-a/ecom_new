@@ -2,15 +2,16 @@ import { FormGroup } from "@mui/material";
 import React from "react";
 import MyCheckBox from "./MyCheckBox";
 import { TiFilter } from "react-icons/ti";
-import { AnimatePresence, motion } from "framer-motion";
+import {  motion } from "framer-motion";
 
 const Filter = () => {
   const [display, setDisplay] = React.useState(false);
+
   return (
     <motion.div
       className={`relative ${display ? "" : "border rounded-md"} space-x-2 `}
       animate={{
-        width: display ? "24px" : "256px",
+        width: display ? "24px" : "320px",
         transition: {
           duration: 0.6,
           type: "spring",

@@ -23,7 +23,9 @@ const Index = () => {
 
             <div className='  flex items-center gap-5 h-5/6 pt-2'>
                 <div className=' absolute top-28 md:top-0 md:relative bg-white  z-10 h-full'>
-                    <UserSideBar />
+                  {
+                    Show?  <UserSideBar />:null
+                  }
                 </div>
                 <div className='h-full w-full'>
                     <AccountInformation />
