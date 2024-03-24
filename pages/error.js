@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from "next/link";
 
 const Page404 = () => {
   return (
@@ -11,7 +11,7 @@ const Page404 = () => {
           <div className="sm:ml-6">
             <div className="sm:border-l sm:border-gray-200 sm:pl-6">
               <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-                Page not found
+                comming Soon
               </h1>
               <p className="mt-1 text-base text-gray-500">
                 Please check the URL in the address bar and try again.
@@ -33,7 +33,7 @@ const Page404 = () => {
         </main>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Page404
+export default Page404;

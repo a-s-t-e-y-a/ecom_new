@@ -1,13 +1,11 @@
-import { useState } from "react";
+"use client";
 import { Tab } from "@headlessui/react";
-
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const TabPanel = ({TabPanelOption, productData}) => {
-  
+const TabPanel = ({ TabPanelOption, TableData }) => {
   return (
     <div className="w-full px-2 sm:px-0">
       <Tab.Group>
@@ -19,8 +17,11 @@ const TabPanel = ({TabPanelOption, productData}) => {
                 classNames(
                   "w-full rounded-lg py-2 text-sm font-medium leading-5 text-blue-700",
                   "ring-white ring-opacity-60  focus:outline-none focus:ring-0",
-                  selected ? "bg-white shadow" : "text-white hover:bg-white/[0.12] hover:text-white"
-                )}
+                  selected
+                    ? "bg-white shadow"
+                    : "text-white hover:bg-white/[0.12] hover:text-white"
+                )
+              }
             >
               {element.label}
             </Tab>
@@ -32,7 +33,6 @@ const TabPanel = ({TabPanelOption, productData}) => {
             <Tab.Panel key={idx}>{element.component}</Tab.Panel>
           ))}
         </Tab.Panels>
-
       </Tab.Group>
     </div>
   );

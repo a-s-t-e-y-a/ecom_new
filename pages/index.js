@@ -12,13 +12,11 @@ export default function Home() {
   return (
     <Layout>
       <section className="flex flex-col h-auto gap-7">
-        {/* <GlassesType categoryItems={category} /> */}
-        <div >
-          <p className="  text-5xl text-center">EYEGLASSES
-         
-          </p>
+        <GlassesType />
+        <div>
+          <p className="  text-5xl text-center">EYEGLASSES</p>
           <p className=" text-center  text-5xl  font-semibold mb-5">TREND</p>
-          <Slider/>
+          <Slider />
         </div>
 
         <div className="w-full">
@@ -130,7 +128,9 @@ export default function Home() {
             className="w-full h-auto object-cover"
           />
           <div className="absolute top-0 left-1/2 -translate-x-1/2  text-center space-y-2">
-            <p className="text-sm min-[500]:text-lg md:text-xl text-gray-500">save up to 30% off</p>
+            <p className="text-sm min-[500]:text-lg md:text-xl text-gray-500">
+              save up to 30% off
+            </p>
             <p className="font-bold text-2xl min-[500]:text-4xl md:text-6xl text-sky-400">
               women<span className="text-blue-700">fashion</span>
             </p>
