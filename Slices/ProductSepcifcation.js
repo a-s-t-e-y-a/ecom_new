@@ -22,7 +22,7 @@ export const Sepcification = createSlice({
         product_color,
         row_metrial_source_from,
         shape,
-        productBrandId,
+
         material,
         style,
       } = action.payload;
