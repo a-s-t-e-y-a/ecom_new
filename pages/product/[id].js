@@ -114,6 +114,9 @@ const SingleProduct = () => {
       width: productData?.lens_height,
     },
   ];
+  if(Product.isLoading){
+    return <p>Loading....</p> ;
+  }
 
   return (
     <Layout>
@@ -135,7 +138,7 @@ const SingleProduct = () => {
                 </span>
               </div>
               <div className="flex items-center justify-between mb-4">
-                <p className="text-sm font-semibold">Blue Transparent</p>
+                <p className="text-sm font-semibold">{productData?.product_color_.name}</p>
                 <span className="font-semibold tracking-wider text-lg">
                   Rs. {productData?.discounted_price}
                 </span>
@@ -152,17 +155,10 @@ const SingleProduct = () => {
                     </span>
                   </p>
                   <p className=" ms-5">
-                    Size :{" "}
-                    {productData?.glasses_size === "1"
-                      ? "Small"
-                      : productData?.glasses_size === "2"
-                      ? "Medium"
-                      : productData?.glasses_size === "3"
-                      ? "Large"
-                      : "Unknown"}
+                    Size :{Product.data.size_.name}
                   </p>
                 </div>
-                <span>Medium (134 mm)</span>
+              
               </div>
             </div>
 
