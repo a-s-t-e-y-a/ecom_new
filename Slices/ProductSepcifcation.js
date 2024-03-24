@@ -6,7 +6,6 @@ const initialState = {
   lens_material: "",
   frames_color: "",
   shape: "",
-  gender: "",
   style: "",
   product_id: 0,
   product_type: "",
@@ -22,17 +21,17 @@ export const Sepcification = createSlice({
         p_id,
         product_color,
         row_metrial_source_from,
-        shape,
-
-        material,
-        style,
+        shape_,
+        material_,
+        style_,
       } = action.payload;
       state.product_id = p_id;
       state.frames_color = colorMapping[product_color] || "unknown";
       state.raw_marterial = row_metrial_source_from;
-      state.shape = shape;
-      state.style = style;
-      state.frame_material = material;
+      state.shape = shape_.name;
+      state.style = style_.name;
+      state.lens_material = "Demo polycarbonate";
+      state.frame_material = material_.name;
     },
   },
 });
