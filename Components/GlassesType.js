@@ -13,7 +13,7 @@ const GlassesType = () => {
   }
   console.log(categoryItems, "categoryItems");
   return (
-    <motion.div className="w-full flex items-center gap-5 mt-6 justify-between cursor-pointer">
+    <motion.div className="w-full flex items-center gap-1 px-14 mt-6 justify-around cursor-pointer">
       {categoryItems?.map((item, index) => {
         return (
           <div
