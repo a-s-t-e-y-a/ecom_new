@@ -29,6 +29,7 @@ const SingleProduct = () => {
   const [productData, setProductdata] = React.useState(null);
   const router = useRouter();
   const { id } = router.query;
+  console.log(router.query)
   const Product = useGetProductDetail(id);
 
   useEffect(() => {
@@ -130,7 +131,7 @@ const SingleProduct = () => {
                     </span>
                   </p>
                   <p className=" ms-5">
-                    Size :{Product.data.size_.name}
+                    Size : {Product?.data?.size_.name}
                   </p>
                 </div>
               

@@ -10,7 +10,7 @@ const BlogItem = ({ value }) => {
           src={value?.imageArray}
           alt="content"
         />
-        <h2 className="text-lg text-gray-900 font-bold">{value?.seo_title}</h2>
+        <h2 className="text-lg text-gray-900 font-bold">{value?.heading}</h2>
         <h3 className="text-gray-500 text-[10px] mb-1  tracking-wide">
           {value?.created_on}
         </h3>

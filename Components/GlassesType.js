@@ -11,7 +11,6 @@ const GlassesType = () => {
   const handleNavigate = (item) => {
     router.push(`${item?.name?.toLowerCase()}`);
   }
-  console.log(categoryItems, "categoryItems");
   return (
     <motion.div className="w-full flex items-center gap-1 px-14 mt-6 justify-around cursor-pointer">
       {categoryItems?.map((item, index) => {
@@ -25,8 +24,8 @@ const GlassesType = () => {
               className="rounded-full shadow-md hover:shadow-2xl"
               whileHover={{ scale: 0.8 }}
             >
-              <Image
-                src={`/product_images/${item?.image}`}
+              <img
+                src={item?.imageArray}
                 width={130}
                 height={130}
                 alt="Glasses Categories"
