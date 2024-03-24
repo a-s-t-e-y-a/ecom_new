@@ -6,16 +6,16 @@ const BlogItem = ({ value }) => {
       <div className="bg-white shadow-md p-3 rounded-lg">
         <img
           className=" rounded w-full object-fit object-center mb-4"
-          src={`${imageUrl}blog/${value.thumb}`}
+          src={`${imageUrl}blog/${value?.thumb}`}
           alt="content"
         />
-        <h2 className="text-lg text-gray-900 font-bold">{value.seo_title}</h2>
+        <h2 className="text-lg text-gray-900 font-bold">{value?.seo_title}</h2>
         <h3 className="text-gray-500 text-[10px] mb-1  tracking-wide">
-          26 Jan 2023
+          {value?.created_on}
         </h3>
         <p
           className="text-sm font-sm tracking-wide"
-          dangerouslySetInnerHTML={{ __html: value.description }}
+          dangerouslySetInnerHTML={{ __html: value?.description }}
         ></p>
       </div>
     </div>
