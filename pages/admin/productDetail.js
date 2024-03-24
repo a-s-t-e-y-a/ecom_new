@@ -3,25 +3,32 @@ import ProductDetailDialog from "@/Components/Dialog/productDetails";
 import AdminLayout from "@/Layout/AdminLayout";
 import IconButton from "@/Components/Admin/IconButton";
 import Modal from "@/Components/Dialog/Modal";
-import {  InputAdornment, TextField } from "@mui/material";
+import { InputAdornment, TextField } from "@mui/material";
 import { MdOutlineLensBlur } from "react-icons/md";
 import React, { useState } from "react";
 import { BiSearch } from "react-icons/bi";
-
+import Auth from "@/utils/isAuthencate";
 
 const ProductDetail = () => {
+  React.useEffect(() => {
+    Auth();
+  });
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);
+
   return (
     <AdminLayout>
-       <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
+      <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
         {<ProductDetailDialog onCancel={onHide} />}
       </Modal>
       <div>
-         <div className=" ms-10">
+        <div className=" ms-10">
           <span onClick={handleOpen}>
-            <IconButton label="Add product details" icon={<MdOutlineLensBlur />} />
+            <IconButton
+              label="Add product details"
+              icon={<MdOutlineLensBlur />}
+            />
           </span>
         </div>
         <div className="mt-2">
@@ -30,15 +37,15 @@ const ProductDetail = () => {
               All Product Detail
             </span>
             <div className="flex items-center space-x-5">
-                <TextField
-                    className="outline-none focus:ring-0 w-24"
-                    sx={{}}
-                    color="warning"
-                    size="small"
-                    label="Show"
-                    type="number"
-                  />
-            
+              <TextField
+                className="outline-none focus:ring-0 w-24"
+                sx={{}}
+                color="warning"
+                size="small"
+                label="Show"
+                type="number"
+              />
+
               <TextField
                 className="outline-none focus:ring-0 w-40"
                 sx={{}}
@@ -55,7 +62,6 @@ const ProductDetail = () => {
                   ),
                 }}
               />
-            
             </div>
           </div>
           <div className="mt-2">

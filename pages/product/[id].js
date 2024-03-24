@@ -15,37 +15,13 @@ import { useRouter } from "next/router";
 import useGetProductDetail from "@/utils/queries/useGetProductDetails";
 import { UpdaeSepcification } from "@/Slices/ProductSepcifcation";
 import { useDispatch } from "react-redux";
+import { colorMapping } from "@/utils/contants";
+
 const TabPanelOption = [
   { label: "SPECIFICATION", component: Specification },
   { label: "DESCRIPTION", component: Description },
   { label: "PRODUCTS TAGS", component: ProductTag },
 ];
-
-const colorMapping = {
-  1: "Berry",
-  2: "Black",
-  3: "Blue",
-  4: "Brown",
-  5: "Gold",
-  6: "Green",
-  7: "Multicolor",
-  8: "Pink",
-  9: "Purple",
-  10: "Silver",
-  11: "Smoke",
-  12: "Wine",
-  13: "Yellow",
-  14: "Other Multi-Colour",
-  15: "Gun Metal",
-  16: "Transparent White",
-  17: "Matte",
-  18: "Printed",
-  19: "Double Shade",
-  20: "Gradient colour",
-  21: "Matte Black",
-  22: "Matte gray",
-  23: "Transparent other",
-};
 
 const SingleProduct = () => {
   const Dispacth = useDispatch();
@@ -54,16 +30,15 @@ const SingleProduct = () => {
   const router = useRouter();
   const { id } = router.query;
   const Product = useGetProductDetail(id);
-  if (Product.data) {
-  }
+
   useEffect(() => {
     if (Product.data) {
       setProductdata(Product.data);
       Dispacth(UpdaeSepcification(Product.data));
     }
-  }, [Product, productData]);
+  }, [Product, productData, Dispacth]);
 
-  const phoneNumber = "9097773221";
+  const phoneNumber = "";
   const productURL = productData?.product_url ?? "";
   const BASE_URI = `https://akkukachasma.com/eyewear/`;
   const message = encodeURIComponent(
@@ -199,7 +174,6 @@ const SingleProduct = () => {
             {/* Size And Rating  */}
             <div className="flex items-center justify-between mb-5">
               <button className="border-2 text-sm px-4 py-1 rounded-md ">
-                {" "}
                 Size Guide
               </button>
 

@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { colorMapping } from "@/utils/contants";
 
 const initialState = {
   frame_material: "",
@@ -25,7 +26,7 @@ export const Sepcification = createSlice({
         style_,
       } = action.payload;
       state.product_id = p_id;
-      state.frames_color = product_color;
+      state.frames_color = colorMapping[product_color] || "unknown";
       state.raw_marterial = row_metrial_source_from;
       state.shape = shape_.name;
       state.style = style_.name;
