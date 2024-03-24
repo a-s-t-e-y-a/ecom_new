@@ -20,15 +20,15 @@ const BlogSideBar = () => {
       <div className="bg-white flex flex-col items-center border rounded-md shadow-sm gap-4 py-3">
         <span className="font-semibold text-md">Connect With Us</span>
         <div className="flex items-center justify-between gap-5">
-          <span className="border-2 p-[4px] text-lg rounded-full border-blue-300">
+          <a href="https://www.facebook.com/akkukachasma" className="border-2 p-[4px] text-lg rounded-full border-blue-300 cursor-pointer">
             <FaFacebookF />
-          </span>
-          <span className="border-2 p-[4px] text-lg rounded-full border-green-300">
+          </a>
+          <a href="" className="border-2 p-[4px] text-lg rounded-full border-green-300 cursor-pointer">
             <FaWhatsapp />
-          </span>
-          <span className="border-2 p-[4px] text-lg rounded-full border-indigo-300">
+          </a>
+          <a href="" className="border-2 p-[4px] text-lg rounded-full border-indigo-300 cursor-pointer">
             <FaTwitter />
-          </span>
+          </a>
         </div>
       </div>
       <div className="bg-white border rounded-md shadow-sm gap-3 py-3 px-2">

@@ -1,12 +1,13 @@
+'use client'
 import React from "react";
-import { imageUrl } from "@/utils/contants";
+
 const BlogItem = ({ value }) => {
   return (
     <div className="w-full">
       <div className="bg-white shadow-md p-3 rounded-lg">
         <img
           className=" rounded w-full object-fit object-center mb-4"
-          src={`${imageUrl}blog/${value?.thumb}`}
+          src={value?.imageArray}
           alt="content"
         />
         <h2 className="text-lg text-gray-900 font-bold">{value?.seo_title}</h2>
