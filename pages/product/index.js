@@ -34,11 +34,11 @@ const Index = () => {
   }
   return (
     <Layout>
-      <section className=" flex space-x-3">
-        <div className="  bg-white z-20 w-full">
+      <section className=" w-full flex ">
+        <div className=" w-fit  me-10">
           <Filter />
         </div>
-        <div className="  grid grid-cols-1 justify-center mb-10 md:grid-cols-2  gap-3  xl:grid-cols-4 h-auto px-1 ">
+        <div className="w-full  grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 mb-4 ">
           {data &&
             data.map((val, index) => (
               <div

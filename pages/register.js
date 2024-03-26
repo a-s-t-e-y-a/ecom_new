@@ -19,7 +19,6 @@ export default function Example() {
   } = useForm();
   const { mutate } = useRegister();
   const onSubmit = (data) => {
-    console.log(data);
     mutate(data);
   };
 
@@ -65,8 +64,8 @@ export default function Example() {
                   <BsFillPersonFill className="text-gray-600 relative top-3 left-2" />
                 }
                 labelProps={{
-                  className: "pl-4"
-              }}
+                  className: "pl-4",
+                }}
                 {...register("name", { required: true })}
               />
             </div>
@@ -81,8 +80,8 @@ export default function Example() {
                   <MdOutlineAlternateEmail className="text-gray-600 relative top-3 left-2" />
                 }
                 labelProps={{
-                  className: "pl-4"
-              }}
+                  className: "pl-4",
+                }}
                 {...register("email", { required: true })}
               />
             </div>
@@ -109,8 +108,8 @@ export default function Example() {
                   )
                 }
                 labelProps={{
-                  className: "pl-4"
-              }}
+                  className: "pl-4",
+                }}
                 {...register("password", { required: true })}
               />
             </div>

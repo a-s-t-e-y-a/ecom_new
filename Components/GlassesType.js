@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import Image from "next/image";
 import React from "react";
 import { motion } from "framer-motion";
@@ -10,30 +10,20 @@ const GlassesType = () => {
   const { data: categoryItems } = useGetAllCategories();
   const handleNavigate = (item) => {
     router.push(`${item?.name?.toLowerCase()}`);
-  }
+  };
   return (
-    <motion.div className="w-full flex items-center gap-1 px-14 mt-6 justify-around cursor-pointer">
+    <motion.div className=" flex justify-around gap-5 lg:px-16">
       {categoryItems?.map((item, index) => {
         return (
-          <div
-            key={index}
-            className="flex flex-col justify-normal items-center"
-            onClick={() => handleNavigate(item)}
-          >
-            <motion.div
-              className="rounded-full shadow-md hover:shadow-2xl"
-              whileHover={{ scale: 0.8 }}
-            >
+          <div key={index} onClick={() => handleNavigate(item)}>
+            <motion.div className="  rounded-full hover:shadow-2xl ">
               <img
                 src={item?.imageArray}
-                width={130}
-                height={130}
                 alt="Glasses Categories"
+                className=" mx-auto mb-3   object-cover"
               />
             </motion.div>
-            <p className="text-sm font-semibold tracking-wide mt-2">
-              {item?.name}
-            </p>
+            <p className=" text-center text-xs">{item?.name}</p>
           </div>
         );
       })}

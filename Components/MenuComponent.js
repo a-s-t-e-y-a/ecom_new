@@ -27,7 +27,7 @@ const MenuComponent = (props) => {
         leaveFrom="transform scale-100 opacity-100"
         leaveTo="transform scale-95 opacity-0"
       >
-        <Menu.Items className="absolute  z-10 mt-2 w-56 origin-top-left rounded-md bg-white shadow-lg ring-1 focus:outline-none">
+        <Menu.Items className="absolute max-md:left-1/2 max-md:-translate-x-1/2 max-md:w-full  w-fit origin-top-left rounded-md bg-white shadow-lg ring-1 focus:outline-none">
           {items.map((link, i) => (
             /* Use the `active` state to conditionally style the active item. */
             <div key={i} className="py-1 text-center">

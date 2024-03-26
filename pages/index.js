@@ -11,7 +11,9 @@ export default function Home() {
   return (
     <Layout>
       <section className="flex flex-col h-auto gap-7">
-        <GlassesType />
+        <div className=" overflow-auto flex">
+          <GlassesType />
+        </div>
         <div>
           <p className="  text-5xl text-center">EYEGLASSES</p>
           <p className=" text-center  text-5xl  font-semibold mb-5">TREND</p>
@@ -71,7 +73,7 @@ export default function Home() {
               <h1 className="tracking-wide text-xl text-center">
                 <span className="uppercase text-gray-600 mr-2">
                   Best Seller
-                </span>{" "}
+                </span>
                 <span className="border-b-2 border-gray-700">
                   Round Glasses
                 </span>

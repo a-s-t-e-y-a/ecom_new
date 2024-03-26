@@ -2,7 +2,6 @@
 import React from "react";
 
 const BlogItem = ({ value }) => {
-  console.log(value);
   return (
     <div className=" ">
       <div className=" shadow-md p-3 rounded-lg min-h-[400px]">

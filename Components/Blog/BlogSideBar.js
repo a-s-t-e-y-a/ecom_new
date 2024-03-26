@@ -4,7 +4,7 @@ import { FaWhatsapp, FaFacebookF, FaTwitter } from "react-icons/fa";
 const BlogSideBar = () => {
   return (
     <div className="w-full space-y-2">
-      <div className="bg-white flex flex-col items-center gap-2 py-4 tracking-wide px-4 border rounded-md shadow-sm  px-5">
+      <div className="bg-white flex flex-col items-center gap-2 py-4 tracking-wide  border rounded-md shadow-sm  px-5">
         <span className="font-semibold text-lg border-b-2 border-b-gray-800">
           About Us
         </span>

@@ -10,7 +10,6 @@ const useRegister = () => {
       return res.data;
     },
     onSuccess: (data) => {
-      console.log(data);
       toast.success("User registered succesfully");
     },
     onError: (err) => {

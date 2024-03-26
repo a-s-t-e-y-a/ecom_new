@@ -7,9 +7,6 @@ import { HiOutlineShoppingCart } from "react-icons/hi";
 import { IoIosShareAlt } from "react-icons/io";
 import { AiOutlineHeart } from "react-icons/ai";
 import LensForm from "@/Components/LensForm/LensForm";
-import Specification from "@/Components/SingleItem/Specification";
-import Description from "@/Components/SingleItem/Description";
-import ProductTag from "@/Components/SingleItem/ProductTag";
 import TabPanel from "@/Components/Tab/TabPanel";
 import { useRouter } from "next/router";
 import useGetProductDetail from "@/utils/queries/useGetProductDetails";
@@ -17,35 +14,30 @@ import { UpdaeSepcification } from "@/Slices/ProductSepcifcation";
 import { useDispatch } from "react-redux";
 import { colorMapping } from "@/utils/contants";
 
-const TabPanelOption = [
-  { label: "SPECIFICATION", component: Specification },
-  { label: "DESCRIPTION", component: Description },
-  { label: "PRODUCTS TAGS", component: ProductTag },
-];
-
 const SingleProduct = () => {
   const Dispacth = useDispatch();
   const [isOpen, setIsOpen] = React.useState(false);
   const [productData, setProductdata] = React.useState(null);
+  const [number, setnumber] = React.useState("");
   const router = useRouter();
   const { id } = router.query;
-  console.log(router.query)
   const Product = useGetProductDetail(id);
 
   useEffect(() => {
     if (Product.data) {
+      const user = localStorage.getItem("user_data");
+      console.log(user, "USER");
       setProductdata(Product.data);
       Dispacth(UpdaeSepcification(Product.data));
     }
   }, [Product, productData, Dispacth]);
 
-  const phoneNumber = "";
   const productURL = productData?.product_url ?? "";
   const BASE_URI = `https://akkukachasma.com/eyewear/`;
   const message = encodeURIComponent(
     `Hello! I'm interested in one of your products. Please contact me! ${productURL}`
   );
-  const whatsappLink = `https://wa.me/${phoneNumber}?text=${message}`;
+  const whatsappLink = `https://wa.me/${number}?text=${message}`;
 
   const messageToShare = encodeURIComponent(
     `Hello! I'm interested in this one! ${productURL}`
@@ -90,8 +82,8 @@ const SingleProduct = () => {
       width: productData?.lens_height,
     },
   ];
-  if(Product.isLoading){
-    return <p>Loading....</p> ;
+  if (Product.isLoading) {
+    return <p>Loading....</p>;
   }
 
   return (
@@ -114,7 +106,9 @@ const SingleProduct = () => {
                 </span>
               </div>
               <div className="flex items-center justify-between mb-4">
-                <p className="text-sm font-semibold">{productData?.product_color_.name}</p>
+                <p className="text-sm font-semibold">
+                  {productData?.product_color_.name}
+                </p>
                 <span className="font-semibold tracking-wider text-lg">
                   Rs. {productData?.discounted_price}
                 </span>
@@ -130,11 +124,8 @@ const SingleProduct = () => {
                       {colorMapping[productData?.product_color] || "Unknown"}
                     </span>
                   </p>
-                  <p className=" ms-5">
-                    Size : {Product?.data?.size_.name}
-                  </p>
+                  <p className=" ms-5">Size : {Product?.data?.size_.name}</p>
                 </div>
-              
               </div>
             </div>
 
@@ -204,7 +195,7 @@ const SingleProduct = () => {
           </div>
         </div>
         <div className=" mb-5">
-          <TabPanel TabPanelOption={TabPanelOption} TableData={productData} />
+          <TabPanel TableData={productData} />
         </div>
       </section>
     </Layout>

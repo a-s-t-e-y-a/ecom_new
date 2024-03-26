@@ -1,7 +1,7 @@
 import { AiOutlineHeart } from "react-icons/ai";
 import { MdShoppingCart, MdOutlineMenu } from "react-icons/md";
 import { BsFillTelephonePlusFill } from "react-icons/bs";
-
+import Link from "next/link";
 import Image from "next/image";
 import SearchBar from "../SearchBar";
 import { useRouter } from "next/router";
@@ -308,7 +308,9 @@ const Header = () => {
             <div className="cursor-pointer">
               <MenuComponent title="Pages" items={PageLinks} />
             </div>
-            <div className="cursor-pointer">Blog</div>
+            <Link href={"/blog"} className="cursor-pointer">
+              Blog
+            </Link>
           </div>
         </div>
       </header>
