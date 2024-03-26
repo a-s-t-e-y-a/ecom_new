@@ -85,10 +85,13 @@ export default function Example() {
                 type="email"
                 name="email"
                 id="email"
-                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg  w-full pl-5 py-2.5  focus:outline-none focus:ring-0"
+                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg w-full pl-7 py-2.5 focus:outline-none focus:ring-0"
                 icon={
-                  <BsFillPersonFill className="text-gray-600 relative top-3" />
+                  <BsFillPersonFill className="text-gray-600 relative top-3 left-2" />
                 }
+                labelProps={{
+                  className: "pl-4"
+                }}
                 {...register("email", { required: true })}
               />
             </div>
@@ -99,21 +102,24 @@ export default function Example() {
                 type={show ? "type" : "password"}
                 name="password"
                 id="password"
-                className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg w-full p-2.5 focus:outline-none focus:ring-0"
+                className="bg-gray-50 border border-gray-300 text-gray-900 pl-7 sm:text-sm rounded-lg w-full p-2.5 focus:outline-none focus:ring-0"
                 required=""
                 icon={
                   show ? (
                     <AiFillEye
                       onClick={() => setShow(!show)}
-                      className="text-gray-600"
+                      className="text-gray-600 relative top-3 left-2"
                     />
                   ) : (
                     <AiFillEyeInvisible
                       onClick={() => setShow(!show)}
-                      className="text-gray-600 relative top-3"
+                      className="text-gray-600 relative top-3 left-2"
                     />
                   )
                 }
+                labelProps={{
+                  className: "pl-4"
+                }}
                 {...register("password", { required: true })}
               />
             </div>
