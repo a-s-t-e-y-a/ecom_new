@@ -16,6 +16,7 @@ import useGetProductDetail from "@/utils/queries/useGetProductDetails";
 import { UpdaeSepcification } from "@/Slices/ProductSepcifcation";
 import { useDispatch } from "react-redux";
 import { colorMapping } from "@/utils/contants";
+import Loader from "@/Components/Loader";
 
 const TabPanelOption = [
   { label: "SPECIFICATION", component: Specification },
@@ -29,7 +30,7 @@ const SingleProduct = () => {
   const [productData, setProductdata] = React.useState(null);
   const router = useRouter();
   const { id } = router.query;
-  console.log(router.query)
+  console.log(router.query);
   const Product = useGetProductDetail(id);
 
   useEffect(() => {
@@ -90,8 +91,8 @@ const SingleProduct = () => {
       width: productData?.lens_height,
     },
   ];
-  if(Product.isLoading){
-    return <p>Loading....</p> ;
+  if (Product.isLoading) {
+    return <Loader />;
   }
 
   return (
@@ -114,7 +115,9 @@ const SingleProduct = () => {
                 </span>
               </div>
               <div className="flex items-center justify-between mb-4">
-                <p className="text-sm font-semibold">{productData?.product_color_.name}</p>
+                <p className="text-sm font-semibold">
+                  {productData?.product_color_.name}
+                </p>
                 <span className="font-semibold tracking-wider text-lg">
                   Rs. {productData?.discounted_price}
                 </span>
@@ -130,11 +133,8 @@ const SingleProduct = () => {
                       {colorMapping[productData?.product_color] || "Unknown"}
                     </span>
                   </p>
-                  <p className=" ms-5">
-                    Size : {Product?.data?.size_.name}
-                  </p>
+                  <p className=" ms-5">Size : {Product?.data?.size_.name}</p>
                 </div>
-              
               </div>
             </div>
 

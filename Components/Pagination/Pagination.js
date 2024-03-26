@@ -15,20 +15,20 @@ const Pagination = ({ pages, curr }) => {
     <>
       <nav aria-label="Page navigation example">
         <ul className=" flex text-base justify-center items-center ">
-          <li className=" p-2 md:px-4  rounded-s-lg border border-gray-300 ">
+          <li className=" p-2 md:px-4 rounded-s-lg border border-gray-300 bg-gray-800">
             <button
               href="#"
-              className="  leading-tight text-gray-500 bg-white   hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              className="leading-tight text-gray-200 hover:bg-gray-50"
               onClick={() => perviousHandler()}
             >
               Previous
             </button>
           </li>
 
-          <li className=" p-2 md:px-4   border rounded-e-lg border-gray-300">
+          <li className=" p-2 md:px-4 border rounded-e-lg border-gray-300 bg-gray-800">
             <button
               href="#"
-              className=" leading-tight text-gray-500 bg-white   hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              className="leading-tight text-gray-200 hover:bg-gray-50"
               onClick={() => Nexthandler()}
             >
               Next
