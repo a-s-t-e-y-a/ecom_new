@@ -53,7 +53,7 @@ function Dashboard() {
   React.useLayoutEffect(() => {
     const session = sessionStatus;
     if (!session) {
-      return router.push("/")
+      return router.replace("/login")
     }
   });
   return (

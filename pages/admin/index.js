@@ -1,11 +1,20 @@
 import IconButton from '@/Components/Admin/IconButton'
 import QuillEditor from '@/Components/Admin/QuillEditor'
 import AdminLayout from '@/Layout/AdminLayout'
+import { sessionStatus } from '@/utils/session';
+import { useRouter } from 'next/router';
 import React from 'react'
 import { FcAbout } from 'react-icons/fc';
 
 
 const AboutPage = () => {
+  const router = useRouter()
+  React.useLayoutEffect(() => {
+    const session = sessionStatus;
+    if (!session) {
+      return router.replace("/login")
+    }
+  });
   return (
     <AdminLayout>
         <div>
