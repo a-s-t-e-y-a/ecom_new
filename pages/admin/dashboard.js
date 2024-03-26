@@ -1,8 +1,9 @@
+'use client'
 import DashboardSingleItem from "@/Components/Admin/DashboardSingleItem";
 import AdminLayout from "@/Layout/AdminLayout";
 import React from "react";
-import Auth from "@/utils/isAuthencate";
-import { redirect } from "next/navigation";
+import {sessionStatus} from "@/utils/session";
+import { useRouter } from 'next/navigation'
 const items = [
   {
     color: "bg-blue-300",
@@ -48,8 +49,12 @@ const items = [
   },
 ];
 function Dashboard() {
-  React.useEffect(() => {
-    Auth();
+  const router = useRouter()
+  React.useLayoutEffect(() => {
+    const session = sessionStatus;
+    if (!session) {
+      return router.push("/login")
+    }
   });
   return (
     <AdminLayout>

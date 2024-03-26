@@ -5,7 +5,6 @@ import Layout from "@/Layout/Layout";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import useGetAllCategories from "@/utils/queries/useCategoriesGetAll";
-
 import api from "@/api";
 
 export default function Home() {

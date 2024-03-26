@@ -7,7 +7,7 @@ import { InputAdornment, TextField } from "@mui/material";
 import { MdOutlineLensBlur } from "react-icons/md";
 import React, { useState } from "react";
 import { BiSearch } from "react-icons/bi";
-import Auth from "@/utils/isAuthencate";
+import Auth from "@/utils/session";
 
 const ProductDetail = () => {
   React.useEffect(() => {
