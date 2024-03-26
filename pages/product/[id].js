@@ -91,7 +91,7 @@ const SingleProduct = () => {
     },
   ];
   if (Product.isLoading) {
-    return <p>Loading....</p>;
+    return <Loader />;
   }
 
   return (
