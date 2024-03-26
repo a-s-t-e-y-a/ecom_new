@@ -13,6 +13,13 @@ import useGetProductDetail from "@/utils/queries/useGetProductDetails";
 import { UpdaeSepcification } from "@/Slices/ProductSepcifcation";
 import { useDispatch } from "react-redux";
 import { colorMapping } from "@/utils/contants";
+import Loader from "@/Components/Loader";
+
+const TabPanelOption = [
+  { label: "SPECIFICATION", component: Specification },
+  { label: "DESCRIPTION", component: Description },
+  { label: "PRODUCTS TAGS", component: ProductTag },
+];
 
 const SingleProduct = () => {
   const Dispacth = useDispatch();
@@ -21,6 +28,7 @@ const SingleProduct = () => {
   const [number, setnumber] = React.useState("");
   const router = useRouter();
   const { id } = router.query;
+  console.log(router.query);
   const Product = useGetProductDetail(id);
 
   useEffect(() => {
