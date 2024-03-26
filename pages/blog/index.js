@@ -4,9 +4,11 @@ import useBlogsGetAll from "@/utils/queries/useBlogGetAll";
 import React from "react";
 import Loader from "@/Components/Loader";
 import { useRouter } from "next/router";
+import Header1 from "@/Components/Header/Header1";
+import Footer from "@/Components/Footer/Footer";
 const Index = () => {
   const [Blogs, setbolgs] = React.useState([]);
-  const router = useRouter()  
+  const router = useRouter();
   const blogs = useBlogsGetAll();
 
   React.useEffect(() => {
@@ -22,14 +24,16 @@ const Index = () => {
   }
 
   const handleBlogCLick = (id) => {
-    router.push(`/blog/${id}`)
+    router.push(`/blog/${id}`);
   };
 
   return (
-    <div className=" flex flex-col items-center">
+    <div className=" flex flex-col items-center ">
+      {/* Header */}
+      <Header1 />
       {/* Header/Heading */}
-      <div className=" w-1/3 flex items-center justify-center shadow-sm">
-        <img src="/blog.png" className="w-[180px] " />
+      <div className="w-1/3  text-center   mx-auto shadow-sm">
+        <img src="/blog.png" className="w-[180px] mx-auto mb-3" />
         <h1 className="text-sm tracking-wider -mt-4">with @akkukachasma</h1>
         <span className="mt-3">
           <hr />
@@ -49,6 +53,8 @@ const Index = () => {
           <BlogSideBar />
         </div>
       </div>
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };

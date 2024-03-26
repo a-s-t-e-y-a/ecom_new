@@ -1,12 +1,13 @@
-'use client'
+"use client";
 import React from "react";
 
 const BlogItem = ({ value }) => {
+  console.log(value);
   return (
-    <div className="w-full">
-      <div className="bg-white shadow-md p-3 rounded-lg">
+    <div className=" ">
+      <div className=" shadow-md p-3 rounded-lg min-h-[400px]">
         <img
-          className=" rounded w-full object-fit object-center mb-4"
+          className=" rounded w-[200px] h-[200px] object-contain mx-auto mb-4"
           src={value?.imageArray}
           alt="content"
         />

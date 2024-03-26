@@ -6,51 +6,29 @@ const SingleGlassItem = ({ value }) => {
   const imageArray = value?.product_images?.split(",");
   console.log(value);
   return (
-    <div className="hover:shadow-xl rounded-md">
-      <div className="relative space-y-3">
-        <div className="p-2 w-[95%] pt-3">
+    <div className="hover:shadow-xl  w-full ">
+      <div className="rounded-lg  border-2 p-3">
+        <div className="p-5  rounded-xl mb-3">
           <SlideOnHover data={imageArray} />
         </div>
 
         {/* Detail  */}
-        <div className=" text-gray-700 tracking-wide text-sm w-[92%] mx-auto my-2 space-y-4 flex items-center justify-evenly pb-6">
-          <div className="grid grid-cols-4 items-center justify-center gap-5">
-            <div className="col-span-1 flex flex-col items-center justify-between">
-              <span className="text-base font-semibold tracking-wider">
-                {value?.frame_width} <span className="text-xs">MM</span>
-              </span>
-              <span className="text-xs text-gray-500 tracking-wider">
-                FrameWidth
-              </span>
-            </div>
-            <div className="col-span-1 flex flex-col items-center justify-center">
-              <span className="text-base font-semibold tracking-wider">
-                135 <span className="text-xs">MM</span>
-              </span>
-              <span className="text-xs text-gray-500 tracking-wider">
-                LensWidth
-              </span>
-            </div>
-            <div className="col-span-1 flex flex-col items-center justify-center">
-              <span className="text-base font-semibold tracking-wider">
-                {value?.size === "1"
-                  ? "Small"
-                  : value?.size === "2"
-                  ? "Medium"
-                  : value?.size === "3"
-                  ? "Large"
-                  : "Unknown"}
-              </span>
-              <span className="text-xs text-gray-500 tracking-wider">
-                FrameSize
-              </span>
-            </div>
-            <div className="col-span-1 flex flex-col items-center justify-center">
-              <span className="text-lg text-nowrap font-bold">
-                &#x20b9; {value?.discounted_price}
-              </span>
-            </div>
+        <div className=" flex justify-between ">
+          <div className="font-semibold">
+            <p>{value?.frame_width} mm</p>
+            <p>Frame width</p>
           </div>
+          <div className="font-semibold">
+            <p>{value?.temple_length} mm</p>
+            <p>Lens width</p>
+          </div>
+          <div className="font-semibold">
+            <p>{value?.size_?.name}</p>
+            <p>Frame size</p>
+          </div>
+        </div>
+        <div className="font-semibold">
+          <p className="font-bold text-lg">&#8377; {value.discounted_price}</p>
         </div>
       </div>
     </div>

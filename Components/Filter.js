@@ -2,16 +2,19 @@ import { FormGroup } from "@mui/material";
 import React from "react";
 import MyCheckBox from "./MyCheckBox";
 import { TiFilter } from "react-icons/ti";
-import {  motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 const Filter = () => {
-  const [display, setDisplay] = React.useState(false);
+  const [display, setDisplay] = React.useState(true);
 
   return (
     <motion.div
-      className={`  sticky z-20 ${display ? " w-[24px] left-10  " : " w-screen lg:w-[300px]  border rounded-md"} space-x-2 `}
+      className={`  sticky z-20 ${
+        display
+          ? " w-[24px] left-10  "
+          : " w-screen lg:w-[300px]  border rounded-md"
+      } space-x-2 `}
       animate={{
-      
         transition: {
           duration: 0.6,
           type: "spring",
@@ -82,23 +85,23 @@ const Filter = () => {
           </span>
           <FormGroup>
             <div className="grid grid-cols-4">
-                <MyCheckBox label="23" />
-                <MyCheckBox label="24" />
-                <MyCheckBox label="25" />
-                <MyCheckBox label="26" />
-                <MyCheckBox label="27" />
-                <MyCheckBox label="28" />
-                <MyCheckBox label="29" />
-                <MyCheckBox label="30" />
-                <MyCheckBox label="31" />
-                <MyCheckBox label="32" />
-                <MyCheckBox label="33" />
-                <MyCheckBox label="34" />
-                <MyCheckBox label="35" />
-                <MyCheckBox label="36" />
-                <MyCheckBox label="37" />
-                <MyCheckBox label="38" />
-                <MyCheckBox label="39" />
+              <MyCheckBox label="23" />
+              <MyCheckBox label="24" />
+              <MyCheckBox label="25" />
+              <MyCheckBox label="26" />
+              <MyCheckBox label="27" />
+              <MyCheckBox label="28" />
+              <MyCheckBox label="29" />
+              <MyCheckBox label="30" />
+              <MyCheckBox label="31" />
+              <MyCheckBox label="32" />
+              <MyCheckBox label="33" />
+              <MyCheckBox label="34" />
+              <MyCheckBox label="35" />
+              <MyCheckBox label="36" />
+              <MyCheckBox label="37" />
+              <MyCheckBox label="38" />
+              <MyCheckBox label="39" />
             </div>
           </FormGroup>
         </div>
@@ -106,17 +109,17 @@ const Filter = () => {
           <span className="font-semibold tracking-wide text-sm">Shape</span>
           <FormGroup>
             <div className="grid grid-cols-2">
-                <MyCheckBox label="Butterfly" />
-                <MyCheckBox label="Aviator" />
-                <MyCheckBox label="Haxagon" />
-                <MyCheckBox label="Square" />
-                <MyCheckBox label="Oval" />
-                <MyCheckBox label="Cateye" />
-                <MyCheckBox label="Round" />
-                <MyCheckBox label="Wayfarer" />
-                <MyCheckBox label="Rectangle" />
-                <MyCheckBox label="Geometric" />
-                <MyCheckBox label="Clubmaster" />
+              <MyCheckBox label="Butterfly" />
+              <MyCheckBox label="Aviator" />
+              <MyCheckBox label="Haxagon" />
+              <MyCheckBox label="Square" />
+              <MyCheckBox label="Oval" />
+              <MyCheckBox label="Cateye" />
+              <MyCheckBox label="Round" />
+              <MyCheckBox label="Wayfarer" />
+              <MyCheckBox label="Rectangle" />
+              <MyCheckBox label="Geometric" />
+              <MyCheckBox label="Clubmaster" />
             </div>
           </FormGroup>
         </div>
@@ -141,24 +144,24 @@ const Filter = () => {
           <span className="font-semibold tracking-wide text-sm">Color</span>
           <FormGroup>
             <div className="grid grid-cols-2">
-                <MyCheckBox label="Black" />
-                <MyCheckBox label="Blue" />
-                <MyCheckBox label="Gray" />
-                <MyCheckBox label="Brown" />
-                <MyCheckBox label="Transparent" />
-                <MyCheckBox label="Tortoise" />
-                <MyCheckBox label="Green" />
-                <MyCheckBox label="Gold" />
-                <MyCheckBox label="Silver" />
-                <MyCheckBox label="Maroon" />
-                <MyCheckBox label="Pink" />
-                <MyCheckBox label="Purple" />
-                <MyCheckBox label="Red" />
-                <MyCheckBox label="Orange" />
-                <MyCheckBox label="White" />
-                <MyCheckBox label="Multi Color" />
-                <MyCheckBox label="Voilet" />
-                <MyCheckBox label="Rese Gold" />
+              <MyCheckBox label="Black" />
+              <MyCheckBox label="Blue" />
+              <MyCheckBox label="Gray" />
+              <MyCheckBox label="Brown" />
+              <MyCheckBox label="Transparent" />
+              <MyCheckBox label="Tortoise" />
+              <MyCheckBox label="Green" />
+              <MyCheckBox label="Gold" />
+              <MyCheckBox label="Silver" />
+              <MyCheckBox label="Maroon" />
+              <MyCheckBox label="Pink" />
+              <MyCheckBox label="Purple" />
+              <MyCheckBox label="Red" />
+              <MyCheckBox label="Orange" />
+              <MyCheckBox label="White" />
+              <MyCheckBox label="Multi Color" />
+              <MyCheckBox label="Voilet" />
+              <MyCheckBox label="Rese Gold" />
             </div>
           </FormGroup>
         </div>

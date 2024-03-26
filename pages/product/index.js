@@ -35,10 +35,10 @@ const Index = () => {
   return (
     <Layout>
       <section className=" flex space-x-3">
-        <div className=" relative bg-white z-20 w-full">
+        <div className="  bg-white z-20 w-full">
           <Filter />
         </div>
-        <div className="grid grid-cols-1 mb-10 md:grid-cols-2 lg:grid-cols-3  xl:grid-cols-4  h-fit gap-5 gap-y-5 px-10">
+        <div className="  grid grid-cols-1 justify-center mb-10 md:grid-cols-2  gap-3  xl:grid-cols-4 h-auto px-1 ">
           {data &&
             data.map((val, index) => (
               <div

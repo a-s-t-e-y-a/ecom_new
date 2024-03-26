@@ -15,14 +15,14 @@ const Header1 = () => {
   return (
     <>
       <CartDialog open={open} setOpen={setOpen} />
-      <div className=" mx-auto my-2">
-        <header className=" mx-auto h-36 mb-6">
+      <div className=" w-full px-3">
+        <header className="mb-3">
           <div className="flex items-center justify-between py-4">
             {/* Image  */}
             <div>
               <Image
-              width={500}
-              height={500}
+                width={500}
+                height={500}
                 src="/logo.png"
                 className=" object-contain "
                 onClick={() => router.push("/")}

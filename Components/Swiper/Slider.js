@@ -4,14 +4,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 // import required modules
-import {Navigation} from "swiper";
-import { GlassesType } from "../../Layout/Data"
+import { Navigation } from "swiper";
+import { GlassesType } from "../../Layout/Data";
 
 export default function Slider() {
-  const router =useRouter()
-  function handleClick(item){
+  const router = useRouter();
+  function handleClick(item) {
     const itemName = encodeURIComponent(item.title.toLowerCase());
     router.push(`/product?name=${itemName}`);
   }
@@ -26,20 +26,25 @@ export default function Slider() {
         loop={true}
         navigation={true}
         modules={[Navigation]}
-        className="mySwiper"
+        className="mySwiper min-h-[200px]  "
       >
-        {
-          GlassesType.map((slide, index) => (
-            <SwiperSlide key={index} className=' shadow-lg min-[100px]: px-1 py-4 bg-white'>
-              <div className="text-center flex flex-col items-center justify-center gap-4">
-                <div className='px-2' onClick={()=>handleClick(slide)}>
-                  <img className='h-full w-56' src={slide.src} alt="" />
-                </div>
-                <span className='text-sm text-center'>{slide.title}</span>
+        {GlassesType.map((slide, index) => (
+          <SwiperSlide
+            key={index}
+            className=" shadow-xl rounded-md  min-h-[100px]  py-10 "
+          >
+            <div className=" text-cente  bg-white  rounded-md py-2  h-[100px] flex flex-col items-center justify-center gap-4">
+              <div onClick={() => handleClick(slide)}>
+                <img
+                  className=" w-full h-[100px] object-cover rounded  "
+                  src={slide.src}
+                  alt=""
+                />
               </div>
-            </SwiperSlide>
-          ))
-        }
+              <span className="text-sm text-center">{slide.title}</span>
+            </div>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );

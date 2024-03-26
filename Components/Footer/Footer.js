@@ -8,6 +8,7 @@ import {
 } from "react-icons/bs";
 import { HiMail, HiOutlineClock } from "react-icons/hi";
 import { RiCustomerService2Line } from "react-icons/ri";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -69,14 +70,30 @@ const Footer = () => {
         <div className=" w-full ">
           <h1 className="font-bold text-lg tracking-wide mb-1">My Account</h1>
           <ul className="flex flex-col gap-2">
-            <li>About Us</li>
-            <li>Contact Us</li>
-            <li>Refund Policy</li>
-            <li>Help</li>
-            <li>Cancellation</li>
-            <li>Terms & Condition</li>
-            <li>Returns & Exchanges</li>
-            <li>Shipping & Delivery</li>
+            <li>
+              <Link href={"/aboutus"}> About Us</Link>
+            </li>
+            <li>
+              <Link href={"/contact"}>Contact Us</Link>
+            </li>
+            <li>
+              <Link href={""}>Refund Policy</Link>
+            </li>
+            <li>
+              <Link href={""}>Help</Link>
+            </li>
+            <li>
+              <Link href={""}>Cancellation</Link>
+            </li>
+            <li>
+              <Link href={""}>Terms & Condition</Link>
+            </li>
+            <li>
+              <Link href={""}>Returns & Exchanges</Link>
+            </li>
+            <li>
+              <Link href={""}>Shipping & Delivery</Link>
+            </li>
           </ul>
         </div>
         <div className=" flex flex-col py-3 mb-4 items-start">
