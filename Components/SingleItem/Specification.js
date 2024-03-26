@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-const Specification = (Specifications) => {
+const Specification = () => {
   const {
     product_id,
     frame_material,

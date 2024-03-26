@@ -15,12 +15,6 @@ import { useDispatch } from "react-redux";
 import { colorMapping } from "@/utils/contants";
 import Loader from "@/Components/Loader";
 
-const TabPanelOption = [
-  { label: "SPECIFICATION", component: Specification },
-  { label: "DESCRIPTION", component: Description },
-  { label: "PRODUCTS TAGS", component: ProductTag },
-];
-
 const SingleProduct = () => {
   const Dispacth = useDispatch();
   const [isOpen, setIsOpen] = React.useState(false);
