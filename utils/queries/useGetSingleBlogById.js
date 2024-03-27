@@ -1,11 +1,11 @@
 const { default: api } = require("@/api");
-const { useQuery } = require("react-query");
+import { useQuery } from "@tanstack/react-query";
 
-const useGetSingleBlogById = () => {
+const useGetSingleBlogById = (url) => {
   const data = useQuery({
     queryKey: ["api/blog"],
     queryFn: async () => {
-      const res = await api.get(`/blog/${id}`);
+      const res = await api.get(`/blogs/${url}`);
       return res?.data;
     },
   });

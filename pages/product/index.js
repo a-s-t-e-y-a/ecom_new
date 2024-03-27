@@ -43,7 +43,7 @@ const Index = () => {
             data.map((val, index) => (
               <div
                 key={index}
-                onClick={() => navigateToSingleProduct(val?.p_id)}
+                onClick={() => navigateToSingleProduct(val?.product_url)}
               >
                 <SingleGlassItem value={val} />
               </div>

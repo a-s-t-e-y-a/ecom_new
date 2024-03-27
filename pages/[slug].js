@@ -2,35 +2,30 @@
 import Footer from "@/Components/Footer/Footer";
 import Header1 from "@/Components/Header/Header1";
 import api from "@/api";
-import useGetSingleBlogById from "@/utils/queries/useGetSingleBlogById";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 
 const SingleBlogPage = () => {
   const router = useRouter();
-  const [blogData, setBlogData] = useState();
+  const [blogData, setBlogData] = useState(null);
 
   useEffect(() => {
+    const url = router.query.slug;
+    const fetchSingleBlog = async () => {
+      api
+        .get(`https://api.akkukachasma.com/api/blogs/${url}`)
+        .then((res) => {
+          setBlogData(res?.data[0]);
+        })
+        .catch((e) => {
+          console.error(e);
+        });
+    };
     fetchSingleBlog();
-  }, []);
+  }, [router.query.slug]);
 
-  const url = router.query.id;
-
-  const fetchSingleBlog = async () => {
-    api
-      .get(`https://api.akkukachasma.com/api/blogs/${url}`)
-      .then((res) => {
-        setBlogData(res?.data);
-        console.log(res);
-      })
-      .catch((e) => {
-        console.error(e);
-      });
-  };
-
-  console.log(blogData);
   return (
-    <div className="w-screen overflow-x-hidden">
+    <div className="">
       {/* Header */}
       <div className=" px-3">
         <Header1 />
@@ -44,7 +39,7 @@ const SingleBlogPage = () => {
         </span>
       </div>
       {/* Remove height Vh */}
-      <div className="w-full h-screen">
+      <div className="w-full ">
         <div className="border w-[60%] mx-auto p-3">
           <div className="space-y-5">
             <div>

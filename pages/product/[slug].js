@@ -20,8 +20,8 @@ const SingleProduct = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [productData, setProductdata] = React.useState(null);
   const router = useRouter();
-  const { id } = router.query;
-  const Product = useGetProductDetail(id);
+  const { slug } = router.query;
+  const Product = useGetProductDetail(slug);
   const TabPanelOption = [
     { label: "SPECIFICATION", component: <Specification /> },
     { label: "DESCRIPTION", component: <Description /> },
@@ -30,8 +30,9 @@ const SingleProduct = () => {
   useEffect(() => {
     if (Product.data) {
       const user = localStorage.getItem("user_data");
-      setProductdata(Product.data);
-      Dispacth(UpdaeSepcification(Product.data));
+      setProductdata(Product.data[0]);
+
+      Dispacth(UpdaeSepcification(Product.data[0]));
     }
   }, [Product, productData, Dispacth]);
 
@@ -107,7 +108,7 @@ const SingleProduct = () => {
               </div>
               <div className="flex items-center justify-between mb-4">
                 <p className="text-sm font-semibold">
-                  {productData?.product_color_.name}
+                  {productData?.product_color_?.name}
                 </p>
                 <span className="font-semibold tracking-wider text-lg">
                   Rs. {productData?.discounted_price}
@@ -124,7 +125,7 @@ const SingleProduct = () => {
                       {colorMapping[productData?.product_color] || "Unknown"}
                     </span>
                   </p>
-                  <p className=" ms-5">Size : {Product?.data?.size_.name}</p>
+                  <p className=" ms-5">Size : {Product?.data?.size_?.name}</p>
                 </div>
               </div>
             </div>
