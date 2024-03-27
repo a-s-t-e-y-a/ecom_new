@@ -19,7 +19,6 @@ const SingleProduct = () => {
   const Dispacth = useDispatch();
   const [isOpen, setIsOpen] = React.useState(false);
   const [productData, setProductdata] = React.useState(null);
-  const [number, setnumber] = React.useState("");
   const router = useRouter();
   const { id } = router.query;
   const Product = useGetProductDetail(id);
@@ -38,14 +37,11 @@ const SingleProduct = () => {
 
   const productURL = productData?.product_url ?? "";
   const BASE_URI = `https://akkukachasma.com/eyewear/`;
-  const message = encodeURIComponent(
-    `Hello! I'm interested in one of your products. Please contact me! ${productURL}`
-  );
-  const whatsappLink = `https://wa.me/${number}?text=${message}`;
-
   const messageToShare = encodeURIComponent(
     `Hello! I'm interested in this one! ${productURL}`
   );
+  const whatsappLink = `https://wa.me/8188881661?text=${messageToShare}`;
+
   const whatsappLinkToShare = `https://wa.me/?text=${messageToShare}`;
 
   const [value, setValue] = useState([]);
@@ -198,7 +194,7 @@ const SingleProduct = () => {
             </div>
           </div>
         </div>
-        <div className=" mb-5">
+        <div className=" my-5">
           <TabPanel TabPanelOption={TabPanelOption} />
         </div>
       </section>

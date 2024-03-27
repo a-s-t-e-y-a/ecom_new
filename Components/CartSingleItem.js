@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 const CartSingleItem = () => {
   const [cartProducts, setCartProducts] = useState([]);
-  const { BASE_URL } = env
+
   // const user_info = JSON.parse(localStorage.getItem("user_info"));
   // console.log(user_info)
   const removeItem = (id) => {
@@ -34,13 +34,13 @@ const CartSingleItem = () => {
 
   // }
 
-    const localGetData= async ()=>{
-      const value = localStorage.getItem('Productid')
-      // setCartProducts({value})
-    }
+  const localGetData = async () => {
+    const value = localStorage.getItem("Productid");
+    // setCartProducts({value})
+  };
   useEffect(() => {
     // fetchData()
-    localGetData()
+    localGetData();
   }, []);
   return (
     <div>
@@ -61,20 +61,28 @@ const CartSingleItem = () => {
                   <div className="ml-4 flex flex-1 flex-col tracking-wide">
                     <div>
                       <div className="flex justify-between text-sm font-medium text-gray-900">
-                        <h3><a href={product.href}>{product.name}</a></h3>
+                        <h3>
+                          <a href={product.href}>{product.name}</a>
+                        </h3>
                         <p className="ml-4 text-gray-600">{product.price}</p>
                       </div>
                     </div>
                     <div>
                       <div className="flex justify-between text-sm font-medium text-gray-900">
-                        <h3><a href={product.href}>{product.lens}</a></h3>
-                        <p className="ml-4 text-gray-600">Rs. {product.lensprice}</p>
+                        <h3>
+                          <a href={product.href}>{product.lens}</a>
+                        </h3>
+                        <p className="ml-4 text-gray-600">
+                          Rs. {product.lensprice}
+                        </p>
                       </div>
                     </div>
                     <div>
                       <div className="flex justify-between text-sm font-medium text-gray-900">
                         <h3>Total Price</h3>
-                        <p className="ml-4 text-gray-600">Rs. {product?.product_Id?.discounted_price}</p>
+                        <p className="ml-4 text-gray-600">
+                          Rs. {product?.product_Id?.discounted_price}
+                        </p>
                       </div>
                     </div>
                     <div className="flex text-xs tracking-wide">
@@ -88,7 +96,7 @@ const CartSingleItem = () => {
                     </div>
                   </div>
                 </li>
-              )
+              );
             })}
           </ul>
         </div>

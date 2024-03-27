@@ -80,19 +80,19 @@ const Footer = () => {
               <Link href={""}>Refund Policy</Link>
             </li>
             <li>
-              <Link href={""}>Help</Link>
+              <Link href={"/help"}>Help</Link>
             </li>
             <li>
-              <Link href={""}>Cancellation</Link>
+              <Link href={"/help"}>Cancellation</Link>
             </li>
             <li>
-              <Link href={""}>Terms & Condition</Link>
+              <Link href={"/help"}>Terms & Condition</Link>
             </li>
             <li>
-              <Link href={""}>Returns & Exchanges</Link>
+              <Link href={"/help"}>Returns & Exchanges</Link>
             </li>
             <li>
-              <Link href={""}>Shipping & Delivery</Link>
+              <Link href={"/help"}>Shipping & Delivery</Link>
             </li>
           </ul>
         </div>

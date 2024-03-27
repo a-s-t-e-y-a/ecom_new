@@ -1,4 +1,6 @@
 "use client";
+import Footer from "@/Components/Footer/Footer";
+import Header1 from "@/Components/Header/Header1";
 import api from "@/api";
 import useGetSingleBlogById from "@/utils/queries/useGetSingleBlogById";
 import { useRouter } from "next/router";
@@ -29,6 +31,10 @@ const SingleBlogPage = () => {
   console.log(blogData);
   return (
     <div className="w-screen overflow-x-hidden">
+      {/* Header */}
+      <div className=" px-3">
+        <Header1 />
+      </div>
       {/* Header/Heading */}
       <div className="flex flex-col items-center justify-center shadow-sm">
         <img src="/blog.png" className="w-[180px]" />
@@ -37,8 +43,8 @@ const SingleBlogPage = () => {
           <hr />
         </span>
       </div>
-
-      <div className="w-full mt-4">
+      {/* Remove height Vh */}
+      <div className="w-full h-screen">
         <div className="border w-[60%] mx-auto p-3">
           <div className="space-y-5">
             <div>
@@ -57,6 +63,7 @@ const SingleBlogPage = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
