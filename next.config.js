@@ -9,13 +9,14 @@ const nextConfig = {
       "https://akkukachasma.s3.amazonaws.com/product_images/",
   },
   images: {
-    domains: ["https://akkukachasma.s3.amazonaws.com/product_images/"],
+    domains: ["https://akkukachasma.s3.amazonaws.com"], // Change this to the domain only
   },
   webpack: (config) => {
     config.resolve.alias["@"] = path.resolve(__dirname);
     return config;
   },
 };
+
 async function redirects() {
   return [
     {
@@ -26,4 +27,4 @@ async function redirects() {
   ];
 }
 
-module.exports = { nextConfig, redirects };
+module.exports = { redirects, ...nextConfig }; // Merging redirects with nextConfig
