@@ -27,7 +27,7 @@ export const Sepcification = createSlice({
         style_,
         product_description,
       } = action.payload;
-
+      console.log(action.payload);
       state.product_id = p_id;
       state.frames_color = colorMapping[product_color] || "unknown";
       state.raw_marterial = row_metrial_source_from;

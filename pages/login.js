@@ -6,13 +6,12 @@ import { BsFillPersonFill } from "react-icons/bs";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import axios from "axios";
-import { env } from "@/next.config";
 import { toast } from "react-toastify";
 
 export default function Example() {
   const [show, setShow] = useState(false);
   const router = useRouter();
-  const { BASE_URL } = env;
+
   const {
     register,
     handleSubmit,
@@ -22,10 +21,13 @@ export default function Example() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post(`${BASE_URL}auth/login`, {
-        email: data?.email,
-        password: data?.password,
-      });
+      const response = await axios.post(
+        `https://api.akkukachasma.com/api/auth/login`,
+        {
+          email: data?.email,
+          password: data?.password,
+        }
+      );
       if (response?.data?.data) {
         localStorage.setItem(
           "user_info",
@@ -90,7 +92,7 @@ export default function Example() {
                   <BsFillPersonFill className="text-gray-600 relative top-3 left-2" />
                 }
                 labelProps={{
-                  className: "pl-4"
+                  className: "pl-4",
                 }}
                 {...register("email", { required: true })}
               />
@@ -118,7 +120,7 @@ export default function Example() {
                   )
                 }
                 labelProps={{
-                  className: "pl-4"
+                  className: "pl-4",
                 }}
                 {...register("password", { required: true })}
               />

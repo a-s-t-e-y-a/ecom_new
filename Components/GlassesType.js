@@ -8,8 +8,9 @@ import useGetAllCategories from "@/utils/queries/useCategoriesGetAll";
 const GlassesType = () => {
   const router = useRouter();
   const { data: categoryItems } = useGetAllCategories();
+  console.log(categoryItems);
   const handleNavigate = (item) => {
-    router.push(`${item?.name?.toLowerCase()}`);
+    router.push(`${item?.name?.toLowerCase().split(" ").join("")}`);
   };
   return (
     <motion.div className=" flex justify-around gap-5 lg:px-16">

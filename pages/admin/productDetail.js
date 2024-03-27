@@ -7,12 +7,8 @@ import { InputAdornment, TextField } from "@mui/material";
 import { MdOutlineLensBlur } from "react-icons/md";
 import React, { useState } from "react";
 import { BiSearch } from "react-icons/bi";
-import Auth from "@/utils/session";
 
 const ProductDetail = () => {
-  React.useEffect(() => {
-    Auth();
-  });
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);

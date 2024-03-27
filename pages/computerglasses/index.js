@@ -5,18 +5,22 @@ import Layout from "@/Layout/Layout";
 import axios from "axios";
 import React, { useState } from "react";
 import { useRouter } from "next/router";
+import Pagination from "@/Components/Pagination/Pagination";
 
 const index = () => {
   const [data, setData] = useState([]);
+  const [page, setpage] = React.useState(1);
 
   const router = useRouter();
 
   const navigateToSingleProduct = (id) => {
-    router.push(`/eyeglasses/${id}`);
+    router.push(`/computerglasses/${id}`);
   };
   const fetchData = () => {
     axios
-      .get("http://3.24.191.174:5000/api/categories/3")
+      .get(
+        `https://api.akkukachasma.com/api/categories/3?pageSize=15&page=${page}`
+      )
       .then((result) => {
         setData(result?.data?.data.products);
       });
@@ -35,11 +39,14 @@ const index = () => {
             data.map((val, index) => (
               <div
                 key={index}
-                onClick={() => navigateToSingleProduct(val?.products_id)}
+                onClick={() => navigateToSingleProduct(val?.product_url)}
               >
                 <SingleGlassItem value={val} />
               </div>
             ))}
+        </div>
+        <div>
+          <Pagination pages={setpage} curr={page} />
         </div>
       </section>
     </Layout>

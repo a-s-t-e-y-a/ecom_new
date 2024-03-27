@@ -1,29 +1,33 @@
-/* eslint-disable react-hooks/rules-of-hooks */
+"use client";
 import Filter from "@/Components/Filter";
 import SingleGlassItem from "@/Components/SingleGlassItem";
 import Layout from "@/Layout/Layout";
 import axios from "axios";
 import React, { useState } from "react";
 import { useRouter } from "next/router";
+import Pagination from "@/Components/Pagination/Pagination";
 
-const index = () => {
+const Index = () => {
   const [data, setData] = useState([]);
+  const [page, setpage] = React.useState(1);
 
   const router = useRouter();
 
   const navigateToSingleProduct = (id) => {
-    router.push(`/product/${id}`);
+    router.push(`/eyeglasses/${id}`);
   };
-  const fetchData = () => {
+  const fetchData = React.useCallback(() => {
     axios
-      .get("http://3.24.191.174:5000/api/categories/1?pageSize=15&page=1")
+      .get(
+        `https://api.akkukachasma.com/api/categories/1?pageSize=15&page=${page}`
+      )
       .then((result) => {
-        setData(result?.data?.data.products);
+        setData(result?.data?.data?.products);
       });
-  };
+  }, [page]);
   React.useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]);
   return (
     <Layout>
       <section className="flex h-auto space-x-3">
@@ -32,18 +36,21 @@ const index = () => {
         </div>
         <div className="grid grid-cols-3 h-fit gap-3 gap-y-5">
           {data &&
-            data.map((val, index) => (
+            data.map((element, indx) => (
               <div
-                key={index}
-                onClick={() => navigateToSingleProduct(val?.p_id)}
+                key={indx}
+                onClick={() => navigateToSingleProduct(element?.product_url)}
               >
-                <SingleGlassItem value={val} />
+                <SingleGlassItem value={element} />
               </div>
             ))}
+        </div>
+        <div>
+          <Pagination pages={setpage} curr={page} />
         </div>
       </section>
     </Layout>
   );
 };
 
-export default index;
+export default Index;
