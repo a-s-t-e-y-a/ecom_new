@@ -34,8 +34,8 @@ const Index = () => {
   }
   return (
     <Layout>
-      <section className=" w-full flex ">
-        <div className=" w-fit  me-10">
+      <section className=" w-full flex px-5 ">
+        <div className=" w-fit absolute lg:relative lg:top-0 left-1 top-14  me-5">
           <Filter />
         </div>
         <div className="w-full  grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 mb-4 ">
@@ -50,7 +50,7 @@ const Index = () => {
             ))}
         </div>
       </section>
-      <div className=" flex  justify-center mb-3 px-10 ">
+      <div className=" flex  justify-center my-10 px-10 ">
         <Pagination pages={setpage} curr={page} />
       </div>
     </Layout>

@@ -24,7 +24,7 @@ const Specification = () => {
     { title: "Product Id ", value: product_id },
     { title: "Product Type ", value: product_type },
     { title: "Packaged by ", value: "akku ka chasma India " },
-    { title: "Raw Material Sourced from ", value: "Imported [International] " },
+    { title: "Raw Material Sourced from ", value: raw_marterial },
     { title: "Know Your Size ", value: "Click " },
   ];
 

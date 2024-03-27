@@ -10,6 +10,7 @@ const initialState = {
   product_id: 0,
   product_type: "",
   raw_marterial: "",
+  discription: "",
 };
 
 export const Sepcification = createSlice({
@@ -24,7 +25,9 @@ export const Sepcification = createSlice({
         shape_,
         material_,
         style_,
+        product_description,
       } = action.payload;
+
       state.product_id = p_id;
       state.frames_color = colorMapping[product_color] || "unknown";
       state.raw_marterial = row_metrial_source_from;
@@ -32,6 +35,7 @@ export const Sepcification = createSlice({
       state.style = style_.name;
       state.lens_material = "Demo polycarbonate";
       state.frame_material = material_.name;
+      state.discription = product_description;
     },
   },
 });

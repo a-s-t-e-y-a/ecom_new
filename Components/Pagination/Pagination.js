@@ -18,7 +18,7 @@ const Pagination = ({ pages, curr }) => {
           <li className=" p-2 md:px-4 rounded-s-lg border border-gray-300 bg-gray-800">
             <button
               href="#"
-              className="leading-tight text-gray-200 hover:bg-gray-50"
+              className="leading-tight text-gray-200 "
               onClick={() => perviousHandler()}
             >
               Previous
@@ -28,7 +28,7 @@ const Pagination = ({ pages, curr }) => {
           <li className=" p-2 md:px-4 border rounded-e-lg border-gray-300 bg-gray-800">
             <button
               href="#"
-              className="leading-tight text-gray-200 hover:bg-gray-50"
+              className="leading-tight text-gray-200 "
               onClick={() => Nexthandler()}
             >
               Next

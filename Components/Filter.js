@@ -12,7 +12,7 @@ const Filter = () => {
       className={`  sticky z-20 ${
         display
           ? " w-[24px] left-10  "
-          : " w-screen lg:w-[300px]  border rounded-md"
+          : " w-screen lg:w-[300px]  border rounded-md bg-white"
       } space-x-2 `}
       animate={{
         transition: {
@@ -24,7 +24,7 @@ const Filter = () => {
     >
       <motion.span
         className={`${
-          display ? "absolute top-0 right-0" : "absolute top-2 right-2"
+          display ? "absolute top-0 right-0 " : "absolute top-2 right-2"
         } cursor-pointer`}
         onClick={() => setDisplay(!display)}
         whileTap={{ scale: 0.8 }}

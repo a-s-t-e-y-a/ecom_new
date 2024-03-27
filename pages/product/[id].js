@@ -22,7 +22,6 @@ const SingleProduct = () => {
   const [number, setnumber] = React.useState("");
   const router = useRouter();
   const { id } = router.query;
-  console.log(router.query);
   const Product = useGetProductDetail(id);
   const TabPanelOption = [
     { label: "SPECIFICATION", component: <Specification /> },
