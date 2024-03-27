@@ -12,14 +12,18 @@ const SingleBlogPage = () => {
     fetchSingleBlog();
   }, []);
 
-  const id = router.query.id;
+  const url = router.query.id;
 
   const fetchSingleBlog = async () => {
-    api.get(`https://api.akkukachasma.com/api/blogs/${id}`).then((res) => {
-      setBlogData(res?.data);
-    }).catch((e)=>{
-        console.error(e)
-    })
+    api
+      .get(`https://api.akkukachasma.com/api/blogs/${url}`)
+      .then((res) => {
+        setBlogData(res?.data);
+        console.log(res);
+      })
+      .catch((e) => {
+        console.error(e);
+      });
   };
 
   console.log(blogData);

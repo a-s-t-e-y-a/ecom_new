@@ -1,3 +1,4 @@
+"use client";
 import BlogItem from "@/Components/Blog/BlogItem";
 import BlogSideBar from "@/Components/Blog/BlogSideBar";
 import useBlogsGetAll from "@/utils/queries/useBlogGetAll";
@@ -23,8 +24,8 @@ const Index = () => {
     return <></>;
   }
 
-  const handleBlogCLick = (id) => {
-    router.push(`/blog/${id}`);
+  const handleBlogCLick = (url) => {
+    router.push(`/${url}`);
   };
 
   return (
@@ -44,7 +45,7 @@ const Index = () => {
       <div className=" grid grid-cols-2 px-5  w-full h-full bg-gray-50">
         <div className=" w-full col-span-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mb-5 gap-5">
           {Blogs.map((blog) => (
-            <div key={blog.id} onClick={() => handleBlogCLick(blog?.id)}>
+            <div key={blog.id} onClick={() => handleBlogCLick(blog?.url)}>
               <BlogItem value={blog} />
             </div>
           ))}

@@ -1,19 +1,9 @@
-"use client";
 import { Tab } from "@headlessui/react";
-import Specification from "@/Components/SingleItem/Specification";
-import Description from "@/Components/SingleItem/Description";
-import ProductTag from "@/Components/SingleItem/ProductTag";
-import React from "react";
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
-const TabPanel = () => {
-  const TabPanelOption = [
-    { label: "SPECIFICATION", component: <Specification /> },
-    { label: "DESCRIPTION", component: <Description /> },
-    { label: "PRODUCTS TAGS", component: <ProductTag /> },
-  ];
-
+const TabPanel = ({ TabPanelOption }) => {
   return (
     <Tab.Group>
       <Tab.List className={"flex"}>

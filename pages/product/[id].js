@@ -1,5 +1,3 @@
-"use client";
-import SingleItem from "@/Components/SingleItem/SingleItem";
 import SwiperThumbs from "@/Components/Swiper/SwiperThumbs";
 import Layout from "@/Layout/Layout";
 import React, { useEffect, useState } from "react";
@@ -14,7 +12,9 @@ import { UpdaeSepcification } from "@/Slices/ProductSepcifcation";
 import { useDispatch } from "react-redux";
 import { colorMapping } from "@/utils/contants";
 import Loader from "@/Components/Loader";
-
+import Specification from "@/Components/SingleItem/Specification";
+import Description from "@/Components/SingleItem/Description";
+import ProductTag from "@/Components/SingleItem/ProductTag";
 const SingleProduct = () => {
   const Dispacth = useDispatch();
   const [isOpen, setIsOpen] = React.useState(false);
@@ -24,11 +24,14 @@ const SingleProduct = () => {
   const { id } = router.query;
   console.log(router.query);
   const Product = useGetProductDetail(id);
-
+  const TabPanelOption = [
+    { label: "SPECIFICATION", component: <Specification /> },
+    { label: "DESCRIPTION", component: <Description /> },
+    { label: "PRODUCTS TAGS", component: <ProductTag /> },
+  ];
   useEffect(() => {
     if (Product.data) {
       const user = localStorage.getItem("user_data");
-      console.log(user, "USER");
       setProductdata(Product.data);
       Dispacth(UpdaeSepcification(Product.data));
     }
@@ -197,7 +200,7 @@ const SingleProduct = () => {
           </div>
         </div>
         <div className=" mb-5">
-          <TabPanel TableData={productData} />
+          <TabPanel TabPanelOption={TabPanelOption} />
         </div>
       </section>
     </Layout>
