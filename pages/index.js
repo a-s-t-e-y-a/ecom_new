@@ -101,7 +101,7 @@ export default function Home() {
                 </span>
               </h1>
             </div>
-            <SwiperContainer />
+            <SwiperContainer data={Round}/>
           </div>
 
           <div className="mt-7">
@@ -129,7 +129,7 @@ export default function Home() {
                 </span>
               </h1>
             </div>
-            <SwiperContainer />
+            <SwiperContainer data={Round} />
           </div>
         </div>
 
@@ -180,7 +180,7 @@ export default function Home() {
                 </span>
               </h1>
             </div>
-            <SwiperContainer />
+            <SwiperContainer data={Rimless}/>
           </div>
         </div>
 

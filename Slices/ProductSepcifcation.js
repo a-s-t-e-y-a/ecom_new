@@ -18,23 +18,26 @@ export const Sepcification = createSlice({
   initialState,
   reducers: {
     UpdaeSepcification: (state, action) => {
-      const {
-        product_model_number,
-        product_color,
-        row_metrial_source_from,
-        shape_,
-        material_,
-        style_,
-        product_description,
-      } = action.payload;
-      state.product_id = product_model_number;
-      state.frames_color = colorMapping[product_color] || "unknown";
-      state.raw_marterial = row_metrial_source_from;
-      state.shape = shape_?.name;
-      state.style = style_?.name;
-      state.lens_material = "Demo polycarbonate";
-      state.frame_material = material_?.name;
-      state.discription = product_description;
+      if(action.payload){
+        const {
+          product_model_number,
+          product_color,
+          row_metrial_source_from,
+          shape_,
+          material_,
+          style_,
+          product_description,
+        } = action.payload;
+        console.log(action.payload);
+        state.product_id = product_model_number;
+        state.frames_color = colorMapping[product_color] || "unknown";
+        state.raw_marterial = row_metrial_source_from;
+        state.shape = shape_?.name;
+        state.style = style_?.name;
+        state.lens_material = "Demo polycarbonate";
+        state.frame_material = material_?.name;
+        state.discription = product_description;
+      }
     },
   },
 });

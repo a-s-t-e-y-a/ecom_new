@@ -14,7 +14,7 @@ const index = () => {
   const router = useRouter();
 
   const navigateToSingleProduct = (id) => {
-    router.push(`/sunglasses/${id}`);
+    router.push(`/eyeware/${id}`);
   };
   const fetchData = React.useCallback(() => {
     axios

@@ -9,6 +9,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { TransparentGlass } from "@/Layout/Data";
 import Link from "next/link";
+import { imageUrl } from "@/utils/contants";
 const breakpoints = {
   320: {
     slidesPerView: 1,
@@ -27,6 +28,7 @@ function handleClick(item) {
   router.push(`/product?name=${itemName}`);
 }
 const SwiperContainer = ({ data }) => {
+  console.log(data);
   return (
     <div>
       <Swiper
@@ -38,7 +40,7 @@ const SwiperContainer = ({ data }) => {
         modules={[Navigation]}
         breakpoints={breakpoints}
       >
-        {TransparentGlass?.map((elemt, indx) => (
+        {data?.map((elemt, indx) => (
           <SwiperSlide
             key={indx}
             className="  min-h-[100px] "
@@ -48,12 +50,12 @@ const SwiperContainer = ({ data }) => {
               <Image
                 width={200}
                 height={200}
-                src={elemt?.src}
+                src={`${imageUrl}products/${elemt?.image}`}
                 className=" object-cover"
                 alt="galess"
               />
             </div>
-            <p className=" text-center ">Price : {elemt.price}</p>
+            <p className=" text-center ">Price : {elemt?.discounted_price}</p>
           </SwiperSlide>
         ))}
       </Swiper>

@@ -4,6 +4,7 @@ import Header1 from "@/Components/Header/Header1";
 import Footer from "@/Components/Footer/Footer";
 import { useRouter } from "next/router";
 import WhatsappIcon from "@/Components/WhatsappIcon";
+import { Suspense } from "react";
 
 const Layout = ({ children }) => {
   const router = useRouter();
@@ -16,6 +17,7 @@ const Layout = ({ children }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       {router.pathname === "/" ? <Header /> : <Header1 />}
+      
       <main className=" mx-auto min-h-screen">
         {children}
       </main>

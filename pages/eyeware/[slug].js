@@ -21,20 +21,22 @@ const SingleProduct = () => {
   const [productData, setProductdata] = React.useState(null);
   const router = useRouter();
   const { slug } = router.query;
-  const Product = useGetProductDetail(slug);
+  let Product = useGetProductDetail(slug);
   const TabPanelOption = [
     { label: "SPECIFICATION", component: <Specification /> },
     { label: "DESCRIPTION", component: <Description /> },
     { label: "PRODUCTS TAGS", component: <ProductTag /> },
   ];
   useEffect(() => {
+   
+
     if (Product.data) {
       const user = localStorage.getItem("user_data");
       setProductdata(Product.data[0]);
 
       Dispacth(UpdaeSepcification(Product.data[0]));
     }
-  }, [Product, productData, Dispacth]);
+  }, [Product, productData, Dispacth,slug]);
 
   const productURL = productData?.product_url ?? "";
   const BASE_URI = `https://akkukachasma.com/eyewear/`;
@@ -83,12 +85,13 @@ const SingleProduct = () => {
       width: productData?.lens_height,
     },
   ];
-  if (Product.isLoading) {
-    return <Loader />;
-  }
+ 
+
+
 
   return (
     <Layout>
+     
       <LensForm show={isOpen} onHide={() => setIsOpen(false)} />
       <section className="text-gray-600 ">
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center mx-auto ">
