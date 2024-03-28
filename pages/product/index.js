@@ -14,7 +14,7 @@ const Index = () => {
   // const [isLoading,setLoading]=React.useState(true)
   // const [isError,setError]=React.useState(false)
   const navigateToSingleProduct = (id) => {
-    router.push(`/eyeware/${id}`);
+    router.push(`/eyewear/${id}`);
   };
   const AllProduct = useGetAllProducts(page);
   React.useEffect(() => {

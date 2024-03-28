@@ -192,7 +192,7 @@ const Header = () => {
       <CartDialog open={open} setOpen={setOpen} />
       <header className="flex flex-col w-full  px-2 mb-4">
         {/* Top Part */}
-        <div className="flex items-center justify-between h-14 ">
+        <div className="flex items-center justify-between h-14 mb-3 ">
           {/* Left */}
           <div className=" relative md:w-1/2 flex  md:flex-row">
             <button
@@ -202,11 +202,11 @@ const Header = () => {
               <MdOutlineMenu size={20} />
             </button>
             <ul
-              className={` md:flex items-center gap-5 text-[10px]  absolute z-10  top-[20px] md:top-1/2 md:-translate-y-1/2  bg-white py-2 px-2 rounded ${
+              className={` md:flex items-center gap-5   absolute z-10  top-[20px] md:top-1/2 md:-translate-y-1/2  bg-white py-2 px-2 rounded ${
                 Dropdown ? null : "hidden"
               }`}
             >
-              <li className="cursor-pointer mb-2 border-b-2 md:mb-0 md:border-0 pb-1 text-nowrap">
+              <li className="cursor-pointer mb-2 border-b-2 md:mb-0 md:border-0 pb-1  text-nowrap">
                 Track order
               </li>
               <li className="cursor-pointer mb-2 border-b-2 md:mb-0 md:border-0 pb-1 flex">
@@ -222,7 +222,7 @@ const Header = () => {
           </div>
           {/* Right  */}
           <div>
-            <ul className="flex items-center gap-5 text-xs">
+            <ul className="flex items-center gap-5  ">
               <li
                 className="cursor-pointer flex items-center gap-1"
                 onClick={() => setOpen(true)}
@@ -244,12 +244,12 @@ const Header = () => {
         </div>
 
         {/* Middle Part  */}
-        <div className="flex  flex-col md:flex-row justify-between items-center ">
-          <div className=" hidden md:flex justify-start w-full md:w-fit mb-4 items-center gap-y-4 me-6 font-bold text-sm cursor-pointer ">
+        <div className=" flex justify-between  ">
+          <div className=" hidden md:flex items-center gap-2 cursor-pointer  ">
             <BsFillTelephonePlusFill />
             +918188881661
           </div>
-          <div className=" flex flex-col md:flex-row items-center   w-full md:grow md:w-0 justify-around">
+          <div className=" w-[500px] ">
             <Image
               src={"/logo.png"}
               width={500}
@@ -257,10 +257,11 @@ const Header = () => {
               className=" object-contain mb-3  "
               alt=""
             />
-            <div>
+           
+          </div>
+          <div>
               <SearchBar />
             </div>
-          </div>
         </div>
 
         {/* Bottom Part  */}

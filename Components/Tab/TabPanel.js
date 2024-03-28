@@ -26,7 +26,7 @@ const TabPanel = ({ TabPanelOption }) => {
       </Tab.List>
       <Tab.Panels>
         {TabPanelOption.map((elemt, indx) => (
-          <Tab.Panel key={indx}>{elemt?.component}</Tab.Panel>
+          <Tab.Panel key={indx} >{elemt?.component}</Tab.Panel>
         ))}
       </Tab.Panels>
     </Tab.Group>

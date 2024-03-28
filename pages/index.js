@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import useGetAllProducts from "@/utils/queries/admin/UseProductGetAll";
 import Loader from "@/Components/Loader";
+import useGetAllCategories from "@/utils/queries/useCategoriesGetAll";
 
 export default function Home() {
   const [Tend, setTend] = useState([]);
@@ -15,8 +16,9 @@ export default function Home() {
   const [Rimless, setRimless] = useState([]);
 
   const product = useGetAllProducts();
+  
   useEffect(() => {
-    if (product.data) {
+    if (product.data ) {
       const round = product?.data?.filter(
         (vlaue) => vlaue?.shape_?.name == "Round"
       );
@@ -26,7 +28,7 @@ export default function Home() {
       setRound(round);
       setRimless(rimless);
     }
-  }, [product]);
+  }, [product.data,]);
   if (product.isLoading) {
     return <Loader />;
   }
@@ -115,7 +117,7 @@ export default function Home() {
                 </span>
               </h1>
             </div>
-            <SwiperContainer />
+            <SwiperContainer data={Computer} />
           </div>
 
           <div className="mt-7">

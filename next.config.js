@@ -31,6 +31,11 @@ async function redirects() {
       destination: "/",
       permanent: true,
     },
+    {
+      source: "/admin",
+      destination: "/",
+      permanent: true,
+    },
   ];
 }
 

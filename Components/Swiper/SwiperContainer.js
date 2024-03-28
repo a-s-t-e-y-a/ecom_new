@@ -7,9 +7,7 @@ import Image from "next/image";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { TransparentGlass } from "@/Layout/Data";
-import Link from "next/link";
-import { imageUrl } from "@/utils/contants";
+import { useRouter } from "next/router";
 const breakpoints = {
   320: {
     slidesPerView: 1,
@@ -23,12 +21,12 @@ const breakpoints = {
     slidesPerView: 4,
   },
 };
-function handleClick(item) {
-  const itemName = encodeURIComponent(item.title.toLowerCase());
-  router.push(`/product?name=${itemName}`);
-}
+
 const SwiperContainer = ({ data }) => {
-  console.log(data);
+  const router=useRouter()
+  function handleClick(item) {
+    router.push(`/eyeware/${item}`);
+  }
   return (
     <div>
       <Swiper
@@ -36,7 +34,6 @@ const SwiperContainer = ({ data }) => {
         spaceBetween={20}
         slidesPerGroupSkip={1}
         navigation={true}
-        loop={false}
         modules={[Navigation]}
         breakpoints={breakpoints}
       >
@@ -44,18 +41,18 @@ const SwiperContainer = ({ data }) => {
           <SwiperSlide
             key={indx}
             className="  min-h-[100px] "
-            onClick={() => handleClick()}
+            onClick={() => handleClick(elemt?.product_url)}
           >
             <div className=" w-[200px] mb-3  mx-auto">
               <Image
                 width={200}
                 height={200}
-                src={`${imageUrl}products/${elemt?.image}`}
+                src={`${elemt?.imageArray[0]}`}
                 className=" object-cover"
                 alt="galess"
               />
             </div>
-            <p className=" text-center ">Price : {elemt?.discounted_price}</p>
+            <p className=" text-center font-semibold ">&#8377; {elemt?.discounted_price}</p>
           </SwiperSlide>
         ))}
       </Swiper>

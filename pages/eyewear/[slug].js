@@ -1,3 +1,4 @@
+"use params"
 import SwiperThumbs from "@/Components/Swiper/SwiperThumbs";
 import Layout from "@/Layout/Layout";
 import React, { useEffect, useState } from "react";
@@ -20,6 +21,7 @@ const SingleProduct = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [productData, setProductdata] = React.useState(null);
   const router = useRouter();
+  
   const { slug } = router.query;
   let Product = useGetProductDetail(slug);
   const TabPanelOption = [
@@ -27,16 +29,17 @@ const SingleProduct = () => {
     { label: "DESCRIPTION", component: <Description /> },
     { label: "PRODUCTS TAGS", component: <ProductTag /> },
   ];
+
   useEffect(() => {
    
 
     if (Product.data) {
       const user = localStorage.getItem("user_data");
       setProductdata(Product.data[0]);
-
+        console.log(Product.data);
       Dispacth(UpdaeSepcification(Product.data[0]));
     }
-  }, [Product, productData, Dispacth,slug]);
+  }, [Product, productData, Dispacth]);
 
   const productURL = productData?.product_url ?? "";
   const BASE_URI = `https://akkukachasma.com/eyewear/`;
@@ -72,21 +75,12 @@ const SingleProduct = () => {
     //     .then((result) => console.log(result?.data, "result?.data"));
   };
 
-  const SingleItemData = [
-    {
-      src: "/1 (1).jpeg",
-      title: "Frame Width",
-      width: productData?.frame_width,
-    },
-    { src: "/1 (2).jpeg", title: "Lens Width", width: productData?.lens_width },
-    {
-      src: "/1 (3).jpeg",
-      title: "Lens Height",
-      width: productData?.lens_height,
-    },
-  ];
- 
 
+ 
+if(!Product?.data?.length>0){
+  
+  return <Loader/>
+}
 
 
   return (
@@ -104,7 +98,7 @@ const SingleProduct = () => {
           <div className=" px-5">
             <div className="">
               <div className=" flex justify-between mb-5">
-                <h1>{productData?.product_model_name}</h1>
+                <h1 className=" text-2xl md:text-4xl">{productData?.product_model_name}</h1>
                 <span className="text-xl font-semibold cursor-pointer">
                   <AiOutlineHeart />
                 </span>

@@ -24,7 +24,8 @@ const Header1 = () => {
                 width={500}
                 height={500}
                 src="/logo.png"
-                className=" object-contain "
+                className=" object-cover"
+                alt=""
                 onClick={() => router.push("/")}
               />
             </div>

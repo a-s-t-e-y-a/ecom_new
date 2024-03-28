@@ -30,14 +30,8 @@ const Specification = () => {
 
   return (
     <div className="w-full">
-      <table className="border-collapse w-full">
-        <thead>
-          <tr>
-            <th className=""></th>
-            <th className=""></th>
-          </tr>
-        </thead>
-        <tbody className="flec flex-col gap-4">
+      <table className="border-collapse w-full ">
+        <tbody>
           {SpecificationData?.map((item, index) => (
             <tr key={index}>
               <td className="border font-semibold px-4 py-[5px]">

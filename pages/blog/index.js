@@ -7,6 +7,7 @@ import Loader from "@/Components/Loader";
 import { useRouter } from "next/router";
 import Header1 from "@/Components/Header/Header1";
 import Footer from "@/Components/Footer/Footer";
+import Image from "next/image";
 const Index = () => {
   const [Blogs, setbolgs] = React.useState([]);
   const router = useRouter();
@@ -34,7 +35,7 @@ const Index = () => {
       <Header1 />
       {/* Header/Heading */}
       <div className="w-1/3  text-center   mx-auto shadow-sm">
-        <img src="/blog.png" className="w-[180px] mx-auto mb-3" />
+        <Image width={100} height={100} alt="" src="/blog.png" className="w-[180px] mx-auto mb-3" />
         <h1 className="text-sm tracking-wider -mt-4">with @akkukachasma</h1>
         <span className="mt-3">
           <hr />
@@ -54,8 +55,10 @@ const Index = () => {
           <BlogSideBar />
         </div>
       </div>
-      {/* Footer */}
+      <div className=" w-full">
       <Footer />
+
+      </div>
     </div>
   );
 };
