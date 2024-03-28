@@ -19,7 +19,7 @@ export const Sepcification = createSlice({
   reducers: {
     UpdaeSepcification: (state, action) => {
       const {
-        p_id,
+        product_model_number,
         product_color,
         row_metrial_source_from,
         shape_,
@@ -27,8 +27,7 @@ export const Sepcification = createSlice({
         style_,
         product_description,
       } = action.payload;
-      console.log(action.payload);
-      state.product_id = p_id;
+      state.product_id = product_model_number;
       state.frames_color = colorMapping[product_color] || "unknown";
       state.raw_marterial = row_metrial_source_from;
       state.shape = shape_?.name;

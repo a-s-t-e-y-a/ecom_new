@@ -9,7 +9,14 @@ const nextConfig = {
       "https://akkukachasma.s3.amazonaws.com/product_images/",
   },
   images: {
-    domains: ["https://akkukachasma.s3.amazonaws.com"], // Change this to the domain only
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "akkukachasma.s3.amazonaws.com",
+        port: "",
+        pathname: "/**",
+      },
+    ], // Change this to the domain only
   },
   webpack: (config) => {
     config.resolve.alias["@"] = path.resolve(__dirname);

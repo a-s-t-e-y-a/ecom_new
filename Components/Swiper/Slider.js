@@ -1,13 +1,11 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { useRouter } from "next/router";
-// import required modules
 import { Navigation } from "swiper";
 import { GlassesType } from "../../Layout/Data";
+import Image from "next/image";
 
 export default function Slider() {
   const router = useRouter();
@@ -31,11 +29,13 @@ export default function Slider() {
         {GlassesType.map((slide, index) => (
           <SwiperSlide
             key={index}
-            className=" shadow-xl rounded-md  min-h-[100px]  py-10 "
+            className=" rounded-md  min-h-[100px]  py-10 "
           >
             <div className=" text-cente  bg-white  rounded-md py-2  h-[100px] flex flex-col items-center justify-center gap-4">
               <div onClick={() => handleClick(slide)}>
-                <img
+                <Image
+                  width={200}
+                  height={200}
                   className=" w-full h-[100px] object-cover rounded  "
                   src={slide.src}
                   alt=""

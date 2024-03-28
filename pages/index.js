@@ -1,13 +1,35 @@
+"use client";
 import GlassesType from "@/Components/GlassesType";
 import Slider from "@/Components/Swiper/Slider";
 import SwiperContainer from "@/Components/Swiper/SwiperContainer";
 import Layout from "@/Layout/Layout";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import useGetAllCategories from "@/utils/queries/useCategoriesGetAll";
-import api from "@/api";
+import useGetAllProducts from "@/utils/queries/admin/UseProductGetAll";
+import Loader from "@/Components/Loader";
 
 export default function Home() {
+  const [Tend, setTend] = useState([]);
+  const [Computer, setComputer] = useState([]);
+  const [Round, setRound] = useState([]);
+  const [Rimless, setRimless] = useState([]);
+
+  const product = useGetAllProducts();
+  useEffect(() => {
+    if (product.data) {
+      const round = product?.data?.filter(
+        (vlaue) => vlaue?.shape_?.name == "Round"
+      );
+      const rimless = product?.data?.filter(
+        (vlaue) => vlaue?.style_?.name == "Rimless"
+      );
+      setRound(round);
+      setRimless(rimless);
+    }
+  }, [product]);
+  if (product.isLoading) {
+    return <Loader />;
+  }
   return (
     <Layout>
       <section className="flex flex-col h-auto gap-7">
@@ -21,7 +43,7 @@ export default function Home() {
         </div>
 
         <div className="w-full">
-          <img
+          <Image
             src="/banner1.png"
             width={200}
             height={100}
@@ -69,7 +91,7 @@ export default function Home() {
         </div>
         <div className="w-full">
           <div className="mt-7">
-            <div className="p-2 rounded-md">
+            <div className="p-2 rounded-md mb-4">
               <h1 className="tracking-wide text-xl text-center">
                 <span className="uppercase text-gray-600 mr-2">
                   Best Seller
@@ -83,7 +105,7 @@ export default function Home() {
           </div>
 
           <div className="mt-7">
-            <div className="p-2 rounded-md">
+            <div className="p-2 rounded-md mb-4">
               <h1 className="tracking-wide text-xl text-center">
                 <span className="uppercase text-gray-600 mr-2">
                   Best Seller
@@ -97,7 +119,7 @@ export default function Home() {
           </div>
 
           <div className="mt-7">
-            <div className="p-2 rounded-md">
+            <div className="p-2 rounded-md mb-4">
               <h1 className="tracking-wide text-xl text-center">
                 <span className="uppercase text-gray-600 mr-2">
                   Best Seller
@@ -137,7 +159,7 @@ export default function Home() {
             </p>
           </div>
           <div className="mt-7">
-            <div className="p-2 rounded-md">
+            <div className="p-2 rounded-md mb-4">
               <h1 className="tracking-wide text-xl text-center">
                 <span className="uppercase text-gray-600 mr-2">
                   Best Seller
@@ -148,7 +170,7 @@ export default function Home() {
             <SwiperContainer />
           </div>
           <div className="mt-7">
-            <div className="p-2 rounded-md">
+            <div className="p-2 rounded-md mb-4">
               <h1 className="tracking-wide text-xl text-center">
                 <span className="uppercase text-gray-600 mr-2">
                   Best Seller
@@ -187,7 +209,7 @@ export default function Home() {
             />
           </div>
           <div className="mt-7">
-            <div className="p-2 rounded-md">
+            <div className="p-2 rounded-md mb-4">
               <h1 className="tracking-wide text-xl text-center">
                 <span className="uppercase text-gray-600 mr-2">
                   Best Seller

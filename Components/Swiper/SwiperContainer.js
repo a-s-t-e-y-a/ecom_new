@@ -1,48 +1,59 @@
+"use client";
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper";
+import { Navigation } from "swiper";
 import Image from "next/image";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-
 import { TransparentGlass } from "@/Layout/Data";
+import Link from "next/link";
+const breakpoints = {
+  320: {
+    slidesPerView: 1,
+  },
 
+  600: {
+    slidesPerView: 2,
+    spaceBetween: 20,
+  },
+  1024: {
+    slidesPerView: 4,
+  },
+};
+function handleClick(item) {
+  const itemName = encodeURIComponent(item.title.toLowerCase());
+  router.push(`/product?name=${itemName}`);
+}
 const SwiperContainer = ({ data }) => {
   return (
-    <div className="s-container ">
+    <div>
       <Swiper
-        spaceBetween={40}
-        slidesPerGroup={1}
-        loop={true}
+        slidesPerView={1}
+        spaceBetween={20}
+        slidesPerGroupSkip={1}
         navigation={true}
-        modules={[Navigation, Pagination]}
-        className=" px-10 w-full  "
-        breakpoints={{
-          375: {
-            width: 375,
-            slidesPerView: 2,
-          },
-          425: {
-            width: 425,
-            slidesPerView: 2,
-          },
-        }}
+        loop={false}
+        modules={[Navigation]}
+        breakpoints={breakpoints}
       >
-        {TransparentGlass.map((slide, i) => (
-          <SwiperSlide key={i} className=" w-full shadow-xl mb-2 px-2">
-            <div className="flex flex-col justify-end items-center">
+        {TransparentGlass?.map((elemt, indx) => (
+          <SwiperSlide
+            key={indx}
+            className="  min-h-[100px] "
+            onClick={() => handleClick()}
+          >
+            <div className=" w-[200px] mb-3  mx-auto">
               <Image
-                width={500}
-                height={500}
-                className=" object-cover mb-auto mt-1/2 "
-                src={slide.src}
-                alt=""
+                width={200}
+                height={200}
+                src={elemt?.src}
+                className=" object-cover"
+                alt="galess"
               />
-
-              <span className="text-base text-center mb-3">{slide.title}</span>
             </div>
+            <p className=" text-center ">Price : {elemt.price}</p>
           </SwiperSlide>
         ))}
       </Swiper>
