@@ -1,4 +1,4 @@
-"use params"
+"use params";
 import SwiperThumbs from "@/Components/Swiper/SwiperThumbs";
 import Layout from "@/Layout/Layout";
 import React, { useEffect, useState } from "react";
@@ -21,7 +21,7 @@ const SingleProduct = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [productData, setProductdata] = React.useState(null);
   const router = useRouter();
-  
+
   const { slug } = router.query;
   let Product = useGetProductDetail(slug);
   const TabPanelOption = [
@@ -31,12 +31,10 @@ const SingleProduct = () => {
   ];
 
   useEffect(() => {
-   
-
     if (Product.data) {
       const user = localStorage.getItem("user_data");
       setProductdata(Product.data[0]);
-        console.log(Product.data);
+      console.log(Product.data);
       Dispacth(UpdaeSepcification(Product.data[0]));
     }
   }, [Product, productData, Dispacth]);
@@ -44,7 +42,7 @@ const SingleProduct = () => {
   const productURL = productData?.product_url ?? "";
   const BASE_URI = `https://akkukachasma.com/eyewear/`;
   const messageToShare = encodeURIComponent(
-    `Hello! I'm interested in this one! ${productURL}`
+    `Hello! I'm interested in this one! ${BASE_URI + productURL}`
   );
   const whatsappLink = `https://wa.me/8188881661?text=${messageToShare}`;
 
@@ -75,17 +73,12 @@ const SingleProduct = () => {
     //     .then((result) => console.log(result?.data, "result?.data"));
   };
 
-
- 
-if(!Product?.data?.length>0){
-  
-  return <Loader/>
-}
-
+  if (!Product?.data?.length > 0) {
+    return <Loader />;
+  }
 
   return (
     <Layout>
-     
       <LensForm show={isOpen} onHide={() => setIsOpen(false)} />
       <section className="text-gray-600 ">
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center mx-auto ">
@@ -98,7 +91,9 @@ if(!Product?.data?.length>0){
           <div className=" px-5">
             <div className="">
               <div className=" flex justify-between mb-5">
-                <h1 className=" text-2xl md:text-4xl">{productData?.product_model_name}</h1>
+                <h1 className=" text-2xl md:text-4xl">
+                  {productData?.product_model_name}
+                </h1>
                 <span className="text-xl font-semibold cursor-pointer">
                   <AiOutlineHeart />
                 </span>

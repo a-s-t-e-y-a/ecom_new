@@ -249,19 +249,18 @@ const Header = () => {
             <BsFillTelephonePlusFill />
             +918188881661
           </div>
-          <div className=" w-[500px] ">
+          <div className=" ">
             <Image
               src={"/logo.png"}
               width={500}
-              height={500}
-              className=" object-contain mb-3  "
+              height={100}
+              className=" object-cover mb-3  "
               alt=""
             />
-           
           </div>
           <div>
-              <SearchBar />
-            </div>
+            <SearchBar />
+          </div>
         </div>
 
         {/* Bottom Part  */}

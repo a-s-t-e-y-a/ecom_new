@@ -24,3 +24,9 @@ export const colorMapping = {
   22: "Matte gray",
   23: "Transparent other",
 };
+
+export const Frame_size = {
+  1: "M",
+  2: "S",
+  3: "L",
+};

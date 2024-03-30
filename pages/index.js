@@ -5,33 +5,44 @@ import SwiperContainer from "@/Components/Swiper/SwiperContainer";
 import Layout from "@/Layout/Layout";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import useGetAllProducts from "@/utils/queries/admin/UseProductGetAll";
-import Loader from "@/Components/Loader";
-import useGetAllCategories from "@/utils/queries/useCategoriesGetAll";
+
+import axios from "axios";
 
 export default function Home() {
   const [Tend, setTend] = useState([]);
   const [Computer, setComputer] = useState([]);
   const [Round, setRound] = useState([]);
   const [Rimless, setRimless] = useState([]);
+  const [sungaless, setSungaless] = useState([]);
+  const fecthMultipleData = () => {
+    const url = [
+      "https://api.akkukachasma.com/api/products",
+      "https://api.akkukachasma.com/api/categories/3",
+    ];
+    axios.all(url.map((endpoints) => axios.get(endpoints))).then((data) => {
+      const AllProduct = data[0];
+      const Computer = data[1];
+      const round = AllProduct?.data?.data?.filter(
+        (Value) => Value?.shape_?.name === "Round"
+      );
+      const rimless = AllProduct?.data?.data?.filter(
+        (Value) => Value?.style_?.name === "Rimless"
+      );
 
-  const product = useGetAllProducts();
-  
-  useEffect(() => {
-    if (product.data ) {
-      const round = product?.data?.filter(
-        (vlaue) => vlaue?.shape_?.name == "Round"
+      const trend = AllProduct?.data?.data?.filter(
+        (Value) => Value?.productBrand?.brand_name === "Trend"
       );
-      const rimless = product?.data?.filter(
-        (vlaue) => vlaue?.style_?.name == "Rimless"
-      );
+      setSungaless(AllProduct?.data?.data);
+      setTend(trend);
       setRound(round);
       setRimless(rimless);
-    }
-  }, [product.data,]);
-  if (product.isLoading) {
-    return <Loader />;
-  }
+      setComputer(Computer?.data?.data?.products);
+    });
+  };
+  useEffect(() => {
+    fecthMultipleData();
+  }, []);
+  console.log(Tend);
   return (
     <Layout>
       <section className="flex flex-col h-auto gap-7">
@@ -41,7 +52,7 @@ export default function Home() {
         <div>
           <p className="  text-5xl text-center">EYEGLASSES</p>
           <p className=" text-center  text-5xl  font-semibold mb-5">TREND</p>
-          <Slider />
+          <Slider data={Tend} />
         </div>
 
         <div className="w-full">
@@ -103,7 +114,7 @@ export default function Home() {
                 </span>
               </h1>
             </div>
-            <SwiperContainer data={Round}/>
+            <SwiperContainer data={Round} />
           </div>
 
           <div className="mt-7">
@@ -169,7 +180,7 @@ export default function Home() {
                 <span className="border-b-2 border-gray-700">Sun Glasses</span>
               </h1>
             </div>
-            <SwiperContainer />
+            <SwiperContainer data={sungaless} />
           </div>
           <div className="mt-7">
             <div className="p-2 rounded-md mb-4">
@@ -182,7 +193,7 @@ export default function Home() {
                 </span>
               </h1>
             </div>
-            <SwiperContainer data={Rimless}/>
+            <SwiperContainer data={Rimless} />
           </div>
         </div>
 
@@ -219,7 +230,7 @@ export default function Home() {
                 <span className="border-b-2 border-gray-700">Kids Glasses</span>
               </h1>
             </div>
-            <SwiperContainer />
+            <SwiperContainer data={[]} />
           </div>
         </div>
       </section>
