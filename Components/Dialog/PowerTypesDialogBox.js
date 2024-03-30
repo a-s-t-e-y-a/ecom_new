@@ -1,22 +1,37 @@
-import React from 'react'
-import { useForm } from 'react-hook-form';
-import FileInput from '../Admin/FileInput';
-import { TextField } from '@mui/material';
-import { useDispatch } from 'react-redux';
+"use client";
+import React from "react";
+import { useForm } from "react-hook-form";
+import FileInput from "../Admin/FileInput";
+import { TextField } from "@mui/material";
+import { useDispatch } from "react-redux";
 import AddIcon from "@mui/icons-material/Add";
-import { addPowerType } from '@/Slices/powerTypeSlice';
-import useCreatePowerType from '@/utils/mutations/useCreatePowerTypes';
+import { addPowerType } from "@/Slices/powerTypeSlice";
+import CreatePowerType from "@/utils/mutations/useCreatePowerTypes";
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 const PowerTypesDialogBox = ({ onCancel }) => {
-    const { register, handleSubmit } = useForm();
-  const {mutate} = useCreatePowerType()
-    const dispatch = useDispatch()
-  const onSubmit = async(data)=>{
-    const formData = new FormData()
-    formData.append('file',data.file[0])
-    formData.append('data',JSON.stringify({'name':data.name,'description':data.description}))
-    await mutate(formData)
-  }
+  const { register, handleSubmit } = useForm();
+  const { mutate } = useMutation({
+    mutationFn: CreatePowerType,
+    onSucusses: (data) => {
+      toast("PowerType created succesfully");
+    },
+    onError: () => {
+      toast("Error occurred");
+    },
+  });
+  const dispatch = useDispatch();
+  const onSubmit = async (data) => {
+    const formData = new FormData();
+    formData.append("file", data.file[0]);
+    formData.append(
+      "data",
+      JSON.stringify({ name: data.name, description: data.description })
+    );
+    console.log(formData);
+    mutate(formData);
+  };
   return (
     <div className="relative border tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
       <h1 className="text-md font-semibold text-center text-gray-700 mt-3">
@@ -26,11 +41,26 @@ const PowerTypesDialogBox = ({ onCancel }) => {
         className="flex flex-col items-center justify-between gap-6 px-6 pb-6"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <FileInput title="" register={register}/>
-        <TextField fullWidth label="Title" name="title" id="title" size="small" {...register("name")} sx={{minWidth:300}}/>
-        <TextField fullWidth label="Description" name="description" id="description" size="small" {...register("description")} sx={{minWidth:300}}/>
-        
-        
+        <FileInput title="" register={register} />
+        <TextField
+          fullWidth
+          label="Title"
+          name="title"
+          id="title"
+          size="small"
+          {...register("name")}
+          sx={{ minWidth: 300 }}
+        />
+        <TextField
+          fullWidth
+          label="Description"
+          name="description"
+          id="description"
+          size="small"
+          {...register("description")}
+          sx={{ minWidth: 300 }}
+        />
+
         <button
           type="submit"
           className="text-white bg-sky-400 hover:bg-sky-500  focus:outline-none font-medium rounded-lg text-sm inline-flex items-center px-5 py-2 text-center mr-2"
@@ -61,7 +91,7 @@ const PowerTypesDialogBox = ({ onCancel }) => {
         <span className="sr-only">Close modal</span>
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default PowerTypesDialogBox
+export default PowerTypesDialogBox;

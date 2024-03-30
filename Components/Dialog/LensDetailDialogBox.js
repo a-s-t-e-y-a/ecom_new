@@ -1,30 +1,43 @@
-import React from 'react'
-import { useForm } from 'react-hook-form';
-import FileInput from '../Admin/FileInput';
-import { TextField } from '@mui/material';
+import React from "react";
+import { useForm } from "react-hook-form";
+import FileInput from "../Admin/FileInput";
+import { TextField } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import useCreateLensDeatils from '@/utils/mutations/useCreateLensDetail';
-import useGetAllBrands from '@/utils/queries/useBrandsGetAll';
-import useGetAllCategories from '@/utils/queries/useCategoriesGetAll';
-import useGetAllLensFeature from '@/utils/queries/useLensFeature';
-import SingleSelectCategories from '../Admin/MultipleSelectCategories';
-import SingleSelectBrands from '../Admin/brandMultipleSelect';
-import SingleSelectLensFeature from '../Admin/lensFeatureMultipleSelect';
-
+import CreateLensDeatils from "@/utils/mutations/useCreateLensDetail";
+import useGetAllBrands from "@/utils/queries/useBrandsGetAll";
+import useGetAllCategories from "@/utils/queries/useCategoriesGetAll";
+import useGetAllLensFeature from "@/utils/queries/useLensFeature";
+import SingleSelectCategories from "../Admin/MultipleSelectCategories";
+import SingleSelectBrands from "../Admin/brandMultipleSelect";
+import SingleSelectLensFeature from "../Admin/lensFeatureMultipleSelect";
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 const LensDetailDialogBox = ({ onCancel }) => {
-    const { register, handleSubmit } = useForm();
-    const {mutate} = useCreateLensDeatils()
-    const {data:brand , isLoading:brandLoading , isError:errorBrand} = useGetAllBrands()
-    const {data:categories} = useGetAllCategories()
-    const {data:lens_feature} = useGetAllLensFeature()
-    const onSubmit = (data)=>{
-    const formData = new FormData()
-    formData.append('file',data.file[0])
-    const stringifiedData = JSON.stringify(jsonData, (key, value) => key !== 'file' ? value : undefined);
-    formData.append('data',stringifiedData)
-    mutate(formData)
-  }
+  const { register, handleSubmit } = useForm();
+  const { mutate } = useMutation({
+    mutationFn: CreateLensDeatils,
+    onSuccess: () => {
+      toast("Lens Deatails created succesfully");
+    },
+    onError: () => {
+      toast("Error occurred");
+    },
+  });
+  const {
+    data: brand,
+    isLoading: brandLoading,
+    isError: errorBrand,
+  } = useGetAllBrands();
+  const { data: categories } = useGetAllCategories();
+  const { data: lens_feature } = useGetAllLensFeature();
+  const onSubmit = (data) => {
+    const formData = new FormData();
+    formData.append("file", data.file[0]);
+    const stringifiedData = JSON.stringify(data);
+    formData.append("data", stringifiedData);
+    mutate(formData);
+  };
   return (
     <div className="relative border tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
       <h1 className="text-md font-semibold text-center text-gray-700 mt-3">
@@ -35,30 +48,140 @@ const LensDetailDialogBox = ({ onCancel }) => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="grid grid-cols-3 items-center justify-between gap-3">
-            <FileInput title="Lens" register={register}/>
-            <SingleSelectCategories label="Product Categories Name" options={categories} register={register} name='categories_id'/>
-            <SingleSelectBrands label="Brand Name" options={brand} register={register} name='products_brand_id'/>
-        
-            <TextField fullWidth label="Lens Heading" name="lensHeading" id="lensHeading" size="small" {...register("heading")} sx={{minWidth:300}}/>
-            <SingleSelectLensFeature label="Lens Feature" options={lens_feature} register={register} name='lens_feature_id'/>
-            <TextField fullWidth label="Power Range" name="powerRange" id="powerRange" size="small" {...register("power_range")} sx={{minWidth:300}}/>
+          <FileInput title="Lens" register={register} />
+          <SingleSelectCategories
+            label="Product Categories Name"
+            options={categories}
+            register={register}
+            name="categories_id"
+          />
+          <SingleSelectBrands
+            label="Brand Name"
+            options={brand}
+            register={register}
+            name="products_brand_id"
+          />
 
-            <TextField fullWidth label="Price" name="price" id="price" size="small" {...register("price")} sx={{minWidth:300}}/>
-            <TextField fullWidth label="Index/Thickness" name="index/thickness" id="index/thickness" size="small" {...register("thickness")} sx={{minWidth:300}}/>
-            <TextField fullWidth label="Warranty Period" name="warrentyperiod" id="warrentyperiod" size="small" {...register("warraty")} sx={{minWidth:300}}/>
+          <TextField
+            fullWidth
+            label="Lens Heading"
+            name="lensHeading"
+            id="lensHeading"
+            size="small"
+            {...register("heading")}
+            sx={{ minWidth: 300 }}
+          />
+          <SingleSelectLensFeature
+            label="Lens Feature"
+            options={lens_feature}
+            register={register}
+            name="lens_feature_id"
+          />
+          <TextField
+            fullWidth
+            label="Power Range"
+            name="powerRange"
+            id="powerRange"
+            size="small"
+            {...register("power_range")}
+            sx={{ minWidth: 300 }}
+          />
 
-            <TextField fullWidth label="Blue Light Blocker" name="blueLightBlocker" id="blueLightBlocker" size="small" {...register("blue_light_blocker")} sx={{minWidth:300}}/>
-            <TextField fullWidth label="Anti Scratch Coating " name="antiScratchCoating" id="antiScratchCoating" size="small" {...register("anti_scratch_coating")} sx={{minWidth:300}}/>
-            <TextField fullWidth label="UV Protextion" name="uvprotection" id="uvprotection" size="small" {...register("uv_protection")} sx={{minWidth:300}}/>
+          <TextField
+            fullWidth
+            label="Price"
+            name="price"
+            id="price"
+            size="small"
+            {...register("price")}
+            sx={{ minWidth: 300 }}
+          />
+          <TextField
+            fullWidth
+            label="Index/Thickness"
+            name="index/thickness"
+            id="index/thickness"
+            size="small"
+            {...register("thickness")}
+            sx={{ minWidth: 300 }}
+          />
+          <TextField
+            fullWidth
+            label="Warranty Period"
+            name="warrentyperiod"
+            id="warrentyperiod"
+            size="small"
+            {...register("warraty")}
+            sx={{ minWidth: 300 }}
+          />
 
-            <TextField fullWidth label="Both Side Anti Reflective Coating" name="bothSideAntiReflectiveCoating" id="bothSideAntiReflectiveCoating" size="small" {...register("both_side_anti_reflective_coating")} sx={{minWidth:300}}/>
-            <TextField fullWidth label="Water and Dust Repellent" name="waterAndDustRepellent" id="waterAndDustRepellent" size="small" {...register("water_and_dust_repellent")} sx={{minWidth:300}}/>
-            <TextField fullWidth label="Breakage & Crack Resistant" name="breakageAndCrackResistance" id="breakageAndCrackResistance" size="small" {...register("breakage_and_crack_resistant")} sx={{minWidth:300}}/>
+          <TextField
+            fullWidth
+            label="Blue Light Blocker"
+            name="blueLightBlocker"
+            id="blueLightBlocker"
+            size="small"
+            {...register("blue_light_blocker")}
+            sx={{ minWidth: 300 }}
+          />
+          <TextField
+            fullWidth
+            label="Anti Scratch Coating "
+            name="antiScratchCoating"
+            id="antiScratchCoating"
+            size="small"
+            {...register("anti_scratch_coating")}
+            sx={{ minWidth: 300 }}
+          />
+          <TextField
+            fullWidth
+            label="UV Protextion"
+            name="uvprotection"
+            id="uvprotection"
+            size="small"
+            {...register("uv_protection")}
+            sx={{ minWidth: 300 }}
+          />
 
-            <TextField fullWidth label="LensID" name="bothSideAntiGlareCoating" id="bothSideAntiGlareCoating" size="small" {...register("both_side_anti_glare_coatin:wg")} sx={{minWidth:300}}/>
+          <TextField
+            fullWidth
+            label="Both Side Anti Reflective Coating"
+            name="bothSideAntiReflectiveCoating"
+            id="bothSideAntiReflectiveCoating"
+            size="small"
+            {...register("both_side_anti_reflective_coating")}
+            sx={{ minWidth: 300 }}
+          />
+          <TextField
+            fullWidth
+            label="Water and Dust Repellent"
+            name="waterAndDustRepellent"
+            id="waterAndDustRepellent"
+            size="small"
+            {...register("water_and_dust_repellent")}
+            sx={{ minWidth: 300 }}
+          />
+          <TextField
+            fullWidth
+            label="Breakage & Crack Resistant"
+            name="breakageAndCrackResistance"
+            id="breakageAndCrackResistance"
+            size="small"
+            {...register("breakage_and_crack_resistant")}
+            sx={{ minWidth: 300 }}
+          />
 
+          <TextField
+            fullWidth
+            label="LensID"
+            name="bothSideAntiGlareCoating"
+            id="bothSideAntiGlareCoating"
+            size="small"
+            {...register("both_side_anti_glare_coatin:wg")}
+            sx={{ minWidth: 300 }}
+          />
         </div>
-        
+
         <button
           type="submit"
           className="text-white bg-sky-400 hover:bg-sky-500  focus:outline-none font-medium rounded-lg text-sm inline-flex items-center px-5 py-2 text-center mr-2"
@@ -89,8 +212,7 @@ const LensDetailDialogBox = ({ onCancel }) => {
         <span className="sr-only">Close modal</span>
       </button>
     </div>
-  )
-}
+  );
+};
 
-
-export default LensDetailDialogBox
+export default LensDetailDialogBox;

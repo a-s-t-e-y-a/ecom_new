@@ -1,29 +1,45 @@
-import React from 'react'
-import { useForm } from 'react-hook-form';
-import FileInput from '../Admin/FileInput';
-import { TextField } from '@mui/material';
-import { useDispatch } from 'react-redux';
+import React from "react";
+import { useForm } from "react-hook-form";
+import FileInput from "../Admin/FileInput";
+import { TextField } from "@mui/material";
+import { useDispatch } from "react-redux";
 import AddIcon from "@mui/icons-material/Add";
-import SingleSelectPowerType from '../Admin/powerTypeMultipleSelect';
-import useGetAllLensFeature from '@/utils/queries/useLensFeature';
-import useGetAllPowerType from '@/utils/queries/usePowerType';
-import useCreateLenseFeature from '@/utils/mutations/useCreateLensFeature';
-import Loader from '../Loader';
-
-const PowerType = ["BiFocal", "No Frame"]
+import SingleSelectPowerType from "../Admin/powerTypeMultipleSelect";
+import useGetAllLensFeature from "@/utils/queries/useLensFeature";
+import useGetAllPowerType from "@/utils/queries/usePowerType";
+import CreateLenseFeature from "@/utils/mutations/useCreateLensFeature";
+import Loader from "../Loader";
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 const LensFeatureDialogBox = ({ onCancel }) => {
   const { register, handleSubmit } = useForm();
-  const { mutate, isPending } = useCreateLenseFeature()
-  const { data } = useGetAllPowerType()
+  const { mutate, isPending } = useMutation({
+    mutationFn: CreateLenseFeature,
+    onSuccess: () => {
+      toast("Lens Feature created succesfully");
+    },
+    onError: (err) => {
+      toast("Error occurred");
+    },
+  });
+  const { data } = useGetAllPowerType();
   const onSubmit = async (data) => {
-    const formData = new FormData()
-    formData.append('data', JSON.stringify({ 'power_type_id': data.power_type_id, 'title': data.title, 'description': data.description }))
-    formData.append('file', data.file[0])
-    mutate(formData)
-  }
+    const formData = new FormData();
+
+    formData.append("file", data.file[0]);
+    formData.append(
+      "data",
+      JSON.stringify({
+        power_type_id: data.power_type_id,
+        title: data.title,
+        description: data.description,
+      })
+    );
+    mutate(formData);
+  };
   if (isPending) {
-    return <Loader />
+    return <Loader />;
   }
   return (
     <div className="relative border tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
@@ -35,10 +51,30 @@ const LensFeatureDialogBox = ({ onCancel }) => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <FileInput title="" register={register} />
-        <SingleSelectPowerType label="Power Type" options={data} register={register} name='power_type_id' />
-        <TextField fullWidth label="Title" name="title" id="title" size="small" {...register("title")} sx={{ minWidth: 300 }} />
-        <TextField fullWidth label="Description" name="description" id="description" size="small" {...register("description")} sx={{ minWidth: 300 }} />
-
+        <SingleSelectPowerType
+          label="Power Type"
+          options={data}
+          register={register}
+          name="power_type_id"
+        />
+        <TextField
+          fullWidth
+          label="Title"
+          name="title"
+          id="title"
+          size="small"
+          {...register("title")}
+          sx={{ minWidth: 300 }}
+        />
+        <TextField
+          fullWidth
+          label="Description"
+          name="description"
+          id="description"
+          size="small"
+          {...register("description")}
+          sx={{ minWidth: 300 }}
+        />
 
         <button
           type="submit"
@@ -69,7 +105,7 @@ const LensFeatureDialogBox = ({ onCancel }) => {
         <span className="sr-only">Close modal</span>
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default LensFeatureDialogBox
+export default LensFeatureDialogBox;

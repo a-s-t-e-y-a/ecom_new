@@ -1,3 +1,4 @@
+"use client";
 import IconButton from "@/Components/Admin/IconButton";
 import Modal from "@/Components/Dialog/Modal";
 import ShapeDialogBox from "@/Components/Dialog/ShapeDialogBox";
@@ -15,15 +16,15 @@ const Shape = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);
-
+  console.log(data);
   if (isLoading) {
     return <Loader />;
-  };
+  }
 
   if (isError) {
     return <>Error ...</>;
-  };
-  
+  }
+
   return (
     <AdminLayout>
       <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
@@ -41,10 +42,14 @@ const Shape = () => {
                 className="border rounded-md shadow-md px-5 py-2 inline-flex flex-col items-center gap-2 bg-gray-100"
               >
                 <Image
-                  src={shape.image}
+                  src={
+                    "https://akkukachasma.s3.amazonaws.com/shape/" +
+                    shape?.image
+                  }
                   className="w-44 h-auto mix-blend-multiply"
-                  width={'11rem'}
-                  height={'auto'}
+                  width={100}
+                  height={100}
+                  alt="image"
                 />
                 <div className="flex items-center gap-5">
                   <span className="text-base tracking-wide font-semibold text-gray-700">

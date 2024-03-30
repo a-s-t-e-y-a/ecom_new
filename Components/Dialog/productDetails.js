@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { useForm } from "react-hook-form";
 import FileInput from "../Admin/FileInput";
@@ -24,10 +25,11 @@ import useGetAllSize from "@/utils/queries/useGetAllSize";
 import useGetAllStyle from "@/utils/queries/useStyleGetAll";
 import SingleSelectSize from "../Admin/sizeMultiple";
 import SingleSelectStyle from "../Admin/styleMultiple";
+import useCreateProduct from "@/utils/mutations/useCreateProduct";
 
 const ProductDetailDialog = ({ onCancel }) => {
   const { register, handleSubmit } = useForm();
-  const { mutate } = useCreateLensDeatils();
+  const { mutate } = useCreateProduct();
   const {
     data: brand,
     isLoading: brandLoading,
@@ -40,9 +42,11 @@ const ProductDetailDialog = ({ onCancel }) => {
   const { data: material } = useGetAllMaterial();
   const { data: size } = useGetAllSize();
   const { data: style } = useGetAllStyle();
-  // const size = ["Narrow", "Extra Narrow", "Medium", "Wide", "Extra Wide"]
-  // const style = ["RimLess", "Half Frame", "Full Frame"]
-  const onSubmit = async (data) => {};
+  const Data = useCreateProduct();
+  console.log(useCreateProduct().data);
+  const OnSubmit = (data) => {
+    console.log(data);
+  };
   return (
     <div className="relative border mt-[1100px] md:mt-[300px] rounded-md shadow-lg w-full md:w-auto h-[calc(100%-1rem)] max-h-full">
       <h1 className="text-md font-semibold text-center text-gray-700 mt-3">
@@ -50,7 +54,7 @@ const ProductDetailDialog = ({ onCancel }) => {
       </h1>
       <form
         className="flex flex-col items-center justify-between gap-6 px-6 pb-6"
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(OnSubmit)}
       >
         <div className="grid grid-cols-1 md:grid-cols-2  items-center justify-between w-full gap-3">
           <FileInput title="Main Image" register={register} />
@@ -117,19 +121,7 @@ const ProductDetailDialog = ({ onCancel }) => {
             register={register}
             name="shape"
           />
-          <SingleSelectUniversal
-            size="md"
-            label="Select Style"
-            options={style}
-            register={register}
-            name="style"
-          />
-          <SingleSelectUniversal
-            label="Select size"
-            options={size}
-            register={register}
-            name="warranty"
-          />
+
           <SingleSelectMaterial
             label="Select material"
             options={material}

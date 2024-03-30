@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import * as React from "react";
+import { useTheme } from "@mui/material/styles";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -19,32 +19,44 @@ const MenuProps = {
 
 function getStyles(item, selectedItem, theme) {
   return {
-    fontWeight: item.products_categories_id === selectedItem ? theme.typography.fontWeightMedium : theme.typography.fontWeightRegular,
+    fontWeight:
+      item?.products_categories_id === selectedItem
+        ? theme?.typography?.fontWeightMedium
+        : theme?.typography?.fontWeightRegular,
   };
 }
 
-export default function SingleSelectUniversal({ label, options ,register,name,size='small'}) {
+export default function SingleSelectUniversal({
+  label,
+  options,
+  register,
+  name,
+  size = "small",
+}) {
   const theme = useTheme();
-  const [selectedItem, setSelectedItem] = React.useState('');
+  const [selectedItem, setSelectedItem] = React.useState("");
 
   const handleChange = (event) => {
     setSelectedItem(event.target.value);
   };
 
+  console.log(options);
+
   return (
     <div>
-        <FormControl sx={{ width: 300 }} size={size}>
-          <InputLabel id={label}>{label}</InputLabel>
-          <Select
-            {...register(name)}
-            labelId={label}
-            id={label}
-            value={selectedItem}
-            onChange={handleChange}
-            input={<OutlinedInput label={label} />}
-            MenuProps={MenuProps}
-          >
-            {options&&options.map((item,index) => (
+      <FormControl sx={{ width: 300 }} size={size}>
+        <InputLabel id={label}>{label}</InputLabel>
+        <Select
+          {...register(name)}
+          labelId={label}
+          id={label}
+          value={selectedItem}
+          onChange={handleChange}
+          input={<OutlinedInput label={label} />}
+          MenuProps={MenuProps}
+        >
+          {options &&
+            options?.map((item, index) => (
               <MenuItem
                 key={index}
                 value={item}
@@ -53,9 +65,8 @@ export default function SingleSelectUniversal({ label, options ,register,name,si
                 {item}
               </MenuItem>
             ))}
-          </Select>
-        </FormControl>
-      </div>
+        </Select>
+      </FormControl>
+    </div>
   );
 }
-

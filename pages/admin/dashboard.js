@@ -1,9 +1,8 @@
-'use client'
+"use client";
 import DashboardSingleItem from "@/Components/Admin/DashboardSingleItem";
 import AdminLayout from "@/Layout/AdminLayout";
 import React from "react";
-import {sessionStatus} from "@/utils/session";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
 const items = [
   {
     color: "bg-blue-300",
@@ -49,13 +48,8 @@ const items = [
   },
 ];
 function Dashboard() {
-  const router = useRouter()
-  React.useLayoutEffect(() => {
-    const session = sessionStatus;
-    if (!session) {
-      return router.push("/login")
-    }
-  });
+  const router = useRouter();
+
   return (
     <AdminLayout>
       <div className="space-y-6">

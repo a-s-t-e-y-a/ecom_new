@@ -2,40 +2,54 @@ import { TextField } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useForm } from "react-hook-form";
 import FileInput from "../Admin/FileInput";
-import { Toaster } from 'react-hot-toast';
-import useCreateShape from "@/utils/mutations/useCreateShape";
+import { Toaster } from "react-hot-toast";
+import CreateShape from "@/utils/mutations/useCreateShape";
 import Loader from "../Loader";
-
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 const ShapeDialogBox = ({ onCancel }) => {
-    const {mutate, isPending}= useCreateShape()
-    const { register, handleSubmit} = useForm();
-    const onSubmit = (data)=> {
-    const formData = new FormData()
-    formData.append('data',JSON.stringify({"name":data.name}))
-    formData.append('file',data.file[0])
-    mutate(formData)
-
-  } 
-  if(isPending){
-    return <Loader/>
+  const { mutate, isPending } = useMutation({
+    mutationFn: CreateShape,
+    onSucusses: (data) => {
+      toast("Shape created succesfully");
+    },
+    onError: (err) => {
+      toast("Error occurred");
+    },
+  });
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (data) => {
+    const formData = new FormData();
+    formData.append("data", JSON.stringify({ name: data.name }));
+    formData.append("file", data.file[0]);
+    mutate(formData);
+  };
+  if (isPending) {
+    return <Loader />;
   }
   return (
     <div className="relative border p-2 tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
       <h1 className="text-md font-semibold text-center text-gray-700 mt-3">
         Add Shapes
       </h1>
-      <form 
+      <form
         className="flex flex-col items-center justify-between gap-6 px-6 pb-6"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <FileInput title="" register={register}/>
+        <FileInput title="" register={register} />
         <div className="flex items-center justify-between gap-2">
-          <TextField label="Shape" name="name" id="shape" size="small" {...register("name")} />
+          <TextField
+            label="Shape"
+            name="name"
+            id="shape"
+            size="small"
+            {...register("name")}
+          />
           <button
             type="submit"
             className="text-white bg-sky-400 hover:bg-sky-500  focus:outline-none font-medium rounded-lg text-sm inline-flex items-center px-5 py-2 text-center mr-2"
-          //   onClick={}
+            //   onClick={}
             onSubmit={handleSubmit}
           >
             Add <AddIcon className="ml-1 font-bold text-base" />
@@ -62,7 +76,7 @@ const ShapeDialogBox = ({ onCancel }) => {
         </svg>
         <span className="sr-only">Close modal</span>
       </button>
-       <Toaster/>
+      <Toaster />
     </div>
   );
 };
