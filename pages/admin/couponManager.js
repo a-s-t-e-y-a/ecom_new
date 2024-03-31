@@ -17,7 +17,9 @@ const CouponManager = () => {
     if (IsAuth("admin_info")) {
       setlogged(true);
     } else {
-      router.push("login");
+            router.replace("login");
+");
+
     }
   }, [router]);
   const couponsData = useSelector((state) => state.coupon);

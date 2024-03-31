@@ -22,7 +22,7 @@ const Brand = () => {
     if (IsAuth("admin_info")) {
       setlogged(true);
     } else {
-      router.push("login");
+      router.replace("login");
     }
   }, [router]);
   if (logged) {

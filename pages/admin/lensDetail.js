@@ -19,7 +19,9 @@ const LensDetail = () => {
     if (IsAuth("admin_info")) {
       setlogged(true);
     } else {
-      router.push("login");
+            router.replace("login");
+");
+
     }
   }, [router]);
   const lensDetailData = useSelector((state) => state.lensDetail);
