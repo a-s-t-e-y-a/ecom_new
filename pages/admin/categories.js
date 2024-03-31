@@ -29,9 +29,7 @@ const Categories = () => {
     if (IsAuth("admin_info")) {
       setlogged(true);
     } else {
-            router.replace("login");
-");
-
+      router.push("login");
     }
   }, [router]);
   if (isLoading) {

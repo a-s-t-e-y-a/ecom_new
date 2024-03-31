@@ -7,7 +7,6 @@ function Login() {
     router.push("registeredUsers");
   };
   const loginHandler = (e) => {
-    alert("hello");
     e.preventDefault();
     const username = e.target.username?.value;
     const password = e.target.password?.value;

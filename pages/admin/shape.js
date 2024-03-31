@@ -20,9 +20,7 @@ const Shape = () => {
     if (IsAuth("admin_info")) {
       setlogged(true);
     } else {
-            router.replace("login");
-");
-
+      router.replace("login");
     }
   }, [router]);
   // const shapesData = useSelector((state)=> state.shape)

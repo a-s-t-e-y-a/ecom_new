@@ -12,9 +12,7 @@ const PlacedOrderDetail = () => {
     if (IsAuth("admin_info")) {
       setlogged(true);
     } else {
-            router.replace("login");
-");
-
+      router.replace("login");
     }
   }, [router]);
   if (logged) {
