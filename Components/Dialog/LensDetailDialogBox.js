@@ -16,7 +16,7 @@ import { toast } from "react-toastify";
 const LensDetailDialogBox = ({ onCancel }) => {
   const { register, handleSubmit } = useForm();
   const { mutate } = useMutation({
-    mutationFn: CreateLensDeatils,
+    mutationFn: (formData) => CreateLensDeatils(formData),
     onSuccess: () => {
       alert("hello");
       toast("Lens Deatails created succesfully");
@@ -34,10 +34,13 @@ const LensDetailDialogBox = ({ onCancel }) => {
   const { data: categories } = useGetAllCategories();
   const { data: lens_feature } = useGetAllLensFeature();
   const onSubmit = (data) => {
+    console.log(data);
     const formData = new FormData();
     formData.append("file", data.file[0]);
+    delete data.file;
     const stringifiedData = JSON.stringify(data);
     formData.append("data", stringifiedData);
+    console.log(formData)
     mutate(formData);
   };
   return (
@@ -50,7 +53,7 @@ const LensDetailDialogBox = ({ onCancel }) => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="grid grid-cols-3 items-center justify-between gap-3">
-          <FileInput title="Lens" register={register} />
+          <FileInput title="" register={register} />
           <SingleSelectCategories
             label="Product Categories Name"
             options={categories}
@@ -113,7 +116,7 @@ const LensDetailDialogBox = ({ onCancel }) => {
             name="warrentyperiod"
             id="warrentyperiod"
             size="small"
-            {...register("warraty")}
+            {...register("warranty")}
             sx={{ minWidth: 300 }}
           />
 
@@ -179,7 +182,7 @@ const LensDetailDialogBox = ({ onCancel }) => {
             name="bothSideAntiGlareCoating"
             id="bothSideAntiGlareCoating"
             size="small"
-            {...register("both_side_anti_glare_coatin:wg")}
+            {...register("both_side_anti_glare_coating")}
             sx={{ minWidth: 300 }}
           />
         </div>
@@ -188,7 +191,7 @@ const LensDetailDialogBox = ({ onCancel }) => {
           type="submit"
           className="text-white bg-sky-400 hover:bg-sky-500  focus:outline-none font-medium rounded-lg text-sm inline-flex items-center px-5 py-2 text-center mr-2"
           //   onClick={}
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(onSubmit)}
         >
           Add <AddIcon className="ml-1 font-bold text-base" />
         </button>
