@@ -4,6 +4,7 @@ import Header1 from "@/Components/Header/Header1";
 import api from "@/api";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 
 const SingleBlogPage = () => {
   const router = useRouter();
@@ -32,7 +33,13 @@ const SingleBlogPage = () => {
       </div>
       {/* Header/Heading */}
       <div className="flex flex-col items-center justify-center shadow-sm">
-        <img src="/blog.png" className="w-[180px]" />
+        <Image
+          width={100}
+          height={100}
+          alt=""
+          src={"/blog.png"}
+          className="w-[180px]"
+        />
         <h1 className="text-sm tracking-wider -mt-4">with @akkukachasma</h1>
         <span className="mt-3">
           <hr />
@@ -49,7 +56,13 @@ const SingleBlogPage = () => {
               <div></div>
             </div>
             <div className="flex place-content-center">
-              <img src={blogData?.imageArray} className="border" />
+              <Image
+                width={100}
+                height={100}
+                alt=""
+                src={blogData?.imageArray}
+                className="border"
+              />
             </div>
           </div>
 
@@ -59,8 +72,7 @@ const SingleBlogPage = () => {
         </div>
       </div>
       <div className="w-full">
-      <Footer />
-
+        <Footer />
       </div>
     </div>
   );

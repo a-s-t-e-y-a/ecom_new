@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { MdCategory } from "react-icons/md";
 import { toast } from "react-toastify";
+import Image from "next/image";
 
 const Categories = () => {
   const {
@@ -69,7 +70,10 @@ const Categories = () => {
                   key={index}
                   className="border rounded-md shadow-md px-5 py-2 inline-flex flex-col items-center gap-2 bg-gray-100"
                 >
-                  <img
+                  <Image
+                    width={100}
+                    height={100}
+                    alt=""
                     src={category.image}
                     className="w-44 h-auto mix-blend-multiply"
                   />

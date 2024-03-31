@@ -156,7 +156,7 @@ export default function Home() {
         </div>
 
         <div className="w-full relative">
-          <img
+          <Image
             src="/banner5.png"
             // width={200}
             height={400}

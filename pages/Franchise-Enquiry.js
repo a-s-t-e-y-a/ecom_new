@@ -1,6 +1,7 @@
 import Layout from "@/Layout/Layout";
 import { Option, Select } from "@material-tailwind/react";
 import React from "react";
+import Image from "next/image";
 
 const FranchiseEnquiry = () => {
   return (
@@ -105,7 +106,13 @@ const FranchiseEnquiry = () => {
               </div>
 
               <div className="col-span-1">
-                <img src="/franchise1.png" className="" />
+                <Image
+                  width={100}
+                  height={100}
+                  alt=""
+                  src={"/franchise1.png"}
+                  className=""
+                />
               </div>
             </div>
 

@@ -1,6 +1,7 @@
 import { env } from "@/next.config";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const CartSingleItem = () => {
   const [cartProducts, setCartProducts] = useState([]);
@@ -51,8 +52,10 @@ const CartSingleItem = () => {
               return (
                 <li key={product.id} className="flex py-6">
                   <div className="h-16 w-32 flex-shrink-0 overflow-hidden rounded-md border-gray-200">
-                    <img
-                      src="/1 (3).jpeg"
+                    <Image
+                      width={100}
+                      height={100}
+                      src={"/1 (3).jpeg"}
                       alt=""
                       className="h-full w-full object-fit object-center"
                     />

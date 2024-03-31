@@ -1,5 +1,6 @@
 import React from "react";
 import { FaWhatsapp, FaFacebookF, FaTwitter } from "react-icons/fa";
+import Image from "next/image";
 
 const BlogSideBar = () => {
   return (
@@ -8,7 +9,13 @@ const BlogSideBar = () => {
         <span className="font-semibold text-lg border-b-2 border-b-gray-800">
           About Us
         </span>
-        <img src="/logo.png" className="pt-3 pb-2" />
+        <Image
+          width={100}
+          height={100}
+          alt=""
+          src="/logo.png"
+          className="pt-3 pb-2"
+        />
         <p className="text-sm text-justify">
           Order Eyeglass and Sunglass Round - Square Geomantic shape eyeglass
           online from a vast range of products, styles and buy a pair of branded

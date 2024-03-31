@@ -1,12 +1,19 @@
 import OrderItem from "@/Components/OrderItem";
 import React from "react";
+import Image from "next/image";
 
 const checkout = () => {
   return (
     <div className="w-screen h-[100vh]">
       <div className="p-3">
         <div className="flex flex-col items-center justify-center py-5">
-          <img src="/logo.png" className="w-[420px]" />
+          <Image
+            width={100}
+            height={100}
+            alt=""
+            src={"/logo.png"}
+            className="w-[420px]"
+          />
           <span className="text-[12px] tracking-wider text-gray-500">
             Checkout with 100% safety
           </span>
@@ -36,7 +43,12 @@ const checkout = () => {
                   </span>
                 </div>
                 <div className="flex items-center gap-5 tracking-wide border px-5 py-3 shadow-md rounded-md bg-white">
-                  <span className="font-bold text-xl flex flex-col justify-center">Total Price <span className="text-xs font-light pl-4">(Include GST)</span></span>
+                  <span className="font-bold text-xl flex flex-col justify-center">
+                    Total Price{" "}
+                    <span className="text-xs font-light pl-4">
+                      (Include GST)
+                    </span>
+                  </span>
                   <span className="text-2xl font-semibold">$300</span>
                 </div>
               </div>
