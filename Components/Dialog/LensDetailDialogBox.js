@@ -37,10 +37,9 @@ const LensDetailDialogBox = ({ onCancel }) => {
     console.log(data);
     const formData = new FormData();
     formData.append("file", data.file[0]);
-    delete data.file;
     const stringifiedData = JSON.stringify(data);
     formData.append("data", stringifiedData);
-    console.log(formData)
+    console.log(formData);
     mutate(formData);
   };
   return (

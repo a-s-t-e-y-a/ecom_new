@@ -24,7 +24,7 @@ const PowerTypesDialogBox = ({ onCancel }) => {
   const dispatch = useDispatch();
   const onSubmit = async (data) => {
     const formData = new FormData();
-    formData.append("file", data.file[0]);
+    formData.append("file", data?.file[0]);
     formData.append(
       "data",
       JSON.stringify({ name: data.name, description: data.description })

@@ -21,8 +21,8 @@ const ShapeDialogBox = ({ onCancel }) => {
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     const formData = new FormData();
-    formData.append("data", JSON.stringify({ name: data.name }));
-    formData.append("file", data.file[0]);
+    formData.append("data", JSON.stringify({ name: data?.name }));
+    formData.append("file", data?.file[0]);
     mutate(formData);
   };
 
