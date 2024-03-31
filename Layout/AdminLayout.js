@@ -7,7 +7,7 @@ const AdminLayout = ({ children }) => {
   return (
     <>
       <Head>
-        <title>ackkukachasma</title>
+        <title>akkukachasma</title>
       </Head>
       <div className="h-screen w-screen">
         <div className="h-full flex items-center scrollbar-hide overflow-y-auto">

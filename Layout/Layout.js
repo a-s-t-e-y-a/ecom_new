@@ -5,10 +5,6 @@ import Footer from "@/Components/Footer/Footer";
 import { useRouter } from "next/router";
 import WhatsappIcon from "@/Components/WhatsappIcon";
 import Script from "next/script";
-export const metadata = {
-  title: "abc",
-  discription: "%s-abc",
-};
 const Layout = ({ children }) => {
   const router = useRouter();
   return (
@@ -23,6 +19,9 @@ const Layout = ({ children }) => {
   gtag('js', new Date());
   gtag('config', 'G-VP5TNHPR85');
 `}</Script>
+      <Head>
+        <title>akkukachasma</title>
+      </Head>
 
       {router.pathname === "/" ? <Header /> : <Header1 />}
       <main className=" mx-auto min-h-screen">{children}</main>
