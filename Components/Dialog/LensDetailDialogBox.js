@@ -18,9 +18,11 @@ const LensDetailDialogBox = ({ onCancel }) => {
   const { mutate } = useMutation({
     mutationFn: CreateLensDeatils,
     onSuccess: () => {
+      alert("hello");
       toast("Lens Deatails created succesfully");
     },
     onError: () => {
+      alert("errr");
       toast("Error occurred");
     },
   });

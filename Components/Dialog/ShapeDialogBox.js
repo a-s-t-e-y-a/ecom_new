@@ -9,7 +9,7 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
 const ShapeDialogBox = ({ onCancel }) => {
-  const { mutate, isPending } = useMutation({
+  const { mutate } = useMutation({
     mutationFn: CreateShape,
     onSucusses: (data) => {
       toast("Shape created succesfully");
@@ -25,9 +25,7 @@ const ShapeDialogBox = ({ onCancel }) => {
     formData.append("file", data.file[0]);
     mutate(formData);
   };
-  if (isPending) {
-    return <Loader />;
-  }
+
   return (
     <div className="relative border p-2 tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
       <h1 className="text-md font-semibold text-center text-gray-700 mt-3">

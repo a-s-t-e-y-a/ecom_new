@@ -23,6 +23,15 @@ const Categories = () => {
 
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);
+
+  const [logged, setlogged] = useState(false);
+  useEffect(() => {
+    if (IsAuth("admin_info")) {
+      setlogged(true);
+    } else {
+      router.push("login");
+    }
+  }, [router]);
   if (isLoading) {
     return <Loader />;
   }
@@ -42,48 +51,46 @@ const Categories = () => {
       toast.error(error); // Display error message if deletion fails
     }
   };
-
-  return (
-    <AdminLayout>
-      <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
-        <CategoriesDialogBox
-          onCancel={onHide}
-          setOpen={setOpen}
-        />
-      </Modal>
-      <div>
-        <div onClick={handleOpen}>
-          <IconButton label="Add Category" icon={<MdCategory />} />
-        </div>
-        <div className="mt-10 flex items-center gap-5 flex-wrap overflow-scroll scrollbar-hide">
-          {!isLoading &&
-            categories &&
-            categories.map((category, index) => (
-              <div
-                key={index}
-                className="border rounded-md shadow-md px-5 py-2 inline-flex flex-col items-center gap-2 bg-gray-100"
-              >
-                <img
-                  src={category.image}
-                  className="w-44 h-auto mix-blend-multiply"
-                />
-                <div className="flex w-full h-fit items-center justify-between gap-5">
-                  <span className="text-base tracking-wide font-semibold text-gray-700">
-                    {category.name}
-                  </span>
-                  <span
-                    className="text-sm text-red-500 cursor-pointer"
-                    onClick={() => handleDelete(category)}
-                  >
-                    <DeleteOutlineIcon className="text-base" />
-                  </span>
+  if (logged) {
+    return (
+      <AdminLayout>
+        <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
+          <CategoriesDialogBox onCancel={onHide} setOpen={setOpen} />
+        </Modal>
+        <div>
+          <div onClick={handleOpen}>
+            <IconButton label="Add Category" icon={<MdCategory />} />
+          </div>
+          <div className="mt-10 flex items-center gap-5 flex-wrap overflow-scroll scrollbar-hide">
+            {!isLoading &&
+              categories &&
+              categories.map((category, index) => (
+                <div
+                  key={index}
+                  className="border rounded-md shadow-md px-5 py-2 inline-flex flex-col items-center gap-2 bg-gray-100"
+                >
+                  <img
+                    src={category.image}
+                    className="w-44 h-auto mix-blend-multiply"
+                  />
+                  <div className="flex w-full h-fit items-center justify-between gap-5">
+                    <span className="text-base tracking-wide font-semibold text-gray-700">
+                      {category.name}
+                    </span>
+                    <span
+                      className="text-sm text-red-500 cursor-pointer"
+                      onClick={() => handleDelete(category)}
+                    >
+                      <DeleteOutlineIcon className="text-base" />
+                    </span>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+          </div>
         </div>
-      </div>
-    </AdminLayout>
-  );
+      </AdminLayout>
+    );
+  }
 };
 
 export default Categories;

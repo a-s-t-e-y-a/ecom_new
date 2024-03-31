@@ -20,22 +20,17 @@ const LensFeatureDialogBox = ({ onCancel }) => {
       toast("Lens Feature created succesfully");
     },
     onError: (err) => {
+      console.log(err);
       toast("Error occurred");
     },
   });
   const { data } = useGetAllPowerType();
-  const onSubmit = async (data) => {
+  const onSubmit = (data) => {
     const formData = new FormData();
 
     formData.append("file", data.file[0]);
-    formData.append(
-      "data",
-      JSON.stringify({
-        power_type_id: data.power_type_id,
-        title: data.title,
-        description: data.description,
-      })
-    );
+    const datas = JSON.stringify(data);
+    formData.append("data", datas);
     mutate(formData);
   };
   if (isPending) {

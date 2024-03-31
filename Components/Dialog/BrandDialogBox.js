@@ -14,22 +14,18 @@ const ProductBrandNameOption = ["Normal", "Trends"];
 const BrandDialogBox = ({ onCancel }) => {
   const { data, isLoading } = useGetAllCategories();
   const { register, handleSubmit } = useForm();
-  const { mutate, isPending, isError } = useMutation({
+  const { mutate } = useMutation({
     mutationFn: CreateBrand,
     onSuccess: () => {
       toast("Frame Material created succesfully");
     },
     onError: (err) => {
-      console.log(err);
       toast("Error occurred");
     },
   });
   const onSubmit = (data) => {
     mutate(data);
   };
-  if (isPending) {
-    return <Loader />;
-  }
 
   return (
     <div className="relative border p-2 tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
