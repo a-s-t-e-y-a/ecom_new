@@ -22,7 +22,7 @@ const LensDetail = () => {
 
     updateData(items);
   }  
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);
   return (
