@@ -14,7 +14,7 @@ const WhatsappIcon = () => {
           <Image
             width={50}
             height={50}
-            src="whatsapp.gif"
+            src="/whatsapp.gif"
             alt="Contact"
             className="  "
           />

@@ -4,6 +4,7 @@ import SlideOnHover from "./Swiper/SlideOnHover";
 import { Frame_size } from "@/utils/contants";
 
 const SingleGlassItem = ({ value }) => {
+  console.log(value);
   const imageArray = value?.product_images?.split(",");
   return (
     <div className="  min-h-[300px]:">
