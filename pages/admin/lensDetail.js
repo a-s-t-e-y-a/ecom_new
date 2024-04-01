@@ -13,8 +13,14 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { FcAbout } from "react-icons/fc";
 const LensDetail = () => {
+  const lensDetailData = useSelector((state) => state.lensDetail);
+
   const router = useRouter();
+
+  const [open, setOpen] = useState(false);
   const [logged, setlogged] = useState(false);
+  const [data, updateData] = useState(lensDetailData);
+
   useEffect(() => {
     if (IsAuth("admin_info")) {
       setlogged(true);
@@ -22,8 +28,7 @@ const LensDetail = () => {
       router.replace("login");
     }
   }, [router]);
-  const lensDetailData = useSelector((state) => state.lensDetail);
-  const [data, updateData] = useState(lensDetailData);
+
 
   function handleOnDragEnd(result) {
     if (!result.destination) return;
@@ -34,7 +39,6 @@ const LensDetail = () => {
 
     updateData(items);
   }
-  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);
   if (logged) {

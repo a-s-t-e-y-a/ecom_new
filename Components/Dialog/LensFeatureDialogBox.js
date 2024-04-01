@@ -32,6 +32,7 @@ const LensFeatureDialogBox = ({ onCancel }) => {
     const datas = JSON.stringify(data);
     formData.append("data", datas);
     mutate(formData);
+    window.location.reload();
   };
   if (isPending) {
     return <Loader />;

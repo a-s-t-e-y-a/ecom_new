@@ -39,8 +39,8 @@ const LensDetailDialogBox = ({ onCancel }) => {
     formData.append("file", data.file[0]);
     const stringifiedData = JSON.stringify(data);
     formData.append("data", stringifiedData);
-    console.log(formData);
     mutate(formData);
+    window.location.reload();
   };
   return (
     <div className="relative border tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
