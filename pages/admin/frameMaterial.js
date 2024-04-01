@@ -14,18 +14,22 @@ import { useEffect } from "react";
 const FrameMaterial = () => {
   const router = useRouter();
 
+  const { data, refetch } = useGetAllMaterial();
+  const [open, setOpen] = useState(false);
   const [logged, setlogged] = useState(false);
+
+  const handleOpen = () => setOpen(!open);
+  const onHide = () => setOpen(false);
+
   useEffect(() => {
     if (IsAuth("admin_info")) {
       setlogged(true);
     } else {
       router.replace("login");
     }
+    refetch()
   }, [router]);
-  const { data } = useGetAllMaterial();
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(!open);
-  const onHide = () => setOpen(false);
+
   if (logged) {
     return (
       <AdminLayout>

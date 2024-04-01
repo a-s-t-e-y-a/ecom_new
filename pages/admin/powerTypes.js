@@ -26,11 +26,11 @@ const PowerTypes = () => {
     } else {
       router.replace("login");
     }
+    refetch()
   }, [data, isSuccess]);
 
   const handleDelete = (item) => {
     mutate(item?.id);
-    window.location.reload()
   };
 
   if (logged) {

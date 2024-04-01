@@ -8,7 +8,7 @@ import Loader from "../Loader";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-const ShapeDialogBox = ({ onCancel }) => {
+const ShapeDialogBox = ({ onCancel, setOpen }) => {
   const { mutate } = useMutation({
     mutationFn: CreateShape,
     onSucusses: (data) => {
@@ -24,6 +24,7 @@ const ShapeDialogBox = ({ onCancel }) => {
     formData.append("data", JSON.stringify({ name: data?.name }));
     formData.append("file", data?.file[0]);
     mutate(formData);
+    setOpen(false)
   };
 
   return (
