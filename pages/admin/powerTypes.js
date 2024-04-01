@@ -10,8 +10,10 @@ import { IsAuth } from "@/utils/IsAuth";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useEffect } from "react";
+import useDeletePowerType from "@/utils/mutations/useDeletePowerType";
 const PowerTypes = () => {
-  const { data, isLoading, isError } = useGetAllPowerType();
+  const { data, refetch, isSuccess } = useGetAllPowerType();
+  const { mutate } = useDeletePowerType()
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);
@@ -24,12 +26,18 @@ const PowerTypes = () => {
     } else {
       router.replace("login");
     }
-  }, [router]);
+  }, [data, isSuccess]);
+
+  const handleDelete = (item) => {
+    mutate(item?.id);
+    window.location.reload()
+  };
+
   if (logged) {
     return (
       <AdminLayout>
         <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
-          {<PowerTypesDialogBox onCancel={onHide} />}
+          {<PowerTypesDialogBox onCancel={onHide} setOpen={setOpen} />}
         </Modal>
         <div>
           <div onClick={handleOpen}>
@@ -43,6 +51,7 @@ const PowerTypes = () => {
                   src={item.image}
                   title={item.name}
                   description={item.description}
+                  onClick={() => handleDelete(item)}
                 />
               ))}
           </div>
