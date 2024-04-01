@@ -12,23 +12,29 @@ import { IsAuth } from "@/utils/IsAuth";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useEffect } from "react";
+import useDeleteShape from "@/utils/mutations/useDeleteShape";
+
 const Shape = () => {
   const router = useRouter();
-
+  const [open, setOpen] = useState(false);
   const [logged, setlogged] = useState(false);
+
+  const { mutate } = useDeleteShape()
+
+  // const shapesData = useSelector((state)=> state.shape)
+  const { data, isLoading, isError, refetch } = useGetAllShape();
+  const handleOpen = () => setOpen(!open);
+  const onHide = () => setOpen(false);
+
   useEffect(() => {
     if (IsAuth("admin_info")) {
       setlogged(true);
     } else {
       router.replace("login");
     }
+    refetch();
   }, [router]);
-  // const shapesData = useSelector((state)=> state.shape)
-  const { data, isLoading, isError } = useGetAllShape();
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(!open);
-  const onHide = () => setOpen(false);
-  console.log(data);
+
   if (isLoading) {
     return <Loader />;
   }
@@ -37,11 +43,16 @@ const Shape = () => {
     return <>Error ...</>;
   }
 
+  const handleDelete = (shape) => {
+    mutate(shape?.id)
+
+  }
+
   if (logged) {
     return (
       <AdminLayout>
         <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
-          {<ShapeDialogBox onCancel={onHide} />}
+          {<ShapeDialogBox onCancel={onHide} setOpen={setOpen} />}
         </Modal>
         <div>
           <div onClick={handleOpen}>
@@ -66,9 +77,9 @@ const Shape = () => {
                   />
                   <div className="flex items-center gap-5">
                     <span className="text-base tracking-wide font-semibold text-gray-700">
-                      {shape.name}
+                      {shape?.name}
                     </span>
-                    <span className="text-sm text-red-500 cursor-pointer">
+                    <span className="text-sm text-red-500 cursor-pointer" onClick={() => handleDelete(shape)}>
                       <DeleteOutlineIcon className="text-base" />
                     </span>
                   </div>

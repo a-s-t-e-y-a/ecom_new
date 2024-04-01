@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import FileInput from "../Admin/FileInput";
 import { TextField } from "@mui/material";
@@ -10,9 +10,9 @@ import CreatePowerType from "@/utils/mutations/useCreatePowerTypes";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-const PowerTypesDialogBox = ({ onCancel }) => {
+const PowerTypesDialogBox = ({ onCancel, setOpen }) => {
   const { register, handleSubmit } = useForm();
-  const { mutate } = useMutation({
+  const { mutate, data } = useMutation({
     mutationFn: CreatePowerType,
     onSucusses: (data) => {
       toast("PowerType created succesfully");
@@ -29,9 +29,14 @@ const PowerTypesDialogBox = ({ onCancel }) => {
       "data",
       JSON.stringify({ name: data.name, description: data.description })
     );
-    console.log(formData);
     mutate(formData);
+    setOpen(false)
   };
+
+  useEffect(()=>{
+    
+  },[data])
+  
   return (
     <div className="relative border tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
       <h1 className="text-md font-semibold text-center text-gray-700 mt-3">

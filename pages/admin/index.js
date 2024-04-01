@@ -25,7 +25,7 @@ const AboutPage = () => {
           <div>
             <IconButton label="About Page" icon={<FcAbout />} />
           </div>
-          <div className="mt-6 flex items-center gap-3 flex-wrap w-full">
+          <div className="mt-6 flex items-center gap-3 flex-wrap w-[80%]">
             <QuillEditor />
           </div>
         </div>

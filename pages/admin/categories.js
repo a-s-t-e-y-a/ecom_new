@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { MdCategory } from "react-icons/md";
 import { toast } from "react-toastify";
 import Image from "next/image";
+import { IsAuth } from "@/utils/IsAuth";
 
 const Categories = () => {
   const {
@@ -32,6 +33,7 @@ const Categories = () => {
     } else {
       router.push("login");
     }
+    refetch()
   }, [router]);
   if (isLoading) {
     return <Loader />;
@@ -44,9 +46,6 @@ const Categories = () => {
       const response = await api.delete(
         `/categories/${data?.products_categories_id}`
       );
-      if (response) {
-        refetch();
-      }
       toast.success(response.data.message); // Use toast.success for success messages
     } catch (error) {
       toast.error(error); // Display error message if deletion fails
