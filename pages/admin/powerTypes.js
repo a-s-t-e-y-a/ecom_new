@@ -13,7 +13,7 @@ import { useEffect } from "react";
 import useDeletePowerType from "@/utils/mutations/useDeletePowerType";
 const PowerTypes = () => {
   const { data, refetch, isSuccess } = useGetAllPowerType();
-  const { mutate } = useDeletePowerType()
+  const { mutate } = useDeletePowerType();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);
@@ -26,8 +26,8 @@ const PowerTypes = () => {
     } else {
       router.replace("login");
     }
-    refetch()
-  }, [data, isSuccess]);
+    refetch();
+  }, [refetch, router]);
 
   const handleDelete = (item) => {
     mutate(item?.id);

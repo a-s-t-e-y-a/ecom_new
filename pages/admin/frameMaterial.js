@@ -27,8 +27,8 @@ const FrameMaterial = () => {
     } else {
       router.replace("login");
     }
-    refetch()
-  }, [router]);
+    refetch();
+  }, [router, refetch, data]);
 
   if (logged) {
     return (
@@ -50,9 +50,9 @@ const FrameMaterial = () => {
                   <span className="text-base tracking-wide font-semibold text-gray-700">
                     {material.name}
                   </span>
-                  <span className="text-sm text-red-500 cursor-pointer">
+                  <button className="text-sm text-red-500 cursor-pointer">
                     <DeleteOutlineIcon className="text-base" />
-                  </span>
+                  </button>
                 </div>
               ))}
           </div>

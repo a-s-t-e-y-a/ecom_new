@@ -19,7 +19,7 @@ const Shape = () => {
   const [open, setOpen] = useState(false);
   const [logged, setlogged] = useState(false);
 
-  const { mutate } = useDeleteShape()
+  const { mutate, isSuccess } = useDeleteShape();
 
   // const shapesData = useSelector((state)=> state.shape)
   const { data, isLoading, isError, refetch } = useGetAllShape();
@@ -33,7 +33,7 @@ const Shape = () => {
       router.replace("login");
     }
     refetch();
-  }, [router]);
+  }, [router, refetch, isSuccess, open]);
 
   if (isLoading) {
     return <Loader />;
@@ -44,9 +44,8 @@ const Shape = () => {
   }
 
   const handleDelete = (shape) => {
-    mutate(shape?.id)
-
-  }
+    mutate(shape?.id);
+  };
 
   if (logged) {
     return (
@@ -79,7 +78,10 @@ const Shape = () => {
                     <span className="text-base tracking-wide font-semibold text-gray-700">
                       {shape?.name}
                     </span>
-                    <span className="text-sm text-red-500 cursor-pointer" onClick={() => handleDelete(shape)}>
+                    <span
+                      className="text-sm text-red-500 cursor-pointer"
+                      onClick={() => handleDelete(shape)}
+                    >
                       <DeleteOutlineIcon className="text-base" />
                     </span>
                   </div>

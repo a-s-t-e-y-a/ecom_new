@@ -37,12 +37,28 @@ const AdminSideBar = () => {
   const Menus = [
     { title: "Dashboard", icon: <RxDashboard />, link: "/admin/dashboard" },
     // { title: "Placed Order", icon: <MdOutlineShoppingCartCheckout />, link: "/admin/placedOrder",},
-    { title: "Product Detail Edit", icon: <BiCalendarEdit />, link: "/admin/productDetail",},
+    {
+      title: "Product Detail Edit",
+      icon: <BiCalendarEdit />,
+      link: "/admin/productDetail",
+    },
     // { title: "Sell Manager ", icon: <FcManager />, link: "/admin/sellManager" },
-    { title: "Power Types", icon: <GiPowerRing />, link: "/admin/powerTypes",},
-    { title: "Lens Detail", icon: <MdOutlineLensBlur />, link: "/admin/lensDetail",},
-    { title: "Lens Feature", icon: <GiMicroscopeLens />, link: "/admin/lensFeature",},
-    { title: "Frame Material", icon: <CgFramer />, link: "/admin/frameMaterial",},
+    { title: "Power Types", icon: <GiPowerRing />, link: "/admin/powerTypes" },
+    {
+      title: "Lens Detail",
+      icon: <MdOutlineLensBlur />,
+      link: "/admin/lensDetail",
+    },
+    {
+      title: "Lens Feature",
+      icon: <GiMicroscopeLens />,
+      link: "/admin/lensFeature",
+    },
+    {
+      title: "Frame Material",
+      icon: <CgFramer />,
+      link: "/admin/frameMaterial",
+    },
     { title: "Brand", icon: <TbBrandAdonisJs />, link: "/admin/brand" },
     { title: "Shape", icon: <IoShapesOutline />, link: "/admin/shape" },
     { title: "Categories", icon: <MdCategory />, link: "/admin/categories" },
@@ -64,7 +80,7 @@ const AdminSideBar = () => {
     // { title: "7-Day Easy Return Policy", icon: <MdPolicy />, link: "/admin/easyReturnPolicy",},
     // { title: "Delivery & Shipping terms", icon: <TbTruckReturn />, link: "/admin/deliveryShippingTerms",},
   ];
-  
+
   return (
     <div
       className={` ${
@@ -80,7 +96,7 @@ const AdminSideBar = () => {
           <FaGlasses onClick={() => setOpen(!open)} />
         </span>
         <h1
-          className={`origin-left font-bold  tracking-wider text-xs text-nowrap md:text-normal duration-200 ${
+          className={`origin-left font-bold  tracking-wider text-xs text-nowrap md:text-lg duration-200 ${
             !open && "scale-0"
           }`}
         >
@@ -94,7 +110,9 @@ const AdminSideBar = () => {
             <Link
               key={index}
               scroll={false}
-              className={`block ${ open ? "rounded-md" : "rounded-full" } flex items-center cursor-pointer hover:bg-gray-50 text-gray-600 
+              className={`block ${
+                open ? "rounded-md" : "rounded-full"
+              } flex items-center cursor-pointer hover:bg-gray-50 text-gray-600 
             			${index === 0 && "bg-light-white"} ${isActive ? "bg-white " : ""}`}
               href={Menu.link}
             >
@@ -102,7 +120,12 @@ const AdminSideBar = () => {
                 <IconButton>
                   {/* {Menu.icon} */}
                   <span
-                    className={`${ open ? "text-xl text-nowrap md:text-normal" : "text-xl md:text-2xl"}  border-none`}>
+                    className={`${
+                      open
+                        ? "text-xl text-nowrap md:text-normal"
+                        : "text-xl md:text-2xl"
+                    }  border-none`}
+                  >
                     {Menu.icon}
                   </span>
                 </IconButton>

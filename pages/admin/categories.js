@@ -33,8 +33,8 @@ const Categories = () => {
     } else {
       router.push("login");
     }
-    refetch()
-  }, [router]);
+    refetch();
+  }, [router, refetch]);
   if (isLoading) {
     return <Loader />;
   }
@@ -73,7 +73,7 @@ const Categories = () => {
                     width={100}
                     height={100}
                     alt=""
-                    src={category.image}
+                    src={`/${category.image}`}
                     className="w-44 h-auto mix-blend-multiply"
                   />
                   <div className="flex w-full h-fit items-center justify-between gap-5">

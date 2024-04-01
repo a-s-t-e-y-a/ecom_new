@@ -30,13 +30,13 @@ const AdminNavBar = () => {
           </span>
         </span>
       </div>
-      <div className="w-[150px] h-[20px] ps-3">
+      <div className=" ps-3">
         <Image
-          width={100}
+          width={300}
           height={100}
           alt=""
           src={"/logo.png"}
-          className="w-full h-full "
+          className=" object-cover"
         />
       </div>
       <Stack direction="row">

@@ -31,7 +31,7 @@ const ProductDetail = () => {
           {<ProductDetailDialog onCancel={onHide} />}
         </Modal>
         <div>
-          <div className=" ms-10">
+          <div className=" w-[79.5vw]">
             <span onClick={handleOpen}>
               <IconButton
                 label="Add product details"

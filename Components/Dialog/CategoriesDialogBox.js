@@ -22,7 +22,7 @@ const CategoriesDialogBox = ({ onCancel, setOpen }) => {
       toast("Error occurred");
     },
   });
-  const onSubmit = async (data) => {
+  const onSubmit = (data) => {
     const formData = new FormData();
     formData.append("data", JSON.stringify({ name: data?.name }));
     formData.append("file", data?.file[0]);

@@ -9,10 +9,10 @@ const AdminLayout = ({ children }) => {
       <Head>
         <title>akkukachasma</title>
       </Head>
-      <div className="h-screen w-screen">
-        <div className="h-full flex items-center scrollbar-hide overflow-y-auto">
+      <div className=" w-screen">
+        <div className=" fixed h-screen  flex items-center scrollbar-hide overflow-y-auto">
           <AdminSideBar />
-          <main className="h-screen flex-1 p-7">
+          <main className=" h-screen w-full flex-1 p-7 overflow-y-auto">
             <AdminNavBar />
             <div className="m-5">{children}</div>
           </main>

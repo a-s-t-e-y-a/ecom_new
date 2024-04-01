@@ -25,11 +25,22 @@ import useGetAllSize from "@/utils/queries/useGetAllSize";
 import useGetAllStyle from "@/utils/queries/useStyleGetAll";
 import SingleSelectSize from "../Admin/sizeMultiple";
 import SingleSelectStyle from "../Admin/styleMultiple";
-import useCreateProduct from "@/utils/mutations/useCreateProduct";
+import CreateProduct from "@/utils/mutations/useCreateProduct";
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 const ProductDetailDialog = ({ onCancel }) => {
   const { register, handleSubmit } = useForm();
-  const { mutate } = useCreateProduct();
+  const { mutate } = useMutation({
+    mutationFn: CreateProduct,
+    onSuccess: () => {
+      toast("Product created succesfully");
+    },
+    onError: () => {
+      toast("Error occurred");
+    },
+  });
+
   const {
     data: brand,
     isLoading: brandLoading,
@@ -42,10 +53,12 @@ const ProductDetailDialog = ({ onCancel }) => {
   const { data: material } = useGetAllMaterial();
   const { data: size } = useGetAllSize();
   const { data: style } = useGetAllStyle();
-  const Data = useCreateProduct();
-  console.log(useCreateProduct().data);
+
   const OnSubmit = (data) => {
-    console.log(data);
+    const form = new FormData();
+    form.append("files", data?.file);
+    form.append("data", JSON.stringify(data));
+    mutate(form);
   };
   return (
     <div className="relative border mt-[1100px] md:mt-[300px] rounded-md shadow-lg w-full md:w-auto h-[calc(100%-1rem)] max-h-full">

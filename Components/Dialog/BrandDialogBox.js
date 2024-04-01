@@ -20,6 +20,7 @@ const BrandDialogBox = ({ onCancel }) => {
       toast("Frame Material created succesfully");
     },
     onError: (err) => {
+      console.log(err);
       toast("Error occurred");
     },
   });
