@@ -77,14 +77,6 @@ const ProductDetailDialog = ({ onCancel }) => {
           />
           <TextField
             fullWidth
-            label="Capacity"
-            name="capacity"
-            id="capacity"
-            {...register("capacity")}
-            sx={{ minWidth: 300 }}
-          />
-          <TextField
-            fullWidth
             label="Use For"
             name="use_for"
             id="use_for"
@@ -104,7 +96,7 @@ const ProductDetailDialog = ({ onCancel }) => {
             name="productBrandId"
           />
           <SingleSelectPowerType
-            label="Select Power"
+            label="Select Power Type"
             options={powerType}
             register={register}
             name="show_lens_list"
@@ -144,7 +136,7 @@ const ProductDetailDialog = ({ onCancel }) => {
             label="Select Warranty"
             options={[true, false]}
             register={register}
-            name="warranty"
+            name="powerList"
           />
           <div>
             <TextField
@@ -246,15 +238,6 @@ const ProductDetailDialog = ({ onCancel }) => {
             id="keyword"
             size="small"
             {...register("keyword")}
-            sx={{ minWidth: 300 }}
-          />
-          <TextField
-            fullWidth
-            label="Temple length"
-            name="temple_length"
-            id="temple_length"
-            size="small"
-            {...register("temple_length")}
             sx={{ minWidth: 300 }}
           />
           <div className="w-[85%]">

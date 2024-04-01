@@ -68,8 +68,8 @@ const AdminSideBar = () => {
   return (
     <div
       className={` ${
-        open ? "w-64" : " w-10 "
-      } bg-gray-100 h-screen   pt-7 fixed z-10  duration-300 border-r `}
+        open ? "w-64" : " w-20 "
+      } bg-gray-100 h-screen p-4 pt-7 relative z-10  duration-300 border-r `}
     >
       <div className="flex gap-x-10 items-center text-gray-700 pb-3">
         <span
@@ -94,7 +94,7 @@ const AdminSideBar = () => {
             <Link
               key={index}
               scroll={false}
-              className={`block ${ open ? "rounded-md" : "  w-10  rounded-full" } flex items-center cursor-pointer hover:bg-gray-50 text-gray-600 
+              className={`block ${ open ? "rounded-md" : "rounded-full" } flex items-center cursor-pointer hover:bg-gray-50 text-gray-600 
             			${index === 0 && "bg-light-white"} ${isActive ? "bg-white " : ""}`}
               href={Menu.link}
             >
@@ -102,7 +102,7 @@ const AdminSideBar = () => {
                 <IconButton>
                   {/* {Menu.icon} */}
                   <span
-                    className={`${ open ? "text-xs text-nowrap md:text-normal" : "text-sm md:text-2xl"}  border-none`}>
+                    className={`${ open ? "text-xl text-nowrap md:text-normal" : "text-xl md:text-2xl"}  border-none`}>
                     {Menu.icon}
                   </span>
                 </IconButton>
@@ -110,7 +110,7 @@ const AdminSideBar = () => {
               <span
                 className={`${
                   !open && "hidden"
-                }  duration-200 font-semibold text-xs text-nowrap md:text-normal`}
+                }  duration-200 font-semibold text-sm text-nowrap md:text-normal`}
               >
                 {Menu.title}
               </span>

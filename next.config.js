@@ -16,6 +16,12 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "cdn.pixabay.com",
+        port: "",
+        pathname: "/**",
+      },
     ], // Change this to the domain only
   },
   webpack: (config) => {
