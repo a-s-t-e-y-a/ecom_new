@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { MdCategory } from "react-icons/md";
 import { toast } from "react-toastify";
 import Image from "next/image";
+import { IsAuth } from "@/utils/IsAuth";
 
 const Categories = () => {
   const {
