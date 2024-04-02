@@ -1,3 +1,4 @@
+"use client";
 import IconButton from "@/Components/Admin/IconButton";
 import LensDetailDialogBox from "@/Components/Dialog/LensDetailDialogBox";
 import Modal from "@/Components/Dialog/Modal";
@@ -12,6 +13,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { FcAbout } from "react-icons/fc";
+import useGetAllLensDetails from "@/utils/queries/useLensDetail";
 const LensDetail = () => {
   const lensDetailData = useSelector((state) => state.lensDetail);
 
@@ -19,16 +21,16 @@ const LensDetail = () => {
 
   const [open, setOpen] = useState(false);
   const [logged, setlogged] = useState(false);
-  const [data, updateData] = useState(lensDetailData);
-
+  const [data, updateData] = useState([]);
+  const { data: datas } = useGetAllLensDetails();
   useEffect(() => {
     if (IsAuth("admin_info")) {
       setlogged(true);
     } else {
       router.replace("login");
     }
-  }, [router]);
-
+    console.log(datas);
+  }, [router, datas]);
 
   function handleOnDragEnd(result) {
     if (!result.destination) return;
@@ -41,6 +43,9 @@ const LensDetail = () => {
   }
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);
+  const deleteHandler = (data) => {
+    console.log(data);
+  };
   if (logged) {
     return (
       <AdminLayout>
@@ -152,9 +157,12 @@ const LensDetail = () => {
                                   Action
                                 </span>
                                 <span className="flex items-center gap-3 font-semibold text-base -mt-4 z-5">
-                                  <span className="text-sm text-red-500 cursor-pointer">
+                                  <button
+                                    onClick={() => deleteHandler(item)}
+                                    className="text-sm text-red-500 cursor-pointer"
+                                  >
                                     <DeleteOutlineIcon className="text-base" />
-                                  </span>
+                                  </button>
                                   <span className="text-sm text-sky-500 cursor-pointer">
                                     <TbEdit className="text-base" />
                                   </span>
