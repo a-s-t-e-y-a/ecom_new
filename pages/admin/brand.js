@@ -18,7 +18,7 @@ const Brand = () => {
          <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
                 { <BrandDialogBox onCancel={onHide} /> }
           </Modal>
-         <div>
+         <div className=' px-10'>
                 <div onClick={handleOpen}>
                     <IconButton label="Add Brand" icon={<TbBrandAdonisJs/>}/>
                 </div>

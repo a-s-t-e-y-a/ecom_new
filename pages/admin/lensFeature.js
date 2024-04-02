@@ -16,7 +16,7 @@ const LensFeature = () => {
       <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
         {<LensFeatureDialogBox onCancel={onHide} />}
       </Modal>
-      <div>
+      <div className="px-10">
         <div onClick={handleOpen}>
           <IconButton label="Add Lens Features" icon={<GiMicroscopeLens />} />
         </div>

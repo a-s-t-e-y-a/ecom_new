@@ -19,7 +19,7 @@ const FrameMaterial = () => {
             <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
                 { <FrameMaterialDialogBox onCancel={onHide} /> }
             </Modal>
-            <div>
+            <div className=' px-10'>
                 <div onClick={handleOpen}>
                     <IconButton label="Add Frame Material" icon={<CgFramer/>}/>
                 </div>

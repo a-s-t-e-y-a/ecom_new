@@ -29,7 +29,7 @@ const Shape = () => {
       <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
         {<ShapeDialogBox onCancel={onHide} />}
       </Modal>
-      <div>
+      <div className=" px-10">
         <div onClick={handleOpen}>
           <IconButton label="Add Shape" icon={<IoShapesOutline />} />
         </div>
@@ -41,10 +41,11 @@ const Shape = () => {
                 className="border rounded-md shadow-md px-5 py-2 inline-flex flex-col items-center gap-2 bg-gray-100"
               >
                 <Image
-                  src={shape.image}
+                  src={`/${shape.image}`}
                   className="w-44 h-auto mix-blend-multiply"
-                  width={'11rem'}
-                  height={'auto'}
+                  width={100}
+                  height={100}
+                  alt=""
                 />
                 <div className="flex items-center gap-5">
                   <span className="text-base tracking-wide font-semibold text-gray-700">

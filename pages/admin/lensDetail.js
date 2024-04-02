@@ -30,7 +30,7 @@ const LensDetail = () => {
       <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
         {<LensDetailDialogBox onCancel={onHide} />}
       </Modal>
-      <div>
+      <div  className=" px-10">
         <div >
           <span onClick={handleOpen}>
             <IconButton label="Add Lens Detail" icon={<MdOutlineLensBlur />} />

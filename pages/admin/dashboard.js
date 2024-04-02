@@ -50,7 +50,7 @@ const items = [
 ];
 function Dashboard() {
   const router = useRouter()
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     const session = sessionStatus;
     if (!session) {
       return router.push("/login")

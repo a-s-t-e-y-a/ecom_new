@@ -51,7 +51,7 @@ const Categories = () => {
           setOpen={setOpen}
         />
       </Modal>
-      <div>
+      <div className=" px-10">
         <div onClick={handleOpen}>
           <IconButton label="Add Category" icon={<MdCategory />} />
         </div>

@@ -18,7 +18,7 @@ const PowerTypes = () => {
       <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
         {<PowerTypesDialogBox onCancel={onHide} />}
       </Modal>
-      <div>
+      <div className=" px-10">
         <div onClick={handleOpen}>
           <IconButton label="Add Power Types" icon={<GiPowerRing />} />
         </div>

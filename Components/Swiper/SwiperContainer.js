@@ -25,7 +25,7 @@ const breakpoints = {
 const SwiperContainer = ({ data }) => {
   const router=useRouter()
   function handleClick(item) {
-    router.push(`/eyeware/${item}`);
+    router.push(`/eyewear/${item}`);
   }
   return (
     <div>
