@@ -53,13 +53,10 @@ const Brand = () => {
                       </span>
                     </div>
                   </div>
-                ))}
             </div>
-          </div>
-        </div>
+        
       </AdminLayout>
     );
   }
-};
 
 export default Brand;
