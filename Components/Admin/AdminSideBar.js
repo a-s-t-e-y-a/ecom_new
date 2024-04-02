@@ -63,29 +63,69 @@ const AdminSideBar = () => {
     { title: "Shape", icon: <IoShapesOutline />, link: "/admin/shape" },
     { title: "Categories", icon: <MdCategory />, link: "/admin/categories" },
     { title: "Color", icon: <IoColorPaletteOutline />, link: "/admin/color" },
-    // { title: "Coupon Manager", icon: <SiCodeproject />, link: "/admin/couponManager",},
-    // { title: "Blog", icon: <FaBlog />, link: "/admin/blog" },
-    // { title: "NewsLetter", icon: <HiOutlineNewspaper />, link: "/admin/newsLetter",},
-    // { title: "Banner Manager", icon: <GiKnightBanner />, link: "/admin/bannerManager",},
-    // { title: "Registered Users", icon: <HiUserAdd />, link: "/admin/registeredUsers",},
-    // { title: "About", icon: <FcAbout />, link: "/admin/about" },
-    // { title: "try@Home", icon: <HiOutlineHome />, link: "/admin/try@Home" },
-    // { title: "Franchise", icon: <MdCurrencyFranc />, link: "/admin/franchise" },
-    // { title: "Enquiry", icon: <RiCustomerService2Line />, link: "/admin/enquiry",},
-    // { title: "Size Guide", icon: <TbTextSize />, link: "/admin/sizeGuide" },
-    // { title: "Cancellation", icon: <MdCancelScheduleSend />, link: "/admin/cancellation",},
-    // { title: "Refund Policy", icon: <HiOutlineReceiptRefund />, link: "/admin/refundPolicy",},
-    // { title: "Privacy Policy", icon: <MdOutlinePrivacyTip />, link: "/admin/privacyPolicy",},
-    // { title: "Guide To Buy", icon: <RiBook2Fill />, link: "/admin/guideToBuy" },
-    // { title: "7-Day Easy Return Policy", icon: <MdPolicy />, link: "/admin/easyReturnPolicy",},
-    // { title: "Delivery & Shipping terms", icon: <TbTruckReturn />, link: "/admin/deliveryShippingTerms",},
+    {
+      title: "Coupon Manager",
+      icon: <SiCodeproject />,
+      link: "/admin/couponManager",
+    },
+    { title: "Blog", icon: <FaBlog />, link: "/admin/blog" },
+    {
+      title: "NewsLetter",
+      icon: <HiOutlineNewspaper />,
+      link: "/admin/newsLetter",
+    },
+    {
+      title: "Banner Manager",
+      icon: <GiKnightBanner />,
+      link: "/admin/bannerManager",
+    },
+    {
+      title: "Registered Users",
+      icon: <HiUserAdd />,
+      link: "/admin/registeredUsers",
+    },
+    { title: "About", icon: <FcAbout />, link: "/admin/about" },
+    { title: "try@Home", icon: <HiOutlineHome />, link: "/admin/try@Home" },
+    { title: "Franchise", icon: <MdCurrencyFranc />, link: "/admin/franchise" },
+    {
+      title: "Enquiry",
+      icon: <RiCustomerService2Line />,
+      link: "/admin/enquiry",
+    },
+    { title: "Size Guide", icon: <TbTextSize />, link: "/admin/sizeGuide" },
+    {
+      title: "Cancellation",
+      icon: <MdCancelScheduleSend />,
+      link: "/admin/cancellation",
+    },
+    {
+      title: "Refund Policy",
+      icon: <HiOutlineReceiptRefund />,
+      link: "/admin/refundPolicy",
+    },
+    {
+      title: "Privacy Policy",
+      icon: <MdOutlinePrivacyTip />,
+      link: "/admin/privacyPolicy",
+    },
+    { title: "Guide To Buy", icon: <RiBook2Fill />, link: "/admin/guideToBuy" },
+    {
+      title: "7-Day Easy Return Policy",
+      icon: <MdPolicy />,
+      link: "/admin/easyReturnPolicy",
+    },
+    {
+      title: "Delivery & Shipping terms",
+      icon: <TbTruckReturn />,
+      link: "/admin/deliveryShippingTerms",
+    },
   ];
 
   return (
     <div
       className={` ${
         open ? "w-64" : " w-20 "
-      } bg-gray-100 h-screen p-4 pt-7 relative z-10  duration-300 border-r `}
+      } bg-gray-100  p-4 pt-7 relative z-10 me-5 duration-300 border-r `}
     >
       <div className="flex gap-x-10 items-center text-gray-700 pb-3">
         <span

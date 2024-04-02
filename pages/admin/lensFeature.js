@@ -8,14 +8,13 @@ import { IsAuth } from "@/utils/IsAuth";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { FcAbout } from "react-icons/fc";
 import useGetAllLensFeature from "@/utils/queries/useLensFeature";
 const LensFeature = () => {
   const router = useRouter();
   const [logged, setlogged] = useState(false);
   const [open, setOpen] = useState(false);
 
-  const { data } = useGetAllLensFeature()
+  const { data } = useGetAllLensFeature();
 
   useEffect(() => {
     if (IsAuth("admin_info")) {
@@ -29,9 +28,9 @@ const LensFeature = () => {
   const onHide = () => setOpen(false);
 
   const handleDelete = (item) => {
-    mutate(item.id)
+    mutate(item.id);
     window.location.reload();
-  }
+  };
 
   if (logged) {
     return (
@@ -44,8 +43,7 @@ const LensFeature = () => {
             <IconButton label="Add Lens Features" icon={<GiMicroscopeLens />} />
           </div>
           <div className="mt-10 grid grid-cols-2 items-center gap-5 w-full">
-            {
-              data &&
+            {data &&
               data.map((item, index) => (
                 <PowerType
                   key={index}
@@ -54,8 +52,7 @@ const LensFeature = () => {
                   description={item.description}
                   onClick={() => handleDelete(item)}
                 />
-              ))
-            }
+              ))}
           </div>
         </div>
       </AdminLayout>

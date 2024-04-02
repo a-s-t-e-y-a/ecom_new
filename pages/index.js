@@ -158,7 +158,7 @@ export default function Home() {
         <div className="w-full relative">
           <Image
             src="/banner5.png"
-            width={200}
+            width={600}
             height={400}
             alt=""
             className="w-full h-auto object-cover"

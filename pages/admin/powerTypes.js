@@ -26,8 +26,7 @@ const PowerTypes = () => {
     } else {
       router.replace("login");
     }
-    refetch();
-  }, [refetch, router]);
+  }, [router, isSuccess, refetch]);
 
   const handleDelete = (item) => {
     mutate(item?.id);
@@ -37,7 +36,13 @@ const PowerTypes = () => {
     return (
       <AdminLayout>
         <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
-          {<PowerTypesDialogBox onCancel={onHide} setOpen={setOpen} />}
+          {
+            <PowerTypesDialogBox
+              onCancel={onHide}
+              setOpen={setOpen}
+              refecth={refetch}
+            />
+          }
         </Modal>
         <div>
           <div onClick={handleOpen}>

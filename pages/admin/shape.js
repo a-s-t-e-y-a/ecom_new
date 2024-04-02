@@ -78,12 +78,12 @@ const Shape = () => {
                     <span className="text-base tracking-wide font-semibold text-gray-700">
                       {shape?.name}
                     </span>
-                    <span
+                    <button
                       className="text-sm text-red-500 cursor-pointer"
                       onClick={() => handleDelete(shape)}
                     >
                       <DeleteOutlineIcon className="text-base" />
-                    </span>
+                    </button>
                   </div>
                 </div>
               ))}

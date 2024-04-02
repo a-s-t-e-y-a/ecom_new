@@ -64,14 +64,9 @@ function Dashboard() {
   if (logged) {
     return (
       <AdminLayout>
-        <div className="space-y-6">
-          <div className="flex items-center">
-            <h1 className="text-4xl font-bold px-10 tracking-wide">
-              Dashboard
-            </h1>
-            <div></div>
-          </div>
-          <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 px-10 gap-5">
+        <div className="px-5">
+          <h1 className=" text-4xl font-bold mb-5">Dashboard</h1>
+          <div className=" grid grid-cols-4 gap-4">
             {items.map((item, id) => (
               <div key={id}>
                 <DashboardSingleItem
@@ -90,3 +85,6 @@ function Dashboard() {
 }
 
 export default Dashboard;
+{
+  /*  */
+}

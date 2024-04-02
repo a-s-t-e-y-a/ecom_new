@@ -6,7 +6,7 @@ import query from "../queryClinet";
 const useDeletePowerType = () => {
   const deletePowerType = useMutation({
     mutationFn: async (id) => {
-      await api.delete(`/power-type/${id}`);
+      await api.delete(`/lense-feature/${id}`);
       query.invalidateQueries({ queryKey: ["api/PowerType"] });
     },
     onSuccess: (data) => {

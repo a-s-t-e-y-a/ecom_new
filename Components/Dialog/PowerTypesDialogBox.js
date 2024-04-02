@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import FileInput from "../Admin/FileInput";
 import { TextField } from "@mui/material";
@@ -9,13 +9,21 @@ import { addPowerType } from "@/Slices/powerTypeSlice";
 import CreatePowerType from "@/utils/mutations/useCreatePowerTypes";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import Loader from "../Loader";
+import query from "@/utils/queryClinet";
 
-const PowerTypesDialogBox = ({ onCancel, setOpen }) => {
+const PowerTypesDialogBox = ({ onCancel, setOpen, refecth }) => {
   const { register, handleSubmit } = useForm();
-  const { mutate, data } = useMutation({
+  const [data, setdata] = useState([]);
+  const {
+    mutate,
+    data: datas,
+    isSuccess,
+  } = useMutation({
     mutationFn: CreatePowerType,
     onSucusses: (data) => {
       toast("PowerType created succesfully");
+      query.invalidateQueries({ queryKey: ["api/PowerType"] });
     },
     onError: () => {
       toast("Error occurred");
@@ -30,13 +38,14 @@ const PowerTypesDialogBox = ({ onCancel, setOpen }) => {
       JSON.stringify({ name: data.name, description: data.description })
     );
     mutate(formData);
-    setOpen(false)
+    setOpen(false);
   };
+  useEffect(() => {
+    if (datas) {
+      setdata(datas);
+    }
+  }, [datas]);
 
-  useEffect(()=>{
-    
-  },[data])
-  
   return (
     <div className="relative border tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
       <h1 className="text-md font-semibold text-center text-gray-700 mt-3">

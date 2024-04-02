@@ -20,7 +20,7 @@ const LensDetailDialogBox = ({ onCancel }) => {
     onSuccess: () => {
       toast("Lens Deatails created succesfully");
     },
-    onError: () => {
+    onError: (data) => {
       toast("Error occurred");
     },
   });
@@ -38,7 +38,6 @@ const LensDetailDialogBox = ({ onCancel }) => {
     const stringifiedData = JSON.stringify(data);
     formData.append("data", stringifiedData);
     mutate(formData);
-    window.location.reload();
   };
   return (
     <div className="relative border tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
@@ -56,12 +55,6 @@ const LensDetailDialogBox = ({ onCancel }) => {
             options={categories}
             register={register}
             name="categories_id"
-          />
-          <SingleSelectBrands
-            label="Brand Name"
-            options={brand}
-            register={register}
-            name="products_brand_id"
           />
 
           <TextField

@@ -28,6 +28,7 @@ import SingleSelectStyle from "../Admin/styleMultiple";
 import CreateProduct from "@/utils/mutations/useCreateProduct";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import query from "@/utils/queryClinet";
 
 const ProductDetailDialog = ({ onCancel }) => {
   const { register, handleSubmit } = useForm();
@@ -35,6 +36,8 @@ const ProductDetailDialog = ({ onCancel }) => {
     mutationFn: CreateProduct,
     onSuccess: () => {
       toast("Product created succesfully");
+      query.invalidateQueries({ queryKey: ["api/productDetail"] });
+      window.location.reload();
     },
     onError: () => {
       toast("Error occurred");
@@ -61,8 +64,8 @@ const ProductDetailDialog = ({ onCancel }) => {
     mutate(form);
   };
   return (
-    <div className="relative border mt-[1100px] md:mt-[300px] rounded-md shadow-lg w-full md:w-auto h-[calc(100%-1rem)] max-h-full">
-      <h1 className="text-md font-semibold text-center text-gray-700 mt-3">
+    <div className="relative border mt-[1100px] md:mt-[300px] rounded-md shadow-lg w-full md:w-auto h-[calc(100%-1rem)] max-h-full ">
+      <h1 className="text-md font-semibold text-center text-gray-700 mt-3 mb-5">
         Add Products Detail
       </h1>
       <form
@@ -88,26 +91,20 @@ const ProductDetailDialog = ({ onCancel }) => {
             {...register("product_model_number")}
             sx={{ minWidth: 300 }}
           />
-          <TextField
-            fullWidth
-            label="Use For"
-            name="use_for"
-            id="use_for"
-            {...register("use_for")}
-            sx={{ minWidth: 300 }}
+          <SingleSelectUniversal
+            label="Gender"
+            options={["male", "Female", "unisex"]}
+            register={register}
+            name="powerList"
           />
+
           <SingleSelectCategories
             label="Product Categories Name"
             options={categories}
             register={register}
             name="productCategoriesId"
           />
-          <SingleSelectBrands
-            label="Brand Name"
-            options={brand}
-            register={register}
-            name="productBrandId"
-          />
+
           <SingleSelectPowerType
             label="Select Power Type"
             options={powerType}
@@ -146,8 +143,8 @@ const ProductDetailDialog = ({ onCancel }) => {
             name="style"
           />
           <SingleSelectUniversal
-            label="Select Warranty"
-            options={[true, false]}
+            label="Select lense"
+            options={["Yes", "No"]}
             register={register}
             name="powerList"
           />
@@ -210,11 +207,11 @@ const ProductDetailDialog = ({ onCancel }) => {
           />
           <TextField
             fullWidth
-            label="Country of origin"
-            name="country_of_origin"
-            id="country_of_origin"
+            label="Lens Width"
+            name="lens_width"
+            id="lens_width"
             size="small"
-            {...register("country_of_origin")}
+            {...register("lens_width")}
             sx={{ minWidth: 300 }}
           />
           <TextField
@@ -253,7 +250,7 @@ const ProductDetailDialog = ({ onCancel }) => {
             {...register("keyword")}
             sx={{ minWidth: 300 }}
           />
-          <div className="w-[85%]">
+          <div className=" col-span-2">
             <Textarea
               label="Description"
               className="col-span-3"
@@ -273,7 +270,7 @@ const ProductDetailDialog = ({ onCancel }) => {
       </form>
       <button
         type="button"
-        className="absolute -top-2 right-2 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
+        className="absolute top-4 right-2 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
         onClick={onCancel}
       >
         <svg
