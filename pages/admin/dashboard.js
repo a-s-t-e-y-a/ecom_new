@@ -1,9 +1,10 @@
-'use client'
+"use client";
 import DashboardSingleItem from "@/Components/Admin/DashboardSingleItem";
 import AdminLayout from "@/Layout/AdminLayout";
-import React from "react";
-import {sessionStatus} from "@/utils/session";
-import { useRouter } from 'next/navigation'
+import { IsAuth } from "@/utils/IsAuth";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+import { useEffect } from "react";
 const items = [
   {
     color: "bg-blue-300",
@@ -48,36 +49,39 @@ const items = [
     src: "/questions.png",
   },
 ];
+
 function Dashboard() {
   const router = useRouter()
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     const session = sessionStatus;
     if (!session) {
       return router.push("/login")
     }
-  });
-  return (
-    <AdminLayout>
-      <div className="space-y-6">
-        <div className="flex items-center">
-          <h1 className="text-4xl font-bold px-10 tracking-wide">Dashboard</h1>
-          <div></div>
+  }, [router]);
+  if (logged) {
+    return (
+      <AdminLayout>
+        <div className="px-5">
+          <h1 className=" text-4xl font-bold mb-5">Dashboard</h1>
+          <div className=" grid grid-cols-4 gap-4">
+            {items.map((item, id) => (
+              <div key={id}>
+                <DashboardSingleItem
+                  color={item.color}
+                  title={item.title}
+                  number={item.number}
+                  src={item.src}
+                />
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 px-10 gap-5">
-          {items.map((item, id) => (
-            <div key={id}>
-              <DashboardSingleItem
-                color={item.color}
-                title={item.title}
-                number={item.number}
-                src={item.src}
-              />
-            </div>
-          ))}
-        </div>
-      </div>
-    </AdminLayout>
-  );
+      </AdminLayout>
+    );
+  }
 }
 
 export default Dashboard;
+{
+  /*  */
+}

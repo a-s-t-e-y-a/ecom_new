@@ -4,12 +4,16 @@ import Modal from "@/Components/Dialog/Modal";
 import PowerTypesDialogBox from "@/Components/Dialog/PowerTypesDialogBox";
 import AdminLayout from "@/Layout/AdminLayout";
 import useGetAllPowerType from "@/utils/queries/usePowerType";
-import React from "react";
-import { useState } from "react";
-import { GiPowerRing } from "react-icons/gi";
 
+import { GiPowerRing } from "react-icons/gi";
+import { IsAuth } from "@/utils/IsAuth";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+import { useEffect } from "react";
+import useDeletePowerType from "@/utils/mutations/useDeletePowerType";
 const PowerTypes = () => {
-  const {data , isLoading,isError} = useGetAllPowerType()
+  const { data, refetch, isSuccess } = useGetAllPowerType();
+  const { mutate } = useDeletePowerType();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);
@@ -18,7 +22,7 @@ const PowerTypes = () => {
       <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
         {<PowerTypesDialogBox onCancel={onHide} />}
       </Modal>
-      <div className=" px-10">
+      <div>
         <div onClick={handleOpen}>
           <IconButton label="Add Power Types" icon={<GiPowerRing />} />
         </div>
@@ -33,5 +37,4 @@ const PowerTypes = () => {
     </AdminLayout>
   );
 };
-
 export default PowerTypes;

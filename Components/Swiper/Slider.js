@@ -7,10 +7,10 @@ import { Navigation } from "swiper";
 import { GlassesType } from "../../Layout/Data";
 import Image from "next/image";
 
-export default function Slider() {
+export default function Slider({ data }) {
   const router = useRouter();
   function handleClick(item) {
-    const itemName = encodeURIComponent(item.title.toLowerCase());
+    const itemName = encodeURIComponent(item?.title?.toLowerCase());
     router.push(`/product?name=${itemName}`);
   }
   return (
@@ -26,7 +26,7 @@ export default function Slider() {
         modules={[Navigation]}
         className="mySwiper min-h-[200px]  "
       >
-        {GlassesType.map((slide, index) => (
+        {data.map((slide, index) => (
           <SwiperSlide
             key={index}
             className=" rounded-md  min-h-[100px]  py-10 "
@@ -37,11 +37,13 @@ export default function Slider() {
                   width={200}
                   height={200}
                   className=" w-full h-[100px] object-cover rounded  "
-                  src={slide.src}
+                  src={slide?.imageArray[0]}
                   alt=""
                 />
               </div>
-              <span className="text-sm text-center">{slide.title}</span>
+              <span className="text-sm text-center font-semibold">
+                &#8377; {slide?.discounted_price}
+              </span>
             </div>
           </SwiperSlide>
         ))}

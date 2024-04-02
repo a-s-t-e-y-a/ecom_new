@@ -1,30 +1,41 @@
-import IconButton from '@/Components/Admin/IconButton'
-import BannerManagerDialogBox from '@/Components/Dialog/BannerManagerDialogBox'
-import Modal from '@/Components/Dialog/Modal'
-import AdminLayout from '@/Layout/AdminLayout'
-import React from 'react'
-import { useState } from 'react'
-import { GiKnightBanner } from 'react-icons/gi'
-
+import IconButton from "@/Components/Admin/IconButton";
+import BannerManagerDialogBox from "@/Components/Dialog/BannerManagerDialogBox";
+import Modal from "@/Components/Dialog/Modal";
+import AdminLayout from "@/Layout/AdminLayout";
+import { GiKnightBanner } from "react-icons/gi";
+import { IsAuth } from "@/utils/IsAuth";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+import { useEffect } from "react";
 const BannagerManager = () => {
-    const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(!open);
-    const onHide = () =>  setOpen(false) 
-  return (
-    <AdminLayout>
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(!open);
+  const onHide = () => setOpen(false);
+  const router = useRouter();
+
+  const [logged, setlogged] = useState(false);
+  useEffect(() => {
+    if (IsAuth("admin_info")) {
+      setlogged(true);
+    } else {
+      router.replace("login");
+    }
+  }, [router]);
+  if (logged) {
+    return (
+      <AdminLayout>
         <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
-            { <BannerManagerDialogBox onCancel={onHide} /> }
+          {<BannerManagerDialogBox onCancel={onHide} />}
         </Modal>
         <div>
-            <div onClick={handleOpen}>
-                <IconButton label="Bannager Manager" icon={<GiKnightBanner/>}/>
-            </div>
-            <div className='mt-6 flex items-center gap-3 flex-wrap w-full'>
-                
-            </div>
+          <div onClick={handleOpen}>
+            <IconButton label="Bannager Manager" icon={<GiKnightBanner />} />
+          </div>
+          <div className="mt-6 flex items-center gap-3 flex-wrap w-full"></div>
         </div>
-    </AdminLayout>
-  )
-}
+      </AdminLayout>
+    );
+  }
+};
 
-export default BannagerManager
+export default BannagerManager;

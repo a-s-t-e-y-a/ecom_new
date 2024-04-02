@@ -1,21 +1,9 @@
-import api, { Imageapi, axiosInstance } from "@/api"
-import { useMutation } from "@tanstack/react-query"
-import toast from "react-hot-toast"
+import api from "@/api";
 
-const useCreateBrand = ()=>{
-  const createBrand = useMutation({
-    mutationFn:async (data)=>{
-      const res = await api.post('/brands',data)
-      return res.data
-    },
-    onSuccess:(data)=>{
-      toast('Brand added successfully')
-    },
-    onError:(data)=>{
-      toast(error.message)
-    }
-  })
-  return createBrand;
-}
+const CreateBrand = (data) => {
+  return api.post("/brands", {
+    data: data,
+  });
+};
 
-export default useCreateBrand;
+export default CreateBrand;

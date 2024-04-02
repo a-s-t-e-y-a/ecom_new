@@ -4,24 +4,31 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import FileInput from "../Admin/FileInput";
 import { addCategory } from "@/Slices/categoriesSlice";
-import useCreateCategories from "@/utils/mutations/useCreateCategories";
-import { LocalActivityTwoTone } from "@mui/icons-material";
+import CreateCategories from "@/utils/mutations/useCreateCategories";
 import Loader from "../Loader";
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 const CategoriesDialogBox = ({ onCancel, setOpen }) => {
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
-  const { mutate, isPending, isError } = useCreateCategories();
-  const onSubmit = async (data) => {
+  const { mutate, isError } = useMutation({
+    mutationFn: CreateCategories,
+    onSucusses: (data) => {
+      toast("Categories created succesfully");
+    },
+    onError: (err) => {
+      console.log(err);
+      toast("Error occurred");
+    },
+  });
+  const onSubmit = (data) => {
     const formData = new FormData();
-    formData.append("data", JSON.stringify({ name: data.name }));
-    formData.append("file", data.file[0]);
-    setOpen(false);
-    await mutate(formData);
+    formData.append("data", JSON.stringify({ name: data?.name }));
+    formData.append("file", data?.file[0]);
+    mutate(formData);
   };
-  if (isPending) {
-    return <Loader />;
-  }
+
   if (isError) {
     return <>Error occurred</>;
   }

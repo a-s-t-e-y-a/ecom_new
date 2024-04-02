@@ -16,6 +16,12 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "cdn.pixabay.com",
+        port: "",
+        pathname: "/**",
+      },
     ], // Change this to the domain only
   },
   webpack: (config) => {
@@ -24,5 +30,19 @@ const nextConfig = {
   },
 };
 
+async function redirects() {
+  return [
+    {
+      source: "/admin/:id",
+      destination: "/",
+      permanent: true,
+    },
+    {
+      source: "/admin",
+      destination: "/",
+      permanent: true,
+    },
+  ];
+}
 
-module.exports = { ...nextConfig }; // Merging redirects with nextConfig
+module.exports = { redirects, ...nextConfig }; // Merging redirects with nextConfig

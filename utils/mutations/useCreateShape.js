@@ -1,21 +1,7 @@
-import { Imageapi, axiosInstance } from "@/api"
-import { useMutation } from "@tanstack/react-query"
-import toast from "react-hot-toast"
+import { Imageapi } from "@/api";
 
-const useCreateShape = ()=>{
-  const createShape = useMutation({
-    mutationFn:async (data)=>{
-      const res = await Imageapi.post('/shape',data)
-      return res.data
-    },
-    onSuccess:(data)=>{
-      toast('Shape added successfully')
-    },
-    onError:(data)=>{
-      toast(error.message)
-    }
-  })
-  return createShape;
-}
+const CreateShape = (data) => {
+  return Imageapi.post("/shape", data);
+};
 
-export default useCreateShape;
+export default CreateShape;

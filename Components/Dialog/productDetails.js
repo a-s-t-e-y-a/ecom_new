@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { useForm } from "react-hook-form";
 import FileInput from "../Admin/FileInput";
@@ -24,10 +25,25 @@ import useGetAllSize from "@/utils/queries/useGetAllSize";
 import useGetAllStyle from "@/utils/queries/useStyleGetAll";
 import SingleSelectSize from "../Admin/sizeMultiple";
 import SingleSelectStyle from "../Admin/styleMultiple";
+import CreateProduct from "@/utils/mutations/useCreateProduct";
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "react-toastify";
+import query from "@/utils/queryClinet";
 
 const ProductDetailDialog = ({ onCancel }) => {
   const { register, handleSubmit } = useForm();
-  const { mutate } = useCreateLensDeatils();
+  const { mutate } = useMutation({
+    mutationFn: CreateProduct,
+    onSuccess: () => {
+      toast("Product created succesfully");
+      query.invalidateQueries({ queryKey: ["api/productDetail"] });
+      window.location.reload();
+    },
+    onError: () => {
+      toast("Error occurred");
+    },
+  });
+
   const {
     data: brand,
     isLoading: brandLoading,
@@ -40,17 +56,21 @@ const ProductDetailDialog = ({ onCancel }) => {
   const { data: material } = useGetAllMaterial();
   const { data: size } = useGetAllSize();
   const { data: style } = useGetAllStyle();
-  // const size = ["Narrow", "Extra Narrow", "Medium", "Wide", "Extra Wide"]
-  // const style = ["RimLess", "Half Frame", "Full Frame"]
-  const onSubmit = async (data) => {};
+
+  const OnSubmit = (data) => {
+    const form = new FormData();
+    form.append("files", data?.file);
+    form.append("data", JSON.stringify(data));
+    mutate(form);
+  };
   return (
-    <div className="relative border mt-[1100px] md:mt-[300px] rounded-md shadow-lg w-full md:w-auto h-[calc(100%-1rem)] max-h-full">
-      <h1 className="text-md font-semibold text-center text-gray-700 mt-3">
+    <div className="relative border mt-[1100px] md:mt-[300px] rounded-md shadow-lg w-full md:w-auto h-[calc(100%-1rem)] max-h-full ">
+      <h1 className="text-md font-semibold text-center text-gray-700 mt-3 mb-5">
         Add Products Detail
       </h1>
       <form
         className="flex flex-col items-center justify-between gap-6 px-6 pb-6"
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(OnSubmit)}
       >
         <div className="grid grid-cols-1 md:grid-cols-2  items-center justify-between w-full gap-3">
           <FileInput title="Main Image" register={register} />
@@ -71,36 +91,22 @@ const ProductDetailDialog = ({ onCancel }) => {
             {...register("product_model_number")}
             sx={{ minWidth: 300 }}
           />
-          <TextField
-            fullWidth
-            label="Capacity"
-            name="capacity"
-            id="capacity"
-            {...register("capacity")}
-            sx={{ minWidth: 300 }}
+          <SingleSelectUniversal
+            label="Gender"
+            options={["male", "Female", "unisex"]}
+            register={register}
+            name="powerList"
           />
-          <TextField
-            fullWidth
-            label="Use For"
-            name="use_for"
-            id="use_for"
-            {...register("use_for")}
-            sx={{ minWidth: 300 }}
-          />
+
           <SingleSelectCategories
             label="Product Categories Name"
             options={categories}
             register={register}
             name="productCategoriesId"
           />
-          <SingleSelectBrands
-            label="Brand Name"
-            options={brand}
-            register={register}
-            name="productBrandId"
-          />
+
           <SingleSelectPowerType
-            label="Select Power"
+            label="Select Power Type"
             options={powerType}
             register={register}
             name="show_lens_list"
@@ -117,19 +123,7 @@ const ProductDetailDialog = ({ onCancel }) => {
             register={register}
             name="shape"
           />
-          <SingleSelectUniversal
-            size="md"
-            label="Select Style"
-            options={style}
-            register={register}
-            name="style"
-          />
-          <SingleSelectUniversal
-            label="Select size"
-            options={size}
-            register={register}
-            name="warranty"
-          />
+
           <SingleSelectMaterial
             label="Select material"
             options={material}
@@ -149,10 +143,10 @@ const ProductDetailDialog = ({ onCancel }) => {
             name="style"
           />
           <SingleSelectUniversal
-            label="Select Warranty"
-            options={[true, false]}
+            label="Select lense"
+            options={["Yes", "No"]}
             register={register}
-            name="warranty"
+            name="powerList"
           />
           <div>
             <TextField
@@ -213,11 +207,11 @@ const ProductDetailDialog = ({ onCancel }) => {
           />
           <TextField
             fullWidth
-            label="Country of origin"
-            name="country_of_origin"
-            id="country_of_origin"
+            label="Lens Width"
+            name="lens_width"
+            id="lens_width"
             size="small"
-            {...register("country_of_origin")}
+            {...register("lens_width")}
             sx={{ minWidth: 300 }}
           />
           <TextField
@@ -256,16 +250,7 @@ const ProductDetailDialog = ({ onCancel }) => {
             {...register("keyword")}
             sx={{ minWidth: 300 }}
           />
-          <TextField
-            fullWidth
-            label="Temple length"
-            name="temple_length"
-            id="temple_length"
-            size="small"
-            {...register("temple_length")}
-            sx={{ minWidth: 300 }}
-          />
-          <div className="w-[85%]">
+          <div className=" col-span-2">
             <Textarea
               label="Description"
               className="col-span-3"
@@ -285,7 +270,7 @@ const ProductDetailDialog = ({ onCancel }) => {
       </form>
       <button
         type="button"
-        className="absolute -top-2 right-2 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
+        className="absolute top-4 right-2 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
         onClick={onCancel}
       >
         <svg

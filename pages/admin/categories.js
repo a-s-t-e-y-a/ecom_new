@@ -10,6 +10,8 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { MdCategory } from "react-icons/md";
 import { toast } from "react-toastify";
+import Image from "next/image";
+import { IsAuth } from "@/utils/IsAuth";
 
 const Categories = () => {
   const {
@@ -23,6 +25,16 @@ const Categories = () => {
 
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);
+
+  const [logged, setlogged] = useState(false);
+  useEffect(() => {
+    if (IsAuth("admin_info")) {
+      setlogged(true);
+    } else {
+      router.push("login");
+    }
+    refetch();
+  }, [router, refetch]);
   if (isLoading) {
     return <Loader />;
   }
@@ -34,9 +46,6 @@ const Categories = () => {
       const response = await api.delete(
         `/categories/${data?.products_categories_id}`
       );
-      if (response) {
-        refetch();
-      }
       toast.success(response.data.message); // Use toast.success for success messages
     } catch (error) {
       toast.error(error); // Display error message if deletion fails
@@ -51,7 +60,7 @@ const Categories = () => {
           setOpen={setOpen}
         />
       </Modal>
-      <div className=" px-10">
+      <div>
         <div onClick={handleOpen}>
           <IconButton label="Add Category" icon={<MdCategory />} />
         </div>

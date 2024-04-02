@@ -1,44 +1,55 @@
 import { TextField } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useForm } from "react-hook-form";
-import { useDispatch } from 'react-redux';
-import { addBrand } from "@/Slices/brandSlice";
-// import MultipleSelect from "../Admin/MultipleSelect";
 import useGetAllCategories from "@/utils/queries/useCategoriesGetAll";
-import useCreateBrand from "@/utils/mutations/useCreateBrand";
-import { MdWarehouse } from "react-icons/md";
+import CreateBrand from "@/utils/mutations/useCreateBrand";
 import Loader from "../Loader";
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
-const ProductCategoriesNameOption = ["SunGlasses" , "Computer Glasses"]
+const ProductCategoriesNameOption = ["SunGlasses", "Computer Glasses"];
 
-const ProductBrandNameOption = ["Normal" , "Trends"]
+const ProductBrandNameOption = ["Normal", "Trends"];
 
 const BrandDialogBox = ({ onCancel }) => {
-    const {data , isLoading } = useGetAllCategories()
-    const { register, handleSubmit} = useForm();
-  const {mutate,isPending, isError} = useCreateBrand()
-    const onSubmit = (data)=>{
-    mutate(data)
-  }
-  if(isPending){
-    return <Loader/>
-  }
-  
+  const { data, isLoading } = useGetAllCategories();
+  const { register, handleSubmit } = useForm();
+  const { mutate } = useMutation({
+    mutationFn: CreateBrand,
+    onSuccess: () => {
+      toast("Frame Material created succesfully");
+    },
+    onError: (err) => {
+      console.log(err);
+      toast("Error occurred");
+    },
+  });
+  const onSubmit = (data) => {
+    mutate(data);
+  };
+
   return (
     <div className="relative border p-2 tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
       <h1 className="text-md font-semibold text-center text-gray-700 mt-3">
         Add Brand
       </h1>
-      <form 
+      <form
         className="flex items-center justify-between gap-6 px-6 pb-6"
         onSubmit={handleSubmit(onSubmit)}
       >
         {/* <MultipleSelect label="ProductCategoriesName" options={data} register={register}/> */}
-        <TextField label="Brand Name" name="brand" id="brand" size="small" {...register("brand_name")} sx={{minWidth:300}}/> 
+        <TextField
+          label="Brand Name"
+          name="brand"
+          id="brand"
+          size="small"
+          {...register("brand_name")}
+          sx={{ minWidth: 300 }}
+        />
         <button
           type="submit"
           className="text-white bg-sky-400 hover:bg-sky-500  focus:outline-none font-medium rounded-lg text-sm inline-flex items-center px-5 py-2 text-center mr-2"
-        //   onClick={}
+          //   onClick={}
           onSubmit={handleSubmit}
         >
           Add <AddIcon className="ml-1 font-bold text-base" />

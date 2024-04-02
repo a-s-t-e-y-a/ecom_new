@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import Image from "next/image";
@@ -8,6 +8,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { useRouter } from "next/router";
+import { imageUrl } from "@/utils/contants";
 const breakpoints = {
   320: {
     slidesPerView: 1,
@@ -23,7 +24,7 @@ const breakpoints = {
 };
 
 const SwiperContainer = ({ data }) => {
-  const router=useRouter()
+  const router = useRouter();
   function handleClick(item) {
     router.push(`/eyewear/${item}`);
   }
@@ -47,12 +48,19 @@ const SwiperContainer = ({ data }) => {
               <Image
                 width={200}
                 height={200}
-                src={`${elemt?.imageArray[0]}`}
+                src={`${
+                  elemt?.imageArray?.length > 0
+                    ? elemt?.imageArray[0]
+                    : "https://akkukachasma.s3.amazonaws.com/product_images/" +
+                      elemt.product_images.split(",")[0]
+                }`}
                 className=" object-cover"
                 alt="galess"
               />
             </div>
-            <p className=" text-center font-semibold ">&#8377; {elemt?.discounted_price}</p>
+            <p className=" text-center font-semibold ">
+              &#8377; {elemt?.discounted_price}
+            </p>
           </SwiperSlide>
         ))}
       </Swiper>

@@ -1,21 +1,15 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = [
-    
-]
+const initialState = [];
 
 export const powerTypeSlice = createSlice({
-    name : "brand",
-    initialState,
-    reducers : {
-        addPowerType : (state,action) => {
+  name: "brand",
+  initialState,
+  reducers: {
+    addPowerType: (state, action) => {},
+    deletePowerType: (state, action) => {},
+  },
+});
 
-        },
-        deletePowerType : (state,action) => {
-            
-        }
-    }
-})
-
-export default powerTypeSlice.reducer
-export const {addPowerType,deletePowerType} = powerTypeSlice.actions
+export default powerTypeSlice.reducer;
+export const { addPowerType, deletePowerType } = powerTypeSlice.actions;

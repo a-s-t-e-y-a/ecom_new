@@ -3,12 +3,27 @@ import PowerType from "@/Components/Admin/PowerType";
 import Modal from "@/Components/Dialog/Modal";
 import LensFeatureDialogBox from "@/Components/Dialog/LensFeatureDialogBox";
 import AdminLayout from "@/Layout/AdminLayout";
-import React from "react";
-import { useState } from "react";
 import { GiMicroscopeLens } from "react-icons/gi";
-
+import { IsAuth } from "@/utils/IsAuth";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+import { useEffect } from "react";
+import useGetAllLensFeature from "@/utils/queries/useLensFeature";
 const LensFeature = () => {
+  const router = useRouter();
+  const [logged, setlogged] = useState(false);
   const [open, setOpen] = useState(false);
+
+  const { data } = useGetAllLensFeature();
+
+  useEffect(() => {
+    if (IsAuth("admin_info")) {
+      setlogged(true);
+    } else {
+      router.replace("login");
+    }
+  }, [router]);
+
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);
   return (
@@ -16,7 +31,7 @@ const LensFeature = () => {
       <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
         {<LensFeatureDialogBox onCancel={onHide} />}
       </Modal>
-      <div className="px-10">
+      <div>
         <div onClick={handleOpen}>
           <IconButton label="Add Lens Features" icon={<GiMicroscopeLens />} />
         </div>
@@ -30,5 +45,4 @@ const LensFeature = () => {
     </AdminLayout>
   );
 };
-
 export default LensFeature;

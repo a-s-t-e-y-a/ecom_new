@@ -37,39 +37,95 @@ const AdminSideBar = () => {
   const Menus = [
     { title: "Dashboard", icon: <RxDashboard />, link: "/admin/dashboard" },
     // { title: "Placed Order", icon: <MdOutlineShoppingCartCheckout />, link: "/admin/placedOrder",},
-    { title: "Product Detail Edit", icon: <BiCalendarEdit />, link: "/admin/productDetail",},
+    {
+      title: "Product Detail Edit",
+      icon: <BiCalendarEdit />,
+      link: "/admin/productDetail",
+    },
     // { title: "Sell Manager ", icon: <FcManager />, link: "/admin/sellManager" },
-    { title: "Power Types", icon: <GiPowerRing />, link: "/admin/powerTypes",},
-    { title: "Lens Detail", icon: <MdOutlineLensBlur />, link: "/admin/lensDetail",},
-    { title: "Lens Feature", icon: <GiMicroscopeLens />, link: "/admin/lensFeature",},
-    { title: "Frame Material", icon: <CgFramer />, link: "/admin/frameMaterial",},
+    { title: "Power Types", icon: <GiPowerRing />, link: "/admin/powerTypes" },
+    {
+      title: "Lens Detail",
+      icon: <MdOutlineLensBlur />,
+      link: "/admin/lensDetail",
+    },
+    {
+      title: "Lens Feature",
+      icon: <GiMicroscopeLens />,
+      link: "/admin/lensFeature",
+    },
+    {
+      title: "Frame Material",
+      icon: <CgFramer />,
+      link: "/admin/frameMaterial",
+    },
     { title: "Brand", icon: <TbBrandAdonisJs />, link: "/admin/brand" },
     { title: "Shape", icon: <IoShapesOutline />, link: "/admin/shape" },
     { title: "Categories", icon: <MdCategory />, link: "/admin/categories" },
     { title: "Color", icon: <IoColorPaletteOutline />, link: "/admin/color" },
-    // { title: "Coupon Manager", icon: <SiCodeproject />, link: "/admin/couponManager",},
-    // { title: "Blog", icon: <FaBlog />, link: "/admin/blog" },
-    // { title: "NewsLetter", icon: <HiOutlineNewspaper />, link: "/admin/newsLetter",},
-    // { title: "Banner Manager", icon: <GiKnightBanner />, link: "/admin/bannerManager",},
-    // { title: "Registered Users", icon: <HiUserAdd />, link: "/admin/registeredUsers",},
-    // { title: "About", icon: <FcAbout />, link: "/admin/about" },
-    // { title: "try@Home", icon: <HiOutlineHome />, link: "/admin/try@Home" },
-    // { title: "Franchise", icon: <MdCurrencyFranc />, link: "/admin/franchise" },
-    // { title: "Enquiry", icon: <RiCustomerService2Line />, link: "/admin/enquiry",},
-    // { title: "Size Guide", icon: <TbTextSize />, link: "/admin/sizeGuide" },
-    // { title: "Cancellation", icon: <MdCancelScheduleSend />, link: "/admin/cancellation",},
-    // { title: "Refund Policy", icon: <HiOutlineReceiptRefund />, link: "/admin/refundPolicy",},
-    // { title: "Privacy Policy", icon: <MdOutlinePrivacyTip />, link: "/admin/privacyPolicy",},
-    // { title: "Guide To Buy", icon: <RiBook2Fill />, link: "/admin/guideToBuy" },
-    // { title: "7-Day Easy Return Policy", icon: <MdPolicy />, link: "/admin/easyReturnPolicy",},
-    // { title: "Delivery & Shipping terms", icon: <TbTruckReturn />, link: "/admin/deliveryShippingTerms",},
+    {
+      title: "Coupon Manager",
+      icon: <SiCodeproject />,
+      link: "/admin/couponManager",
+    },
+    { title: "Blog", icon: <FaBlog />, link: "/admin/blog" },
+    {
+      title: "NewsLetter",
+      icon: <HiOutlineNewspaper />,
+      link: "/admin/newsLetter",
+    },
+    {
+      title: "Banner Manager",
+      icon: <GiKnightBanner />,
+      link: "/admin/bannerManager",
+    },
+    {
+      title: "Registered Users",
+      icon: <HiUserAdd />,
+      link: "/admin/registeredUsers",
+    },
+    { title: "About", icon: <FcAbout />, link: "/admin/about" },
+    { title: "try@Home", icon: <HiOutlineHome />, link: "/admin/try@Home" },
+    { title: "Franchise", icon: <MdCurrencyFranc />, link: "/admin/franchise" },
+    {
+      title: "Enquiry",
+      icon: <RiCustomerService2Line />,
+      link: "/admin/enquiry",
+    },
+    { title: "Size Guide", icon: <TbTextSize />, link: "/admin/sizeGuide" },
+    {
+      title: "Cancellation",
+      icon: <MdCancelScheduleSend />,
+      link: "/admin/cancellation",
+    },
+    {
+      title: "Refund Policy",
+      icon: <HiOutlineReceiptRefund />,
+      link: "/admin/refundPolicy",
+    },
+    {
+      title: "Privacy Policy",
+      icon: <MdOutlinePrivacyTip />,
+      link: "/admin/privacyPolicy",
+    },
+    { title: "Guide To Buy", icon: <RiBook2Fill />, link: "/admin/guideToBuy" },
+    {
+      title: "7-Day Easy Return Policy",
+      icon: <MdPolicy />,
+      link: "/admin/easyReturnPolicy",
+    },
+    {
+      title: "Delivery & Shipping terms",
+      icon: <TbTruckReturn />,
+      link: "/admin/deliveryShippingTerms",
+    },
   ];
-  
+
   return (
     <div
       className={` ${
-        open ? "w-64" : " w-10 "
-      } bg-gray-100 h-screen   pt-7 fixed z-10  duration-300 border-r `}
+        open ? "w-64" : " w-20 "
+      } bg-gray-100  p-4 pt-7 relative z-10 me-5 duration-300 border-r `}
     >
       <div className="flex gap-x-10 items-center text-gray-700 pb-3">
         <span
@@ -80,7 +136,7 @@ const AdminSideBar = () => {
           <FaGlasses onClick={() => setOpen(!open)} />
         </span>
         <h1
-          className={`origin-left font-bold  tracking-wider text-xs text-nowrap md:text-normal duration-200 ${
+          className={`origin-left font-bold  tracking-wider text-xs text-nowrap md:text-lg duration-200 ${
             !open && "scale-0"
           }`}
         >
@@ -94,7 +150,9 @@ const AdminSideBar = () => {
             <Link
               key={index}
               scroll={false}
-              className={`block ${ open ? "rounded-md" : "  w-10  rounded-full" } flex items-center cursor-pointer hover:bg-gray-50 text-gray-600 
+              className={`block ${
+                open ? "rounded-md" : "rounded-full"
+              } flex items-center cursor-pointer hover:bg-gray-50 text-gray-600 
             			${index === 0 && "bg-light-white"} ${isActive ? "bg-white " : ""}`}
               href={Menu.link}
             >
@@ -102,7 +160,12 @@ const AdminSideBar = () => {
                 <IconButton>
                   {/* {Menu.icon} */}
                   <span
-                    className={`${ open ? "text-xs text-nowrap md:text-normal" : "text-sm md:text-2xl"}  border-none`}>
+                    className={`${
+                      open
+                        ? "text-xl text-nowrap md:text-normal"
+                        : "text-xl md:text-2xl"
+                    }  border-none`}
+                  >
                     {Menu.icon}
                   </span>
                 </IconButton>
@@ -110,7 +173,7 @@ const AdminSideBar = () => {
               <span
                 className={`${
                   !open && "hidden"
-                }  duration-200 font-semibold text-xs text-nowrap md:text-normal`}
+                }  duration-200 font-semibold text-sm text-nowrap md:text-normal`}
               >
                 {Menu.title}
               </span>

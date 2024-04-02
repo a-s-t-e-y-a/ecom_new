@@ -16,9 +16,12 @@ const SwiperThumbs = ({ images }) => {
       {imageArray &&
         imageArray.map((item, index) => (
           <div key={index} className="">
-            <Image width={200} height={200} alt=""
+            <Image
+              width={500}
+              height={200}
+              alt=""
               src={`${imageUrl}product_images/${item}`}
-              className=" mx-auto"
+              className=""
             />
           </div>
         ))}

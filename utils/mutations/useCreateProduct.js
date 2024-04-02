@@ -1,20 +1,6 @@
-const { default: api, Imageapi } = require("@/api")
-import { useMutation } from "@tanstack/react-query"
-const { toast } = require("react-toastify")
+const { default: api, Imageapi } = require("@/api");
 
-const useCreateProduct = () => {
-  const createPowerType = useMutation({
-    mutationFn: async (data) => {
-      await Imageapi.post('/products', data)
-      return res.data
-    },
-    onSuccess: () => {
-      toast('PowerType created succesfully')
-    },
-    onError: () => {
-      toast('Error occurred')
-    }
-  })
-  return createPowerType
-}
-export default useCreateProduct
+const CreateProduct = (data) => {
+  return api.post("/products", data);
+};
+export default CreateProduct;

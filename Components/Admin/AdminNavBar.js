@@ -8,6 +8,7 @@ import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import { useState } from "react";
 import { useEffect } from "react";
 import ShowTime from "./ShowTime";
+import Image from "next/image";
 const AdminNavBar = () => {
   const [date, setDate] = useState(new Date().toLocaleDateString());
   useEffect(() => {
@@ -29,8 +30,14 @@ const AdminNavBar = () => {
           </span>
         </span>
       </div>
-      <div className="w-[150px] h-[20px] ps-3">
-        <img src="/logo.png" className="w-full h-full " />
+      <div className=" ps-3">
+        <Image
+          width={300}
+          height={100}
+          alt=""
+          src={"/logo.png"}
+          className=" object-cover"
+        />
       </div>
       <Stack direction="row">
         <Tooltip title="Cart">
