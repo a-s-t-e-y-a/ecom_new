@@ -51,14 +51,11 @@ const items = [
 ];
 
 function Dashboard() {
-  const router = useRouter();
-
-  const [logged, setlogged] = useState(false);
-  useEffect(() => {
-    if (IsAuth("admin_info")) {
-      setlogged(true);
-    } else {
-      router.replace("login");
+  const router = useRouter()
+  React.useLayoutEffect(() => {
+    const session = sessionStatus;
+    if (!session) {
+      return router.push("/login")
     }
   }, [router]);
   if (logged) {

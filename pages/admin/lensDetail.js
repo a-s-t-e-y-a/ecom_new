@@ -43,9 +43,6 @@ const LensDetail = () => {
   }
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);
-  const deleteHandler = (data) => {
-    console.log(data);
-  };
   if (logged) {
     return (
       <AdminLayout>
@@ -157,12 +154,9 @@ const LensDetail = () => {
                                   Action
                                 </span>
                                 <span className="flex items-center gap-3 font-semibold text-base -mt-4 z-5">
-                                  <button
-                                    onClick={() => deleteHandler(item)}
-                                    className="text-sm text-red-500 cursor-pointer"
-                                  >
+                                  <span className="text-sm text-red-500 cursor-pointer">
                                     <DeleteOutlineIcon className="text-base" />
-                                  </button>
+                                  </span>
                                   <span className="text-sm text-sky-500 cursor-pointer">
                                     <TbEdit className="text-base" />
                                   </span>

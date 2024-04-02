@@ -32,27 +32,13 @@ const FrameMaterial = () => {
 
   if (logged) {
     return (
-      <AdminLayout>
-        <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
-          {<FrameMaterialDialogBox onCancel={onHide} />}
-        </Modal>
-        <div>
-          <div onClick={handleOpen}>
-            <IconButton label="Add Frame Material" icon={<CgFramer />} />
-          </div>
-          <div className="mt-10 flex items-center gap-5 flex-wrap">
-            {data &&
-              data.map((material, index) => (
-                <div
-                  key={index}
-                  className="border rounded-md shadow-md px-5 py-2 inline-flex items-center gap-2 bg-gray-100"
-                >
-                  <span className="text-base tracking-wide font-semibold text-gray-700">
-                    {material.name}
-                  </span>
-                  <button className="text-sm text-red-500 cursor-pointer">
-                    <DeleteOutlineIcon className="text-base" />
-                  </button>
+        <AdminLayout>
+            <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
+                { <FrameMaterialDialogBox onCancel={onHide} /> }
+            </Modal>
+            <div>
+                <div onClick={handleOpen}>
+                    <IconButton label="Add Frame Material" icon={<CgFramer/>}/>
                 </div>
               ))}
           </div>

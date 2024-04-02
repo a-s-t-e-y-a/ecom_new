@@ -30,4 +30,19 @@ const nextConfig = {
   },
 };
 
-module.exports = { ...nextConfig }; // Merging redirects with nextConfig
+async function redirects() {
+  return [
+    {
+      source: "/admin/:id",
+      destination: "/",
+      permanent: true,
+    },
+    {
+      source: "/admin",
+      destination: "/",
+      permanent: true,
+    },
+  ];
+}
+
+module.exports = { redirects, ...nextConfig }; // Merging redirects with nextConfig

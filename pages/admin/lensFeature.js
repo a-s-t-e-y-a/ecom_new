@@ -31,37 +31,23 @@ const LensFeature = () => {
 
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);
-
-  const handleDelete = (item) => {
-    mutate(item.id);
-    window.location.reload();
-  };
-
-  if (logged) {
-    return (
-      <AdminLayout>
-        <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
-          {<LensFeatureDialogBox onCancel={onHide} />}
-        </Modal>
-        <div>
-          <div onClick={handleOpen}>
-            <IconButton label="Add Lens Features" icon={<GiMicroscopeLens />} />
-          </div>
-          <div className="mt-10 grid grid-cols-2 items-center gap-5 w-full">
-            {data &&
-              data.map((item, index) => (
-                <PowerType
-                  key={index}
-                  src={item.image}
-                  title={item.name}
-                  description={item.description}
-                  onClick={() => handleDelete(item)}
-                />
-              ))}
-          </div>
+  return (
+    <AdminLayout>
+      <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
+        {<LensFeatureDialogBox onCancel={onHide} />}
+      </Modal>
+      <div>
+        <div onClick={handleOpen}>
+          <IconButton label="Add Lens Features" icon={<GiMicroscopeLens />} />
         </div>
-      </AdminLayout>
-    );
-  }
+        <div className="mt-10 grid grid-cols-2 items-center gap-5 w-full">
+            <PowerType src="/1 (1).jpeg" title="Single Vision/Powered Eyeglasses" description="For distance or near vision" />
+            <PowerType src="/1 (1).jpeg" title="Single Vision/Powered Eyeglasses" description="For distance or near vision" />
+            <PowerType src="/1 (1).jpeg" title="Single Vision/Powered Eyeglasses" description="For distance or near vision" />
+            <PowerType src="/1 (1).jpeg" title="Single Vision/Powered Eyeglasses" description="For distance or near vision" />
+        </div>
+      </div>
+    </AdminLayout>
+  );
 };
 export default LensFeature;

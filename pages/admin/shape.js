@@ -46,52 +46,43 @@ const Shape = () => {
   const handleDelete = (shape) => {
     mutate(shape?.id);
   };
-
-  if (logged) {
-    return (
-      <AdminLayout>
-        <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
-          {<ShapeDialogBox onCancel={onHide} setOpen={setOpen} />}
-        </Modal>
-        <div>
-          <div onClick={handleOpen}>
-            <IconButton label="Add Shape" icon={<IoShapesOutline />} />
-          </div>
-          <div className="mt-10 flex items-center gap-5 flex-wrap overflow-scroll scrollbar-hide">
-            {data &&
-              data.map((shape, index) => (
-                <div
-                  key={index}
-                  className="border rounded-md shadow-md px-5 py-2 inline-flex flex-col items-center gap-2 bg-gray-100"
-                >
-                  <Image
-                    src={
-                      "https://akkukachasma.s3.amazonaws.com/shape/" +
-                      shape?.image
-                    }
-                    className="w-44 h-auto mix-blend-multiply"
-                    width={100}
-                    height={100}
-                    alt="image"
-                  />
-                  <div className="flex items-center gap-5">
-                    <span className="text-base tracking-wide font-semibold text-gray-700">
-                      {shape?.name}
-                    </span>
-                    <button
-                      className="text-sm text-red-500 cursor-pointer"
-                      onClick={() => handleDelete(shape)}
-                    >
-                      <DeleteOutlineIcon className="text-base" />
-                    </button>
-                  </div>
-                </div>
-              ))}
-          </div>
+  
+  return (
+    <AdminLayout>
+      <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
+        {<ShapeDialogBox onCancel={onHide} />}
+      </Modal>
+      <div>
+        <div onClick={handleOpen}>
+          <IconButton label="Add Shape" icon={<IoShapesOutline />} />
         </div>
-      </AdminLayout>
-    );
-  }
+        <div className="mt-10 flex items-center gap-5 flex-wrap overflow-scroll scrollbar-hide">
+          {data &&
+            data.map((shape, index) => (
+              <div
+                key={index}
+                className="border rounded-md shadow-md px-5 py-2 inline-flex flex-col items-center gap-2 bg-gray-100"
+              >
+                <Image
+                  src={shape.image}
+                  className="w-44 h-auto mix-blend-multiply"
+                  width={'11rem'}
+                  height={'auto'}
+                />
+                <div className="flex items-center gap-5">
+                  <span className="text-base tracking-wide font-semibold text-gray-700">
+                    {shape.name}
+                  </span>
+                  <span className="text-sm text-red-500 cursor-pointer">
+                    <DeleteOutlineIcon className="text-base" />
+                  </span>
+                </div>
+              </div>
+            ))}
+        </div>
+      </div>
+    </AdminLayout>
+  );
 };
 
 export default Shape;

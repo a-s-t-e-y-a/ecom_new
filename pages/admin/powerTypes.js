@@ -17,52 +17,24 @@ const PowerTypes = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);
-  const router = useRouter();
-
-  const [logged, setlogged] = useState(false);
-  useEffect(() => {
-    if (IsAuth("admin_info")) {
-      setlogged(true);
-    } else {
-      router.replace("login");
-    }
-  }, [router, isSuccess, refetch]);
-
-  const handleDelete = (item) => {
-    mutate(item?.id);
-  };
-
-  if (logged) {
-    return (
-      <AdminLayout>
-        <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
-          {
-            <PowerTypesDialogBox
-              onCancel={onHide}
-              setOpen={setOpen}
-              refecth={refetch}
-            />
-          }
-        </Modal>
-        <div>
-          <div onClick={handleOpen}>
-            <IconButton label="Add Power Types" icon={<GiPowerRing />} />
-          </div>
-          <div className="mt-10 grid grid-cols-2 items-center gap-5 w-full">
-            {data &&
-              data.map((item, index) => (
-                <PowerType
-                  key={index}
-                  src={item.image}
-                  title={item.name}
-                  description={item.description}
-                  onClick={() => handleDelete(item)}
-                />
-              ))}
-          </div>
+  return (
+    <AdminLayout>
+      <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
+        {<PowerTypesDialogBox onCancel={onHide} />}
+      </Modal>
+      <div>
+        <div onClick={handleOpen}>
+          <IconButton label="Add Power Types" icon={<GiPowerRing />} />
         </div>
-      </AdminLayout>
-    );
-  }
+        <div className="mt-10 grid grid-cols-2 items-center gap-5 w-full">
+          {
+            data&&data.map((item,index)=>(
+               <PowerType key={index} src={item.image} title={item.name} description={item.description} />
+            ))
+          }
+                   </div>
+      </div>
+    </AdminLayout>
+  );
 };
 export default PowerTypes;
