@@ -9,13 +9,18 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import useGetAllLensFeature from "@/utils/queries/useLensFeature";
+import { useMutation } from "@tanstack/react-query";
 const LensFeature = () => {
   const router = useRouter();
   const [logged, setlogged] = useState(false);
   const [open, setOpen] = useState(false);
 
   const { data } = useGetAllLensFeature();
-
+  // const { mutate } = useMutation({
+  //   mutationFn: ,
+  //   onSuccess: () => {},
+  //   onError: () => {},
+  // });
   useEffect(() => {
     if (IsAuth("admin_info")) {
       setlogged(true);
