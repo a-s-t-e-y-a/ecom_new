@@ -40,9 +40,7 @@ const FrameMaterial = () => {
                 <div onClick={handleOpen}>
                     <IconButton label="Add Frame Material" icon={<CgFramer/>}/>
                 </div>
-              ))}
           </div>
-        </div>
       </AdminLayout>
     );
   }

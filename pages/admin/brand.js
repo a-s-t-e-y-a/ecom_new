@@ -15,6 +15,19 @@ const Brand = () => {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(!open);
     const onHide = () =>  setOpen(false) 
+    const router = useRouter();
+
+    const [logged, setlogged] = useState(false);
+    useEffect(()=>{
+      if(IsAuth("admin_info")){
+        setLogged(true)
+      }
+      else{
+        router.replace("login")
+      }
+    },[router])
+  
+    if (logged) {
   return (
     <AdminLayout>
          <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
@@ -41,7 +54,7 @@ const Brand = () => {
                         Product Categories Name
                       </span>
                       <span className="text-gray-600 font-semibold text-sm -mt-4 z-5">
-                        {item.categories_id.name}
+                        {}
                       </span>
                     </div>
                     <div className="text-base tracking-wide font-semibold flex flex-col items-center justify-center -gap-3">
@@ -58,5 +71,5 @@ const Brand = () => {
       </AdminLayout>
     );
   }
-
+}
 export default Brand;
