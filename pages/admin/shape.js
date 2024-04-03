@@ -76,7 +76,7 @@ const Shape = () => {
                     className="border rounded-md shadow-md px-5 py-2 inline-flex flex-col items-center gap-2 bg-gray-100"
                   >
                     <Image
-                      src={`${shape?.image}`}
+                      src={shape?.image}
                       className="w-44 h-auto mix-blend-multiply"
                       width={100}
                       height={100}
