@@ -7,13 +7,14 @@ import CreateColor from "@/utils/mutations/useCreateColor";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-const ColorDialogBox = ({ onCancel }) => {
+const ColorDialogBox = ({ onCancel, refetch, token }) => {
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
-  const { mutate, isError } = useMutation({
+  const { mutate } = useMutation({
     mutationFn: CreateColor,
     onSuccess: () => {
       toast("color created succesfully");
+      refetch(!token);
     },
     onError: (err) => {
       toast("Error occurred");

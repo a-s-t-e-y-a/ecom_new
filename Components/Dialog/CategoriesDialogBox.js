@@ -18,7 +18,6 @@ const CategoriesDialogBox = ({ onCancel, setOpen }) => {
       toast("Categories created succesfully");
     },
     onError: (err) => {
-      console.log(err);
       toast("Error occurred");
     },
   });

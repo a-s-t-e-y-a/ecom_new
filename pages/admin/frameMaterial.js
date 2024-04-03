@@ -78,7 +78,9 @@ const FrameMaterial = () => {
                     <DeleteOutlineIcon />
                   </button>
                 </div>
+              ))}
           </div>
+        </div>
       </AdminLayout>
     );
   }
