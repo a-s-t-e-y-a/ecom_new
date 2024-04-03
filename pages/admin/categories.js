@@ -75,7 +75,7 @@ const Categories = () => {
                   <Image
                     width={100}
                     height={100}
-                    src={`/${category?.image}`}
+                    src={category?.imageArray}
                     className="w-44 h-auto mix-blend-multiply"
                     alt=""
                   />
