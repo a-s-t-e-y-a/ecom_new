@@ -21,8 +21,8 @@ const LensDetail = () => {
 
   const [open, setOpen] = useState(false);
   const [logged, setlogged] = useState(false);
-  const [data, updateData] = useState([]);
-  const { data: datas, refetch } = useGetAllLensDetails();
+
+  const { data, refetch } = useGetAllLensDetails();
   const [get, setget] = useState(false);
   useEffect(() => {
     if (IsAuth("admin_info")) {
@@ -31,8 +31,8 @@ const LensDetail = () => {
       router.replace("login");
     }
     refetch();
-  }, [router, datas, refetch]);
-
+  }, [router, refetch]);
+  console.log(data, "sas");
   function handleOnDragEnd(result) {
     if (!result.destination) return;
 
@@ -100,74 +100,79 @@ const LensDetail = () => {
                     ref={provided.innerRef}
                     className="w-full border rounded-md shadow-md px-5 py-2 flex flex-col items-center justify-between bg-gray-50 gap-5"
                   >
-                    {data.map((item, index) => {
-                      return (
-                        <Draggable key={index} draggableId={item} index={index}>
-                          {(provided) => (
-                            <div
-                              ref={provided.innerRef}
-                              {...provided.draggableProps}
-                              {...provided.dragHandleProps}
-                              className="w-full flex items-center justify-between border-b py-1"
-                            >
-                              <div className="text-base tracking-wide font-semibold flex flex-col items-center justify-center -gap-3">
-                                <span className="text-xs text-gray-400 tracking-wider opacity-0">
-                                  Lens Heading
-                                </span>
-                                <span className="text-gray-600 font-semibold text-sm -mt-4 z-5">
-                                  {item.LensHeading}
-                                </span>
-                              </div>
-                              <div className="text-base tracking-wide font-semibold flex flex-col items-center justify-center -gap-3">
-                                <span className="text-xs text-gray-400 tracking-wider opacity-0">
-                                  Product Categories Name
-                                </span>
-                                <span className="text-gray-600 font-semibold text-sm -mt-4 z-5">
-                                  {item.ProductCategoriesName[0]}
-                                </span>
-                              </div>
-                              <div className="text-base tracking-wide font-semibold flex flex-col items-center justify-center -gap-3">
-                                <span className="text-xs text-gray-400 tracking-wider opacity-0">
-                                  Product Brand Name
-                                </span>
-                                <span className="text-gray-600 font-semibold text-sm -mt-4 z-5">
-                                  {item.ProductBrandName[0]}
-                                </span>
-                              </div>
-                              <div className="text-base tracking-wide font-semibold flex flex-col items-center justify-center -gap-3">
-                                <span className="text-xs text-gray-400 tracking-wider opacity-0">
-                                  Power Type
-                                </span>
-                                <span className="text-gray-600 font-semibold text-sm -mt-4 z-5">
-                                  {item.PowerType}
-                                </span>
-                              </div>
-                              <div className="text-base tracking-wide font-semibold flex flex-col items-center justify-center -gap-3">
-                                <span className="text-xs text-gray-400 tracking-wider opacity-0">
-                                  Price
-                                </span>
-                                <span className="text-gray-600 font-semibold text-sm -mt-4 z-5">
-                                  {item.Price}
-                                </span>
-                              </div>
-                              <div className="text-base tracking-wide font-semibold flex flex-col items-center justify-center -gap-3">
-                                <span className="text-xs text-gray-400 tracking-wider opacity-0">
-                                  Action
-                                </span>
-                                <span className="flex items-center gap-3 font-semibold text-base -mt-4 z-5">
-                                  <span className="text-sm text-red-500 cursor-pointer">
-                                    <DeleteOutlineIcon className="text-base" />
+                    {data &&
+                      data?.data?.map((item, index) => {
+                        return (
+                          <Draggable
+                            key={index}
+                            draggableId={item}
+                            index={index}
+                          >
+                            {(provided) => (
+                              <div
+                                ref={provided.innerRef}
+                                {...provided.draggableProps}
+                                {...provided.dragHandleProps}
+                                className="w-full flex items-center justify-between border-b py-1"
+                              >
+                                <div className="text-base tracking-wide font-semibold flex flex-col items-center justify-center -gap-3">
+                                  <span className="text-xs text-gray-400 tracking-wider opacity-0">
+                                    Lens Heading
                                   </span>
-                                  <span className="text-sm text-sky-500 cursor-pointer">
-                                    <TbEdit className="text-base" />
+                                  <span className="text-gray-600 font-semibold text-sm -mt-4 z-5">
+                                    {item.heading}
                                   </span>
-                                </span>
+                                </div>
+                                <div className="text-base tracking-wide font-semibold flex flex-col items-center justify-center -gap-3">
+                                  <span className="text-xs text-gray-400 tracking-wider opacity-0">
+                                    Product Categories Name
+                                  </span>
+                                  <span className="text-gray-600 font-semibold text-sm -mt-4 z-5">
+                                    {item?.categories_id?.name}
+                                  </span>
+                                </div>
+                                <div className="text-base tracking-wide font-semibold flex flex-col items-center justify-center -gap-3">
+                                  <span className="text-xs text-gray-400 tracking-wider opacity-0">
+                                    Product Brand Name
+                                  </span>
+                                  <span className="text-gray-600 font-semibold text-sm -mt-4 z-5">
+                                    {item.products_brand_id}
+                                  </span>
+                                </div>
+                                <div className="text-base tracking-wide font-semibold flex flex-col items-center justify-center -gap-3">
+                                  <span className="text-xs text-gray-400 tracking-wider opacity-0">
+                                    Power Type
+                                  </span>
+                                  <span className="text-gray-600 font-semibold text-sm -mt-4 z-5">
+                                    {item.PowerType}
+                                  </span>
+                                </div>
+                                <div className="text-base tracking-wide font-semibold flex flex-col items-center justify-center -gap-3">
+                                  <span className="text-xs text-gray-400 tracking-wider opacity-0">
+                                    Price
+                                  </span>
+                                  <span className="text-gray-600 font-semibold text-sm -mt-4 z-5">
+                                    {item.Price}
+                                  </span>
+                                </div>
+                                <div className="text-base tracking-wide font-semibold flex flex-col items-center justify-center -gap-3">
+                                  <span className="text-xs text-gray-400 tracking-wider opacity-0">
+                                    Action
+                                  </span>
+                                  <span className="flex items-center gap-3 font-semibold text-base -mt-4 z-5">
+                                    <span className="text-sm text-red-500 cursor-pointer">
+                                      <DeleteOutlineIcon className="text-base" />
+                                    </span>
+                                    <span className="text-sm text-sky-500 cursor-pointer">
+                                      <TbEdit className="text-base" />
+                                    </span>
+                                  </span>
+                                </div>
                               </div>
-                            </div>
-                          )}
-                        </Draggable>
-                      );
-                    })}
+                            )}
+                          </Draggable>
+                        );
+                      })}
                     {provided.placeholder}
                   </div>
                 )}

@@ -14,7 +14,7 @@ import { toast } from "react-toastify";
 
 const LensFeatureDialogBox = ({ onCancel, refetch, token }) => {
   const { register, handleSubmit } = useForm();
-  const { mutate, isPending } = useMutation({
+  const { mutate } = useMutation({
     mutationFn: CreateLenseFeature,
     onSuccess: () => {
       toast("Lens Feature created succesfully");
@@ -33,9 +33,7 @@ const LensFeatureDialogBox = ({ onCancel, refetch, token }) => {
     formData.append("data", datas);
     mutate(formData);
   };
-  if (isPending) {
-    return <Loader />;
-  }
+
   return (
     <div className="relative border tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
       <h1 className="text-md font-semibold text-center text-gray-700 mt-3">

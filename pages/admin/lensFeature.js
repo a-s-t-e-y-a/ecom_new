@@ -25,11 +25,9 @@ const LensFeature = () => {
     mutationFn: DeleteLensFeature,
     onSuccess: (data) => {
       toast.success("Deleted successully");
-      query.invalidateQueries({ queryKey: ["api/lensFeature"] });
       setget(!get);
     },
     onError: (err) => {
-      console.log(err);
       toast.error(err.message);
     },
   });

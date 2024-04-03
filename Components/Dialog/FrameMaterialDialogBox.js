@@ -33,7 +33,7 @@ const FrameMaterialDialogBox = ({ onCancel, refetch, token }) => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <TextField
-          label="Shape"
+          label="material"
           name="frameMaterial"
           id="frameMaterial"
           size="small"
