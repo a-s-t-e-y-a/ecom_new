@@ -37,10 +37,9 @@ const ProductDetailDialog = ({ onCancel }) => {
     onSuccess: () => {
       toast("Product created succesfully");
       query.invalidateQueries({ queryKey: ["api/productDetail"] });
-      window.location.reload();
     },
-    onError: () => {
-      toast("Error occurred");
+    onError: (err) => {
+      toast(err.message);
     },
   });
 
