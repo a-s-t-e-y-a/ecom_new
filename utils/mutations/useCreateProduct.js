@@ -1,6 +1,6 @@
 const { default: api, Imageapi } = require("@/api");
 
 const CreateProduct = (data) => {
-  return api.post("/products", data);
+  return Imageapi.post("/products", data);
 };
 export default CreateProduct;
