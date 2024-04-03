@@ -1,11 +1,11 @@
 import api from "@/api";
-import { useQuery } from "@tanstack/react-query"
+import { useQuery } from "@tanstack/react-query";
 
 const useGetAllLensDetails = () => {
   const data_ = useQuery({
     queryKey: ["api/LensDetails"],
     queryFn: async () => {
-      const res = await api.get('/lens-details');
+      const res = await api.get("/lensses");
       return res?.data?.data;
     },
   });

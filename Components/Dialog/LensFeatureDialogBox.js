@@ -12,15 +12,15 @@ import Loader from "../Loader";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-const LensFeatureDialogBox = ({ onCancel }) => {
+const LensFeatureDialogBox = ({ onCancel, refetch, token }) => {
   const { register, handleSubmit } = useForm();
   const { mutate, isPending } = useMutation({
     mutationFn: CreateLenseFeature,
     onSuccess: () => {
       toast("Lens Feature created succesfully");
+      refetch(!token);
     },
     onError: (err) => {
-      console.log(err);
       toast("Error occurred");
     },
   });
@@ -32,7 +32,6 @@ const LensFeatureDialogBox = ({ onCancel }) => {
     const datas = JSON.stringify(data);
     formData.append("data", datas);
     mutate(formData);
-    window.location.reload();
   };
   if (isPending) {
     return <Loader />;

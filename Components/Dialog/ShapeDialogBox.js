@@ -8,11 +8,12 @@ import Loader from "../Loader";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-const ShapeDialogBox = ({ onCancel, setOpen }) => {
+const ShapeDialogBox = ({ onCancel, refetch, token }) => {
   const { mutate, isPending } = useMutation({
     mutationFn: CreateShape,
-    onSucusses: () => {
+    onSuccess: () => {
       toast("Shape created succesfully");
+      refetch(!token);
     },
     onError: () => {
       toast("Error occurred");
@@ -24,7 +25,6 @@ const ShapeDialogBox = ({ onCancel, setOpen }) => {
     formData.append("data", JSON.stringify({ name: data?.name }));
     formData.append("file", data?.file[0]);
     mutate(formData);
-    setOpen(false);
   };
 
   return (

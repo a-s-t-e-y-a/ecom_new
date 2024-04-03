@@ -5,22 +5,24 @@ import { TextField } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import CreateLensDeatils from "@/utils/mutations/useCreateLensDetail";
 import useGetAllBrands from "@/utils/queries/useBrandsGetAll";
-import useGetAllCategories from "@/utils/queries/useCategoriesGetAll";
 import useGetAllLensFeature from "@/utils/queries/useLensFeature";
 import SingleSelectCategories from "../Admin/MultipleSelectCategories";
 import SingleSelectBrands from "../Admin/brandMultipleSelect";
 import SingleSelectLensFeature from "../Admin/lensFeatureMultipleSelect";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import useGetAllPowerType from "@/utils/queries/usePowerType";
 
 const LensDetailDialogBox = ({ onCancel }) => {
   const { register, handleSubmit } = useForm();
   const { mutate } = useMutation({
-    mutationFn: (formData) => CreateLensDeatils(formData),
+    mutationFn: CreateLensDeatils,
     onSuccess: () => {
       toast("Lens Deatails created succesfully");
+      onCancel();
     },
     onError: (data) => {
+      console.log(data);
       toast("Error occurred");
     },
   });
@@ -29,14 +31,13 @@ const LensDetailDialogBox = ({ onCancel }) => {
     isLoading: brandLoading,
     isError: errorBrand,
   } = useGetAllBrands();
-  const { data: categories } = useGetAllCategories();
+  const { data: power } = useGetAllPowerType();
   const { data: lens_feature } = useGetAllLensFeature();
+  console.log(power);
   const onSubmit = (data) => {
-    console.log(data);
     const formData = new FormData();
     formData.append("file", data.file[0]);
-    const stringifiedData = JSON.stringify(data);
-    formData.append("data", stringifiedData);
+    formData.append("data", JSON.stringify(data));
     mutate(formData);
   };
   return (
@@ -50,11 +51,11 @@ const LensDetailDialogBox = ({ onCancel }) => {
       >
         <div className="grid grid-cols-3 items-center justify-between gap-3">
           <FileInput title="" register={register} />
-          <SingleSelectCategories
-            label="Product Categories Name"
-            options={categories}
+          <SingleSelectLensFeature
+            label="Power Type"
+            options={power}
             register={register}
-            name="categories_id"
+            name="power_type"
           />
 
           <TextField

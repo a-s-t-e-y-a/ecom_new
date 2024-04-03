@@ -11,16 +11,16 @@ const ProductCategoriesNameOption = ["SunGlasses", "Computer Glasses"];
 
 const ProductBrandNameOption = ["Normal", "Trends"];
 
-const BrandDialogBox = ({ onCancel }) => {
+const BrandDialogBox = ({ onCancel, refetch, token }) => {
   const { data, isLoading } = useGetAllCategories();
   const { register, handleSubmit } = useForm();
   const { mutate } = useMutation({
     mutationFn: CreateBrand,
     onSuccess: () => {
       toast("Frame Material created succesfully");
+      refetch(!token);
     },
     onError: (err) => {
-      console.log(err);
       toast("Error occurred");
     },
   });

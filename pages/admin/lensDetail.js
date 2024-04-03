@@ -22,15 +22,16 @@ const LensDetail = () => {
   const [open, setOpen] = useState(false);
   const [logged, setlogged] = useState(false);
   const [data, updateData] = useState([]);
-  const { data: datas } = useGetAllLensDetails();
+  const { data: datas, refetch } = useGetAllLensDetails();
+  const [get, setget] = useState(false);
   useEffect(() => {
     if (IsAuth("admin_info")) {
       setlogged(true);
     } else {
       router.replace("login");
     }
-    console.log(datas);
-  }, [router, datas]);
+    refetch();
+  }, [router, datas, refetch]);
 
   function handleOnDragEnd(result) {
     if (!result.destination) return;
@@ -42,7 +43,7 @@ const LensDetail = () => {
     updateData(items);
   }
   const handleOpen = () => setOpen(!open);
-  const onHide = () => setOpen(false);
+  const onHide = () => setOpen(!open);
   if (logged) {
     return (
       <AdminLayout>

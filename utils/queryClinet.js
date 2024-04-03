@@ -1,4 +1,4 @@
-const { QueryClient } = require("@tanstack/react-query");
+import { QueryClient } from "@tanstack/react-query";
 
 const query = new QueryClient();
 

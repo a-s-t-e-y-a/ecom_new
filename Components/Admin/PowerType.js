@@ -1,9 +1,14 @@
+"use client";
 import React from "react";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import Image from "next/image";
 
 const PowerType = (props) => {
-  const { src, title, description, onClick } = props;
+  const { src, title, description, id, mutate } = props;
+
+  const deletehandler = (id) => {
+    mutate(id);
+  };
   return (
     <div className="relative flex items-center justify-start gap-5 text-gray-700 bg-gray-50 border hover:shadow-lg rounded-md p-5 cursor-pointer w-full mx-auto">
       <div className="w-28 flex items-center">
@@ -19,9 +24,12 @@ const PowerType = (props) => {
         <p className="font-semibold">{title}</p>
         <p className="text-sm text-gray-500">{description}</p>
       </div>
-      <span className="absolute right-2 text-sm text-red-500 cursor-pointer" onClick={onClick}>
+      <button
+        className="absolute p-5 right-2  text-red-500 cursor-pointer"
+        onClick={() => deletehandler(id)}
+      >
         <DeleteOutlineIcon className="text-base" />
-      </span>
+      </button>
     </div>
   );
 };

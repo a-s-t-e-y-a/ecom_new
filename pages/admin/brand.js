@@ -1,3 +1,4 @@
+"use client";
 import IconButton from "@/Components/Admin/IconButton";
 import BrandDialogBox from "@/Components/Dialog/BrandDialogBox";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
@@ -10,53 +11,84 @@ import { IsAuth } from "@/utils/IsAuth";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useEffect } from "react";
+import { useMutation } from "@tanstack/react-query";
+import deleteBrand from "@/utils/mutations/useDeleteBrand";
+import { toast } from "react-toastify";
 const Brand = () => {
-    const {data, isLoading } = useGetAllBrands()
-    const [open, setOpen] = useState(false);
-    const handleOpen = () => setOpen(!open);
-    const onHide = () =>  setOpen(false) 
-  return (
-    <AdminLayout>
-         <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
-                { <BrandDialogBox onCancel={onHide} /> }
-          </Modal>
-         <div>
-                <div onClick={handleOpen}>
-                    <IconButton label="Add Brand" icon={<TbBrandAdonisJs/>}/>
-                </div>
-                <div className='mt-10 flex items-center gap-3 flex-wrap w-full'>
-                    <div className='w-[70%] border rounded-md shadow-md px-5 py-3 flex items-center justify-between bg-gray-50'>
-                        <div className='text-base tracking-wide font-semibold flex flex-col items-center gap-1'>
-                            <span className='text-xs text-gray-400 tracking-wider'>Brand Name</span>
-                        </div>
-                        <div className='text-base tracking-wide font-semibold flex flex-col items-center gap-1'>
-                            <span className='text-xs text-gray-400 tracking-wider'>Product Categories Name</span>
-                        </div>
-                        <div className='text-base tracking-wide font-semibold flex flex-col items-center gap-1'>
-                            <span className='text-xs text-gray-400 tracking-wider'>Action</span>
-                        </div>
-                    </div>
-                    <div className="text-base tracking-wide font-semibold flex flex-col items-center justify-center -gap-3">
-                      <span className="text-xs text-gray-400 tracking-wider opacity-0">
-                        Product Categories Name
-                      </span>
-                      <span className="text-gray-600 font-semibold text-sm -mt-4 z-5">
-                        {item.categories_id.name}
-                      </span>
-                    </div>
-                    <div className="text-base tracking-wide font-semibold flex flex-col items-center justify-center -gap-3">
-                      <span className="text-xs text-gray-400 tracking-wider opacity-0">
-                        Action
-                      </span>
-                      <span className="text-md text-red-500 cursor-pointer -mt-4 z-5">
-                        <DeleteOutlineIcon className="text-base" />
-                      </span>
-                    </div>
-                  </div>
-            </div>
-        
+  const { data, refetch } = useGetAllBrands();
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(!open);
+  const onHide = () => setOpen(false);
+  const router = useRouter();
+  const [logged, setlogged] = useState(false);
+  const [get, setget] = useState(false);
+  const { mutate } = useMutation({
+    mutationFn: deleteBrand,
+    onSuccess: () => {
+      toast("Brand deleted successfully");
+      setget(!get);
+    },
+    onError: (err) => {
+      toast(err.message);
+    },
+  });
+  useEffect(() => {
+    if (IsAuth("admin_info")) {
+      setlogged(true);
+    } else {
+      router.replace("login");
+    }
+    refetch();
+  }, [router, refetch, get]);
+  const deleteHandler = (id) => {
+    mutate(id);
+  };
+  if (logged) {
+    return (
+      <AdminLayout>
+        <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
+          {<BrandDialogBox onCancel={onHide} refetch={setget} token={get} />}
+        </Modal>
+        <div>
+          <div onClick={handleOpen} className=" mb-5">
+            <IconButton label="Add Brand" icon={<TbBrandAdonisJs />} />
+          </div>
+          <div>
+            <table className="w-full">
+              <thead className="w-full">
+                <tr className=" flex w-full justify-around bg-gray-200 rounded-s-md rounded-e-md py-3">
+                  <th className=" font-semibold">Brand Name</th>
+                  <th className=" font-semibold">Product Catogaries Name</th>
+                  <th className=" font-semibold">Action</th>
+                </tr>
+              </thead>
+              <tbody className="w-full">
+                {data &&
+                  data.map((val) => (
+                    <tr
+                      key={val?.products_brand_id}
+                      className="flex w-full justify-around py-3"
+                    >
+                      <td className=" text-center">{val?.brand_name}</td>
+                      <td className=" text-center">
+                        {val?.categories_id?.name}
+                      </td>
+                      <td className=" text-center">
+                        <button
+                          onClick={() => deleteHandler(val?.products_brand_id)}
+                        >
+                          <DeleteOutlineIcon />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </AdminLayout>
     );
   }
+};
 
 export default Brand;

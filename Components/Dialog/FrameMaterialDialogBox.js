@@ -6,13 +6,15 @@ import CreateMaterial from "@/utils/mutations/useCreateMaterial";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-const FrameMaterialDialogBox = ({ onCancel }) => {
-  const { mutate, isLoading, isError } = useMutation({
+const FrameMaterialDialogBox = ({ onCancel, refetch, token }) => {
+  const { mutate } = useMutation({
     mutationFn: CreateMaterial,
     onSuccess: () => {
       toast("Frame Material created succesfully");
+      refetch(!token);
     },
     onError: (err) => {
+      console.log(err);
       toast("Error occurred");
     },
   });
@@ -20,9 +22,7 @@ const FrameMaterialDialogBox = ({ onCancel }) => {
   const onSubmit = (data) => {
     mutate(data);
   };
-  if (isLoading) {
-    return <Loader />;
-  }
+
   return (
     <div className="relative border p-2 tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
       <h1 className="text-md font-semibold text-center text-gray-700 mt-3">

@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 import Loader from "../Loader";
 import query from "@/utils/queryClinet";
 
-const PowerTypesDialogBox = ({ onCancel, setOpen, refecth }) => {
+const PowerTypesDialogBox = ({ onCancel, setOpen, refecth, token }) => {
   const { register, handleSubmit } = useForm();
   const [data, setdata] = useState([]);
   const {
@@ -21,11 +21,13 @@ const PowerTypesDialogBox = ({ onCancel, setOpen, refecth }) => {
     isSuccess,
   } = useMutation({
     mutationFn: CreatePowerType,
-    onSucusses: (data) => {
+    onSuccess: () => {
       toast("PowerType created succesfully");
       query.invalidateQueries({ queryKey: ["api/PowerType"] });
+      refecth(!token);
     },
-    onError: () => {
+    onError: (err) => {
+      console.log(err);
       toast("Error occurred");
     },
   });
@@ -38,7 +40,6 @@ const PowerTypesDialogBox = ({ onCancel, setOpen, refecth }) => {
       JSON.stringify({ name: data.name, description: data.description })
     );
     mutate(formData);
-    setOpen(false);
   };
   useEffect(() => {
     if (datas) {

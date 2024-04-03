@@ -1,3 +1,4 @@
+"use client";
 import IconButton from "@/Components/Admin/IconButton";
 import PowerType from "@/Components/Admin/PowerType";
 import Modal from "@/Components/Dialog/Modal";
@@ -10,41 +11,67 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import useGetAllLensFeature from "@/utils/queries/useLensFeature";
 import { useMutation } from "@tanstack/react-query";
+import { toast } from "react-toastify";
+import query from "@/utils/queryClinet";
+import DeleteLensFeature from "@/utils/mutations/useDeletelensFeature";
 const LensFeature = () => {
   const router = useRouter();
   const [logged, setlogged] = useState(false);
   const [open, setOpen] = useState(false);
+  const [get, setget] = useState(false);
 
-  const { data } = useGetAllLensFeature();
-  // const { mutate } = useMutation({
-  //   mutationFn: ,
-  //   onSuccess: () => {},
-  //   onError: () => {},
-  // });
+  const { data, refetch } = useGetAllLensFeature();
+  const { mutate } = useMutation({
+    mutationFn: DeleteLensFeature,
+    onSuccess: (data) => {
+      toast.success("Deleted successully");
+      query.invalidateQueries({ queryKey: ["api/lensFeature"] });
+      setget(!get);
+    },
+    onError: (err) => {
+      console.log(err);
+      toast.error(err.message);
+    },
+  });
   useEffect(() => {
     if (IsAuth("admin_info")) {
       setlogged(true);
     } else {
       router.replace("login");
     }
-  }, [router]);
+    refetch();
+  }, [router, mutate, refetch, get]);
 
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);
+  console.log(data);
   return (
     <AdminLayout>
       <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
-        {<LensFeatureDialogBox onCancel={onHide} />}
+        {
+          <LensFeatureDialogBox
+            onCancel={onHide}
+            refetch={setget}
+            token={get}
+          />
+        }
       </Modal>
       <div>
         <div onClick={handleOpen}>
           <IconButton label="Add Lens Features" icon={<GiMicroscopeLens />} />
         </div>
         <div className="mt-10 grid grid-cols-2 items-center gap-5 w-full">
-            <PowerType src="/1 (1).jpeg" title="Single Vision/Powered Eyeglasses" description="For distance or near vision" />
-            <PowerType src="/1 (1).jpeg" title="Single Vision/Powered Eyeglasses" description="For distance or near vision" />
-            <PowerType src="/1 (1).jpeg" title="Single Vision/Powered Eyeglasses" description="For distance or near vision" />
-            <PowerType src="/1 (1).jpeg" title="Single Vision/Powered Eyeglasses" description="For distance or near vision" />
+          {data &&
+            data.map((value) => (
+              <PowerType
+                key={value?.id}
+                src={value?.image}
+                id={value?.id}
+                title={value?.title}
+                description={value?.description}
+                mutate={mutate}
+              />
+            ))}
         </div>
       </div>
     </AdminLayout>
