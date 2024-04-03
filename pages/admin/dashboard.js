@@ -2,9 +2,9 @@
 import DashboardSingleItem from "@/Components/Admin/DashboardSingleItem";
 import AdminLayout from "@/Layout/AdminLayout";
 import { IsAuth } from "@/utils/IsAuth";
+import { Router } from "@mui/icons-material";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 const items = [
   {
     color: "bg-blue-300",
@@ -52,14 +52,16 @@ const items = [
 
 function Dashboard() {
   const router = useRouter();
+
   const [logged, setlogged] = useState(false);
-  React.useLayoutEffect(() => {
+  useEffect(() => {
     if (IsAuth("admin_info")) {
-      setlogged(true);
+      setLogged(true);
     } else {
       router.replace("login");
     }
   }, [router]);
+
   if (logged) {
     return (
       <AdminLayout>
@@ -84,6 +86,3 @@ function Dashboard() {
 }
 
 export default Dashboard;
-{
-  /*  */
-}
