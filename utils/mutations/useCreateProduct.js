@@ -1,5 +1,4 @@
-const { Imageapi } = require("@/api");
-
+import { Imageapi } from "@/api";
 const CreateProduct = (data) => {
   return Imageapi.post("/products", data);
 };

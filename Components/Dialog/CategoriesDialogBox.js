@@ -9,13 +9,14 @@ import Loader from "../Loader";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-const CategoriesDialogBox = ({ onCancel, setOpen }) => {
+const CategoriesDialogBox = ({ onCancel, refetch }) => {
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
   const { mutate, isError } = useMutation({
     mutationFn: CreateCategories,
-    onSucusses: (data) => {
+    onSuccess: (data) => {
       toast("Categories created succesfully");
+      refetch();
     },
     onError: (err) => {
       toast("Error occurred");
