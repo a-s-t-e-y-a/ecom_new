@@ -1,6 +1,6 @@
 import React from "react";
 
-const UploadImage = () => {
+const UploadImage = ({ Image }) => {
   return (
     <>
       <div className="flex items-center justify-center w-full">
@@ -32,7 +32,12 @@ const UploadImage = () => {
               (Max Size : 5 Mb)
             </p>
           </div>
-          <input id="dropzone-file" type="file" className="hidden" />
+          <input
+            id="dropzone-file"
+            type="file"
+            className="hidden"
+            onChange={(e) => Image(e.target.files)}
+          />
         </label>
       </div>
     </>

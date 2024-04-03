@@ -36,8 +36,6 @@ const ProductDetailDialog = ({ onCancel }) => {
     mutationFn: CreateProduct,
     onSuccess: () => {
       toast("Product created succesfully");
-      query.invalidateQueries({ queryKey: ["api/productDetail"] });
-      // window.location.reload();
     },
     onError: (err) => {
       toast(err.message);
@@ -59,29 +57,28 @@ const ProductDetailDialog = ({ onCancel }) => {
 
   const OnSubmit = async (data) => {
     const form = new FormData();
-    
+
     // Append the 'main' files
     if (data.main) {
       for (let i = 0; i < data.main.length; i++) {
-        form.append('files', data.main[i]);
+        form.append("files", data.main[i]);
       }
     }
-  
+
     // Append the 'file' files
     if (data.file) {
       for (let i = 0; i < data.file.length; i++) {
-        form.append('files', data.file[i]);
+        form.append("files", data.file[i]);
       }
     }
-  
+
     // Append the data object as JSON string
-    delete data.main,
-    delete data.file
+    delete data.main, delete data.file;
     form.append("data", JSON.stringify(data));
-  
-    console.log(form)
-      // Assuming mutate is an asynchronous function that sends the form data
-      await mutate(form);
+
+    console.log(form);
+    // Assuming mutate is an asynchronous function that sends the form data
+    await mutate(form);
   };
   return (
     <div className="relative border mt-[1100px] md:mt-[300px] rounded-md shadow-lg w-full md:w-auto h-[calc(100%-1rem)] max-h-full ">
@@ -93,7 +90,7 @@ const ProductDetailDialog = ({ onCancel }) => {
         onSubmit={handleSubmit(OnSubmit)}
       >
         <div className="grid grid-cols-1 md:grid-cols-2  items-center justify-between w-full gap-3">
-          <FileInput title="Main Image" register={register} name='main' />
+          <FileInput title="Main Image" register={register} name="main" />
           <FileInput title="Other imsges" register={register} />
           <TextField
             fullWidth

@@ -58,7 +58,7 @@ const Categories = () => {
     return (
       <AdminLayout>
         <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
-          <CategoriesDialogBox onCancel={onHide} setOpen={setOpen} />
+          <CategoriesDialogBox onCancel={onHide} refetch={refetch} />
         </Modal>
         <div>
           <div onClick={handleOpen}>

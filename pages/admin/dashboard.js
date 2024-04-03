@@ -56,7 +56,7 @@ function Dashboard() {
   const [logged, setlogged] = useState(false);
   useEffect(() => {
     if (IsAuth("admin_info")) {
-      setLogged(true);
+      setlogged(true);
     } else {
       router.replace("login");
     }
