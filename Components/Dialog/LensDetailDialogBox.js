@@ -55,7 +55,7 @@ const LensDetailDialogBox = ({ onCancel }) => {
             label="Power Type"
             options={power}
             register={register}
-            name="power_type"
+            name="power_type_id"
           />
 
           <TextField
