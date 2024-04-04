@@ -31,6 +31,7 @@ export default function SingleSelectLensFeature({
   options,
   register,
   name,
+  value,
 }) {
   const theme = useTheme();
   const [selectedItem, setSelectedItem] = React.useState("");
@@ -56,7 +57,7 @@ export default function SingleSelectLensFeature({
             options.map((item) => (
               <MenuItem
                 key={item.id}
-                value={item.id}
+                value={item.id || item[value]}
                 style={getStyles(item, selectedItem, theme)}
               >
                 {item?.title || item?.name}
