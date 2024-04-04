@@ -13,13 +13,13 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import useGetAllPowerType from "@/utils/queries/usePowerType";
 
-const LensDetailDialogBox = ({ onCancel, refetch }) => {
+const LensDetailDialogBox = ({ onCancel, refetch, token }) => {
   const { register, handleSubmit } = useForm();
   const { mutate } = useMutation({
     mutationFn: CreateLensDeatils,
     onSuccess: () => {
       toast("Lens Deatails created succesfully");
-      refetch();
+      refetch(!token);
     },
     onError: () => {
       toast("Error occurred");

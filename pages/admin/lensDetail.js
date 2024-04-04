@@ -35,12 +35,12 @@ const LensDetail = () => {
       router.replace("login");
     }
     refetch();
-  }, [router, refetch]);
+  }, [router, refetch, get]);
   const { mutate } = useMutation({
     mutationFn: deleteLensDetails,
     onSuccess: () => {
       toast("Lens Details Deleted Successfully");
-      refetch();
+      setget(!get);
     },
     onError: (err) => {
       toast(err.message);
@@ -64,7 +64,13 @@ const LensDetail = () => {
     return (
       <AdminLayout>
         <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
-          {<LensDetailDialogBox onCancel={onHide} refetch={refetch} />}
+          {
+            <LensDetailDialogBox
+              onCancel={onHide}
+              refetch={setget}
+              token={get}
+            />
+          }
         </Modal>
         <div>
           <div>
