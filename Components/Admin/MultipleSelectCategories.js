@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import * as React from "react";
+import { useTheme } from "@mui/material/styles";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -19,13 +19,21 @@ const MenuProps = {
 
 function getStyles(item, selectedItem, theme) {
   return {
-    fontWeight: item.products_categories_id === selectedItem ? theme.typography.fontWeightMedium : theme.typography.fontWeightRegular,
+    fontWeight:
+      item.products_categories_id === selectedItem
+        ? theme.typography.fontWeightMedium
+        : theme.typography.fontWeightRegular,
   };
 }
 
-export default function SingleSelectCategories({ label, options ,register,name}) {
+export default function SingleSelectCategories({
+  label,
+  options,
+  register,
+  name,
+}) {
   const theme = useTheme();
-  const [selectedItem, setSelectedItem] = React.useState('');
+  const [selectedItem, setSelectedItem] = React.useState("");
 
   const handleChange = (event) => {
     setSelectedItem(event.target.value);
@@ -44,18 +52,18 @@ export default function SingleSelectCategories({ label, options ,register,name})
           input={<OutlinedInput label={label} />}
           MenuProps={MenuProps}
         >
-          {options&&options.map((item) => (
-            <MenuItem
-              key={item.products_categories_id}
-              value={item.products_categories_id}
-              style={getStyles(item, selectedItem, theme)}
-            >
-              {item.name}
-            </MenuItem>
-          ))}
+          {options &&
+            options.map((item) => (
+              <MenuItem
+                key={item.products_categories_id}
+                value={item.products_categories_id}
+                style={getStyles(item, selectedItem, theme)}
+              >
+                {item.name}
+              </MenuItem>
+            ))}
         </Select>
       </FormControl>
     </div>
   );
 }
-

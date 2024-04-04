@@ -14,6 +14,9 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { FcAbout } from "react-icons/fc";
 import useGetAllLensDetails from "@/utils/queries/useLensDetail";
+import { useMutation } from "@tanstack/react-query";
+import deleteLensDetails from "@/utils/mutations/uselensDeatil";
+import { toast } from "react-toastify";
 const LensDetail = () => {
   const lensDetailData = useSelector((state) => state.lensDetail);
 
@@ -24,6 +27,15 @@ const LensDetail = () => {
 
   const { data, refetch } = useGetAllLensDetails();
   const [get, setget] = useState(false);
+  const { mutate } = useMutation({
+    mutationFn: deleteLensDetails,
+    onSuccess: () => {
+      toast("Lens Details Deleted Successfully");
+    },
+    onError: (err) => {
+      toast(err.message);
+    },
+  });
   useEffect(() => {
     if (IsAuth("admin_info")) {
       setlogged(true);
@@ -44,6 +56,9 @@ const LensDetail = () => {
   }
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(!open);
+  const deleteHandelr = (id) => {
+    mutate(id);
+  };
   if (logged) {
     return (
       <AdminLayout>
@@ -66,16 +81,7 @@ const LensDetail = () => {
                   Lens Heading
                 </span>
               </div>
-              <div className="text-base tracking-wide font-semibold flex flex-col items-center gap-1">
-                <span className="text-xs text-gray-400 tracking-wider">
-                  Product Categories Name
-                </span>
-              </div>
-              <div className="text-base tracking-wide font-semibold flex flex-col items-center gap-1">
-                <span className="text-xs text-gray-400 tracking-wider">
-                  Product Brand Name
-                </span>
-              </div>
+
               <div className="text-base tracking-wide font-semibold flex flex-col items-center gap-1">
                 <span className="text-xs text-gray-400 tracking-wider">
                   Power Type
@@ -120,31 +126,16 @@ const LensDetail = () => {
                                     Lens Heading
                                   </span>
                                   <span className="text-gray-600 font-semibold text-sm -mt-4 z-5">
-                                    {item.heading}
+                                    {item?.heading}
                                   </span>
                                 </div>
-                                <div className="text-base tracking-wide font-semibold flex flex-col items-center justify-center -gap-3">
-                                  <span className="text-xs text-gray-400 tracking-wider opacity-0">
-                                    Product Categories Name
-                                  </span>
-                                  <span className="text-gray-600 font-semibold text-sm -mt-4 z-5">
-                                    {item?.categories_id?.name}
-                                  </span>
-                                </div>
-                                <div className="text-base tracking-wide font-semibold flex flex-col items-center justify-center -gap-3">
-                                  <span className="text-xs text-gray-400 tracking-wider opacity-0">
-                                    Product Brand Name
-                                  </span>
-                                  <span className="text-gray-600 font-semibold text-sm -mt-4 z-5">
-                                    {item.products_brand_id}
-                                  </span>
-                                </div>
+
                                 <div className="text-base tracking-wide font-semibold flex flex-col items-center justify-center -gap-3">
                                   <span className="text-xs text-gray-400 tracking-wider opacity-0">
                                     Power Type
                                   </span>
                                   <span className="text-gray-600 font-semibold text-sm -mt-4 z-5">
-                                    {item.PowerType}
+                                    {item?.power_type}
                                   </span>
                                 </div>
                                 <div className="text-base tracking-wide font-semibold flex flex-col items-center justify-center -gap-3">
@@ -152,7 +143,7 @@ const LensDetail = () => {
                                     Price
                                   </span>
                                   <span className="text-gray-600 font-semibold text-sm -mt-4 z-5">
-                                    {item.Price}
+                                    {item?.price}
                                   </span>
                                 </div>
                                 <div className="text-base tracking-wide font-semibold flex flex-col items-center justify-center -gap-3">
@@ -160,10 +151,16 @@ const LensDetail = () => {
                                     Action
                                   </span>
                                   <span className="flex items-center gap-3 font-semibold text-base -mt-4 z-5">
-                                    <span className="text-sm text-red-500 cursor-pointer">
+                                    <span
+                                      className="text-sm text-red-500 cursor-pointer"
+                                      onClick={() => deleteHandelr(item?.id)}
+                                    >
                                       <DeleteOutlineIcon className="text-base" />
                                     </span>
-                                    <span className="text-sm text-sky-500 cursor-pointer">
+                                    <span
+                                      className="text-sm text-sky-500 cursor-pointer"
+                                      onClick={() => handleOpen()}
+                                    >
                                       <TbEdit className="text-base" />
                                     </span>
                                   </span>

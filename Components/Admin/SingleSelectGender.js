@@ -20,21 +20,21 @@ const MenuProps = {
 function getStyles(item, selectedItem, theme) {
   return {
     fontWeight:
-      item.products_categories_id === selectedItem
-        ? theme.typography.fontWeightMedium
-        : theme.typography.fontWeightRegular,
+      item?.products_categories_id === selectedItem
+        ? theme?.typography?.fontWeightMedium
+        : theme?.typography?.fontWeightRegular,
   };
 }
 
-export default function SingleSelectPowerType({
+export default function SingleGenderSelect({
   label,
   options,
   register,
   name,
-  active,
+  size = "small",
 }) {
   const theme = useTheme();
-  const [selectedItem, setSelectedItem] = React.useState([]);
+  const [selectedItem, setSelectedItem] = React.useState("");
 
   const handleChange = (event) => {
     setSelectedItem(event.target.value);
@@ -42,27 +42,25 @@ export default function SingleSelectPowerType({
 
   return (
     <div>
-      <FormControl sx={{ width: 298 }} size="small">
+      <FormControl sx={{ width: 300 }} size={size}>
         <InputLabel id={label}>{label}</InputLabel>
         <Select
           {...register(name)}
           labelId={label}
           id={label}
-          multiple
           value={selectedItem}
           onChange={handleChange}
           input={<OutlinedInput label={label} />}
           MenuProps={MenuProps}
         >
           {options &&
-            options.map((item) => (
+            options?.map((item, index) => (
               <MenuItem
-                disabled={active ? false : true}
-                key={item.id}
-                value={item.id}
+                key={index}
+                value={item}
                 style={getStyles(item, selectedItem, theme)}
               >
-                {item.name}
+                {item}
               </MenuItem>
             ))}
         </Select>

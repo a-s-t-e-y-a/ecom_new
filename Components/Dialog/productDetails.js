@@ -28,7 +28,8 @@ import SingleSelectStyle from "../Admin/styleMultiple";
 import CreateProduct from "@/utils/mutations/useCreateProduct";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import query from "@/utils/queryClinet";
+import { useState } from "react";
+import SingleGenderSelect from "@/Components/Admin/SingleSelectGender";
 
 const ProductDetailDialog = ({ onCancel }) => {
   const { register, handleSubmit } = useForm();
@@ -38,6 +39,7 @@ const ProductDetailDialog = ({ onCancel }) => {
       toast("Product created succesfully");
     },
     onError: (err) => {
+      console.log(err);
       toast(err.message);
     },
   });
@@ -54,10 +56,10 @@ const ProductDetailDialog = ({ onCancel }) => {
   const { data: material } = useGetAllMaterial();
   const { data: size } = useGetAllSize();
   const { data: style } = useGetAllStyle();
-
+  const [activePOwer, setAcative] = useState(true);
   const OnSubmit = async (data) => {
     const form = new FormData();
-
+    console.log(data);
     // Append the 'main' files
     if (data.main) {
       for (let i = 0; i < data.main.length; i++) {
@@ -73,13 +75,12 @@ const ProductDetailDialog = ({ onCancel }) => {
     }
 
     // Append the data object as JSON string
-    delete data.main, delete data.file;
     form.append("data", JSON.stringify(data));
 
-    console.log(form);
     // Assuming mutate is an asynchronous function that sends the form data
-    await mutate(form);
+    mutate(form);
   };
+
   return (
     <div className="relative border mt-[1100px] md:mt-[300px] rounded-md shadow-lg w-full md:w-auto h-[calc(100%-1rem)] max-h-full ">
       <h1 className="text-md font-semibold text-center text-gray-700 mt-3 mb-5">
@@ -108,9 +109,9 @@ const ProductDetailDialog = ({ onCancel }) => {
             {...register("product_model_number")}
             sx={{ minWidth: 300 }}
           />
-          <SingleSelectUniversal
+          <SingleGenderSelect
             label="Gender"
-            options={["male", "Female", "unisex"]}
+            options={["Men", "Women", "Kids", "Both(M/F)"]}
             register={register}
             name="powerList"
           />
@@ -121,12 +122,19 @@ const ProductDetailDialog = ({ onCancel }) => {
             register={register}
             name="productCategoriesId"
           />
-
+          <SingleSelectUniversal
+            label="Select lense"
+            options={["Yes", "No"]}
+            register={register}
+            name="select_Lense"
+            setactive={setAcative}
+          />
           <SingleSelectPowerType
             label="Select Power Type"
             options={powerType}
             register={register}
             name="show_lens_list"
+            active={activePOwer}
           />
           <SingleSelectColor
             label="Select Color"
@@ -159,12 +167,7 @@ const ProductDetailDialog = ({ onCancel }) => {
             register={register}
             name="style"
           />
-          <SingleSelectUniversal
-            label="Select lense"
-            options={["Yes", "No"]}
-            register={register}
-            name="powerList"
-          />
+
           <div>
             <TextField
               disabled
@@ -195,15 +198,7 @@ const ProductDetailDialog = ({ onCancel }) => {
               {...register("row_metrial_source_from")}
             />
           </div>
-          <TextField
-            fullWidth
-            label="Selling Price"
-            name="product_price"
-            id="product_price"
-            size="small"
-            {...register("product_price")}
-            sx={{ minWidth: 300 }}
-          />
+
           <TextField
             fullWidth
             label="Discounted Product Price"

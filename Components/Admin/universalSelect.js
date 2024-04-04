@@ -5,6 +5,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { setActive } from "@material-tailwind/react/components/Tabs/TabsContext";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -32,15 +33,15 @@ export default function SingleSelectUniversal({
   register,
   name,
   size = "small",
+  setactive,
 }) {
   const theme = useTheme();
   const [selectedItem, setSelectedItem] = React.useState("");
 
   const handleChange = (event) => {
     setSelectedItem(event.target.value);
+    event.target.value === "No" ? setactive(false) : setactive(true);
   };
-
-  console.log(options);
 
   return (
     <div>
