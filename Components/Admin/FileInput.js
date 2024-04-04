@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-const FileInput = ({ title, register,name="file" }) => {
+const FileInput = ({ title, register, name = "file" }) => {
   return (
     <div className="flex items-center space-x-4">
       <div className="shrink-0 flex flex-col items-center">
@@ -21,6 +21,7 @@ const FileInput = ({ title, register,name="file" }) => {
         <input
           multiple
           type="file"
+          name={name}
           {...register(name)}
           className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
         />

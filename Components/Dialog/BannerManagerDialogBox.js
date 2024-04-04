@@ -1,46 +1,43 @@
-import React from 'react'
-import FileInput from '@/Components/Admin/FileInput'
-import SelectComponent from '@/Components/Admin/SelectComponent'
-import { TextField } from '@mui/material'
+import React from "react";
+import FileInput from "@/Components/Admin/FileInput";
+import SelectComponent from "@/Components/Admin/SelectComponent";
 import AddIcon from "@mui/icons-material/Add";
+import { useForm } from "react-hook-form";
 
-
-const ProductCategoriesName = ["Eye Glasses", "Sun Glasses", "Computer Glasses",]
-const ProductBrandName = ["Other","Trend"]
-const OnWhichPage = ["HomePage", "ProductPage"]
-const Shape = ["Butter","Hexagon","Aviator","Clubmaster","Oval","Cateye","Round","Wayfarer","Rectangle","Square","Geometric"]
-
+const onSubmit = (data) => {};
 const BannerManagerDialogBox = ({ onCancel }) => {
+  const { register, handleSubmit } = useForm();
   return (
     <div className="relative border p-2 tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
       <h1 className="text-md font-semibold text-center text-gray-700 mt-3">
         Add Banner
       </h1>
-      <form 
+      <form
         className="flex flex-col items-center justify-between gap-6 px-6 pb-6"
-        onSubmit={()=>{}}
+        onSubmit={() => {
+          handleSubmit(onSubmit);
+        }}
       >
-        <div className='flex items-center justify-between gap-5'>
-            <FileInput title="Main Image" />
-            <SelectComponent label="ForWhichPage" options={OnWhichPage} />
+        <div className="flex items-center justify-between gap-5">
+          <FileInput title="main_image" register={register} />
+          <SelectComponent label="ForWhichPage" options={OnWhichPage} />
         </div>
-        <div className='flex items-center justify-between gap-5'>
-            {/* <MultipleSelect label="ProductCategoriesName" options={ProductCategoriesName}/> */}
-            {/* <MultipleSelect label="ProductBrandName" options={ProductBrandName}/> */}
+        <div className="flex items-center justify-between gap-5">
+          {/* <MultipleSelect label="ProductCategoriesName" options={ProductCategoriesName}/> */}
+          {/* <MultipleSelect label="ProductBrandName" options={ProductBrandName}/> */}
         </div>
-        
-        <div className='flex items-center justify-between gap-5'>
-            <SelectComponent label="Shape" options={Shape} />  
-            <button
+
+        <div className="flex items-center justify-between gap-5">
+          <SelectComponent label="Shape" options={Shape} />
+          <button
             type="submit"
             className="text-white bg-sky-400 hover:bg-sky-500  focus:outline-none font-medium rounded-lg text-sm inline-flex items-center px-5 py-2 text-center mr-2"
             //  onClick={}
-            onSubmit={()=>{}}
-            >
-                Add <AddIcon className="ml-1 font-bold text-base" />
-            </button>  
+            onSubmit={() => {}}
+          >
+            Add <AddIcon className="ml-1 font-bold text-base" />
+          </button>
         </div>
-
       </form>
       <button
         type="button"
@@ -63,7 +60,7 @@ const BannerManagerDialogBox = ({ onCancel }) => {
         <span className="sr-only">Close modal</span>
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default BannerManagerDialogBox
+export default BannerManagerDialogBox;

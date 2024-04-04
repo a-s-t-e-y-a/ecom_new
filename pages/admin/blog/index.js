@@ -9,6 +9,10 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { FaBlog } from "react-icons/fa";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import { useMutation } from "@tanstack/react-query";
+import deleteBlogs from "@/utils/mutations/useDeleteBlog";
+import { toast } from "react-toastify";
 
 const Blog = () => {
   const router = useRouter();
@@ -26,6 +30,19 @@ const Blog = () => {
     }
     refetch();
   }, [router, refetch]);
+  const { mutate } = useMutation({
+    mutationFn: deleteBlogs,
+    onSuccess: () => {
+      refetch();
+      toast("Blog deleted Successfully");
+    },
+    onError: (err) => {
+      toast(err.message);
+    },
+  });
+  const DeleteBlogHandler = (id) => {
+    mutate(id);
+  };
   if (logged) {
     return (
       <AdminLayout>
@@ -38,7 +55,19 @@ const Blog = () => {
           </button>
           <div className="pt-5 grid grid-cols-3 items-center gap-5  h-[900px] overflow-auto scrollbar-hide ">
             {data &&
-              data.map((value, indx) => <BlogItem key={indx} value={value} />)}
+              data.map((value, indx) => (
+                <div key={indx} className=" relative">
+                  <BlogItem value={value} />
+                  <button
+                    onClick={() => {
+                      DeleteBlogHandler(value?.id);
+                    }}
+                    className=" absolute right-2 bottom-3 text-red-500"
+                  >
+                    <DeleteOutlineIcon />
+                  </button>
+                </div>
+              ))}
           </div>
         </div>
       </AdminLayout>

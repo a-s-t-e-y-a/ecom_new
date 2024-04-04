@@ -9,7 +9,7 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
 const ShapeDialogBox = ({ onCancel, refetch, token }) => {
-  const { mutate, isPending } = useMutation({
+  const { mutate } = useMutation({
     mutationFn: CreateShape,
     onSuccess: () => {
       toast("Shape created succesfully");
@@ -37,13 +37,27 @@ const ShapeDialogBox = ({ onCancel, refetch, token }) => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <FileInput title="" register={register} />
-        <div className="flex items-center justify-between gap-2">
+        <div className="flex flex-col items-center justify-between gap-2">
           <TextField
             label="Shape"
             name="name"
             id="shape"
             size="small"
             {...register("name")}
+          />
+          <TextField
+            label="Shape Seo Title"
+            name="seo_title"
+            id="shape"
+            size="small"
+            {...register("seo_title")}
+          />
+          <TextField
+            label="Shape Seo description"
+            name="seo_description"
+            id="shape"
+            size="small"
+            {...register("seo_description")}
           />
           <button
             type="submit"

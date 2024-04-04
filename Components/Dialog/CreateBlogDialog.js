@@ -20,20 +20,26 @@ const CreateBlogDialog = (props) => {
 
   const { mutate } = useMutation({
     mutationFn: CreateBlog,
-    onSuccess: () => {
+    onSuccess: (data) => {
       toast("Blogs created Successfuly");
+      console.log(data);
     },
     onError: (err) => {
+      console.log(err);
       toast(err.message);
     },
   });
-  const SumbitHandler = () => {
-    if (Image && Heading !== "" && Description !== "") {
-      const fromdata = new FormData();
-      fromdata.append("files", Image);
-      fromdata.append("data", JSON.stringify({ Image, Heading, Description }));
-      mutate(fromdata);
-    }
+  const SumbitHandler = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("thumb", e.target?.Image?.value);
+    formData.append("data", JSON.stringify());
+    mutate({
+      headingc: e.target?.heading?.value,
+      description: e.target?.discription?.value,
+
+      thumb: e.target?.Image?.value,
+    });
   };
   return (
     <Fragment>
@@ -43,18 +49,19 @@ const CreateBlogDialog = (props) => {
             <h1 className="text-xl font-semibold tracking-wide text-center">
               Upload Image
             </h1>
-            <div className="space-y-4">
+            <form className="space-y-4" onSubmit={(e) => SumbitHandler(e)}>
               <p className="text-sm tracking-wide font-semibold">
                 You can easily upload your file in any of the following formats:
                 PDF, JPG, GIF, PNG, JPEG
               </p>
               <div className="w-[90%] mx-auto">
-                <UploadImage Image={SetImage} />
+                <UploadImage name="Image" />
               </div>
 
               <h1>
                 <Input
                   label="Heading"
+                  name="heading"
                   onChange={(e) => SetHeading(e.target.value)}
                 />
               </h1>
@@ -62,6 +69,7 @@ const CreateBlogDialog = (props) => {
               <div>
                 <Textarea
                   label="Additionals Comments...."
+                  name="discription"
                   onChange={(e) => SetHeading(e.target.value)}
                 />
               </div>
@@ -74,15 +82,11 @@ const CreateBlogDialog = (props) => {
                 >
                   <span>Cancel</span>
                 </Button>
-                <Button
-                  variant="text"
-                  color="green"
-                  onClick={() => SumbitHandler()}
-                >
+                <Button variant="text" color="green" type="submit">
                   <span>Confirm</span>
                 </Button>
               </div>
-            </div>
+            </form>
           </div>
         </DialogBody>
       </Dialog>
