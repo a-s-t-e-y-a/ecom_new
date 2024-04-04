@@ -13,16 +13,15 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import useGetAllPowerType from "@/utils/queries/usePowerType";
 
-const LensDetailDialogBox = ({ onCancel }) => {
+const LensDetailDialogBox = ({ onCancel, refetch }) => {
   const { register, handleSubmit } = useForm();
   const { mutate } = useMutation({
     mutationFn: CreateLensDeatils,
     onSuccess: () => {
       toast("Lens Deatails created succesfully");
-      onCancel();
+      refetch();
     },
-    onError: (data) => {
-      console.log(data);
+    onError: () => {
       toast("Error occurred");
     },
   });
@@ -33,7 +32,6 @@ const LensDetailDialogBox = ({ onCancel }) => {
   } = useGetAllBrands();
   const { data: power } = useGetAllPowerType();
   const { data: lens_feature } = useGetAllLensFeature();
-  console.log(power);
   const onSubmit = (data) => {
     const formData = new FormData();
     formData.append("file", data.file[0]);

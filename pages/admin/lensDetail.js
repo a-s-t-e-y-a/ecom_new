@@ -27,15 +27,7 @@ const LensDetail = () => {
 
   const { data, refetch } = useGetAllLensDetails();
   const [get, setget] = useState(false);
-  const { mutate } = useMutation({
-    mutationFn: deleteLensDetails,
-    onSuccess: () => {
-      toast("Lens Details Deleted Successfully");
-    },
-    onError: (err) => {
-      toast(err.message);
-    },
-  });
+
   useEffect(() => {
     if (IsAuth("admin_info")) {
       setlogged(true);
@@ -44,7 +36,16 @@ const LensDetail = () => {
     }
     refetch();
   }, [router, refetch]);
-  console.log(data, "sas");
+  const { mutate } = useMutation({
+    mutationFn: deleteLensDetails,
+    onSuccess: () => {
+      toast("Lens Details Deleted Successfully");
+      refetch();
+    },
+    onError: (err) => {
+      toast(err.message);
+    },
+  });
   function handleOnDragEnd(result) {
     if (!result.destination) return;
 
@@ -63,7 +64,7 @@ const LensDetail = () => {
     return (
       <AdminLayout>
         <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
-          {<LensDetailDialogBox onCancel={onHide} />}
+          {<LensDetailDialogBox onCancel={onHide} refetch={refetch} />}
         </Modal>
         <div>
           <div>
@@ -150,20 +151,20 @@ const LensDetail = () => {
                                   <span className="text-xs text-gray-400 tracking-wider opacity-0">
                                     Action
                                   </span>
-                                  <span className="flex items-center gap-3 font-semibold text-base -mt-4 z-5">
-                                    <span
+                                  <div className="flex items-center gap-3 font-semibold text-base -mt-4 z-5">
+                                    <button
                                       className="text-sm text-red-500 cursor-pointer"
                                       onClick={() => deleteHandelr(item?.id)}
                                     >
                                       <DeleteOutlineIcon className="text-base" />
-                                    </span>
-                                    <span
+                                    </button>
+                                    <button
                                       className="text-sm text-sky-500 cursor-pointer"
                                       onClick={() => handleOpen()}
                                     >
                                       <TbEdit className="text-base" />
-                                    </span>
-                                  </span>
+                                    </button>
+                                  </div>
                                 </div>
                               </div>
                             )}
