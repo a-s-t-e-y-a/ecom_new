@@ -75,12 +75,12 @@ const Shape = () => {
                     key={index}
                     className="border rounded-md shadow-md px-5 py-2 inline-flex flex-col items-center gap-2 bg-gray-100"
                   >
-                    <Image
-                      src={`${shape?.image}`}
+                    <img
+                      src={shape?.image || "/path/to/default/image.jpg"}
+                      alt="Shape image"
+                      width="100"
+                      height="100"
                       className="w-44 h-auto mix-blend-multiply"
-                      width={100}
-                      height={100}
-                      alt=""
                     />
                     <div className="flex items-center gap-5">
                       <span className="text-base tracking-wide font-semibold text-gray-700">
