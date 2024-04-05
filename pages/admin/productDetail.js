@@ -17,6 +17,7 @@ const ProductDetail = () => {
   const onHide = () => setOpen(false);
   const router = useRouter();
   const { data, re } = useGetAllProducts(1);
+  console.log(data)
   const [logged, setlogged] = useState(false);
   useEffect(() => {
     if (IsAuth("admin_info")) {

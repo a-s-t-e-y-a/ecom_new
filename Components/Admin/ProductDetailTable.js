@@ -42,7 +42,7 @@ const ProductDetailTable = ({ data }) => {
         </thead>
         <tbody className="text-xs text-gray-600 text-center  ">
           {data &&
-            data.data.map((Product, index) => (
+            data.map((Product, index) => (
               <tr className="" key={index}>
                 <td className="py-2 border">{index + 1}</td>
                 <td className="py-2 border">
@@ -55,18 +55,18 @@ const ProductDetailTable = ({ data }) => {
                     <MdDelete />
                   </span>
                 </td>
-                <td className="py-2 border">{data.InStock}</td>
-                <td className="py-2 border">{data.Quantity}</td>
-                <td className="py-2 border">{data.Categories}</td>
-                <td className="py-2 border">{data.Brand}</td>
-                <td className="py-2 border">{data.ModalNumber}</td>
-                <td className="py-2 border">{data.Price}</td>
-                <td className="py-2 border">{data.Shape}</td>
-                <td className="py-2 border">{data.FrameMaterial}</td>
-                <td className="py-2 border">{data.FrameWidth}</td>
-                <td className="py-2 border">{data.LensWidth}</td>
-                <td className="py-2 border">{data.LensHeight}</td>
-                <td className="py-2 border">{data.Color}</td>
+                <td className="py-2 border">{Product.stokke}</td>
+                <td className="py-2 border">{Product.Quantity}</td>
+                <td className="py-2 border">{Product.Categories}</td>
+                <td className="py-2 border">{Product.Brand}</td>
+                <td className="py-2 border">{Product.ModalNumber}</td>
+                <td className="py-2 border">{Product.Price}</td>
+                <td className="py-2 border">{Product.Shape}</td>
+                <td className="py-2 border">{Product.FrameMaterial}</td>
+                <td className="py-2 border">{Product.FrameWidth}</td>
+                <td className="py-2 border">{Product.LensWidth}</td>
+                <td className="py-2 border">{Product.LensHeight}</td>
+                <td className="py-2 border">{Product.Color}</td>
               </tr>
             ))}
         </tbody>
