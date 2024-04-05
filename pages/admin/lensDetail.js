@@ -144,7 +144,7 @@ const LensDetail = () => {
                               <DeleteOutlineIcon />
                             </button>
                             <button
-                              onClick={() => handleOpen}
+                              onClick={() => handleOpen()}
                               className=" text-blue-500 me-2 text-lg"
                             >
                               <TbEdit />
