@@ -51,7 +51,7 @@ export default function Home() {
         <div>
           <p className="  text-5xl text-center">EYEGLASSES</p>
           <p className=" text-center  text-5xl  font-semibold mb-5">TREND</p>
-          <Slider data={Shape} />
+          <Slider data={Round} />
         </div>
 
         <div className="w-full">
