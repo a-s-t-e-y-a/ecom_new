@@ -18,6 +18,7 @@ export default function Home() {
     const url = [
       "https://api.akkukachasma.com/api/products",
       "https://api.akkukachasma.com/api/categories/3",
+      "https://api.akkukachasma.com/api/categories",
     ];
     axios.all(url.map((endpoints) => axios.get(endpoints))).then((data) => {
       const AllProduct = data[0];
@@ -32,6 +33,7 @@ export default function Home() {
       const trend = AllProduct?.data?.data?.filter(
         (Value) => Value?.productBrand?.brand_name === "Trend"
       );
+      console.log(round, rimless, trend, AllProduct, Computer);
       setSungaless(AllProduct?.data?.data);
       setTend(trend);
       setRound(round);
@@ -42,7 +44,6 @@ export default function Home() {
   useEffect(() => {
     fecthMultipleData();
   }, []);
-  console.log(Tend);
   return (
     <Layout>
       <section className="flex flex-col h-auto gap-7">

@@ -1,12 +1,17 @@
+"use client";
 import React from "react";
 import FileInput from "@/Components/Admin/FileInput";
 import SelectComponent from "@/Components/Admin/SelectComponent";
 import AddIcon from "@mui/icons-material/Add";
 import { useForm } from "react-hook-form";
+import useGetAllCategories from "@/utils/queries/useCategoriesGetAll";
+import useGetAllShape from "@/utils/queries/useShapeGetAll";
 
 const onSubmit = (data) => {};
 const BannerManagerDialogBox = ({ onCancel }) => {
   const { register, handleSubmit } = useForm();
+  const { data } = useGetAllCategories();
+  const { data: Shape } = useGetAllShape();
   return (
     <div className="relative border p-2 tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
       <h1 className="text-md font-semibold text-center text-gray-700 mt-3">
@@ -20,7 +25,7 @@ const BannerManagerDialogBox = ({ onCancel }) => {
       >
         <div className="flex items-center justify-between gap-5">
           <FileInput title="main_image" register={register} />
-          <SelectComponent label="ForWhichPage" options={OnWhichPage} />
+          <SelectComponent label="SELECT CATOGARIES" options={data} />
         </div>
         <div className="flex items-center justify-between gap-5">
           {/* <MultipleSelect label="ProductCategoriesName" options={ProductCategoriesName}/> */}

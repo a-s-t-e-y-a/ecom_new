@@ -20,15 +20,6 @@ const PageLinks = [
 
 const SunGlassLinks = [
   {
-    label: "Gender",
-    subItems: [
-      { href: "/sunglasses/men", label: "Men" },
-      { href: "/sunglasses/women", label: "Women" },
-      { href: "/sunglasses/kids", label: "Kids" },
-      { href: "/sunglasses/men-women", label: "Both(M/F)" },
-    ],
-  },
-  {
     label: "Shape1",
     subItems: [
       { href: "/sunglasses/shape/square", label: "Square" },
@@ -61,15 +52,6 @@ const SunGlassLinks = [
 
 const EyeGlassLinks = [
   {
-    label: "Gender",
-    subItems: [
-      { href: "/eyeglasses/men", label: "Men" },
-      { href: "/eyeglasses/women", label: "Women" },
-      { href: "/eyeglasses/kids", label: "Kids" },
-      { href: "/eyeglasses/men-women", label: "Both(M/F)" },
-    ],
-  },
-  {
     label: "Shape1",
     subItems: [
       { href: "/eyeglasses/shape/square", label: "Square" },
@@ -96,88 +78,6 @@ const EyeGlassLinks = [
       { href: "/eyeglasses/type/rimless", label: "Rimless" },
       { href: "/eyeglasses/type/half-frame", label: "HalfFrame" },
       { href: "/eyeglasses/type/full-frame", label: "FullFrame" },
-    ],
-  },
-];
-
-const KidsGlassLinks = [
-  {
-    label: "Gender",
-    subItems: [
-      { href: "/kidsglasses/men", label: "Men" },
-      { href: "/kidsglasses/women", label: "Women" },
-      { href: "/kidsglasses/kids", label: "Kids" },
-      { href: "/kidsglasses/men-women", label: "Both(M/F)" },
-    ],
-  },
-  {
-    label: "Shape1",
-    subItems: [
-      { href: "/kidsglasses/shape/square", label: "Square" },
-      { href: "/kidsglasses/shape/geometry", label: "Geometry" },
-      { href: "/kidsglasses/shape/rectangle", label: "Rectangle" },
-      { href: "/kidsglasses/shape/wayfarer", label: "Wayfarer" },
-      { href: "/kidsglasses/shape/round", label: "Round" },
-    ],
-  },
-  {
-    label: "Shape2",
-    subItems: [
-      { href: "/kidsglasses/shape/butterfly", label: "Butterfly" },
-      { href: "/kidsglasses/shape/aviator", label: "Aviator" },
-      { href: "/kidsglasses/shape/hexagon", label: "Hexagon" },
-      { href: "/kidsglasses/shape/clubmaster", label: "Clubmaster" },
-      { href: "/kidsglasses/shape/oval", label: "Oval" },
-      { href: "/kidsglasses/shape/cateye", label: "CatEye" },
-    ],
-  },
-  {
-    label: "Style",
-    subItems: [
-      { href: "/kidsglasses/type/rimless", label: "Rimless" },
-      { href: "/kidsglasses/type/half-frame", label: "HalfFrame" },
-      { href: "/kidsglasses/type/full-frame", label: "FullFrame" },
-    ],
-  },
-];
-
-const ComputerGlassLinks = [
-  {
-    label: "Gender",
-    subItems: [
-      { href: "/computerglasses/men", label: "Men" },
-      { href: "/computerglasses/women", label: "Women" },
-      { href: "/computerglasses/kids", label: "Kids" },
-      { href: "/computerglasses/men-women", label: "Both(M/F)" },
-    ],
-  },
-  {
-    label: "Shape1",
-    subItems: [
-      { href: "/computerglasses/shape/square", label: "Square" },
-      { href: "/computerglasses/shape/geometry", label: "Geometry" },
-      { href: "/computerglasses/shape/rectangle", label: "Rectangle" },
-      { href: "/computerglasses/shape/wayfarer", label: "Wayfarer" },
-      { href: "/computerglasses/shape/round", label: "Round" },
-    ],
-  },
-  {
-    label: "Shape2",
-    subItems: [
-      { href: "/computerglasses/shape/butterfly", label: "Butterfly" },
-      { href: "/computerglasses/shape/aviator", label: "Aviator" },
-      { href: "/computerglasses/shape/hexagon", label: "Hexagon" },
-      { href: "/computerglasses/shape/clubmaster", label: "Clubmaster" },
-      { href: "/computerglasses/shape/oval", label: "Oval" },
-      { href: "/computerglasses/shape/cateye", label: "CatEye" },
-    ],
-  },
-  {
-    label: "Style",
-    subItems: [
-      { href: "/computerglasses/type/rimless", label: "Rimless" },
-      { href: "/computerglasses/type/half-frame", label: "HalfFrame" },
-      { href: "/computerglasses/type/full-frame", label: "FullFrame" },
     ],
   },
 ];
@@ -209,7 +109,7 @@ const Header = () => {
               <li className="cursor-pointer mb-2 border-b-2 md:mb-0 md:border-0 pb-1  text-nowrap">
                 Track order
               </li>
-              <li className="cursor-pointer mb-2 border-b-2 md:mb-0 md:border-0 pb-1 flex">
+              <li className="cursor-pointer mb-2 border-b-2 md:mb-0 md:border-0 pb-1 flex items-center">
                 <AiOutlineHeart className="h-4 w-4 me-1" /> Wishlist
               </li>
               <li
@@ -266,37 +166,11 @@ const Header = () => {
         {/* Bottom Part  */}
         <div className="flex items-center justify-between mb-4 py-2 rounded-lg w-full  overflow-x-auto">
           <div className="flex items-center  lg:justify-center   text-sm  md:text-lg font-semibold tracking-wide w-full ">
-            <div
-              className="cursor-pointer"
-              // onClick={()=>router.push("/accessories")}
-            >
-              Accessories
-            </div>
-            <div
-              className="cursor-pointer"
-              // onClick={()=>router.push("/eyeglasses")}
-            >
+            <div className="cursor-pointer">
               <MenuComponentNested title="EyeGlasses" items={EyeGlassLinks} />
             </div>
-            <div
-              className="cursor-pointer"
-              // onClick={()=>router.push("/computerglasses")}
-            >
-              <MenuComponentNested
-                title="ComputerGlasses"
-                items={ComputerGlassLinks}
-              />
-            </div>
-            <div
-              className="cursor-pointer"
-              // onClick={()=>router.push("/kidsglasses")}
-            >
-              <MenuComponentNested title="KidsGlasses" items={KidsGlassLinks} />
-            </div>
-            <div
-              className="cursor-pointer"
-              // onClick={()=>router.push("/sunglasses")}
-            >
+
+            <div className="cursor-pointer">
               <MenuComponentNested title="SunGlasses" items={SunGlassLinks} />
             </div>
             <div
