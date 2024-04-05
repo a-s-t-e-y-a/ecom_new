@@ -56,7 +56,7 @@ const LensDetail = () => {
     items.splice(result.destination.index, 0, reorderedItem);
   }
   const handleOpen = () => setOpen(!open);
-  const onHide = () => setOpen(!open);
+  const onHide = () => setOpen(pen);
   const deleteHandelr = (id) => {
     mutate(id);
   };
