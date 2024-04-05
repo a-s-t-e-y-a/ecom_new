@@ -5,7 +5,6 @@ import Tooltip from "@mui/material/Tooltip";
 import { RxDashboard } from "react-icons/rx";
 import { FaGlasses, FaBlog } from "react-icons/fa";
 import {
-  MdOutlineShoppingCartCheckout,
   MdOutlineLensBlur,
   MdCurrencyFranc,
   MdCancelScheduleSend,
@@ -14,7 +13,7 @@ import {
   MdCategory,
 } from "react-icons/md";
 import { BiCalendarEdit } from "react-icons/bi";
-import { FcManager, FcAbout } from "react-icons/fc";
+import { FcAbout } from "react-icons/fc";
 import { CgFramer } from "react-icons/cg";
 import { TbBrandAdonisJs } from "react-icons/tb";
 import { IoShapesOutline, IoColorPaletteOutline } from "react-icons/io5";

@@ -6,13 +6,11 @@ import {
   Avatar,
   Typography,
 } from "@material-tailwind/react";
-import {CgProfile,MdOutlineBusinessCenter,GoSignOut} from "../Components/Global/Icons"
 import { useRouter } from "next/router";
 
-
 const ProfileMenu = () => {
-  const router = useRouter()
-  const {user} = router.query
+  const router = useRouter();
+  const { user } = router.query;
   return (
     <Menu>
       <MenuHandler>
@@ -24,13 +22,19 @@ const ProfileMenu = () => {
         />
       </MenuHandler>
       <MenuList className="space-y-2">
-        <MenuItem className="flex items-center gap-2" onClick={()=>router.push(`/${user}`)}>
+        <MenuItem
+          className="flex items-center gap-2"
+          onClick={() => router.push(`/${user}`)}
+        >
           {/* <CgProfile className="h-4 w-4" /> */}
           <Typography variant="small" className="font-normal">
             My Profile
           </Typography>
         </MenuItem>
-        <MenuItem className="flex items-center gap-2" onClick={()=>router.push(`${user}/myorder`)}>
+        <MenuItem
+          className="flex items-center gap-2"
+          onClick={() => router.push(`${user}/myorder`)}
+        >
           {/* <MdOutlineBusinessCenter className="h-4 w-4" /> */}
           <Typography variant="small" className="font-normal">
             My Orders
@@ -38,7 +42,10 @@ const ProfileMenu = () => {
         </MenuItem>
 
         <hr className="my-2 border-blue-gray-50" />
-        <MenuItem className="flex items-center gap-2 "  onClick={()=>router.push(`/admin/dashboard`)}>
+        <MenuItem
+          className="flex items-center gap-2 "
+          onClick={() => router.push(`/admin/dashboard`)}
+        >
           <Typography variant="small" className="font-normal">
             Admin Panel
           </Typography>
@@ -52,6 +59,6 @@ const ProfileMenu = () => {
       </MenuList>
     </Menu>
   );
-}
+};
 
-export default ProfileMenu
+export default ProfileMenu;
