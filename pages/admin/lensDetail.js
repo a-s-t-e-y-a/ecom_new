@@ -61,6 +61,7 @@ const LensDetail = () => {
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(pen);
   const deleteHandelr = (id) => {
+    console.log(id)
     mutate(id);
   };
   if (logged) {
@@ -137,7 +138,7 @@ const LensDetail = () => {
                           <p>{item?.price}</p>
                           <div className=" flex items-center justify-end">
                             <button
-                              onClick={deleteHandelr}
+                              onClick={() => deleteHandelr(item.id)}
                               className=" text-red-500 me-1"
                             >
                               <DeleteOutlineIcon />
