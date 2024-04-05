@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 const BlogItem = ({ value }) => {
-  console.log(value);
   return (
     <div className=" ">
       <div className=" shadow-md p-3 rounded-lg min-h-[320px] max-h-[320px]">

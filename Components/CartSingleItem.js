@@ -1,4 +1,3 @@
-import { env } from "@/next.config";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Image from "next/image";
@@ -6,8 +5,6 @@ import Image from "next/image";
 const CartSingleItem = () => {
   const [cartProducts, setCartProducts] = useState([]);
 
-  // const user_info = JSON.parse(localStorage.getItem("user_info"));
-  // console.log(user_info)
   const removeItem = (id) => {
     axios
       .delete(`${BASE_URL}cart/${id}`, {

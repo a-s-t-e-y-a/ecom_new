@@ -1,4 +1,3 @@
-"use client";
 import IconButton from "@/Components/Admin/IconButton";
 import LensDetailDialogBox from "@/Components/Dialog/LensDetailDialogBox";
 import Modal from "@/Components/Dialog/Modal";
@@ -61,7 +60,6 @@ const LensDetail = () => {
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(pen);
   const deleteHandelr = (id) => {
-    console.log(id);
     mutate(id);
   };
   if (logged) {

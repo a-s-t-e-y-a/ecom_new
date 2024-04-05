@@ -34,7 +34,6 @@ const SingleProduct = () => {
     if (Product.data) {
       const user = localStorage.getItem("user_data");
       setProductdata(Product.data[0]);
-      console.log(Product.data);
       Dispacth(UpdaeSepcification(Product.data[0]));
     }
   }, [Product, productData, Dispacth]);
@@ -62,15 +61,6 @@ const SingleProduct = () => {
       "Productid",
       JSON.stringify([...value, { Productid: productId }])
     );
-    // value = JSON.parse(value)
-    // const postData = { p_id: productId };
-    // axios
-    //     .post(`${BASE_URL}cart`, postData, {
-    //         headers: {
-    //             authorization: `Bearer ${value} `,
-    //         },
-    //     })
-    //     .then((result) => console.log(result?.data, "result?.data"));
   };
 
   if (!Product?.data?.length > 0) {

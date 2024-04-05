@@ -1,4 +1,3 @@
-"use client";
 import IconButton from "@/Components/Admin/IconButton";
 import PowerType from "@/Components/Admin/PowerType";
 import Modal from "@/Components/Dialog/Modal";
@@ -42,7 +41,6 @@ const LensFeature = () => {
 
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);
-  console.log(data);
   return (
     <AdminLayout>
       <Modal isOpen={open} closeModal={onHide} fullWidth={false}>

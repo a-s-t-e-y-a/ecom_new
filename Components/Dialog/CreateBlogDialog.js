@@ -1,4 +1,3 @@
-"use client";
 import { Fragment } from "react";
 import {
   Button,
@@ -22,10 +21,8 @@ const CreateBlogDialog = (props) => {
     mutationFn: CreateBlog,
     onSuccess: (data) => {
       toast("Blogs created Successfuly");
-      console.log(data);
     },
     onError: (err) => {
-      console.log(err);
       toast(err.message);
     },
   });

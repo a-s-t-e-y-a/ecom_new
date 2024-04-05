@@ -1,4 +1,3 @@
-"use client";
 import GlassesType from "@/Components/GlassesType";
 import Slider from "@/Components/Swiper/Slider";
 import SwiperContainer from "@/Components/Swiper/SwiperContainer";
@@ -24,7 +23,6 @@ export default function Home() {
       const AllProduct = data[0];
       const Computer = data[1];
       const shape = data[2];
-      console.log(shape);
       const round = AllProduct?.data?.data?.filter(
         (Value) => Value?.shape_?.name === "Round"
       );

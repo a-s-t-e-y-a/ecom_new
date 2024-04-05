@@ -1,4 +1,3 @@
-"use client";
 import Footer from "@/Components/Footer/Footer";
 import Header1 from "@/Components/Header/Header1";
 import api from "@/api";

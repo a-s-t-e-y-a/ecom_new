@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import FileInput from "@/Components/Admin/FileInput";
 import SelectComponent from "@/Components/Admin/SelectComponent";

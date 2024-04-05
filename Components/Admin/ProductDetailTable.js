@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { TbEdit } from "react-icons/tb";
 import { MdDelete } from "react-icons/md";
@@ -7,7 +6,6 @@ import { toast } from "react-toastify";
 import DeleteProduct from "@/utils/mutations/useDeletehandler";
 
 const ProductDetailTable = ({ data, refetch, open }) => {
-  console.log(data);
   const { mutate: Delete } = useMutation({
     mutationFn: DeleteProduct,
     onSuccess: (data) => {

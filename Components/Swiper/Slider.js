@@ -8,7 +8,6 @@ import { GlassesType } from "../../Layout/Data";
 import Image from "next/image";
 
 export default function Slider({ data }) {
-  console.log(data);
   const router = useRouter();
   function handleClick(item) {
     const itemName = encodeURIComponent(item?.title?.toLowerCase());

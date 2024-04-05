@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { useForm } from "react-hook-form";
 import FileInput from "../Admin/FileInput";
@@ -59,7 +58,6 @@ const ProductDetailDialog = ({ onCancel, refetch }) => {
   const [activePOwer, setAcative] = useState(true);
   const OnSubmit = async (data) => {
     const form = new FormData();
-    console.log(data);
     // Append the 'main' files
     if (data.main) {
       for (let i = 0; i < data.main.length; i++) {

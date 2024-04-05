@@ -1,4 +1,3 @@
-"use client";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import FileInput from "../Admin/FileInput";
@@ -27,7 +26,6 @@ const PowerTypesDialogBox = ({ onCancel, setOpen, refecth, token }) => {
       refecth(!token);
     },
     onError: (err) => {
-      console.log(err);
       toast("Error occurred");
     },
   });
