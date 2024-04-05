@@ -22,8 +22,10 @@ const ShapeDialogBox = ({ onCancel, refetch, token }) => {
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     const formData = new FormData();
-    formData.append("data", JSON.stringify({ name: data?.name }));
+    
     formData.append("file", data?.file[0]);
+    delete data.file
+    formData.append("data", JSON.stringify(data));
     mutate(formData);
   };
 
@@ -57,7 +59,7 @@ const ShapeDialogBox = ({ onCancel, refetch, token }) => {
             name="seo_description"
             id="shape"
             size="small"
-            {...register("seo_description")}
+            {...register("description")}
           />
           <button
             type="submit"
