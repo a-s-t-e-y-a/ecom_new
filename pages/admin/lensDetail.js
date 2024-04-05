@@ -137,7 +137,7 @@ const LensDetail = () => {
                           <p>{item?.price}</p>
                           <div className=" flex items-center justify-end">
                             <button
-                              onClick={deleteHandelr}
+                              onClick={() => deleteHandelr(item?.id)}
                               className=" text-red-500 me-1"
                             >
                               <DeleteOutlineIcon />

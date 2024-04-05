@@ -8,6 +8,7 @@ import { GlassesType } from "../../Layout/Data";
 import Image from "next/image";
 
 export default function Slider({ data }) {
+  console.log(data);
   const router = useRouter();
   function handleClick(item) {
     const itemName = encodeURIComponent(item?.title?.toLowerCase());
@@ -26,27 +27,32 @@ export default function Slider({ data }) {
         modules={[Navigation]}
         className="mySwiper min-h-[200px]  "
       >
-        {data.map((slide, index) => (
-          <SwiperSlide
-            key={index}
-            className=" rounded-md  min-h-[100px]  py-10 "
-          >
-            <div className=" text-cente  bg-white  rounded-md py-2  h-[100px] flex flex-col items-center justify-center gap-4">
-              <div onClick={() => handleClick(slide)}>
-                <Image
-                  width={200}
-                  height={200}
-                  className=" w-full h-[100px] object-cover rounded  "
-                  src={slide?.imageArray[0]}
-                  alt=""
-                />
+        {data &&
+          data?.map((slide, index) => (
+            <SwiperSlide
+              key={index}
+              className=" rounded-md  min-h-[100px]  py-10 "
+            >
+              <div className=" text-cente  bg-white  rounded-md py-2  h-[100px] flex flex-col items-center justify-center gap-4">
+                <div onClick={() => handleClick(slide)}>
+                  <Image
+                    width={200}
+                    height={200}
+                    className=" w-full h-[100px] object-cover rounded  "
+                    src={
+                      slide?.imageArray?.length > 0
+                        ? slide?.imageArray[0]
+                        : slide?.image
+                    }
+                    alt=""
+                  />
+                </div>
+                <span className="text-sm text-center font-semibold">
+                  {slide?.name}
+                </span>
               </div>
-              <span className="text-sm text-center font-semibold">
-                &#8377; {slide?.discounted_price}
-              </span>
-            </div>
-          </SwiperSlide>
-        ))}
+            </SwiperSlide>
+          ))}
       </Swiper>
     </div>
   );

@@ -31,15 +31,15 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import SingleGenderSelect from "@/Components/Admin/SingleSelectGender";
 
-const ProductDetailDialog = ({ onCancel }) => {
+const ProductDetailDialog = ({ onCancel, refetch }) => {
   const { register, handleSubmit } = useForm();
   const { mutate } = useMutation({
     mutationFn: CreateProduct,
     onSuccess: () => {
       toast("Product created succesfully");
+      refetch();
     },
     onError: (err) => {
-      console.log(err);
       toast(err.message);
     },
   });
