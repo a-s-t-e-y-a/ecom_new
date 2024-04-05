@@ -25,8 +25,8 @@ const LensDetail = () => {
 
   const [open, setOpen] = useState(false);
   const [logged, setlogged] = useState(false);
-
-  const { data, refetch } = useGetAllLensDetails();
+  const [data, setData] = useState([]);
+  const { data: Detail, refetch } = useGetAllLensDetails();
   const [get, setget] = useState(false);
 
   useEffect(() => {
@@ -35,8 +35,11 @@ const LensDetail = () => {
     } else {
       router.replace("login");
     }
+    if (Detail) {
+      setData(Detail?.data);
+    }
     refetch();
-  }, [router, refetch, get]);
+  }, [router, refetch, get, Detail]);
   const { mutate } = useMutation({
     mutationFn: deleteLensDetails,
     onSuccess: () => {
@@ -48,12 +51,12 @@ const LensDetail = () => {
     },
   });
   function handleOnDragEnd(result) {
-    console.log(result);
     if (!result.destination) return;
 
-    const items = data.data;
+    const items = Array.from(data);
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
+    setData(items);
   }
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(!open);
@@ -63,7 +66,7 @@ const LensDetail = () => {
   if (logged) {
     return (
       <AdminLayout>
-        <DragDropContext onDragEnd={() => handleOnDragEnd}>
+        <DragDropContext onDragEnd={handleOnDragEnd}>
           <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
             {
               <LensDetailDialogBox
@@ -115,7 +118,7 @@ const LensDetail = () => {
                 ref={provided.innerRef}
               >
                 {data &&
-                  data.data.map((item, index) => (
+                  data.map((item, index) => (
                     <Draggable
                       key={item?.id}
                       draggableId={`${item?.id}`}

@@ -55,6 +55,12 @@ const LensDetailDialogBox = ({ onCancel, refetch, token }) => {
             register={register}
             name="power_type_id"
           />
+          <SingleSelectLensFeature
+            label="Lens Feature"
+            options={lens_feature}
+            register={register}
+            name="lens_feature_id"
+          />
 
           <TextField
             fullWidth
@@ -65,12 +71,7 @@ const LensDetailDialogBox = ({ onCancel, refetch, token }) => {
             {...register("heading")}
             sx={{ minWidth: 300 }}
           />
-          <SingleSelectLensFeature
-            label="Lens Feature"
-            options={lens_feature}
-            register={register}
-            name="lens_feature_id"
-          />
+
           <TextField
             fullWidth
             label="Power Range"
