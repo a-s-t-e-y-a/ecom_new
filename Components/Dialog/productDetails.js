@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { useForm } from "react-hook-form";
 import FileInput from "../Admin/FileInput";
@@ -31,15 +30,15 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import SingleGenderSelect from "@/Components/Admin/SingleSelectGender";
 
-const ProductDetailDialog = ({ onCancel }) => {
+const ProductDetailDialog = ({ onCancel, refetch }) => {
   const { register, handleSubmit } = useForm();
   const { mutate } = useMutation({
     mutationFn: CreateProduct,
     onSuccess: () => {
       toast("Product created succesfully");
+      refetch();
     },
     onError: (err) => {
-      console.log(err);
       toast(err.message);
     },
   });
@@ -59,7 +58,6 @@ const ProductDetailDialog = ({ onCancel }) => {
   const [activePOwer, setAcative] = useState(true);
   const OnSubmit = async (data) => {
     const form = new FormData();
-    console.log(data);
     // Append the 'main' files
     if (data.main) {
       for (let i = 0; i < data.main.length; i++) {

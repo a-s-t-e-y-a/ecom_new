@@ -1,4 +1,3 @@
-"use client";
 import DashboardSingleItem from "@/Components/Admin/DashboardSingleItem";
 import AdminLayout from "@/Layout/AdminLayout";
 import { IsAuth } from "@/utils/IsAuth";

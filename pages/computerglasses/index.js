@@ -7,7 +7,7 @@ import React, { useCallback, useState } from "react";
 import { useRouter } from "next/router";
 import Pagination from "@/Components/Pagination/Pagination";
 
-const index = () => {
+const Index = () => {
   const [data, setData] = useState([]);
   const [page, setpage] = React.useState(1);
 
@@ -16,7 +16,7 @@ const index = () => {
   const navigateToSingleProduct = (id) => {
     router.push(`/eyewear/${id}`);
   };
-  const fetchData =useCallback( () => {
+  const fetchData = useCallback(() => {
     axios
       .get(
         `https://api.akkukachasma.com/api/categories/3?pageSize=15&page=${page}`
@@ -24,7 +24,7 @@ const index = () => {
       .then((result) => {
         setData(result?.data?.data.products);
       });
-  },[page]);
+  }, [page]);
   React.useEffect(() => {
     fetchData();
   }, [fetchData]);
@@ -53,4 +53,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;

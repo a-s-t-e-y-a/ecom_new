@@ -34,7 +34,6 @@ const SingleProduct = () => {
     if (Product.data) {
       const user = localStorage.getItem("user_data");
       setProductdata(Product.data[0]);
-      console.log(Product.data);
       Dispacth(UpdaeSepcification(Product.data[0]));
     }
   }, [Product, productData, Dispacth]);
@@ -62,15 +61,6 @@ const SingleProduct = () => {
       "Productid",
       JSON.stringify([...value, { Productid: productId }])
     );
-    // value = JSON.parse(value)
-    // const postData = { p_id: productId };
-    // axios
-    //     .post(`${BASE_URL}cart`, postData, {
-    //         headers: {
-    //             authorization: `Bearer ${value} `,
-    //         },
-    //     })
-    //     .then((result) => console.log(result?.data, "result?.data"));
   };
 
   if (!Product?.data?.length > 0) {
@@ -81,9 +71,9 @@ const SingleProduct = () => {
     <Layout>
       <LensForm show={isOpen} onHide={() => setIsOpen(false)} />
       <section className="text-gray-600 ">
-        <div className="grid grid-cols-1 lg:grid-cols-2 items-center mx-auto ">
+        <div className="grid grid-cols-1 lg:grid-cols-3 items-center mx-auto ">
           {/* Swiper Field  */}
-          <div className="w-full">
+          <div className="w-full col-span-2">
             <SwiperThumbs images={productData?.product_images} />
           </div>
 
@@ -187,8 +177,11 @@ const SingleProduct = () => {
             </div>
           </div>
         </div>
-        <div className=" my-5">
-          <TabPanel TabPanelOption={TabPanelOption} />
+        <div className=" flex gap-2">
+          <div className="w-2/3 my-5">
+            <TabPanel TabPanelOption={TabPanelOption} />
+          </div>
+          <div className=" font-semibold">Image</div>
         </div>
       </section>
     </Layout>

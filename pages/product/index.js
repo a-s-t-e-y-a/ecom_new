@@ -40,7 +40,7 @@ const Index = () => {
         </div>
         <div className="w-full  grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 mb-4 ">
           {data &&
-            data.map((val, index) => (
+            data?.map((val, index) => (
               <div
                 key={index}
                 onClick={() => navigateToSingleProduct(val?.product_url)}

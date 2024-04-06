@@ -14,7 +14,6 @@ const FrameMaterialDialogBox = ({ onCancel, refetch, token }) => {
       refetch(!token);
     },
     onError: (err) => {
-      console.log(err);
       toast("Error occurred");
     },
   });

@@ -1,4 +1,3 @@
-"use client";
 import BlogItem from "@/Components/Blog/BlogItem";
 import BlogSideBar from "@/Components/Blog/BlogSideBar";
 import useBlogsGetAll from "@/utils/queries/useBlogGetAll";
@@ -35,7 +34,13 @@ const Index = () => {
       <Header1 />
       {/* Header/Heading */}
       <div className="w-1/3  text-center   mx-auto shadow-sm">
-        <Image width={100} height={100} alt="" src="/blog.png" className="w-[180px] mx-auto mb-3" />
+        <Image
+          width={100}
+          height={100}
+          alt=""
+          src="/blog.png"
+          className="w-[180px] mx-auto mb-3"
+        />
         <h1 className="text-sm tracking-wider -mt-4">with @akkukachasma</h1>
         <span className="mt-3">
           <hr />
@@ -56,8 +61,7 @@ const Index = () => {
         </div>
       </div>
       <div className=" w-full">
-      <Footer />
-
+        <Footer />
       </div>
     </div>
   );

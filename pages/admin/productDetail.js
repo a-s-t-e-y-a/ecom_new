@@ -11,13 +11,14 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import useGetAllProducts from "@/utils/queries/admin/UseProductGetAll";
+import Pagination from "@/Components/Pagination/Pagination";
 const ProductDetail = () => {
   const [open, setOpen] = useState(false);
+  const [page, setpage] = useState(1);
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);
   const router = useRouter();
-  const { data, re } = useGetAllProducts(1);
-  console.log(data)
+  const { data, refetch } = useGetAllProducts(page);
   const [logged, setlogged] = useState(false);
   useEffect(() => {
     if (IsAuth("admin_info")) {
@@ -25,12 +26,13 @@ const ProductDetail = () => {
     } else {
       router.replace("login");
     }
-  }, [router]);
+    refetch();
+  }, [router, refetch]);
   if (logged) {
     return (
       <AdminLayout>
         <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
-          <ProductDetailDialog onCancel={onHide} />
+          <ProductDetailDialog onCancel={onHide} refetch={refetch} />
         </Modal>
         <div className="w-full">
           <button onClick={handleOpen} className=" mb-3">
@@ -56,8 +58,15 @@ const ProductDetail = () => {
               />
             </div>
           </div>
-          <ProductDetailTable data={data} />
+          <div className=" w-full mb-3">
+            <ProductDetailTable
+              data={data}
+              refetch={refetch}
+              open={handleOpen}
+            />
+          </div>
         </div>
+        <Pagination pages={setpage} curr={page} />
       </AdminLayout>
     );
   }

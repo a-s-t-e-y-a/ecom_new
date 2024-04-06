@@ -1,4 +1,3 @@
-"use client";
 import Filter from "@/Components/Filter";
 import SingleGlassItem from "@/Components/SingleGlassItem";
 import Layout from "@/Layout/Layout";
@@ -30,7 +29,7 @@ const Index = () => {
   }, [fetchData]);
   return (
     <Layout>
- <section className=" w-full flex px-5 ">
+      <section className=" w-full flex px-5 ">
         <div className=" w-fit absolute lg:relative lg:top-0 left-1 top-14  me-5">
           <Filter />
         </div>

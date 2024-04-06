@@ -1,4 +1,3 @@
-"use client";
 import GlassesType from "@/Components/GlassesType";
 import Slider from "@/Components/Swiper/Slider";
 import SwiperContainer from "@/Components/Swiper/SwiperContainer";
@@ -9,7 +8,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 export default function Home() {
-  const [Tend, setTend] = useState([]);
+  const [Shape, setShape] = useState([]);
   const [Computer, setComputer] = useState([]);
   const [Round, setRound] = useState([]);
   const [Rimless, setRimless] = useState([]);
@@ -18,24 +17,21 @@ export default function Home() {
     const url = [
       "https://api.akkukachasma.com/api/products",
       "https://api.akkukachasma.com/api/categories/3",
-      "https://api.akkukachasma.com/api/categories",
+      "https://api.akkukachasma.com/api/shape",
     ];
     axios.all(url.map((endpoints) => axios.get(endpoints))).then((data) => {
       const AllProduct = data[0];
       const Computer = data[1];
+      const shape = data[2];
       const round = AllProduct?.data?.data?.filter(
-        (Value) => Value?.shape_?.name === "Round"
+        (Value) => Value?.shape_?.name === "Round" || "round"
       );
       const rimless = AllProduct?.data?.data?.filter(
-        (Value) => Value?.style_?.name === "Rimless"
+        (Value) => Value?.style_?.name === "Rimless" || "rimless"
       );
 
-      const trend = AllProduct?.data?.data?.filter(
-        (Value) => Value?.productBrand?.brand_name === "Trend"
-      );
-      console.log(round, rimless, trend, AllProduct, Computer);
       setSungaless(AllProduct?.data?.data);
-      setTend(trend);
+      setShape(shape?.data?.data);
       setRound(round);
       setRimless(rimless);
       setComputer(Computer?.data?.data?.products);
@@ -53,7 +49,7 @@ export default function Home() {
         <div>
           <p className="  text-5xl text-center">EYEGLASSES</p>
           <p className=" text-center  text-5xl  font-semibold mb-5">TREND</p>
-          <Slider data={Tend} />
+          <Slider data={Round} />
         </div>
 
         <div className="w-full">

@@ -1,4 +1,3 @@
-"use client";
 import IconButton from "@/Components/Admin/IconButton";
 import PowerType from "@/Components/Admin/PowerType";
 import Modal from "@/Components/Dialog/Modal";
@@ -45,21 +44,16 @@ const PowerTypes = () => {
         </div>
         <div className="mt-10 grid grid-cols-2 items-center gap-5 w-full">
           {data &&
-            data.map(
-              (item, index) => (
-                console.log(item),
-                (
-                  <PowerType
-                    key={item?.id}
-                    src={item?.image}
-                    title={item?.name}
-                    description={item?.description}
-                    id={item?.id}
-                    mutate={mutate}
-                  />
-                )
-              )
-            )}
+            data.map((item, index) => (
+              <PowerType
+                key={item?.id}
+                src={item?.image}
+                title={item?.name}
+                description={item?.description}
+                id={item?.id}
+                mutate={mutate}
+              />
+            ))}
         </div>
       </div>
     </AdminLayout>

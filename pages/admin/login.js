@@ -1,4 +1,3 @@
-"use client";
 import { useRouter } from "next/navigation";
 
 function Login() {
@@ -10,7 +9,6 @@ function Login() {
     e.preventDefault();
     const username = e.target.username?.value;
     const password = e.target.password?.value;
-    console.log(username, password);
     if (username === "Akash@gamil.com" && password === "akkukachassma@123") {
       localStorage.setItem(
         "admin_info",

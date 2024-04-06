@@ -1,4 +1,3 @@
-"use client";
 import IconButton from "@/Components/Admin/IconButton";
 import FrameMaterialDialogBox from "@/Components/Dialog/FrameMaterialDialogBox";
 import Modal from "@/Components/Dialog/Modal";

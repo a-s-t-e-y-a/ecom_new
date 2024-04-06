@@ -1,4 +1,3 @@
-"use client";
 import IconButton from "@/Components/Admin/IconButton";
 import BrandDialogBox from "@/Components/Dialog/BrandDialogBox";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
