@@ -71,9 +71,9 @@ const SingleProduct = () => {
     <Layout>
       <LensForm show={isOpen} onHide={() => setIsOpen(false)} />
       <section className="text-gray-600 ">
-        <div className="grid grid-cols-1 lg:grid-cols-2 items-center mx-auto ">
+        <div className="grid grid-cols-1 lg:grid-cols-3 items-center mx-auto ">
           {/* Swiper Field  */}
-          <div className="w-full">
+          <div className="w-full col-span-2">
             <SwiperThumbs images={productData?.product_images} />
           </div>
 
@@ -177,8 +177,11 @@ const SingleProduct = () => {
             </div>
           </div>
         </div>
-        <div className=" my-5">
-          <TabPanel TabPanelOption={TabPanelOption} />
+        <div className=" flex gap-2">
+          <div className="w-2/3 my-5">
+            <TabPanel TabPanelOption={TabPanelOption} />
+          </div>
+          <div className=" font-semibold">Image</div>
         </div>
       </section>
     </Layout>

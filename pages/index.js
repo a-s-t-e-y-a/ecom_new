@@ -24,10 +24,10 @@ export default function Home() {
       const Computer = data[1];
       const shape = data[2];
       const round = AllProduct?.data?.data?.filter(
-        (Value) => Value?.shape_?.name === "Round"
+        (Value) => Value?.shape_?.name === "Round" || "round"
       );
       const rimless = AllProduct?.data?.data?.filter(
-        (Value) => Value?.style_?.name === "Rimless"
+        (Value) => Value?.style_?.name === "Rimless" || "rimless"
       );
 
       setSungaless(AllProduct?.data?.data);
