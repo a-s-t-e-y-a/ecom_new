@@ -31,7 +31,7 @@ export default function SingleSelectPowerType({
   options,
   register,
   name,
-  active,
+  active = true,
 }) {
   const theme = useTheme();
   const [selectedItem, setSelectedItem] = React.useState([]);
