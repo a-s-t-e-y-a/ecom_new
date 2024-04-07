@@ -28,13 +28,11 @@ const TryAtHome = () => {
           <TryHome onCancel={onHide} />
         </Modal>
 
+        <div onClick={handleOpen} className=" mb-4">
+          <IconButton label="Try@Home" icon={<HiOutlineHome />} />
+        </div>
         <div>
-          <div onClick={handleOpen}>
-            <IconButton label="Try@Home" icon={<HiOutlineHome />} />
-          </div>
-          <div className="mt-6 flex items-center gap-3 flex-wrap w-full">
-            <QuillEditor />
-          </div>
+          <QuillEditor />
         </div>
       </AdminLayout>
     );

@@ -24,8 +24,6 @@ body {
 @tailwind components;
 @tailwind utilities;
 
-/* Slider  */
-.swiper .swiper {}
 
 .swiper .swiper-button-prev::after {
   font-size: 30px;
@@ -37,4 +35,8 @@ body {
   color: rgb(27, 24, 24);
 }
 
-/* Slider Container  */
+/* editor   */
+div.ql-editor {
+  max-width: 80vw;
+  min-height: 100vh;
+}

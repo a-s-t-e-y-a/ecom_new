@@ -61,7 +61,6 @@ const QuillEditor = () => {
       theme="snow"
       value={value}
       onChange={setValue}
-      className=" min-h-screen"
     />
   );
 };
