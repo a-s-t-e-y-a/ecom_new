@@ -2,10 +2,9 @@ import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -34,36 +33,22 @@ export default function SingleGenderSelect({
   size = "small",
 }) {
   const theme = useTheme();
-  const [selectedItem, setSelectedItem] = React.useState("");
 
-  const handleChange = (event) => {
-    setSelectedItem(event.target.value);
-  };
+  const handleChange = (event) => {};
 
   return (
     <div>
       <FormControl sx={{ width: 300 }} size={size}>
         <InputLabel id={label}>{label}</InputLabel>
-        <Select
-          {...register(name)}
-          labelId={label}
-          id={label}
-          value={selectedItem}
-          onChange={handleChange}
-          input={<OutlinedInput label={label} />}
-          MenuProps={MenuProps}
-        >
-          {options &&
-            options?.map((item, index) => (
-              <MenuItem
-                key={index}
-                value={item}
-                style={getStyles(item, selectedItem, theme)}
-              >
-                {item}
-              </MenuItem>
-            ))}
-        </Select>
+        <Autocomplete
+          disablePortal
+          id="gender"
+          options={options}
+          sx={{ width: 300 }}
+          renderInput={(params) => (
+            <TextField {...params} {...register(name)} label="Gender" />
+          )}
+        />
       </FormControl>
     </div>
   );

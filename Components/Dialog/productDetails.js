@@ -56,6 +56,7 @@ const ProductDetailDialog = ({ onCancel, refetch }) => {
   const { data: size } = useGetAllSize();
   const { data: style } = useGetAllStyle();
   const [activePOwer, setAcative] = useState(true);
+  console.log(categories);
   const OnSubmit = async (data) => {
     const form = new FormData();
     // Append the 'main' files
@@ -76,7 +77,8 @@ const ProductDetailDialog = ({ onCancel, refetch }) => {
     form.append("data", JSON.stringify(data));
 
     // Assuming mutate is an asynchronous function that sends the form data
-    mutate(form);
+    // mutate(form);
+    console.log(data);
   };
 
   return (
@@ -108,63 +110,42 @@ const ProductDetailDialog = ({ onCancel, refetch }) => {
             sx={{ minWidth: 300 }}
           />
           <SingleGenderSelect
-            label="Gender"
             options={["Men", "Women", "Kids", "Both(M/F)"]}
             register={register}
-            name="powerList"
+            name="gender"
           />
 
           <SingleSelectCategories
-            label="Product Categories Name"
             options={categories}
             register={register}
-            name="productCategoriesId"
+            name="productCategories"
           />
           <SingleSelectUniversal
-            label="Select lense"
             options={["Yes", "No"]}
             register={register}
             name="select_Lense"
             setactive={setAcative}
           />
           <SingleSelectPowerType
-            label="Select Power Type"
             options={powerType}
             register={register}
             name="show_lens_list"
             active={activePOwer}
           />
           <SingleSelectColor
-            label="Select Color"
             options={color}
             register={register}
             name="product_color"
           />
-          <SingleSelectShape
-            label="Select shape"
-            options={shape}
-            register={register}
-            name="shape"
-          />
+          <SingleSelectShape options={shape} register={register} name="shape" />
 
           <SingleSelectMaterial
-            label="Select material"
             options={material}
             register={register}
             name="material"
           />
-          <SingleSelectSize
-            label="Select Size"
-            options={size}
-            register={register}
-            name="size"
-          />
-          <SingleSelectStyle
-            label="Select Style"
-            options={style}
-            register={register}
-            name="style"
-          />
+          <SingleSelectSize options={size} register={register} name="size" />
+          <SingleSelectStyle options={style} register={register} name="style" />
 
           <div>
             <TextField

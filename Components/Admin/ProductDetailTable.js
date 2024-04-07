@@ -5,7 +5,26 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import DeleteProduct from "@/utils/mutations/useDeletehandler";
 
-const ProductDetailTable = ({ data, refetch, open }) => {
+const ProductDetailTable = ({
+  data,
+  refetch,
+  open,
+  modelNo,
+  modelName,
+  gender,
+  catogaries,
+  color,
+  selectlens,
+  powertype,
+  price,
+  material,
+  frame_width,
+  lens_width,
+  lens_height,
+  seo,
+  tag,
+  discpriction,
+}) => {
   const { mutate: Delete } = useMutation({
     mutationFn: DeleteProduct,
     onSuccess: (data) => {
@@ -18,6 +37,24 @@ const ProductDetailTable = ({ data, refetch, open }) => {
   });
   const DeleteProductHandler = (id) => {
     Delete(id);
+  };
+  const EditHandler = (product) => {
+    modelNo(product?.p_id);
+    modelName(product?.product_model_name);
+    gender();
+    catogaries();
+    color();
+
+    selectlens();
+    powertype();
+    price();
+    material();
+    frame_width();
+    lens_width();
+    lens_height();
+    seo();
+    tag();
+    discpriction();
   };
   return (
     <div className="w-full tracking-wide  px-10 ">
@@ -67,7 +104,7 @@ const ProductDetailTable = ({ data, refetch, open }) => {
                 <td className="py-2 border">
                   <span
                     className="text-sky-600 flex items-center justify-center w-full cursor-pointer"
-                    onClick={() => open()}
+                    onClick={() => EditHandler(Product)}
                   >
                     <TbEdit />
                   </span>

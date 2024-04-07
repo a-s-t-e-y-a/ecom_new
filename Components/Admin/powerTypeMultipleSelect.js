@@ -2,10 +2,9 @@ import * as React from "react";
 import { useTheme } from "@mui/material/styles";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -34,38 +33,25 @@ export default function SingleSelectPowerType({
   active = true,
 }) {
   const theme = useTheme();
-  const [selectedItem, setSelectedItem] = React.useState([]);
 
-  const handleChange = (event) => {
-    setSelectedItem(event.target.value);
-  };
+  const handleChange = (event) => {};
 
   return (
     <div>
       <FormControl sx={{ width: 298 }} size="small">
         <InputLabel id={label}>{label}</InputLabel>
-        <Select
-          {...register(name)}
-          labelId={label}
-          id={label}
+        <Autocomplete
           multiple
-          value={selectedItem}
-          onChange={handleChange}
-          input={<OutlinedInput label={label} />}
-          MenuProps={MenuProps}
-        >
-          {options &&
-            options.map((item) => (
-              <MenuItem
-                disabled={active ? false : true}
-                key={item.id}
-                value={item.id}
-                style={getStyles(item, selectedItem, theme)}
-              >
-                {item.name}
-              </MenuItem>
-            ))}
-        </Select>
+          id="power_type"
+          options={options?.map((value) => value?.name) || []}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label="Select Power Type"
+              placeholder="Power Type"
+            />
+          )}
+        />
       </FormControl>
     </div>
   );

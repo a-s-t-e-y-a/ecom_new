@@ -27,6 +27,7 @@ import {
 import { GiKnightBanner, GiMicroscopeLens, GiPowerRing } from "react-icons/gi";
 import { RiCustomerService2Line, RiBook2Fill } from "react-icons/ri";
 import { TbTextSize, TbTruckReturn } from "react-icons/tb";
+import { MdOutlineShoppingCartCheckout } from "react-icons/md";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
@@ -35,7 +36,11 @@ const AdminSideBar = () => {
   const pathname = useRouter().pathname;
   const Menus = [
     { title: "Dashboard", icon: <RxDashboard />, link: "/admin/dashboard" },
-    // { title: "Placed Order", icon: <MdOutlineShoppingCartCheckout />, link: "/admin/placedOrder",},
+    {
+      title: "Placed Order",
+      icon: <MdOutlineShoppingCartCheckout />,
+      link: "/admin/placedOrder",
+    },
     {
       title: "Product Detail Edit",
       icon: <BiCalendarEdit />,

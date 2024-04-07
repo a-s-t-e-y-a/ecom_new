@@ -1,10 +1,11 @@
-import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import * as React from "react";
+import { useTheme } from "@mui/material/styles";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -19,13 +20,16 @@ const MenuProps = {
 
 function getStyles(item, selectedItem, theme) {
   return {
-    fontWeight: item.products_categories_id === selectedItem ? theme.typography.fontWeightMedium : theme.typography.fontWeightRegular,
+    fontWeight:
+      item.products_categories_id === selectedItem
+        ? theme.typography.fontWeightMedium
+        : theme.typography.fontWeightRegular,
   };
 }
 
-export default function SingleSelectStyle({ label, options ,register,name}) {
+export default function SingleSelectStyle({ label, options, register, name }) {
   const theme = useTheme();
-  const [selectedItem, setSelectedItem] = React.useState('');
+  const [selectedItem, setSelectedItem] = React.useState("");
 
   const handleChange = (event) => {
     setSelectedItem(event.target.value);
@@ -35,25 +39,15 @@ export default function SingleSelectStyle({ label, options ,register,name}) {
     <div>
       <FormControl sx={{ width: 298 }} size="small">
         <InputLabel id={label}>{label}</InputLabel>
-        <Select
-          {...register(name)}
-          labelId={label}
-          id={label}
-          value={selectedItem}
-          onChange={handleChange}
-          input={<OutlinedInput label={label} />}
-          MenuProps={MenuProps}
-        >
-          {options&&options.map((item) => (
-            <MenuItem
-              key={item.id}
-              value={item.id}
-              style={getStyles(item, selectedItem, theme)}
-            >
-              {item.name}
-            </MenuItem>
-          ))}
-        </Select>
+        <Autocomplete
+          multiple
+          id="select_style"
+          options={options?.map((value) => value?.name) || []}
+          sx={{ width: 300 }}
+          renderInput={(params) => (
+            <TextField {...params} {...register(name)} label="Select Style" />
+          )}
+        />
       </FormControl>
     </div>
   );
