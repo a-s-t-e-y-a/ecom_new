@@ -126,7 +126,7 @@ export default function Example() {
               />
             </div>
 
-            <div class="flex items-center">
+            <div className="flex items-center">
               <input
                 id="link-checkbox"
                 type="checkbox"
@@ -140,7 +140,7 @@ export default function Example() {
                 I agree with the{" "}
                 <a
                   href="#"
-                  class="text-blue-600 dark:text-blue-500 hover:underline"
+                  className="text-blue-600 dark:text-blue-500 hover:underline"
                 >
                   terms and conditions
                 </a>

@@ -152,7 +152,7 @@ const SingleProduct = () => {
                 Size Guide
               </button>
 
-              <div class="flex items-center">
+              <div className="flex items-center">
                 <p className="ml-2 text-sm font-bold text-gray-900 dark:text-slate-500">
                   {productData?.rating}
                 </p>
