@@ -72,7 +72,7 @@ const Categories = () => {
                   key={index}
                   className="border rounded-md shadow-md px-5 py-2 inline-flex flex-col items-center gap-2 bg-gray-100"
                 >
-                  <Image
+                  <img
                     width={100}
                     height={100}
                     src={category?.imageArray}

@@ -58,7 +58,7 @@ const LensDetail = () => {
     setData(items);
   }
   const handleOpen = () => setOpen(!open);
-  const onHide = () => setOpen(pen);
+  const onHide = () => setOpen(!open);
   const deleteHandelr = (id) => {
     mutate(id);
   };
@@ -117,41 +117,46 @@ const LensDetail = () => {
                 ref={provided.innerRef}
               >
                 {data &&
-                  data.map((item, index) => (
-                    <Draggable
-                      key={item?.id}
-                      draggableId={`${item?.id}`}
-                      index={index}
-                      className=" "
-                    >
-                      {(provided) => (
-                        <div
-                          {...provided.dragHandleProps}
-                          {...provided.draggableProps}
-                          ref={provided.innerRef}
-                          className=" grid grid-cols-4 gap-[20%] text-center justify-between bg-slate-200 border rounded-md shadow-lg my-2 p-3"
+                  data.map(
+                    (item, index) => (
+                      console.log(item),
+                      (
+                        <Draggable
+                          key={item?.id}
+                          draggableId={`${item?.id}`}
+                          index={index}
+                          className=" "
                         >
-                          <p className=" w-full">{item?.heading}</p>
-                          <p>{item?.power_type}</p>
-                          <p>{item?.price}</p>
-                          <div className=" flex items-center justify-end">
-                            <button
-                              onClick={() => deleteHandelr(item?.id)}
-                              className=" text-red-500 me-1"
+                          {(provided) => (
+                            <div
+                              {...provided.dragHandleProps}
+                              {...provided.draggableProps}
+                              ref={provided.innerRef}
+                              className=" grid grid-cols-4 gap-[20%] text-center justify-between bg-slate-200 border rounded-md shadow-lg my-2 p-3"
                             >
-                              <DeleteOutlineIcon />
-                            </button>
-                            <button
-                              onClick={() => handleOpen()}
-                              className=" text-blue-500 me-2 text-lg"
-                            >
-                              <TbEdit />
-                            </button>
-                          </div>
-                        </div>
-                      )}
-                    </Draggable>
-                  ))}
+                              <p className=" w-full">{item?.heading}</p>
+                              <p>{item?.power_type}</p>
+                              <p>{item?.price}</p>
+                              <div className=" flex items-center justify-end">
+                                <button
+                                  onClick={() => deleteHandelr(item?.id)}
+                                  className=" text-red-500 me-1"
+                                >
+                                  <DeleteOutlineIcon />
+                                </button>
+                                <button
+                                  onClick={() => handleOpen()}
+                                  className=" text-blue-500 me-2 text-lg"
+                                >
+                                  <TbEdit />
+                                </button>
+                              </div>
+                            </div>
+                          )}
+                        </Draggable>
+                      )
+                    )
+                  )}
                 {provided.placeholder}
               </div>
             )}
