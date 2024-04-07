@@ -11,7 +11,7 @@ const PowerType = (props) => {
   return (
     <div className="relative flex items-center justify-start gap-5 text-gray-700 bg-gray-50 border hover:shadow-lg rounded-md p-5 cursor-pointer w-full mx-auto">
       <div className="w-28 flex items-center">
-        <Image
+        <img
           width={100}
           height={100}
           alt=""
