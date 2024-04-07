@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 
 import axios from "axios";
 
-export default function Home() {
+function Home() {
   const [Shape, setShape] = useState([]);
   const [Computer, setComputer] = useState([]);
   const [Round, setRound] = useState([]);
@@ -234,3 +234,4 @@ export default function Home() {
     </Layout>
   );
 }
+export default Home;
