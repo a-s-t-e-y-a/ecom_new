@@ -1,3 +1,4 @@
+"use client";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -41,7 +42,8 @@ export default function Slider({ data }) {
                     src={
                       slide?.imageArray?.length > 0
                         ? slide?.imageArray[0]
-                        : slide?.image
+                        : "https://akkukachasma.s3.amazonaws.com/product_images/" +
+                          slide?.image
                     }
                     alt=""
                   />

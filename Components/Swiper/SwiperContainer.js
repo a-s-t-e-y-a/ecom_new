@@ -51,7 +51,7 @@ const SwiperContainer = ({ data }) => {
                   elemt?.imageArray?.length > 0
                     ? elemt?.imageArray[0]
                     : "https://akkukachasma.s3.amazonaws.com/product_images/" +
-                      elemt.product_images.split(",")[0]
+                      elemt.product_images?.split(",")[0]
                 }`}
                 className=" object-cover"
                 alt="galess"

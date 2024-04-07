@@ -20,13 +20,15 @@ const GlassesType = () => {
             className=" w-[150px]"
           >
             <motion.div className="  rounded-full hover:shadow-2xl ">
-              <Image
-                width={200}
-                height={200}
-                src={item?.imageArray}
-                alt="Glasses Categories"
-                className=" mx-auto mb-3   object-cover"
-              />
+              {
+                <Image
+                  width={200}
+                  height={200}
+                  src={item?.imageArray}
+                  alt="Glasses Categories"
+                  className=" mx-auto mb-3   object-cover"
+                />
+              }
             </motion.div>
             <p className=" text-center ">{item?.name}</p>
           </div>
