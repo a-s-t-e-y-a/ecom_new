@@ -50,7 +50,6 @@ const LensDetailDialogBox = ({ onCancel, refetch, token }) => {
         <div className="grid grid-cols-3 items-center justify-between gap-3">
           <FileInput title="" register={register} />
           <SingleSelectLensFeature
-            label="Power Type"
             options={power}
             register={register}
             name="power_type_id"

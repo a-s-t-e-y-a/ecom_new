@@ -45,7 +45,6 @@ const LensFeatureDialogBox = ({ onCancel, refetch, token }) => {
       >
         <FileInput title="" register={register} />
         <SingleSelectPowerType
-          label="Power Type"
           options={data}
           register={register}
           name="power_type_id"

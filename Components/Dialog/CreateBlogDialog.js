@@ -16,6 +16,7 @@ const CreateBlogDialog = (props) => {
   const [Image, SetImage] = useState({});
   const [Heading, SetHeading] = useState("");
   const [Description, SetDescription] = useState("");
+  const [altTags, SetaltTags] = useState("");
 
   const { mutate } = useMutation({
     mutationFn: CreateBlog,
@@ -55,19 +56,29 @@ const CreateBlogDialog = (props) => {
                 <UploadImage name="Image" />
               </div>
 
-              <h1>
+              <div>
                 <Input
                   label="Heading"
                   name="heading"
+                  value={Heading}
                   onChange={(e) => SetHeading(e.target.value)}
                 />
-              </h1>
+              </div>
 
               <div>
                 <Textarea
                   label="Additionals Comments...."
                   name="discription"
-                  onChange={(e) => SetHeading(e.target.value)}
+                  value={Description}
+                  onChange={(e) => SetDescription(e.target.value)}
+                />
+              </div>
+              <div>
+                <Textarea
+                  label="Tags"
+                  name="tags"
+                  value={altTags}
+                  onChange={(e) => SetaltTags(e.target.value)}
                 />
               </div>
               <div>

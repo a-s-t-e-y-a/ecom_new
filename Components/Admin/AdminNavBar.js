@@ -40,13 +40,6 @@ const AdminNavBar = () => {
         />
       </div>
       <Stack direction="row">
-        <Tooltip title="Cart">
-          <IconButton aria-label="cart" size="small">
-            <Badge badgeContent={4} color="primary">
-              <ShoppingCartIcon className="text-[22px]" />
-            </Badge>
-          </IconButton>
-        </Tooltip>
         <Tooltip title="Notification">
           <IconButton aria-label="notification" size="small">
             <Badge badgeContent={2} color="warning">

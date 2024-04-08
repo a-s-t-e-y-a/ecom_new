@@ -3,8 +3,9 @@ import { useTheme } from "@mui/material/styles";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
-import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -32,28 +33,32 @@ export default function SingleSelectCategories({
   name,
 }) {
   const theme = useTheme();
-  const [selectedItem, setSelectedItem] = React.useState("");
+  const [selectedItem, setSelectedItem] = React.useState([]);
 
   const handleChange = (event) => {
-    setSelectedItem(event.target.value);
+    const {
+      target: { value },
+    } = event;
+
+    setSelectedItem(typeof value === "string" ? value.split(",") : value);
   };
-  console.log(options);
   return (
     <div>
       <FormControl sx={{ width: 298 }} size="small">
         <InputLabel id={label}>{label}</InputLabel>
-        <Autocomplete
+        <Select
           multiple
-          id="categories"
-          options={options?.map((value) => value?.name) || []}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              label="Product categories"
-              placeholder="categories"
-            />
-          )}
-        />
+          id="productCategory"
+          label="Product Category"
+          value={selectedItem}
+          onChange={handleChange}
+        >
+          {options?.map((option, indx) => (
+            <MenuItem value={option?.name} key={indx}>
+              {option?.name}
+            </MenuItem>
+          ))}
+        </Select>
       </FormControl>
     </div>
   );

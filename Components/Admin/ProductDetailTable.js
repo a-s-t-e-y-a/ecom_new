@@ -61,12 +61,11 @@ const ProductDetailTable = ({
       <table className="w-full ">
         <thead className=" text-xs font-normal text-gray-700 sticky -top-1 left-0 bg-white shadow-lg ng-blue-100 w-full overflow-auto">
           <tr className=" w-full  ">
-            <th className="py-2 border">Product id</th>
+            <th className="py-2 border">Model No.</th>
 
-            <th className="py-2 border">In Stock</th>
             <th className="py-2 border">Quantity</th>
 
-            <th className="py-2 border">Model No.</th>
+            <th className="py-2 border">Model Name </th>
             <th className="py-2 border">Price</th>
             <th className="py-2 border">Shape</th>
             <th className="py-2 border">F Material</th>
@@ -83,7 +82,6 @@ const ProductDetailTable = ({
             data.map((Product, index) => (
               <tr className="" key={index}>
                 <td className="py-2 border">{Product?.p_id}</td>
-                <td className="py-2 border">{Product?.stokke}</td>
                 <td className="py-2 border">{Product?.stokke}</td>
 
                 <td className="py-2 border">{Product?.product_model_name}</td>

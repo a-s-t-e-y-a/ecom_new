@@ -116,6 +116,7 @@ const ProductDetailDialog = ({ onCancel, refetch }) => {
           />
 
           <SingleSelectCategories
+            label={"Product Category"}
             options={categories}
             register={register}
             name="productCategories"

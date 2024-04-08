@@ -14,6 +14,7 @@ import { useEffect } from "react";
 import { useMutation } from "@tanstack/react-query";
 import Deletecolor from "@/utils/mutations/useDeleteColor";
 import { toast } from "react-toastify";
+import DeletePoPUPDialog from "@/Components/Dialog/DeletePoPUPDialog";
 const Color = () => {
   const router = useRouter();
   const { data, refetch } = useGetAllColor();
@@ -40,14 +41,26 @@ const Color = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);
-  const Deletehandeler = (id) => {
-    mutate(id);
+  const [Delete, setDelete] = useState(false);
+  const [DeletePayload, setDeletePayload] = useState({});
+  const onHideDelete = () => setDelete(false);
+  const onShowDelete = () => setDelete(true);
+  const Deletehandeler = (color) => {
+    onShowDelete();
+    setDeletePayload(color);
   };
   if (logged) {
     return (
       <AdminLayout>
         <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
           {<ColorDialogBox onCancel={onHide} refetch={setget} token={get} />}
+        </Modal>
+        <Modal isOpen={Delete} closeModal={onHideDelete} fullWidth={false}>
+          <DeletePoPUPDialog
+            Closefunction={onHideDelete}
+            Deletefunction={mutate}
+            payload={DeletePayload}
+          />
         </Modal>
         <div>
           <div onClick={handleOpen}>
@@ -64,7 +77,7 @@ const Color = () => {
                     {color?.name}
                   </span>
                   <button
-                    onClick={() => Deletehandeler(color?.id)}
+                    onClick={() => Deletehandeler(color)}
                     className="text-sm text-red-500 cursor-pointer"
                   >
                     <DeleteOutlineIcon className="text-base" />

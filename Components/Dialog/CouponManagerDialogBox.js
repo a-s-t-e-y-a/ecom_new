@@ -4,14 +4,29 @@ import { useDispatch } from "react-redux";
 import { addCoupon } from "@/Slices/couponSlice";
 // import MultipleSelect from "../Admin/MultipleSelect";
 import { TextField } from "@mui/material";
-
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "react-toastify";
+import CreateCoupon from "@/utils/mutations/useCreateCoupon";
 const ProductCategoriesNameOption = ["SunGlasses", "Computer Glasses"];
 const ProductBrandNameOption = ["Normal", "Trends"];
 
-const CouponManagerDialogBox = ({ onCancel }) => {
+const CouponManagerDialogBox = ({ onCancel, refectch }) => {
   const dispatch = useDispatch();
+  const { mutate } = useMutation({
+    mutationFn: CreateCoupon,
+    onSuccess: () => {
+      refectch();
+      toast("Coupon Added Successfully !");
+    },
+    onError: () => {
+      toast("Error occurred");
+    },
+  });
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => dispatch(addCoupon(data?.coupon));
+  const onSubmit = (data) => {
+    mutate(data);
+    dispatch(addCoupon(data?.coupon));
+  };
   return (
     <div className="relative border tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
       <h1 className="text-md font-semibold text-center text-gray-700 mt-3">
@@ -30,10 +45,7 @@ const CouponManagerDialogBox = ({ onCancel }) => {
           {...register("couponName")}
           sx={{ minWidth: 300 }}
         />
-        <div className="flex items-center justify-between gap-2">
-          {/* <MultipleSelect label="ProductCategoriesName" options={ProductCategoriesNameOption}/> */}
-          {/* <MultipleSelect label="BrandName" options={ProductBrandNameOption}/> */}
-        </div>
+
         <div className="flex items-center justify-between gap-2">
           <TextField
             label="Validity"
