@@ -1,31 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { TbEdit } from "react-icons/tb";
 import { MdDelete } from "react-icons/md";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import DeleteProduct from "@/utils/mutations/useDeletehandler";
+import Modal from "../Dialog/Modal";
+import DeletePoPUPDialog from "../Dialog/DeletePoPUPDialog";
 
-const ProductDetailTable = ({
-  data,
-  refetch,
-  open,
-  modelNo,
-  modelName,
-  gender,
-  catogaries,
-  color,
-  selectlens,
-  powertype,
-  price,
-  material,
-  frame_width,
-  lens_width,
-  lens_height,
-  seo,
-  tag,
-  discpriction,
-}) => {
-  const { mutate: Delete } = useMutation({
+const ProductDetailTable = ({ data, refetch, open }) => {
+  const [Delete, setDelete] = useState(false);
+  const [DeletePayload, setDeletePayload] = useState({});
+  const onHideDelete = () => setDelete(false);
+  const onShowDelete = () => setDelete(true);
+  const { mutate: Deletes } = useMutation({
     mutationFn: DeleteProduct,
     onSuccess: (data) => {
       toast.success("Deleted Successfully");
@@ -35,29 +22,20 @@ const ProductDetailTable = ({
       toast.error("Error deleting Product");
     },
   });
-  const DeleteProductHandler = (id) => {
-    Delete(id);
+  const DeleteProductHandler = (Product) => {
+    setDeletePayload(Product);
+    onShowDelete();
   };
-  const EditHandler = (product) => {
-    modelNo(product?.p_id);
-    modelName(product?.product_model_name);
-    gender();
-    catogaries();
-    color();
 
-    selectlens();
-    powertype();
-    price();
-    material();
-    frame_width();
-    lens_width();
-    lens_height();
-    seo();
-    tag();
-    discpriction();
-  };
   return (
     <div className="w-full tracking-wide  px-10 ">
+      <Modal isOpen={Delete} closeModal={onHideDelete} fullWidth={false}>
+        <DeletePoPUPDialog
+          Closefunction={onHideDelete}
+          Deletefunction={Deletes}
+          payload={DeletePayload}
+        />
+      </Modal>
       <table className="w-full ">
         <thead className=" text-xs font-normal text-gray-700 sticky -top-1 left-0 bg-white shadow-lg ng-blue-100 w-full overflow-auto">
           <tr className=" w-full  ">
@@ -100,17 +78,14 @@ const ProductDetailTable = ({
                 </td>
 
                 <td className="py-2 border">
-                  <span
-                    className="text-sky-600 flex items-center justify-center w-full cursor-pointer"
-                    onClick={() => EditHandler(Product)}
-                  >
+                  <span className="text-sky-600 flex items-center justify-center w-full cursor-pointer">
                     <TbEdit />
                   </span>
                 </td>
                 <td className="py-2 border">
                   <span
                     className="text-orange-600 flex items-center justify-center w-full cursor-pointer"
-                    onClick={() => DeleteProductHandler(Product?.p_id)}
+                    onClick={() => DeleteProductHandler(Product)}
                   >
                     <MdDelete />
                   </span>

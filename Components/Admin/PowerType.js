@@ -1,30 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import Image from "next/image";
-
+import DeletePoPUPDialog from "@/Components/Dialog/DeletePoPUPDialog";
+import Modal from "../Dialog/Modal";
 const PowerType = (props) => {
   const { src, title, description, id, mutate } = props;
-
-  const deletehandler = (id) => {
-    mutate(id);
+  const [Delete, setDelete] = useState(false);
+  const [DeletePayload, setDeletePayload] = useState({});
+  const onHideDelete = () => setDelete(false);
+  const onShowDelete = () => setDelete(true);
+  const deletehandler = (item) => {
+    setDeletePayload(item);
+    onShowDelete();
   };
   return (
-    <div className="relative flex items-center justify-start gap-5 text-gray-700 bg-gray-50 border hover:shadow-lg rounded-md p-5 cursor-pointer w-full mx-auto">
-      <div className="w-28 flex items-center">
-        <img
-          width={100}
-          height={100}
-          alt=""
-          src={src}
-          className="w-auto h-12"
+    <div className=" grid grid-cols-4 items-center ">
+      <Modal isOpen={Delete} closeModal={onHideDelete} fullWidth={false}>
+        <DeletePoPUPDialog
+          Closefunction={onHideDelete}
+          Deletefunction={mutate}
+          payload={DeletePayload}
         />
+      </Modal>
+      <div className="">
+        <img alt="" src={src} className="w-[200px] h-[100px] object-contain " />
       </div>
-      <div>
+      <div className=" col-span-2">
         <p className="font-semibold">{title}</p>
         <p className="text-sm text-gray-500">{description}</p>
       </div>
       <button
-        className="absolute p-5 right-2  text-red-500 cursor-pointer"
+        className="  text-red-500 cursor-pointer"
         onClick={() => deletehandler(id)}
       >
         <DeleteOutlineIcon className="text-base" />

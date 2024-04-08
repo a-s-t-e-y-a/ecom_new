@@ -33,23 +33,26 @@ export default function SingleSelectPowerType({
   active = true,
 }) {
   const theme = useTheme();
+  const [values, setvalue] = React.useState("");
 
-  const handleChange = (event) => {};
+  const handleChange = (event, value) => {
+    setvalue(value);
+  };
 
   return (
     <div>
       <FormControl sx={{ width: 298 }} size="small">
         <InputLabel id={label}>{label}</InputLabel>
         <Autocomplete
-          multiple
+          {...register(name)}
+          disablePortal
+          disabled={active ? false : true}
           id="power_type"
           options={options?.map((value) => value?.name) || []}
+          value={values}
+          onChange={(e, val) => handleChange(e, val)}
           renderInput={(params) => (
-            <TextField
-              {...params}
-              label="Select Power Type"
-              placeholder="Power Type"
-            />
+            <TextField {...params} label="Select Power Type" />
           )}
         />
       </FormControl>

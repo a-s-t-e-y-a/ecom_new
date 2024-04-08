@@ -13,12 +13,14 @@ import { IsAuth } from "@/utils/IsAuth";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useEffect } from "react";
+
 const PowerTypes = () => {
   const { data, refetch } = useGetAllPowerType();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);
   const [get, setget] = useState(false);
+
   useEffect(() => {
     refetch();
   }, [get, refetch]);
@@ -38,6 +40,7 @@ const PowerTypes = () => {
       <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
         {<PowerTypesDialogBox onCancel={onHide} refecth={setget} token={get} />}
       </Modal>
+
       <div>
         <div onClick={handleOpen}>
           <IconButton label="Add Power Types" icon={<GiPowerRing />} />
@@ -50,7 +53,7 @@ const PowerTypes = () => {
                 src={item?.image}
                 title={item?.name}
                 description={item?.description}
-                id={item?.id}
+                id={item}
                 mutate={mutate}
               />
             ))}

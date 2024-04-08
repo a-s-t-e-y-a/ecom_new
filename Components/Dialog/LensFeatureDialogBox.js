@@ -27,7 +27,7 @@ const LensFeatureDialogBox = ({ onCancel, refetch, token }) => {
   const { data } = useGetAllPowerType();
   const onSubmit = (data) => {
     const formData = new FormData();
-
+    console.log(data);
     formData.append("file", data?.file[0]);
     const datas = JSON.stringify(data);
     formData.append("data", datas);

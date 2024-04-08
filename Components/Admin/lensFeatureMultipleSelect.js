@@ -34,7 +34,7 @@ export default function SingleSelectLensFeature({
   value,
 }) {
   const theme = useTheme();
-  const [selectedItem, setSelectedItem] = React.useState("");
+  const [selectedItem, setSelectedItem] = React.useState([]);
 
   const handleChange = (event) => {
     setSelectedItem(event.target.value);
@@ -45,6 +45,7 @@ export default function SingleSelectLensFeature({
       <FormControl sx={{ width: 298 }} size="small">
         <InputLabel id={label}>{label}</InputLabel>
         <Select
+          multiple
           {...register(name)}
           labelId={label}
           id={label}

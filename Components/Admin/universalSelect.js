@@ -35,20 +35,22 @@ export default function SingleSelectUniversal({
 }) {
   const theme = useTheme();
 
-  const handleChange = (event) => {
-    event.target.value === "No" ? setactive(false) : setactive(true);
+  const handleChange = (event, value) => {
+    value === "No" ? setactive(false) : setactive(true);
   };
 
   return (
     <div>
       <FormControl sx={{ width: 300 }} size={size}>
         <Autocomplete
+          {...register(name)}
           disablePortal
           id="select_lens"
           options={options}
           sx={{ width: 300 }}
+          onChange={(e, value) => handleChange(e, value)}
           renderInput={(params) => (
-            <TextField {...params} {...register(name)} label="Select lens" />
+            <TextField {...params} label="Select lens" />
           )}
         />
       </FormControl>
