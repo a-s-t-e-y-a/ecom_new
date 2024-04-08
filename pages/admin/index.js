@@ -1,7 +1,7 @@
 import IconButton from "@/Components/Admin/IconButton";
 import QuillEditor from "@/Components/Admin/QuillEditor";
 import AdminLayout from "@/Layout/AdminLayout";
-import { IsAuth } from "@/utils/IsAuth";
+import { checkAndLogoutAfter24Hours, IsAuth } from "@/utils/IsAuth";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useEffect } from "react";
@@ -12,7 +12,7 @@ const AboutPage = () => {
 
   const [logged, setlogged] = useState(false);
   useEffect(() => {
-    if (IsAuth("admin_info")) {
+    if (IsAuth("admin_info") && checkAndLogoutAfter24Hours()) {
       setlogged(true);
     } else {
       router.replace("login");

@@ -1,3 +1,4 @@
+import { loginTime } from "@/utils/IsAuth";
 import { useRouter } from "next/navigation";
 
 function Login() {
@@ -10,7 +11,8 @@ function Login() {
     const username = e.target.username?.value;
     const password = e.target.password?.value;
     if (username === "Akash@gamil.com" && password === "akkukachassma@123") {
-      localStorage.setItem(
+      loginTime()
+      window.localStorage.setItem(
         "admin_info",
         JSON.stringify({
           username: "Akash@gamil.com",
