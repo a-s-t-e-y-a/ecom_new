@@ -14,6 +14,8 @@ const CouponManagerDialogBox = ({ onCancel, refectch }) => {
   const dispatch = useDispatch();
   const { mutate } = useMutation({
     mutationFn: CreateCoupon,
+    mutationKey: ["api/coupons"],
+
     onSuccess: () => {
       refectch();
       toast("Coupon Added Successfully !");
@@ -43,7 +45,7 @@ const CouponManagerDialogBox = ({ onCancel, refectch }) => {
           name="name"
           id="couponName"
           size="small"
-          {...register("couponName")}
+          {...register("name")}
           sx={{ minWidth: 300 }}
         />
 

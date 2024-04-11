@@ -11,13 +11,14 @@ import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import CreateBlog from "@/utils/mutations/useCreateblog";
+import { useForm } from "react-hook-form";
 const CreateBlogDialog = (props) => {
   const { open, setOpen, handleOpen } = props;
   const [Image, SetImage] = useState({});
   const [Heading, SetHeading] = useState("");
   const [Description, SetDescription] = useState("");
   const [altTags, SetaltTags] = useState("");
-
+  const { register, handleSubmit } = useForm();
   const { mutate } = useMutation({
     mutationFn: CreateBlog,
     onSuccess: (data) => {
@@ -29,19 +30,16 @@ const CreateBlogDialog = (props) => {
   });
   const SumbitHandler = (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("thumb", e.target?.Image?.value);
-    formData.append("data", JSON.stringify());
     mutate({
-      headingc: e.target?.heading?.value,
+      heading: e.target?.heading?.value,
       description: e.target?.discription?.value,
-
+      seo_title: e.target?.tags.value,
       thumb: e.target?.Image?.value,
     });
   };
   return (
     <Fragment>
-      <Dialog open={open} className="border p-10">
+      <Dialog open={open} className="border">
         <DialogBody divider className="">
           <div className="w-full space-y-5 text-gray-700 overflow-y-scroll ">
             <h1 className="text-xl font-semibold tracking-wide text-center">
