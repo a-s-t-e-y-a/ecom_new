@@ -25,6 +25,7 @@ const CouponManagerDialogBox = ({ onCancel, refectch }) => {
   });
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
+    console.log(data, 'Coupon Added Successfully')
     mutate(data);
     dispatch(addCoupon(data?.coupon));
   };
@@ -53,6 +54,7 @@ const CouponManagerDialogBox = ({ onCancel, refectch }) => {
             name="validity"
             id="validity"
             size="small"
+            type="number"
             {...register("validity")}
             sx={{ minWidth: 300 }}
           />
@@ -61,6 +63,7 @@ const CouponManagerDialogBox = ({ onCancel, refectch }) => {
             name="quantity"
             id="quantity"
             size="small"
+            type="number"
             {...register("quantity")}
             sx={{ minWidth: 300 }}
           />
@@ -70,6 +73,7 @@ const CouponManagerDialogBox = ({ onCancel, refectch }) => {
             label="Price"
             name="price"
             id="price"
+            type="number"
             size="small"
             {...register("price")}
             sx={{ minWidth: 300 }}
@@ -78,6 +82,7 @@ const CouponManagerDialogBox = ({ onCancel, refectch }) => {
             label="Percentage"
             name="percentage"
             id="percentage"
+            type='number'
             size="small"
             {...register("percentage")}
             sx={{ minWidth: 300 }}
