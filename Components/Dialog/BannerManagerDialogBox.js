@@ -5,12 +5,23 @@ import AddIcon from "@mui/icons-material/Add";
 import { useForm } from "react-hook-form";
 import useGetAllCategories from "@/utils/queries/useCategoriesGetAll";
 import useGetAllShape from "@/utils/queries/useShapeGetAll";
-
-const BannerManagerDialogBox = ({ onCancel }) => {
+import Createbanner from "@/utils/mutations/useCreateBanner";
+import { useMutation } from "@tanstack/react-query";
+import toast from "react-toastify";
+const BannerManagerDialogBox = ({ onCancel, refetch, token }) => {
   const { register, handleSubmit } = useForm();
   const { data } = useGetAllCategories();
   const { data: Shape } = useGetAllShape();
-  const {} = useMutation();
+  const { mutate } = useMutation({
+    mutationFn: Createbanner,
+    onSuccess: () => {
+      toast("color created succesfully");
+      refetch(!token);
+    },
+    onError: (err) => {
+      toast("Error occurred");
+    },
+  });
   const onSubmit = (data) => {};
   return (
     <div className="relative border p-2 tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
@@ -27,17 +38,12 @@ const BannerManagerDialogBox = ({ onCancel }) => {
           <FileInput title="main_image" register={register} />
           <SelectComponent label="SELECT CATOGARIES" options={data} />
         </div>
-        <div className="flex items-center justify-between gap-5">
-          {/* <MultipleSelect label="ProductCategoriesName" options={ProductCategoriesName}/> */}
-          {/* <MultipleSelect label="ProductBrandName" options={ProductBrandName}/> */}
-        </div>
 
         <div className="flex items-center justify-between gap-5">
           <SelectComponent label="Shape" options={Shape} />
           <button
             type="submit"
             className="text-white bg-sky-400 hover:bg-sky-500  focus:outline-none font-medium rounded-lg text-sm inline-flex items-center px-5 py-2 text-center mr-2"
-            //  onClick={}
           >
             Add <AddIcon className="ml-1 font-bold text-base" />
           </button>
