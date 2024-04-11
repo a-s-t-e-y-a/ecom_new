@@ -14,6 +14,7 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import query from "@/utils/queryClinet";
 import deleteFrame from "@/utils/mutations/useDeleteFrameMaterial";
+import DeletePoPUPDialog from "@/Components/Dialog/DeletePoPUPDialog";
 
 const FrameMaterial = () => {
   const router = useRouter();
@@ -43,8 +44,14 @@ const FrameMaterial = () => {
     }
     refetch();
   }, [router, refetch, get]);
-  const deleteHandler = (id) => {
-    mutate(id);
+
+  const [Delete, setDelete] = useState(false);
+  const [DeletePayload, setDeletePayload] = useState({});
+  const onHideDelete = () => setDelete(false);
+  const onShowDelete = () => setDelete(true);
+  const Deletehandeler = (val) => {
+    onShowDelete();
+    setDeletePayload(val);
   };
   if (logged) {
     return (
@@ -57,6 +64,13 @@ const FrameMaterial = () => {
               token={get}
             />
           }
+        </Modal>
+        <Modal isOpen={Delete} closeModal={onHideDelete} fullWidth={false}>
+          <DeletePoPUPDialog
+            Closefunction={onHideDelete}
+            Deletefunction={mutate}
+            payload={DeletePayload}
+          />
         </Modal>
         <div>
           <div onClick={handleOpen} className=" mb-4">
@@ -71,7 +85,7 @@ const FrameMaterial = () => {
                 >
                   <div className=" text-lg">{val?.name}</div>
                   <button
-                    onClick={() => deleteHandler(val?.id)}
+                    onClick={() => Deletehandeler(val)}
                     className=" text-red-500"
                   >
                     <DeleteOutlineIcon />

@@ -13,6 +13,7 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { useMutation } from "@tanstack/react-query";
 import deleteBlogs from "@/utils/mutations/useDeleteBlog";
 import { toast } from "react-toastify";
+import DeletePoPUPDialog from "@/Components/Dialog/DeletePoPUPDialog";
 
 const Blog = () => {
   const router = useRouter();
@@ -20,7 +21,14 @@ const Blog = () => {
   const [logged, setlogged] = useState(false);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
-
+  const [Delete, setDelete] = useState(false);
+  const [DeletePayload, setDeletePayload] = useState({});
+  const onHideDelete = () => setDelete(false);
+  const onShowDelete = () => setDelete(true);
+  const Deletehandeler = (val) => {
+    onShowDelete();
+    setDeletePayload(val);
+  };
   const onHide = () => setOpen(false);
   useEffect(() => {
     if (IsAuth("admin_info")) {
@@ -40,14 +48,19 @@ const Blog = () => {
       toast(err.message);
     },
   });
-  const DeleteBlogHandler = (id) => {
-    mutate(id);
-  };
+
   if (logged) {
     return (
       <AdminLayout>
         <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
           <CreateBlogDialog open={open} setOpen={setOpen} />
+        </Modal>
+        <Modal isOpen={Delete} closeModal={onHideDelete} fullWidth={false}>
+          <DeletePoPUPDialog
+            Closefunction={onHideDelete}
+            Deletefunction={mutate}
+            payload={DeletePayload}
+          />
         </Modal>
         <div>
           <button onClick={() => handleOpen()}>
@@ -60,7 +73,7 @@ const Blog = () => {
                   <BlogItem value={value} />
                   <button
                     onClick={() => {
-                      DeleteBlogHandler(value?.id);
+                      Deletehandeler(value);
                     }}
                     className=" absolute right-2 bottom-3 text-red-500"
                   >

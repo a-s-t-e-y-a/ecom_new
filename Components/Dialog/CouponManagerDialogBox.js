@@ -18,7 +18,8 @@ const CouponManagerDialogBox = ({ onCancel, refectch }) => {
       refectch();
       toast("Coupon Added Successfully !");
     },
-    onError: () => {
+    onError: (eer) => {
+      console.log(eer);
       toast("Error occurred");
     },
   });
@@ -39,7 +40,7 @@ const CouponManagerDialogBox = ({ onCancel, refectch }) => {
         <TextField
           fullWidth
           label="Coupon Name"
-          name="couponName"
+          name="name"
           id="couponName"
           size="small"
           {...register("couponName")}

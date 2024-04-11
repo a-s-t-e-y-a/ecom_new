@@ -53,6 +53,7 @@ export default function SingleSelectCategories({
           label="Product Category"
           value={selectedItem}
           onChange={handleChange}
+          sx={{ height: 50 }}
         >
           {options?.map((option, indx) => (
             <MenuItem value={option?.name} key={indx}>

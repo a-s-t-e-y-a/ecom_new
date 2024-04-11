@@ -13,6 +13,7 @@ import Image from "next/image";
 import { IsAuth } from "@/utils/IsAuth";
 import { useMutation } from "@tanstack/react-query";
 import DeleteCategory from "@/utils/mutations/useDeleteCatogaries";
+import DeletePoPUPDialog from "@/Components/Dialog/DeletePoPUPDialog";
 
 const Categories = () => {
   const {
@@ -23,7 +24,14 @@ const Categories = () => {
   } = useGetAllCategories();
   const [open, setOpen] = useState(false);
   const router = useRouter();
-
+  const [Delete, setDelete] = useState(false);
+  const [DeletePayload, setDeletePayload] = useState({});
+  const onHideDelete = () => setDelete(false);
+  const onShowDelete = () => setDelete(true);
+  const Deletehandeler = (val) => {
+    onShowDelete();
+    setDeletePayload(val);
+  };
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);
   const { mutate } = useMutation({
@@ -51,14 +59,19 @@ const Categories = () => {
   if (isError) {
     return <> Error ....</>;
   }
-  const handleDelete = (id) => {
-    mutate(id);
-  };
+
   if (logged) {
     return (
       <AdminLayout>
         <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
           <CategoriesDialogBox onCancel={onHide} refetch={refetch} />
+        </Modal>
+        <Modal isOpen={Delete} closeModal={onHideDelete} fullWidth={false}>
+          <DeletePoPUPDialog
+            Closefunction={onHideDelete}
+            Deletefunction={mutate}
+            payload={DeletePayload}
+          />
         </Modal>
         <div>
           <div onClick={handleOpen}>
@@ -85,9 +98,7 @@ const Categories = () => {
                     </span>
                     <span
                       className="text-sm text-red-500 cursor-pointer"
-                      onClick={() =>
-                        handleDelete(category?.products_categories_id)
-                      }
+                      onClick={() => Deletehandeler(category)}
                     >
                       <DeleteOutlineIcon className="text-base" />
                     </span>

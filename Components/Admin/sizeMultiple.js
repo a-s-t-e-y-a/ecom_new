@@ -33,14 +33,14 @@ export default function SingleSelectSize({ label, options, register, name }) {
   const handleChange = (event) => {};
 
   return (
-    <div>
-      <FormControl sx={{ width: 298 }} size="small">
+    <div className="w-[100px]">
+      <FormControl sx={{ width: 200 }} size="small">
         <InputLabel id={label}>{label}</InputLabel>
         <Autocomplete
           multiple
           id="select_size"
           options={options?.map((value) => value?.name) || []}
-          sx={{ width: 500 }}
+          sx={{ width: 298 }}
           renderInput={(params) => (
             <TextField {...params} {...register(name)} label="Select Size" />
           )}

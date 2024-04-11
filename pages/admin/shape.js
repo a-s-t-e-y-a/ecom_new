@@ -14,6 +14,8 @@ import { useEffect } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import DeleteShape from "@/utils/mutations/useDeleteShape";
+import DeletePoPUPDialog from "@/Components/Dialog/DeletePoPUPDialog";
+
 const Shape = () => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -34,6 +36,14 @@ const Shape = () => {
       toast.error("Error deleting shape");
     },
   });
+  const [Delete, setDelete] = useState(false);
+  const [DeletePayload, setDeletePayload] = useState({});
+  const onHideDelete = () => setDelete(false);
+  const onShowDelete = () => setDelete(true);
+  const Deletehandeler = (val) => {
+    onShowDelete();
+    setDeletePayload(val);
+  };
   useEffect(() => {
     if (IsAuth("admin_info")) {
       setlogged(true);
@@ -51,14 +61,17 @@ const Shape = () => {
     return <>Error ...</>;
   }
 
-  const handleDelete = (shape) => {
-    mutate(shape?.id);
-  };
-
   return (
     <AdminLayout>
       <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
         {<ShapeDialogBox onCancel={onHide} refetch={setget} token={get} />}
+      </Modal>
+      <Modal isOpen={Delete} closeModal={onHideDelete} fullWidth={false}>
+        <DeletePoPUPDialog
+          Closefunction={onHideDelete}
+          Deletefunction={mutate}
+          payload={DeletePayload}
+        />
       </Modal>
       <div>
         <div onClick={handleOpen}>
@@ -83,7 +96,7 @@ const Shape = () => {
                     {shape?.name}
                   </span>
                   <button
-                    onClick={() => handleDelete(shape)}
+                    onClick={() => Deletehandeler(shape)}
                     className="text-sm text-red-500 cursor-pointer"
                   >
                     <DeleteOutlineIcon className="text-base" />

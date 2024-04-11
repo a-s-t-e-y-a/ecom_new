@@ -5,6 +5,8 @@ import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
+import { Controller, useFormContext } from "react-hook-form";
+
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -43,8 +45,8 @@ export default function SingleSelectPowerType({
     <div>
       <FormControl sx={{ width: 298 }} size="small">
         <InputLabel id={label}>{label}</InputLabel>
+
         <Autocomplete
-          {...register(name)}
           disablePortal
           disabled={active ? false : true}
           id="power_type"

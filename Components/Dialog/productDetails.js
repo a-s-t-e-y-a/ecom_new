@@ -29,9 +29,10 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import SingleGenderSelect from "@/Components/Admin/SingleSelectGender";
+import { Controller, useFormContext } from "react-hook-form";
 
 const ProductDetailDialog = ({ onCancel, refetch }) => {
-  const { register, handleSubmit, control } = useForm();
+  const { register, handleSubmit } = useForm();
   const { mutate } = useMutation({
     mutationFn: CreateProduct,
     onSuccess: () => {
@@ -77,8 +78,7 @@ const ProductDetailDialog = ({ onCancel, refetch }) => {
     form.append("data", JSON.stringify(data));
 
     // Assuming mutate is an asynchronous function that sends the form data
-    // mutate(form);
-    console.log(data);
+    mutate(form);
   };
 
   return (
@@ -99,7 +99,7 @@ const ProductDetailDialog = ({ onCancel, refetch }) => {
             name="product_model_name"
             id="product_model_name"
             {...register("product_model_name")}
-            sx={{ minWidth: 300 }}
+            sx={{ width: 298 }}
           />
           <TextField
             fullWidth
@@ -107,7 +107,7 @@ const ProductDetailDialog = ({ onCancel, refetch }) => {
             name="product_model_number"
             id="product_model_number"
             {...register("product_model_number")}
-            sx={{ minWidth: 300 }}
+            sx={{ width: 298 }}
           />
           <SingleGenderSelect
             options={["Men", "Women", "Kids", "Both(M/F)"]}
@@ -161,6 +161,7 @@ const ProductDetailDialog = ({ onCancel, refetch }) => {
               variant="outlined"
               size="small"
               {...register("dsfs")}
+              sx={{ height: 50 }}
             />
           </div>
           <div>
@@ -186,7 +187,7 @@ const ProductDetailDialog = ({ onCancel, refetch }) => {
             id="discounted_price"
             size="small"
             {...register("discounted_price")}
-            sx={{ minWidth: 300 }}
+            sx={{ width: 298, height: 50 }}
           />
           <TextField
             fullWidth
@@ -195,7 +196,7 @@ const ProductDetailDialog = ({ onCancel, refetch }) => {
             id="frame_width"
             size="small"
             {...register("frame_width")}
-            sx={{ minWidth: 300 }}
+            sx={{ width: 298, height: 50 }}
           />
           <TextField
             fullWidth
@@ -204,7 +205,7 @@ const ProductDetailDialog = ({ onCancel, refetch }) => {
             id="lens_width"
             size="small"
             {...register("lens_width")}
-            sx={{ minWidth: 300 }}
+            sx={{ width: 298, height: 50 }}
           />
           <TextField
             fullWidth
@@ -213,7 +214,7 @@ const ProductDetailDialog = ({ onCancel, refetch }) => {
             id="lens_height"
             size="small"
             {...register("lens_height")}
-            sx={{ minWidth: 300 }}
+            sx={{ width: 298, height: 50 }}
           />
           <TextField
             fullWidth
@@ -222,7 +223,7 @@ const ProductDetailDialog = ({ onCancel, refetch }) => {
             id="stokke"
             size="small"
             {...register("stokke")}
-            sx={{ minWidth: 300 }}
+            sx={{ width: 298, height: 50 }}
           />
           <TextField
             fullWidth
@@ -231,7 +232,7 @@ const ProductDetailDialog = ({ onCancel, refetch }) => {
             id="seo_title"
             size="small"
             {...register("seo_title")}
-            sx={{ minWidth: 300 }}
+            sx={{ width: 298, height: 50 }}
           />
           <TextField
             fullWidth
@@ -240,7 +241,7 @@ const ProductDetailDialog = ({ onCancel, refetch }) => {
             id="keyword"
             size="small"
             {...register("keyword")}
-            sx={{ minWidth: 300 }}
+            sx={{ width: 298, height: 50 }}
           />
           <div className=" col-span-2">
             <Textarea
