@@ -16,7 +16,7 @@ const CouponManager = () => {
 
   const [logged, setlogged] = useState(false);
   const { data, refetch } = useGetAllCoupon();
-  const { mutate } = useDeleteCoupon();
+  const { mutate, isSuccess } = useDeleteCoupon();
   useEffect(() => {
     if (IsAuth("admin_info")) {
       setlogged(true);
@@ -24,7 +24,7 @@ const CouponManager = () => {
       router.replace("login");
     }
     refetch();
-  }, [router, refetch]);
+  }, [router, refetch, isSuccess]);
   const couponsData = useSelector((state) => state.coupon);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
