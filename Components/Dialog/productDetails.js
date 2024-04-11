@@ -31,7 +31,7 @@ import { useState } from "react";
 import SingleGenderSelect from "@/Components/Admin/SingleSelectGender";
 
 const ProductDetailDialog = ({ onCancel, refetch }) => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, control } = useForm();
   const { mutate } = useMutation({
     mutationFn: CreateProduct,
     onSuccess: () => {

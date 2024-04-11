@@ -47,6 +47,7 @@ export default function SingleSelectCategories({
       <FormControl sx={{ width: 298 }} size="small">
         <InputLabel id={label}>{label}</InputLabel>
         <Select
+          {...register(name)}
           multiple
           id="productCategory"
           label="Product Category"

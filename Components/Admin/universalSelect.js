@@ -34,8 +34,9 @@ export default function SingleSelectUniversal({
   setactive,
 }) {
   const theme = useTheme();
-
+  const [values, setValue] = React.useState("");
   const handleChange = (event, value) => {
+    setValue(value);
     value === "No" ? setactive(false) : setactive(true);
   };
 
@@ -49,6 +50,7 @@ export default function SingleSelectUniversal({
           options={options}
           sx={{ width: 300 }}
           onChange={(e, value) => handleChange(e, value)}
+          value={values}
           renderInput={(params) => (
             <TextField {...params} label="Select lens" />
           )}

@@ -20,23 +20,6 @@ const ProductDetail = () => {
   const router = useRouter();
   const { data, refetch } = useGetAllProducts();
   const [logged, setlogged] = useState(false);
-  const [modelNo, setmodelno] = useState("");
-  const [modelname, setmodelname] = useState("");
-  const [gender, setgender] = useState("");
-  const [productCategories, setproductCategories] = useState("");
-  const [selectLens, setselectLens] = useState("");
-  const [powertype, setpowertype] = useState("");
-  const [color, setcolor] = useState("");
-  const [material, setmaterial] = useState("");
-  const [price, setprice] = useState("");
-  const [frame_width, setframe_width] = useState("");
-  const [lens_width, setlens_width] = useState("");
-  const [lens_height, setlens_height] = useState("");
-
-  const [stcok, setstcok] = useState("");
-  const [seo, setseo] = useState("");
-  const [tag, settag] = useState("");
-  const [discpriction, setdiscpriction] = useState("");
 
   useEffect(() => {
     if (IsAuth("admin_info")) {
@@ -81,21 +64,6 @@ const ProductDetail = () => {
               data={data}
               refetch={refetch}
               open={handleOpen}
-              modelNo={setmodelno}
-              modelName={setmodelname}
-              gender={setgender}
-              catogaries={setproductCategories}
-              color={setcolor}
-              selectlens={setselectLens}
-              powertype={setpowertype}
-              price={setprice}
-              material={setmaterial}
-              frame_width={setframe_width}
-              lens_width={setlens_width}
-              lens_height={setlens_height}
-              seo={setseo}
-              tag={settag}
-              discpriction={setdiscpriction}
             />
           </div>
         </div>
