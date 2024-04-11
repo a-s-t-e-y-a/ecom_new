@@ -6,6 +6,7 @@ import { IsAuth } from "@/utils/IsAuth";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useEffect } from "react";
+import AddIcon from "@mui/icons-material/Add";
 
 const FranchisePage = () => {
   const router = useRouter();
@@ -30,6 +31,9 @@ const FranchisePage = () => {
           </div>
           <div className="mt-6 flex items-center gap-3 flex-wrap w-full">
             <QuillEditor />
+            <button className=" bg-blue-500 rounded shadow  w-40 text-center text-white my-4">
+              ADD <AddIcon />
+            </button>
           </div>
         </div>
       </AdminLayout>

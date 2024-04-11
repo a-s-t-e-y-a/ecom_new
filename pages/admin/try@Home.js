@@ -1,6 +1,8 @@
 import IconButton from "@/Components/Admin/IconButton";
 import QuillEditor from "@/Components/Admin/QuillEditor";
 import AdminLayout from "@/Layout/AdminLayout";
+import AddIcon from "@mui/icons-material/Add";
+
 import { HiOutlineHome } from "react-icons/hi";
 import { IsAuth } from "@/utils/IsAuth";
 import { useRouter } from "next/navigation";
@@ -33,6 +35,10 @@ const TryAtHome = () => {
         </div>
         <div>
           <QuillEditor />
+
+          <button className=" bg-blue-500 rounded shadow  w-40 text-center text-white my-4">
+            ADD <AddIcon />
+          </button>
         </div>
       </AdminLayout>
     );

@@ -20,15 +20,38 @@ const ProductDetail = () => {
   const router = useRouter();
   const { data, refetch } = useGetAllProducts();
   const [logged, setlogged] = useState(false);
-
+  const [Products, setproducts] = useState([]);
   useEffect(() => {
     if (IsAuth("admin_info")) {
       setlogged(true);
     } else {
       router.replace("login");
     }
+    if (data) {
+      setproducts(data);
+    }
     refetch();
-  }, [router, refetch]);
+  }, [router, refetch, data]);
+  const NumberOfProducts = (e) => {
+    const Numbers = e?.target?.value;
+    if (Numbers > 0) {
+      const Newarr = data?.filter((Value, index) => index + 1 <= Numbers);
+      setproducts(Newarr);
+    } else {
+      setproducts(data);
+    }
+  };
+  const SearchHandler = (e) => {
+    const seacrchValue = e?.target?.value;
+    if (seacrchValue !== "" || undefined || null) {
+      const Newarry = data?.filter((value) =>
+        value?.product_model_name?.includes(seacrchValue)
+      );
+      setproducts(Newarry);
+    } else {
+      setproducts(data);
+    }
+  };
   if (logged) {
     return (
       <AdminLayout>
@@ -49,6 +72,7 @@ const ProductDetail = () => {
                 size="small"
                 label="Show"
                 type="number"
+                onChange={(e) => NumberOfProducts(e)}
               />
               <TextField
                 className="outline-none focus:ring-0 w-48  "
@@ -56,12 +80,13 @@ const ProductDetail = () => {
                 color="secondary"
                 size="small"
                 label="Search..."
+                onChange={(e) => SearchHandler(e)}
               />
             </div>
           </div>
           <div className=" w-full mb-3">
             <ProductDetailTable
-              data={data}
+              data={Products}
               refetch={refetch}
               open={handleOpen}
             />
