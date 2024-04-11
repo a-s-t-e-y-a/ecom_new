@@ -82,29 +82,29 @@ const CouponManager = () => {
             <div className="  text-gray-400 tracking-wider">Action</div>
           </div>
           {data &&
-            data.map((coupon, index) => (
+            data?.map((coupon, index) => (
               <div
-                key={1}
+                key={index}
                 className="w-full  grid grid-cols-6 justify-between justify-items-center bg-gray-50 py-3 shadow rounded"
               >
                 <div className="text-gray-600 font-semibold text-sm ">
-                  {couponsData[0].CouponName}
+                  {coupon?.name}
                 </div>
 
                 <div className="text-gray-600 font-semibold text-sm ">
-                  {couponsData[0].Validity}
+                  {coupon?.validity}
                 </div>
 
                 <div className="text-gray-600 font-semibold text-sm ">
-                  {couponsData[0].Quantity}
+                  {coupon?.quantity}
                 </div>
 
                 <div className="text-gray-600 font-semibold text-sm ">
-                  {couponsData[0].Price}
+                  {coupon?.price}
                 </div>
 
                 <div className="text-gray-600 font-semibold text-sm ">
-                  {couponsData[0].Percentage} %{" "}
+                  {coupon?.percentage} %{" "}
                 </div>
                 <button
                   className=" text-red-400"
