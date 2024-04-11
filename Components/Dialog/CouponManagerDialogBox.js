@@ -10,18 +10,17 @@ import CreateCoupon from "@/utils/mutations/useCreateCoupon";
 const ProductCategoriesNameOption = ["SunGlasses", "Computer Glasses"];
 const ProductBrandNameOption = ["Normal", "Trends"];
 
-const CouponManagerDialogBox = ({ onCancel, refectch }) => {
+const CouponManagerDialogBox = ({ onCancel, refectch, token }) => {
   const dispatch = useDispatch();
   const { mutate } = useMutation({
     mutationFn: CreateCoupon,
     mutationKey: ["api/coupons"],
 
     onSuccess: () => {
-      refectch();
+      refectch(!token);
       toast("Coupon Added Successfully !");
     },
     onError: (eer) => {
-      console.log(eer);
       toast("Error occurred");
     },
   });
@@ -32,7 +31,7 @@ const CouponManagerDialogBox = ({ onCancel, refectch }) => {
       validity: Number(data.validity),
       quantity: Number(data.quantity),
       price: Number(data.price),
-    }
+    };
     mutate(payload);
     dispatch(addCoupon(data?.coupon));
   };
@@ -89,7 +88,7 @@ const CouponManagerDialogBox = ({ onCancel, refectch }) => {
             label="Percentage"
             name="percentage"
             id="percentage"
-            type='number'
+            type="number"
             size="small"
             {...register("percentage")}
             sx={{ minWidth: 300 }}

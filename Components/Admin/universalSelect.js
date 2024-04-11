@@ -44,15 +44,13 @@ export default function SingleSelectUniversal({
     <div>
       <FormControl sx={{ width: 300 }} size={size}>
         <Autocomplete
-          {...register(name)}
           disablePortal
           id="select_lens"
           options={options}
           sx={{ width: 300 }}
           onChange={(e, value) => handleChange(e, value)}
-          value={values}
           renderInput={(params) => (
-            <TextField {...params} label="Select lens" />
+            <TextField {...params} label="Select lens" {...register(name)} />
           )}
         />
       </FormControl>

@@ -19,6 +19,7 @@ const CouponManager = () => {
 
   const [logged, setlogged] = useState(false);
   const { data, refetch } = useGetAllCoupon();
+  const [get, setget] = useState(false);
   const [Delete, setDelete] = useState(false);
   const [DeletePayload, setDeletePayload] = useState({});
   const onHideDelete = () => setDelete(false);
@@ -34,7 +35,7 @@ const CouponManager = () => {
       router.replace("login");
     }
     refetch();
-  }, [router, refetch]);
+  }, [router, refetch, get]);
   const couponsData = useSelector((state) => state.coupon);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
@@ -43,7 +44,7 @@ const CouponManager = () => {
     mutationFn: DeleteCoupon,
     onSuccess: () => {
       toast("Coupon deleted successfully");
-      refetch();
+      setget(!get);
     },
     onError: (err) => {
       toast(err.message);
@@ -53,7 +54,13 @@ const CouponManager = () => {
     return (
       <AdminLayout>
         <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
-          {<CouponManagerDialogBox onCancel={onHide} refectch={refetch} />}
+          {
+            <CouponManagerDialogBox
+              onCancel={onHide}
+              refectch={setget}
+              token={get}
+            />
+          }
         </Modal>
         <Modal isOpen={Delete} closeModal={onHideDelete} fullWidth={false}>
           <DeletePoPUPDialog

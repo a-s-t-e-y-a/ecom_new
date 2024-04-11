@@ -32,7 +32,7 @@ import SingleGenderSelect from "@/Components/Admin/SingleSelectGender";
 import { Controller, useFormContext } from "react-hook-form";
 
 const ProductDetailDialog = ({ onCancel, refetch }) => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, control } = useForm();
   const { mutate } = useMutation({
     mutationFn: CreateProduct,
     onSuccess: () => {

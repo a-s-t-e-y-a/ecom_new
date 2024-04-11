@@ -49,15 +49,16 @@ const AdminSideBar = () => {
     // { title: "Sell Manager ", icon: <FcManager />, link: "/admin/sellManager" },
     { title: "Power Types", icon: <GiPowerRing />, link: "/admin/powerTypes" },
     {
-      title: "Lens Detail",
-      icon: <MdOutlineLensBlur />,
-      link: "/admin/lensDetail",
-    },
-    {
       title: "Lens Feature",
       icon: <GiMicroscopeLens />,
       link: "/admin/lensFeature",
     },
+    {
+      title: "Lens Detail",
+      icon: <MdOutlineLensBlur />,
+      link: "/admin/lensDetail",
+    },
+
     {
       title: "Frame Material",
       icon: <CgFramer />,

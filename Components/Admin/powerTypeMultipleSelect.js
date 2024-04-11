@@ -51,10 +51,13 @@ export default function SingleSelectPowerType({
           disabled={active ? false : true}
           id="power_type"
           options={options?.map((value) => value?.name) || []}
-          value={values}
           onChange={(e, val) => handleChange(e, val)}
           renderInput={(params) => (
-            <TextField {...params} label="Select Power Type" />
+            <TextField
+              {...params}
+              label="Select Power Type"
+              {...register(name)}
+            />
           )}
         />
       </FormControl>
