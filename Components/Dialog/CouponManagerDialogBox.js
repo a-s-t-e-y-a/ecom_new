@@ -25,8 +25,13 @@ const CouponManagerDialogBox = ({ onCancel, refectch }) => {
   });
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
-    console.log(data, 'Coupon Added Successfully')
-    mutate(data);
+    const payload = {
+      name: data.couponName,
+      validity: Number(data.validity),
+      quantity: Number(data.quantity),
+      price: Number(data.price),
+    }
+    mutate(payload);
     dispatch(addCoupon(data?.coupon));
   };
   return (
