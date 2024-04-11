@@ -11,8 +11,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import useGetAllCoupon from "@/utils/queries/useGetAllCupons";
 import DeletePoPUPDialog from "@/Components/Dialog/DeletePoPUPDialog";
-import { useMutation } from "@tanstack/react-query";
-import DeleteCoupon from "@/utils/mutations/useDeleteCupon";
+import useDeleteCoupon from "@/utils/mutations/useDeleteCoupon";
 
 const CouponManager = () => {
   const router = useRouter();
@@ -28,6 +27,7 @@ const CouponManager = () => {
     onShowDelete();
     setDeletePayload(val);
   };
+  const { mutate, isSuccess } = useDeleteCoupon();
   useEffect(() => {
     if (IsAuth("admin_info")) {
       setlogged(true);
@@ -35,21 +35,12 @@ const CouponManager = () => {
       router.replace("login");
     }
     refetch();
-  }, [router, refetch, get]);
+  }, [router, refetch, isSuccess]);
   const couponsData = useSelector((state) => state.coupon);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);
-  const { mutate } = useMutation({
-    mutationFn: DeleteCoupon,
-    onSuccess: () => {
-      toast("Coupon deleted successfully");
-      setget(!get);
-    },
-    onError: (err) => {
-      toast(err.message);
-    },
-  });
+
   if (logged) {
     return (
       <AdminLayout>
