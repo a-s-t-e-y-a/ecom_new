@@ -44,7 +44,7 @@ const SwiperContainer = ({ data }) => {
             onClick={() => handleClick(elemt?.product_url)}
           >
             <div className=" w-[200px] mb-3  mx-auto">
-              <Image
+              <img
                 width={200}
                 height={200}
                 src={`${

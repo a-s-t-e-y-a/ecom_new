@@ -6,11 +6,12 @@ import { useForm } from "react-hook-form";
 import useGetAllCategories from "@/utils/queries/useCategoriesGetAll";
 import useGetAllShape from "@/utils/queries/useShapeGetAll";
 
-const onSubmit = (data) => {};
 const BannerManagerDialogBox = ({ onCancel }) => {
   const { register, handleSubmit } = useForm();
   const { data } = useGetAllCategories();
   const { data: Shape } = useGetAllShape();
+
+  const onSubmit = (data) => {};
   return (
     <div className="relative border p-2 tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
       <h1 className="text-md font-semibold text-center text-gray-700 mt-3">

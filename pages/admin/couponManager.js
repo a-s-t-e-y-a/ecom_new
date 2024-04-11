@@ -10,12 +10,22 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import useGetAllCoupon from "@/utils/queries/useGetAllCupons";
+import DeletePoPUPDialog from "@/Components/Dialog/DeletePoPUPDialog";
 import useDeleteCoupon from "@/utils/mutations/useDeleteCoupon";
+
 const CouponManager = () => {
   const router = useRouter();
 
   const [logged, setlogged] = useState(false);
   const { data, refetch } = useGetAllCoupon();
+  const [Delete, setDelete] = useState(false);
+  const [DeletePayload, setDeletePayload] = useState({});
+  const onHideDelete = () => setDelete(false);
+  const onShowDelete = () => setDelete(true);
+  const Deletehandeler = (val) => {
+    onShowDelete();
+    setDeletePayload(val);
+  };
   const { mutate, isSuccess } = useDeleteCoupon();
   useEffect(() => {
     if (IsAuth("admin_info")) {
@@ -30,16 +40,18 @@ const CouponManager = () => {
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);
 
-  const handleCouponDelete = (id) => {
-    console.log(id);
-    mutate(id);
-  };
-
   if (logged) {
     return (
       <AdminLayout>
         <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
           {<CouponManagerDialogBox onCancel={onHide} refectch={refetch} />}
+        </Modal>
+        <Modal isOpen={Delete} closeModal={onHideDelete} fullWidth={false}>
+          <DeletePoPUPDialog
+            Closefunction={onHideDelete}
+            Deletefunction={mutate}
+            payload={DeletePayload}
+          />
         </Modal>
         <div>
           <div onClick={handleOpen} className=" mb-4">
@@ -85,12 +97,12 @@ const CouponManager = () => {
                 <div className="text-gray-600 font-semibold text-sm ">
                   {coupon?.percentage} %{" "}
                 </div>
-                <div
-                  className=" text-red-400 cursor-pointer"
-                  onClick={() => handleCouponDelete(coupon?.id)}
+                <button
+                  className=" text-red-400"
+                  onClick={() => Deletehandeler(coupon)}
                 >
                   <DeleteOutlineIcon className="text-base" />
-                </div>
+                </button>
               </div>
             ))}
         </div>
