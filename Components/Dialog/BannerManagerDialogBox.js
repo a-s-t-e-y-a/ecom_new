@@ -7,7 +7,7 @@ import useGetAllCategories from "@/utils/queries/useCategoriesGetAll";
 import useGetAllShape from "@/utils/queries/useShapeGetAll";
 import Createbanner from "@/utils/mutations/useCreateBanner";
 import { useMutation } from "@tanstack/react-query";
-import toast from "react-toastify";
+import { toast } from "react-toastify";
 const BannerManagerDialogBox = ({ onCancel, refetch, token }) => {
   const { register, handleSubmit } = useForm();
   const { data } = useGetAllCategories();
