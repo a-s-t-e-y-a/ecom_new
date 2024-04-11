@@ -10,11 +10,13 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import useGetAllCoupon from "@/utils/queries/useGetAllCupons";
+import useDeleteCoupon from "@/utils/mutations/useDeleteCoupon";
 const CouponManager = () => {
   const router = useRouter();
 
   const [logged, setlogged] = useState(false);
   const { data, refetch } = useGetAllCoupon();
+  const { mutate } = useDeleteCoupon();
   useEffect(() => {
     if (IsAuth("admin_info")) {
       setlogged(true);
@@ -27,6 +29,11 @@ const CouponManager = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);
+
+  const handleCouponDelete = (id) => {
+    console.log(id);
+    mutate(id);
+  };
 
   if (logged) {
     return (
@@ -54,31 +61,34 @@ const CouponManager = () => {
             <div className="  text-gray-400 tracking-wider">Action</div>
           </div>
           {data &&
-            data.map((coupon, index) => (
+            data?.map((coupon, index) => (
               <div
-                key={1}
+                key={index}
                 className="w-full  grid grid-cols-6 justify-between justify-items-center bg-gray-50 py-3 shadow rounded"
               >
                 <div className="text-gray-600 font-semibold text-sm ">
-                  {couponsData[0].CouponName}
+                  {coupon?.name}
                 </div>
 
                 <div className="text-gray-600 font-semibold text-sm ">
-                  {couponsData[0].Validity}
+                  {coupon?.validity}
                 </div>
 
                 <div className="text-gray-600 font-semibold text-sm ">
-                  {couponsData[0].Quantity}
+                  {coupon?.quantity}
                 </div>
 
                 <div className="text-gray-600 font-semibold text-sm ">
-                  {couponsData[0].Price}
+                  {coupon?.price}
                 </div>
 
                 <div className="text-gray-600 font-semibold text-sm ">
-                  {couponsData[0].Percentage} %{" "}
+                  {coupon?.percentage} %{" "}
                 </div>
-                <div className=" text-red-400">
+                <div
+                  className=" text-red-400 cursor-pointer"
+                  onClick={() => handleCouponDelete(coupon?.id)}
+                >
                   <DeleteOutlineIcon className="text-base" />
                 </div>
               </div>
