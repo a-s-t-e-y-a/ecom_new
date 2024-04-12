@@ -8,7 +8,8 @@ const GlassesType = () => {
   const router = useRouter();
   const { data: categoryItems } = useGetAllCategories();
   const handleNavigate = (item) => {
-    router.push(`${item?.name?.toLowerCase().split(" ").join("")}`);
+    console.log(item);
+    router.push(`/catagories/${item?.products_categories_id}`);
   };
   return (
     <motion.div className=" mx-auto flex justify-around gap-10 lg:px-16">

@@ -1,4 +1,4 @@
-/* eslint-disable react-hooks/rules-of-hooks */
+"use client";
 import Filter from "@/Components/Filter";
 import SingleGlassItem from "@/Components/SingleGlassItem";
 import Layout from "@/Layout/Layout";
@@ -7,7 +7,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import Pagination from "@/Components/Pagination/Pagination";
 
-const index = () => {
+const Wayfarer = () => {
   const [data, setData] = useState([]);
   const [page, setpage] = React.useState(1);
 
@@ -22,7 +22,10 @@ const index = () => {
         `https://api.akkukachasma.com/api/categories/2?pageSize=15&page=${page}`
       )
       .then((result) => {
-        setData(result?.data?.data.products);
+        const Data = result?.data?.data?.products.filter(
+          (value) => value.shape === "wayfarer" || "Wayfarer"
+        );
+        setData(Data);
       });
   }, [page]);
   React.useEffect(() => {
@@ -53,4 +56,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Wayfarer;

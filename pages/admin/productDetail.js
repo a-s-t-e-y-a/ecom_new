@@ -18,7 +18,7 @@ const ProductDetail = () => {
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);
   const router = useRouter();
-  const { data, refetch } = useGetAllProducts();
+  const { data, refetch } = useGetAllProducts(page);
   const [logged, setlogged] = useState(false);
   const [Products, setproducts] = useState([]);
   useEffect(() => {
@@ -35,7 +35,9 @@ const ProductDetail = () => {
   const NumberOfProducts = (e) => {
     const Numbers = e?.target?.value;
     if (Numbers > 0) {
-      const Newarr = data?.filter((Value, index) => index + 1 <= Numbers);
+      const Newarr = data?.products?.filter(
+        (Value, index) => index + 1 <= Numbers
+      );
       setproducts(Newarr);
     } else {
       setproducts(data?.products);
@@ -44,7 +46,7 @@ const ProductDetail = () => {
   const SearchHandler = (e) => {
     const seacrchValue = e?.target?.value;
     if (seacrchValue !== "" || undefined || null) {
-      const Newarry = data?.filter((value) =>
+      const Newarry = data?.products?.filter((value) =>
         value?.product_model_name?.includes(seacrchValue)
       );
       setproducts(Newarry);
@@ -92,7 +94,7 @@ const ProductDetail = () => {
             />
           </div>
         </div>
-        <Pagination pages={setpage} curr={page} />
+        <Pagination pages={setpage} curr={page} total={data?.totalPages} />
       </AdminLayout>
     );
   }
