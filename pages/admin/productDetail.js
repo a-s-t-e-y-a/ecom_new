@@ -28,7 +28,7 @@ const ProductDetail = () => {
       router.replace("login");
     }
     if (data) {
-      setproducts(data);
+      setproducts(data?.products);
     }
     refetch();
   }, [router, refetch, data]);
@@ -38,7 +38,7 @@ const ProductDetail = () => {
       const Newarr = data?.filter((Value, index) => index + 1 <= Numbers);
       setproducts(Newarr);
     } else {
-      setproducts(data);
+      setproducts(data?.products);
     }
   };
   const SearchHandler = (e) => {
@@ -49,7 +49,7 @@ const ProductDetail = () => {
       );
       setproducts(Newarry);
     } else {
-      setproducts(data);
+      setproducts(data?.products);
     }
   };
   if (logged) {
