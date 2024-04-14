@@ -18,7 +18,6 @@ const CouponManager = () => {
 
   const [logged, setlogged] = useState(false);
   const { data, refetch } = useGetAllCoupon();
-  const [get, setget] = useState(false);
   const [Delete, setDelete] = useState(false);
   const [DeletePayload, setDeletePayload] = useState({});
   const onHideDelete = () => setDelete(false);
@@ -36,6 +35,7 @@ const CouponManager = () => {
     }
     refetch();
   }, [router, refetch, isSuccess]);
+  
   const couponsData = useSelector((state) => state.coupon);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
@@ -48,8 +48,7 @@ const CouponManager = () => {
           {
             <CouponManagerDialogBox
               onCancel={onHide}
-              refectch={setget}
-              token={get}
+              refetch={refetch}
             />
           }
         </Modal>

@@ -4,9 +4,9 @@ function DeletePoPUPDialog({ payload, Deletefunction, Closefunction }) {
   console.log(payload);
   return (
     <div className=" bg-gray-50 shadow-lg p-10 rounded relative">
-      <h3 className=" text-xl font-semibold mb-3">
+      <h3 className=" text-xl font-normal mb-3">
         You want to Delete &nbsp;
-        <em>
+        <em className="font-semibold">
           '{payload?.name || payload?.product_model_name || payload?.heading}'
         </em>
       </h3>
