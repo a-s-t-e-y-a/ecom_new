@@ -26,10 +26,26 @@ const LensFeatureDialogBox = ({ onCancel, refetch, token }) => {
     },
   });
   const { data } = useGetAllPowerType();
+
+  //help to return power type id
+  const getPowerTypeId = (powerTypePayloadName) => {
+    const filteredData = data.filter(
+      (item) => item.name === powerTypePayloadName
+    );
+    console.log(filteredData[0].id, "returnId");
+    return filteredData[0].id;
+  };
+
   const onSubmit = (data) => {
+    console.log(data, "powerType data");
     const formData = new FormData();
     formData.append("file", data?.file[0]);
-    const datas = JSON.stringify(data);
+    const payload = {
+      power_type_: getPowerTypeId(data?.power_type_id),
+      title: data?.title,
+      description: data?.description,
+    };
+    const datas = JSON.stringify(payload);
     formData.append("data", datas);
     mutate(formData);
   };

@@ -32,12 +32,14 @@ const PowerTypesDialogBox = ({ onCancel, setOpen, refecth, token }) => {
   const dispatch = useDispatch();
   const onSubmit = async (data) => {
     const formData = new FormData();
-    formData.append("file", data?.file[0]);
     formData.append(
       "data",
-      JSON.stringify({ name: data.name, description: data.description })
+      JSON.stringify({ title: data.title, description: data.description })
     );
+    formData.append("file", data?.file[0]);
+    console.log(formData, 'formData')
     mutate(formData);
+    onCancel()
   };
   useEffect(() => {
     if (datas) {
