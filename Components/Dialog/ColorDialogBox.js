@@ -13,11 +13,11 @@ const ColorDialogBox = ({ onCancel, refetch, token }) => {
   const { mutate } = useMutation({
     mutationFn: CreateColor,
     onSuccess: () => {
-      toast("color created succesfully");
+      toast.success("color created succesfully");
       refetch(!token);
     },
     onError: (err) => {
-      toast("Error occurred");
+      toast.error("Error occurred");
     },
   });
   const onSubmit = (data) => {

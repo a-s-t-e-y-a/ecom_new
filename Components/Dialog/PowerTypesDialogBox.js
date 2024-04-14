@@ -21,12 +21,12 @@ const PowerTypesDialogBox = ({ onCancel, setOpen, refecth, token }) => {
   } = useMutation({
     mutationFn: CreatePowerType,
     onSuccess: () => {
-      toast("PowerType created succesfully");
+      toast.success("PowerType created succesfully");
       query.invalidateQueries({ queryKey: ["api/PowerType"] });
       refecth(!token);
     },
     onError: (err) => {
-      toast("Error occurred");
+      toast.error("Error occurred");
     },
   });
   const dispatch = useDispatch();

@@ -36,11 +36,11 @@ const ProductDetailDialog = ({ onCancel, refetch }) => {
   const { mutate } = useMutation({
     mutationFn: CreateProduct,
     onSuccess: () => {
-      toast("Product created succesfully");
+      toast.success("Product created succesfully");
       refetch();
     },
     onError: (err) => {
-      toast(err.message);
+      toast.error(err.message);
     },
   });
 

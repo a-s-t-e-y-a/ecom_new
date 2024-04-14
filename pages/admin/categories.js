@@ -37,11 +37,11 @@ const Categories = () => {
   const { mutate } = useMutation({
     mutationFn: DeleteCategory,
     onSuccess: () => {
-      toast("Category Deleted Successfully");
+      toast.success("Category Deleted Successfully");
       refetch();
     },
     onError: (err) => {
-      toast(err.message);
+      toast.error(err.message);
     },
   });
   const [logged, setlogged] = useState(false);

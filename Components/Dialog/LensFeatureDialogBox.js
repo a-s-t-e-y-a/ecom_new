@@ -17,12 +17,12 @@ const LensFeatureDialogBox = ({ onCancel, refetch, token }) => {
   const { mutate } = useMutation({
     mutationFn: CreateLenseFeature,
     onSuccess: () => {
-      toast("Lens Feature created succesfully");
+      toast.success("Lens Feature created succesfully");
       refetch(!token);
     },
     onError: (err) => {
       console.log(err);
-      toast("Error occurred");
+      toast.error("Error occurred");
     },
   });
   const { data } = useGetAllPowerType();

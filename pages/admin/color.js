@@ -31,11 +31,11 @@ const Color = () => {
   const { mutate } = useMutation({
     mutationFn: Deletecolor,
     onSuccess: () => {
-      toast("Color deleted successfully");
+      toast.success("Color deleted successfully");
       setget(!get);
     },
     onError: (err) => {
-      toast(err.message);
+      toast.error(err.message);
     },
   });
   const [open, setOpen] = useState(false);

@@ -15,11 +15,11 @@ const CategoriesDialogBox = ({ onCancel, refetch }) => {
   const { mutate, isError } = useMutation({
     mutationFn: CreateCategories,
     onSuccess: (data) => {
-      toast("Categories created succesfully");
+      toast.success("Categories created succesfully");
       refetch();
     },
     onError: (err) => {
-      toast("Error occurred");
+      toast.error("Error occurred");
     },
   });
   const onSubmit = (data) => {
