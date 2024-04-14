@@ -14,7 +14,7 @@ const PowerType = (props) => {
     onShowDelete();
   };
   return (
-    <div className=" grid grid-cols-4 items-center ">
+    <div className=" grid grid-cols-4 items-center gap-2 border-2">
       <Modal isOpen={Delete} closeModal={onHideDelete} fullWidth={false}>
         <DeletePoPUPDialog
           Closefunction={onHideDelete}
@@ -23,7 +23,7 @@ const PowerType = (props) => {
         />
       </Modal>
       <div className="">
-        <img alt="" src={src} className="w-[200px] h-[100px] object-contain " />
+        <img alt="" src={src} className="w-[200px] h-[100px] object-contain rounded-full" />
       </div>
       <div className=" col-span-2">
         <p className="font-semibold">{title}</p>
