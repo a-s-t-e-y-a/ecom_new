@@ -27,6 +27,8 @@ const ShapeDialogBox = ({ onCancel, refetch, token }) => {
     delete data.file
     formData.append("data", JSON.stringify(data));
     mutate(formData);
+    onCancel()
+    refetch(!token);
   };
 
   return (

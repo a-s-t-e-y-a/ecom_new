@@ -20,6 +20,8 @@ const FrameMaterialDialogBox = ({ onCancel, refetch, token }) => {
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     mutate(data);
+    onCancel()
+    refetch(!token);
   };
 
   return (

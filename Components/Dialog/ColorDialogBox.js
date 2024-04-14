@@ -22,6 +22,8 @@ const ColorDialogBox = ({ onCancel, refetch, token }) => {
   });
   const onSubmit = (data) => {
     mutate(data);
+    onCancel();
+    refetch(!token);
   };
 
   return (
