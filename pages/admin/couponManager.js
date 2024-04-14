@@ -12,6 +12,8 @@ import { useEffect } from "react";
 import useGetAllCoupon from "@/utils/queries/useGetAllCupons";
 import DeletePoPUPDialog from "@/Components/Dialog/DeletePoPUPDialog";
 import useDeleteCoupon from "@/utils/mutations/useDeleteCoupon";
+import { useMutation } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 const CouponManager = () => {
   const router = useRouter();
@@ -19,14 +21,33 @@ const CouponManager = () => {
   const [logged, setlogged] = useState(false);
   const { data, refetch } = useGetAllCoupon();
   const [Delete, setDelete] = useState(false);
+  const [get, setGet] = useState(false);
   const [DeletePayload, setDeletePayload] = useState({});
-  const onHideDelete = () => setDelete(false);
+  const onHideDelete = () => {
+    setDelete(false);
+    setGet(!get);
+  };
   const onShowDelete = () => setDelete(true);
   const Deletehandeler = (val) => {
     onShowDelete();
     setDeletePayload(val);
   };
-  const { mutate, isSuccess } = useDeleteCoupon();
+  const { mutate } = useMutation({
+    mutationFn: useDeleteCoupon,
+    onSuccess: () => {
+      toast.success("Color deleted successfully");
+      setGet(!get);
+    },
+    onError: (err) => {
+      toast.error(err.message);
+    },
+  });
+
+  const couponsData = useSelector((state) => state.coupon);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(!open);
+  const onHide = () => setOpen(false);
+
   useEffect(() => {
     if (IsAuth("admin_info")) {
       setlogged(true);
@@ -34,12 +55,7 @@ const CouponManager = () => {
       router.replace("login");
     }
     refetch();
-  }, [router, refetch, isSuccess]);
-  
-  const couponsData = useSelector((state) => state.coupon);
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(!open);
-  const onHide = () => setOpen(false);
+  }, [router, refetch, get]);
 
   if (logged) {
     return (
@@ -48,7 +64,8 @@ const CouponManager = () => {
           {
             <CouponManagerDialogBox
               onCancel={onHide}
-              refetch={refetch}
+              refetch={setGet}
+              token={get}
             />
           }
         </Modal>

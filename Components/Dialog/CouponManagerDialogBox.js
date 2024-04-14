@@ -13,7 +13,7 @@ import SingleSelectCategories from "../Admin/MultipleSelectCategories";
 const ProductCategoriesNameOption = ["SunGlasses", "Computer Glasses"];
 const ProductBrandNameOption = ["Normal", "Trends"];
 
-const CouponManagerDialogBox = ({ onCancel, refetch }) => {
+const CouponManagerDialogBox = ({ onCancel, refetch, token }) => {
   const dispatch = useDispatch();
   const { mutate } = useCreateCoupon();
   const { register, handleSubmit } = useForm();
@@ -32,15 +32,10 @@ const CouponManagerDialogBox = ({ onCancel, refetch }) => {
     };
     mutate(payload);
     dispatch(addCoupon(data?.coupon));
+    refetch(!token);
     onCancel();
-    refetch();
     setUpdateValue(false);
-    window.location.reload();
   };
-
-  useEffect(() => {
-    refetch();
-  }, [updateValue]);
 
   return (
     <div className="relative border tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
