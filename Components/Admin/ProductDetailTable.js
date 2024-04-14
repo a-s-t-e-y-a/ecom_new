@@ -62,7 +62,7 @@ const ProductDetailTable = ({ data, refetch, open }) => {
                   <td className="py-2 border">{Product?.p_id}</td>
                   <td className="py-2 border">{Product?.stokke}</td>
 
-                  <td className="py-2 border">{Product?.product_model_name}</td>
+                  <td className="py-2 pl-6 border text-left">{Product?.product_model_name}</td>
                   <td className="py-2 border">{Product?.discounted_price}</td>
                   <td className="py-2 border">
                     {Product?.shape || Product?.shape_}

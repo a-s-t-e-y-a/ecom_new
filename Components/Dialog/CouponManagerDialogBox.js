@@ -100,14 +100,6 @@ const CouponManagerDialogBox = ({ onCancel, refectch, token }) => {
             sx={{ minWidth: 300, height: 50 }}
           />
         </div>
-        <SingleSelectCategories
-          label={"Product Category"}
-          options={data}
-          register={register}
-          name="productCategories"
-          sx={{ minWidth: 300 }}
-          size="small"
-        />
         <button
           type="submit"
           className="text-white bg-sky-400 hover:bg-sky-500  focus:outline-none font-medium rounded-lg text-sm inline-flex items-center px-5 py-2 text-center mr-2"
