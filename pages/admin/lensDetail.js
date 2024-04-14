@@ -42,11 +42,11 @@ const LensDetail = () => {
   const { mutate } = useMutation({
     mutationFn: deleteLensDetails,
     onSuccess: () => {
-      toast("Lens Details Deleted Successfully");
+      toast.success("Lens Details Deleted Successfully");
       setget(!get);
     },
     onError: (err) => {
-      toast(err.message);
+      toast.error(err.message);
     },
   });
   function handleOnDragEnd(result) {
