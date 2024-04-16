@@ -41,7 +41,7 @@ const LensFeatureDialogBox = ({ onCancel, refetch, token }) => {
     const formData = new FormData();
     formData.append("file", data?.file[0]);
     const payload = {
-      power_type_: getPowerTypeId(data?.power_type_id),
+      power_type_id: getPowerTypeId(data?.power_type_id),
       title: data?.title,
       description: data?.description,
     };
