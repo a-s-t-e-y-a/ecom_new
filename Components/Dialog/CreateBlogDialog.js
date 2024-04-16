@@ -22,10 +22,10 @@ const CreateBlogDialog = (props) => {
   const { mutate } = useMutation({
     mutationFn: CreateBlog,
     onSuccess: (data) => {
-      toast("Blogs created Successfuly");
+      toast.success("Blogs created Successfuly");
     },
     onError: (err) => {
-      toast(err.message);
+      toast.error(err.message);
     },
   });
   const SumbitHandler = (e) => {

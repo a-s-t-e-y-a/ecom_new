@@ -35,7 +35,7 @@ export default function Slider({ data }) {
             >
               <div className=" text-cente  bg-white  rounded-md py-2  h-[100px] flex flex-col items-center justify-center gap-4">
                 <div onClick={() => handleClick(slide)}>
-                  <Image
+                  <img
                     width={200}
                     height={200}
                     className=" w-full h-[100px] object-cover rounded  "

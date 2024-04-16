@@ -12,11 +12,11 @@ const ShapeDialogBox = ({ onCancel, refetch, token }) => {
   const { mutate } = useMutation({
     mutationFn: CreateShape,
     onSuccess: () => {
-      toast("Shape created succesfully");
+      toast.success("Shape created succesfully");
       refetch(!token);
     },
     onError: () => {
-      toast("Error occurred");
+      toast.error("Error occurred");
     },
   });
   const { register, handleSubmit } = useForm();
@@ -27,6 +27,8 @@ const ShapeDialogBox = ({ onCancel, refetch, token }) => {
     delete data.file
     formData.append("data", JSON.stringify(data));
     mutate(formData);
+    onCancel()
+    refetch(!token);
   };
 
   return (

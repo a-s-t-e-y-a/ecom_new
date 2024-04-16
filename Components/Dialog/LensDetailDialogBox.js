@@ -18,11 +18,11 @@ const LensDetailDialogBox = ({ onCancel, refetch, token }) => {
   const { mutate } = useMutation({
     mutationFn: CreateLensDeatils,
     onSuccess: () => {
-      toast("Lens Deatails created succesfully");
+      toast.success("Lens Deatails created succesfully");
       refetch(!token);
     },
     onError: () => {
-      toast("Error occurred");
+      toast.error("Error occurred");
     },
   });
   const {

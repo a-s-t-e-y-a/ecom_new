@@ -29,11 +29,11 @@ const FrameMaterial = () => {
   const { mutate } = useMutation({
     mutationFn: deleteFrame,
     onSuccess: () => {
-      toast("Frame Delete Successfully");
+      toast.success("Frame Delete Successfully");
       setget(!get);
     },
     onError: (err) => {
-      toast(err.message);
+      toast.error(err.message);
     },
   });
   useEffect(() => {

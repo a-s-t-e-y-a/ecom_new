@@ -13,7 +13,7 @@ import SingleSelectCategories from "../Admin/MultipleSelectCategories";
 const ProductCategoriesNameOption = ["SunGlasses", "Computer Glasses"];
 const ProductBrandNameOption = ["Normal", "Trends"];
 
-const CouponManagerDialogBox = ({ onCancel, refectch, token }) => {
+const CouponManagerDialogBox = ({ onCancel, refetch, token }) => {
   const dispatch = useDispatch();
   const { mutate } = useCreateCoupon();
   const { register, handleSubmit } = useForm();
@@ -32,14 +32,10 @@ const CouponManagerDialogBox = ({ onCancel, refectch, token }) => {
     };
     mutate(payload);
     dispatch(addCoupon(data?.coupon));
+    refetch(!token);
     onCancel();
-    refectch();
     setUpdateValue(false);
   };
-
-  useEffect(() => {
-    refectch();
-  }, [refectch, updateValue]);
 
   return (
     <div className="relative border tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
@@ -100,14 +96,6 @@ const CouponManagerDialogBox = ({ onCancel, refectch, token }) => {
             sx={{ minWidth: 300, height: 50 }}
           />
         </div>
-        <SingleSelectCategories
-          label={"Product Category"}
-          options={data}
-          register={register}
-          name="productCategories"
-          sx={{ minWidth: 300 }}
-          size="small"
-        />
         <button
           type="submit"
           className="text-white bg-sky-400 hover:bg-sky-500  focus:outline-none font-medium rounded-lg text-sm inline-flex items-center px-5 py-2 text-center mr-2"

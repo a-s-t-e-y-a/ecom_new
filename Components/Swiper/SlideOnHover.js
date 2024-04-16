@@ -26,7 +26,7 @@ const SlideOnHover = ({ data }) => {
             onMouseEnter={() => setPlay(true)}
             onMouseLeave={() => setPlay(false)}
           >
-            <Image
+            <img
               width={500}
               height={200}
               alt="galess"

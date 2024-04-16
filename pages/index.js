@@ -23,14 +23,14 @@ function Home() {
       const AllProduct = data[0];
       const Computer = data[1];
       const shape = data[2];
-      const round = AllProduct?.data?.data?.filter(
+      const round = AllProduct?.data?.data?.products?.filter(
         (Value) => Value?.shape_?.name === "Round" || "round"
       );
-      const rimless = AllProduct?.data?.data?.filter(
+      const rimless = AllProduct?.data?.data?.products?.filter(
         (Value) => Value?.style_?.name === "Rimless" || "rimless"
       );
 
-      setSungaless(AllProduct?.data?.data);
+      setSungaless(AllProduct?.data?.data?.products);
       setShape(shape?.data?.data);
       setRound(round);
       setRimless(rimless);

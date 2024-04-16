@@ -10,16 +10,18 @@ const FrameMaterialDialogBox = ({ onCancel, refetch, token }) => {
   const { mutate } = useMutation({
     mutationFn: CreateMaterial,
     onSuccess: () => {
-      toast("Frame Material created succesfully");
+      toast.success("Frame Material created succesfully");
       refetch(!token);
     },
     onError: (err) => {
-      toast("Error occurred");
+      toast.error("Error occurred");
     },
   });
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     mutate(data);
+    onCancel()
+    refetch(!token);
   };
 
   return (

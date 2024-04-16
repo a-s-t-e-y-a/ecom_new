@@ -21,23 +21,25 @@ const PowerTypesDialogBox = ({ onCancel, setOpen, refecth, token }) => {
   } = useMutation({
     mutationFn: CreatePowerType,
     onSuccess: () => {
-      toast("PowerType created succesfully");
+      toast.success("PowerType created succesfully");
       query.invalidateQueries({ queryKey: ["api/PowerType"] });
       refecth(!token);
     },
     onError: (err) => {
-      toast("Error occurred");
+      toast.error("Error occurred");
     },
   });
   const dispatch = useDispatch();
   const onSubmit = async (data) => {
     const formData = new FormData();
-    formData.append("file", data?.file[0]);
     formData.append(
       "data",
-      JSON.stringify({ name: data.name, description: data.description })
+      JSON.stringify({ title: data.title, description: data.description })
     );
+    formData.append("file", data?.file[0]);
+    console.log(formData, 'formData')
     mutate(formData);
+    onCancel()
   };
   useEffect(() => {
     if (datas) {

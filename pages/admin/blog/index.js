@@ -42,10 +42,10 @@ const Blog = () => {
     mutationFn: deleteBlogs,
     onSuccess: () => {
       refetch();
-      toast("Blog deleted Successfully");
+      toast.success("Blog deleted Successfully");
     },
     onError: (err) => {
-      toast(err.message);
+      toast.error(err.message);
     },
   });
 

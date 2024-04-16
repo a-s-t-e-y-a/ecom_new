@@ -31,11 +31,11 @@ const Color = () => {
   const { mutate } = useMutation({
     mutationFn: Deletecolor,
     onSuccess: () => {
-      toast("Color deleted successfully");
+      toast.success("Color deleted successfully");
       setget(!get);
     },
     onError: (err) => {
-      toast(err.message);
+      toast.error(err.message);
     },
   });
   const [open, setOpen] = useState(false);
@@ -47,6 +47,7 @@ const Color = () => {
   const onShowDelete = () => setDelete(true);
   const Deletehandeler = (color) => {
     onShowDelete();
+    console.log(color);
     setDeletePayload(color);
   };
   if (logged) {

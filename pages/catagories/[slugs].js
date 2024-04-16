@@ -16,18 +16,22 @@ const index = () => {
   const navigateToSingleProduct = (id) => {
     router.push(`/eyewear/${id}`);
   };
-  const fetchData = React.useCallback(() => {
-    axios
-      .get(
-        `https://api.akkukachasma.com/api/categories/2?pageSize=15&page=${page}`
-      )
-      .then((result) => {
-        setData(result?.data?.data.products);
-      });
-  }, [page]);
+
   React.useEffect(() => {
+    const fetchData = () => {
+      const url = window.location.pathname.split("/")[2];
+
+      axios
+        .get(
+          `https://api.akkukachasma.com/api/categories/${url}?pageSize=15&page=${page}`
+        )
+        .then((result) => {
+          setData(result?.data?.data.products);
+          console.log(result);
+        });
+    };
     fetchData();
-  }, [fetchData]);
+  }, [page]);
   return (
     <Layout>
       <section className=" w-full flex px-5 ">

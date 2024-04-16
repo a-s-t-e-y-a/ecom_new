@@ -37,21 +37,23 @@ const ProductDetail = () => {
   const NumberOfProducts = (e) => {
     const Numbers = e?.target?.value;
     if (Numbers > 0) {
-      const Newarr = data?.filter((Value, index) => index + 1 <= Numbers);
+      const Newarr = data?.products?.filter(
+        (Value, index) => index + 1 <= Numbers
+      );
       setproducts(Newarr);
     } else {
-      setproducts(data);
+      setproducts(data?.products);
     }
   };
   const SearchHandler = (e) => {
     const seacrchValue = e?.target?.value;
     if (seacrchValue !== "" || undefined || null) {
-      const Newarry = data?.filter((value) =>
+      const Newarry = data?.products?.filter((value) =>
         value?.product_model_name?.includes(seacrchValue)
       );
       setproducts(Newarry);
     } else {
-      setproducts(data);
+      setproducts(data?.products);
     }
   };
   if(isLoading){
@@ -97,7 +99,7 @@ const ProductDetail = () => {
             />
           </div>
         </div>
-        <Pagination pages={setpage} curr={page} />
+        <Pagination pages={setpage} curr={page} total={data?.totalPages} />
       </AdminLayout>
     );
   }

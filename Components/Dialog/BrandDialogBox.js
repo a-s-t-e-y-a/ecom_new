@@ -17,11 +17,11 @@ const BrandDialogBox = ({ onCancel, refetch, token }) => {
   const { mutate } = useMutation({
     mutationFn: CreateBrand,
     onSuccess: () => {
-      toast("Frame Material created succesfully");
+      toast.success("Frame Material created succesfully");
       refetch(!token);
     },
     onError: (err) => {
-      toast("Error occurred");
+      toast.error("Error occurred");
     },
   });
   const onSubmit = (data) => {
