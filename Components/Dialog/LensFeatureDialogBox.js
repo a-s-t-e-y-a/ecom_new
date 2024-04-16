@@ -13,7 +13,7 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
 const LensFeatureDialogBox = ({ onCancel, refetch, token }) => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, control } = useForm();
   const { mutate } = useMutation({
     mutationFn: CreateLenseFeature,
     onSuccess: () => {
@@ -37,11 +37,11 @@ const LensFeatureDialogBox = ({ onCancel, refetch, token }) => {
   };
 
   const onSubmit = (data) => {
-    console.log(data, "powerType data");
+    console.log(data);
     const formData = new FormData();
     formData.append("file", data?.file[0]);
     const payload = {
-      power_type_id: getPowerTypeId(data?.power_type_id),
+      power_type_id: data?.power_type_id,
       title: data?.title,
       description: data?.description,
     };
@@ -61,6 +61,8 @@ const LensFeatureDialogBox = ({ onCancel, refetch, token }) => {
       >
         <FileInput title="" register={register} />
         <SingleSelectPowerType
+        label="Select Power Type"
+        control={control}
           options={data}
           register={register}
           name="power_type_id"
