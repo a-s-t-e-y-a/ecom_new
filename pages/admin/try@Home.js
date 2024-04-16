@@ -16,6 +16,8 @@ const TryAtHome = () => {
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);
   const [logged, setlogged] = useState(false);
+  const [value, setValue] = useState("");
+  
   useEffect(() => {
     if (IsAuth("admin_info")) {
       setlogged(true);
@@ -34,9 +36,9 @@ const TryAtHome = () => {
           <IconButton label="Try@Home" icon={<HiOutlineHome />} />
         </div>
         <div>
-          <QuillEditor />
+          <QuillEditor value={value} onChange={(val)=>setValue(val)}/>
 
-          <button className=" bg-blue-500 rounded shadow  w-40 text-center text-white my-4">
+          <button className=" bg-blue-500 rounded shadow  w-40 text-center text-white my-4" onClick={()=>console.log(value)}>
             ADD <AddIcon />
           </button>
         </div>
