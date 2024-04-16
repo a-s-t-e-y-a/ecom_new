@@ -35,7 +35,7 @@ const CouponManager = () => {
   const { mutate } = useMutation({
     mutationFn: useDeleteCoupon,
     onSuccess: () => {
-      toast.success("Color deleted successfully");
+      toast.success("Coupon deleted successfully");
       setGet(!get);
     },
     onError: (err) => {
