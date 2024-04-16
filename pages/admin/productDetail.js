@@ -18,9 +18,11 @@ const ProductDetail = () => {
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);
   const router = useRouter();
-  const { data, refetch } = useGetAllProducts();
+  const { data, isLoading,refetch } = useGetAllProducts();
   const [logged, setlogged] = useState(false);
   const [Products, setproducts] = useState([]);
+  console.log(data)
+  console.log(isLoading)
   useEffect(() => {
     if (IsAuth("admin_info")) {
       setlogged(true);
@@ -28,7 +30,7 @@ const ProductDetail = () => {
       router.replace("login");
     }
     if (data) {
-      setproducts(data);
+      setproducts(data.products);
     }
     refetch();
   }, [router, refetch, data]);
@@ -52,6 +54,9 @@ const ProductDetail = () => {
       setproducts(data);
     }
   };
+  if(isLoading){
+    return <div>Loading ....</div>
+  }
   if (logged) {
     return (
       <AdminLayout>

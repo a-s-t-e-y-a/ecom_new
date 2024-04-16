@@ -8,6 +8,7 @@ import Modal from "../Dialog/Modal";
 import DeletePoPUPDialog from "../Dialog/DeletePoPUPDialog";
 
 const ProductDetailTable = ({ data, refetch, open }) => {
+  console.log(data)
   const [Delete, setDelete] = useState(false);
   const [DeletePayload, setDeletePayload] = useState({});
   const onHideDelete = () => setDelete(false);
