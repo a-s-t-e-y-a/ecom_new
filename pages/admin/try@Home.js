@@ -37,7 +37,6 @@ const TryAtHome = () => {
         </div>
         <div>
           <QuillEditor value={value} onChange={(val)=>setValue(val)}/>
-
           <button className=" bg-blue-500 rounded shadow  w-40 text-center text-white my-4" onClick={()=>console.log(value)}>
             ADD <AddIcon />
           </button>
