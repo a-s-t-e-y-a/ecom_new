@@ -73,7 +73,8 @@ const ProductDetailDialog = ({ onCancel, refetch }) => {
         form.append("files", data.file[i]);
       }
     }
-
+    delete data.main
+    delete data.file
     // Append the data object as JSON string
     form.append("data", JSON.stringify(data));
 
@@ -119,7 +120,7 @@ const ProductDetailDialog = ({ onCancel, refetch }) => {
             label={"Product Category"}
             options={categories}
             register={register}
-            name="productCategories"
+            name="productCategoriesId"
           />
           <SingleSelectUniversal
             options={["Yes", "No"]}
@@ -131,22 +132,28 @@ const ProductDetailDialog = ({ onCancel, refetch }) => {
             options={powerType}
             register={register}
             name="show_lens_list"
+            label={"Power type"}
+            control={control}
             active={activePOwer}
           />
           <SingleSelectColor
             options={color}
+            control={control}
+            label="Select Color"
             register={register}
             name="product_color"
           />
-          <SingleSelectShape options={shape} register={register} name="shape" />
+          <SingleSelectShape label="Select Shape" control={control} options={shape} register={register} name="shape" />
 
           <SingleSelectMaterial
+           label="Select Material"
+           control={control}
             options={material}
             register={register}
             name="material"
           />
-          <SingleSelectSize options={size} register={register} name="size" />
-          <SingleSelectStyle options={style} register={register} name="style" />
+          <SingleSelectSize label="Select Size" control={control} options={size} register={register} name="size" />
+          <SingleSelectStyle label="Select Style"  control={control} options={style} register={register} name="style" />
 
           <div>
             <TextField

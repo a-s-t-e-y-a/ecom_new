@@ -56,7 +56,7 @@ export default function SingleSelectCategories({
           sx={{ height: 50 }}
         >
           {options?.map((option, indx) => (
-            <MenuItem value={option?.name} key={indx}>
+            <MenuItem value={option?.products_categories_id} key={indx}>
               {option?.name}
             </MenuItem>
           ))}
