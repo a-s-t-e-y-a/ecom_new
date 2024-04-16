@@ -53,7 +53,7 @@ const PowerTypes = () => {
                 src={item?.image}
                 title={item?.name}
                 description={item?.description}
-                id={item}
+                id={item?.id}
                 mutate={mutate}
               />
             ))}
