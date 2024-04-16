@@ -8,21 +8,32 @@ import useGetAllShape from "@/utils/queries/useShapeGetAll";
 import Createbanner from "@/utils/mutations/useCreateBanner";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+
 const BannerManagerDialogBox = ({ onCancel, refetch, token }) => {
   const { register, handleSubmit } = useForm();
-  const { data } = useGetAllCategories();
-  const { data: Shape } = useGetAllShape();
+  const { data: categories } = useGetAllCategories();
+  const { data: shapes } = useGetAllShape();
   const { mutate } = useMutation({
     mutationFn: Createbanner,
     onSuccess: () => {
-      toast.success("color created succesfully");
+      toast.success("Banner created successfully");
       refetch(!token);
     },
     onError: (err) => {
       toast.error("Error occurred");
     },
   });
-  const onSubmit = (data) => {};
+
+  const onSubmit = (data, event) => {
+    event.preventDefault(); // Prevent form submission from reloading the page
+    console.log(data);
+    const form = new FormData();
+    form.append('files', data.file[0])
+    delete data.file
+    form.append("data", JSON.stringify(data));
+    mutate(form);
+  };
+
   return (
     <div className="relative border p-2 tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
       <h1 className="text-md font-semibold text-center text-gray-700 mt-3">
@@ -30,20 +41,27 @@ const BannerManagerDialogBox = ({ onCancel, refetch, token }) => {
       </h1>
       <form
         className="flex flex-col items-center justify-between gap-6 px-6 pb-6"
-        onSubmit={() => {
-          handleSubmit(onSubmit);
-        }}
+        onSubmit={handleSubmit(onSubmit)}
       >
         <div className="flex items-center justify-between gap-5">
           <FileInput title="main_image" register={register} />
-          <SelectComponent label="SELECT CATOGARIES" options={data} />
+          <SelectComponent
+            label="SELECT CATEGORIES"
+            options={categories}
+            register={register}
+            name="products_categories_id"
+          />
         </div>
-
         <div className="flex items-center justify-between gap-5">
-          <SelectComponent label="Shape" options={Shape} />
+          <SelectComponent
+            label="Shape"
+            options={shapes}
+            register={register}
+            name="shape_id"
+          />
           <button
             type="submit"
-            className="text-white bg-sky-400 hover:bg-sky-500  focus:outline-none font-medium rounded-lg text-sm inline-flex items-center px-5 py-2 text-center mr-2"
+            className="text-white bg-sky-400 hover:bg-sky-500 focus:outline-none font-medium rounded-lg text-sm inline-flex items-center px-5 py-2 text-center mr-2"
           >
             Add <AddIcon className="ml-1 font-bold text-base" />
           </button>
@@ -57,7 +75,7 @@ const BannerManagerDialogBox = ({ onCancel, refetch, token }) => {
         <svg
           aria-hidden="true"
           className="w-5 h-5"
-          fill="currentbrand"
+          fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
         >
