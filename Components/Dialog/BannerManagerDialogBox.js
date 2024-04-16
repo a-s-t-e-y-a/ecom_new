@@ -8,9 +8,12 @@ import useGetAllShape from "@/utils/queries/useShapeGetAll";
 import Createbanner from "@/utils/mutations/useCreateBanner";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import SingleSelectShape from "../Admin/shapeSelect";
+import SingleSelectCategories from "../Admin/MultipleSelectCategories";
+import SingleSelectCategoriesById from "../Admin/singleCategories";
 
 const BannerManagerDialogBox = ({ onCancel, refetch, token }) => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit , control } = useForm();
   const { data: categories } = useGetAllCategories();
   const { data: shapes } = useGetAllShape();
   const { mutate } = useMutation({
@@ -45,7 +48,8 @@ const BannerManagerDialogBox = ({ onCancel, refetch, token }) => {
       >
         <div className="flex items-center justify-between gap-5">
           <FileInput title="main_image" register={register} />
-          <SelectComponent
+          <SingleSelectCategoriesById
+          control={control}
             label="SELECT CATEGORIES"
             options={categories}
             register={register}
@@ -53,12 +57,7 @@ const BannerManagerDialogBox = ({ onCancel, refetch, token }) => {
           />
         </div>
         <div className="flex items-center justify-between gap-5">
-          <SelectComponent
-            label="Shape"
-            options={shapes}
-            register={register}
-            name="shape_id"
-          />
+        <SingleSelectShape label="Select Shape" control={control} options={shapes} register={register} name="shape_id" />
           <button
             type="submit"
             className="text-white bg-sky-400 hover:bg-sky-500 focus:outline-none font-medium rounded-lg text-sm inline-flex items-center px-5 py-2 text-center mr-2"
