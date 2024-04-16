@@ -63,7 +63,7 @@ const PowerTypesDialogBox = ({ onCancel, setOpen, refecth, token }) => {
           name="title"
           id="title"
           size="small"
-          {...register("name")}
+          {...register("title")}
           sx={{ minWidth: 300 }}
         />
         <TextField
