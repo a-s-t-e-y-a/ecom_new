@@ -12,6 +12,8 @@ import { toast } from "react-toastify";
 import CreateBlog from "@/utils/mutations/useCreateblog";
 import { useForm } from "react-hook-form";
 import FileInput from "../Admin/FileInput";
+import QuillEditor from "../Admin/QuillEditor";
+
 const CreateBlogDialog = (props) => {
   const { open, setOpen, handleOpen } = props;
   const { register, handleSubmit } = useForm();
@@ -25,7 +27,7 @@ const CreateBlogDialog = (props) => {
     },
   });
   const onSubmit = (data) => {
-    console.log(data)
+    console.log(data);
     // mutate({
     //   heading: e.target?.heading?.value,
     //   description: e.target?.discription?.value,
@@ -35,9 +37,9 @@ const CreateBlogDialog = (props) => {
   };
   return (
     <Fragment>
-      <Dialog open={open} className="border">
+      <Dialog open={open} className="border-2 overflow-scroll w-[90%]">
         <DialogBody divider className="">
-          <div className="w-full space-y-5 text-gray-700 overflow-y-scroll ">
+          <div className="w-full space-y-5 text-gray-700">
             <h1 className="text-xl font-semibold tracking-wide text-center">
               Upload Image
             </h1>
@@ -46,7 +48,7 @@ const CreateBlogDialog = (props) => {
                 You can easily upload your file in any of the following formats:
                 PDF, JPG, GIF, PNG, JPEG
               </p>
-              <div className="w-[90%] mx-auto p-2">
+              <div className="w-[80%] mx-auto p-2">
                 <FileInput title="main_image" register={register} />
               </div>
 
@@ -58,19 +60,11 @@ const CreateBlogDialog = (props) => {
                 />
               </div>
 
-              <div>
-                <Textarea
-                  label="Additionals Comments...."
-                  name="discription"
-                  {...register("discription")}
-                />
+              <div className="w-[90%]">
+                <QuillEditor {...register("description")} />
               </div>
               <div>
-                <Textarea
-                  label="Tags"
-                  name="tags"
-                  {...register("tag")}
-                />
+                <Textarea label="Tags" name="tags" {...register("tag")} />
               </div>
               <div>
                 <Button

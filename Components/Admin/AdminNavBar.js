@@ -22,10 +22,9 @@ const AdminNavBar = () => {
             Date : <span className="font-normal">{date}</span>
           </span>
         </span>
-        <span className="text-sm text-gray-700 tracking-wide  items-center hidden lg:flex">
-          <span className="font-semibold ">Time : </span>
+        <span className="text-sm text-gray-700 tracking-wide  items-center gap-1 hidden lg:flex">
+          <span className="font-semibold ">Time :</span>
           <span className="font-normal flex-inline">
-            {" "}
             <ShowTime />
           </span>
         </span>
