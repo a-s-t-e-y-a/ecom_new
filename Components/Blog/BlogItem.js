@@ -8,7 +8,7 @@ const BlogItem = ({ value }) => {
           width={200}
           height={200}
           className=" rounded w-[200px] h-[200px] object-contain mx-auto mb-4"
-          src={value?.imageArray}
+          src={value?.image}
           alt="content"
         />
         <h2 className="text-lg text-gray-900 font-bold mb-3">
