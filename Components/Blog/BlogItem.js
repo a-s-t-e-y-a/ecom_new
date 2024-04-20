@@ -4,7 +4,7 @@ const BlogItem = ({ value }) => {
   return (
     <div className=" ">
       <div className=" shadow-md p-3 rounded-lg min-h-[320px] max-h-[320px]">
-        <Image
+        <img
           width={200}
           height={200}
           className=" rounded w-[200px] h-[200px] object-contain mx-auto mb-4"

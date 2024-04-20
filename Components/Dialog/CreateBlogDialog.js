@@ -10,13 +10,13 @@ import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import CreateBlog from "@/utils/mutations/useCreateblog";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import FileInput from "../Admin/FileInput";
 import QuillEditor from "../Admin/QuillEditor";
 
 const CreateBlogDialog = (props) => {
   const { open, setOpen, handleOpen } = props;
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit,control } = useForm();
   const { mutate } = useMutation({
     mutationFn: CreateBlog,
     onSuccess: (data) => {
@@ -28,6 +28,12 @@ const CreateBlogDialog = (props) => {
   });
   const onSubmit = (data) => {
     console.log(data);
+    const form = new FormData()
+    form.append('file', data.file[0])
+    delete data.file
+    form.append('data', JSON.stringify(data))
+    mutate(form)
+
     // mutate({
     //   heading: e.target?.heading?.value,
     //   description: e.target?.discription?.value,
@@ -59,10 +65,18 @@ const CreateBlogDialog = (props) => {
                   {...register("heading")}
                 />
               </div>
-
-              <div className="w-[90%]">
-                <QuillEditor {...register("description")} />
-              </div>
+              <Controller
+                name="description"
+                control={control}
+                render={({ field }) => (
+                  <QuillEditor
+                    {...field}
+                    theme="snow"
+                    value={field.value || ""}
+                    onChange={(value) => field.onChange(value)}
+                  />
+                )}
+              />
               <div>
                 <Textarea label="Tags" name="tags" {...register("tag")} />
               </div>

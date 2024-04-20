@@ -74,11 +74,11 @@ const AdminSideBar = () => {
       link: "/admin/couponManager",
     },
     { title: "Blog", icon: <FaBlog />, link: "/admin/blog" },
-    {
-      title: "NewsLetter",
-      icon: <HiOutlineNewspaper />,
-      link: "/admin/newsLetter",
-    },
+    // {
+    //   title: "NewsLetter",
+    //   icon: <HiOutlineNewspaper />,
+    //   link: "/admin/newsLetter",
+    // },
     {
       title: "Banner Manager",
       icon: <GiKnightBanner />,
@@ -92,11 +92,11 @@ const AdminSideBar = () => {
     { title: "About", icon: <FcAbout />, link: "/admin/about" },
     { title: "try@Home", icon: <HiOutlineHome />, link: "/admin/try@Home" },
     { title: "Franchise", icon: <MdCurrencyFranc />, link: "/admin/franchise" },
-    {
-      title: "Enquiry",
-      icon: <RiCustomerService2Line />,
-      link: "/admin/enquiry",
-    },
+    // {
+    //   title: "Enquiry",
+    //   icon: <RiCustomerService2Line />,
+    //   link: "/admin/enquiry",
+    // },
     { title: "Size Guide", icon: <TbTextSize />, link: "/admin/sizeGuide" },
     {
       title: "Cancellation",
