@@ -1,3 +1,4 @@
+"use client";
 import IconButton from "@/Components/Admin/IconButton";
 import BlogItem from "@/Components/Blog/BlogItem";
 import CreateBlogDialog from "@/Components/Dialog/CreateBlogDialog";
@@ -25,7 +26,8 @@ const Blog = () => {
   const [DeletePayload, setDeletePayload] = useState({});
   const onHideDelete = () => setDelete(false);
   const onShowDelete = () => setDelete(true);
-  const Deletehandeler = (val) => {
+  const Deletehandeler = (e, val) => {
+    e.stopPropagation();
     onShowDelete();
     setDeletePayload(val);
   };
@@ -37,17 +39,21 @@ const Blog = () => {
       router.replace("login");
     }
     refetch();
-  }, [router, refetch]);
+  }, [router, refetch, open]);
   const { mutate } = useMutation({
     mutationFn: deleteBlogs,
     onSuccess: () => {
-      refetch();
       toast.success("Blog deleted Successfully");
+      refetch();
     },
     onError: (err) => {
       toast.error(err.message);
     },
   });
+
+  const handleRoute = (value) => {
+    router.push(`/${value?.url}`);
+  };
 
   if (logged) {
     return (
@@ -63,17 +69,23 @@ const Blog = () => {
           />
         </Modal>
         <div>
-          <button onClick={() => handleOpen()}>
+          <button onClick={() => handleOpen()} className="mx-2">
             <IconButton label="Add Blog" icon={<FaBlog />} />
           </button>
-          <div className="pt-5 grid grid-cols-3 items-center gap-5  h-[900px] overflow-auto scrollbar-hide ">
+          <div className="grid grid-cols-4 items-center gap-5 h-full pt-5 overflow-auto scrollbar-hide ">
             {data &&
               data.map((value, indx) => (
-                <div key={indx} className=" relative">
+                <div
+                  key={indx}
+                  className=" relative"
+                  onClick={() => {
+                    handleRoute(value);
+                  }}
+                >
                   <BlogItem value={value} />
                   <button
-                    onClick={() => {
-                      Deletehandeler(value);
+                    onClick={(e) => {
+                      Deletehandeler(e, value);
                     }}
                     className=" absolute right-2 bottom-3 text-red-500"
                   >

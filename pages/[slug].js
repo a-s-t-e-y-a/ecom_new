@@ -4,26 +4,12 @@ import api from "@/api";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import useGetSingleBlogById from "@/utils/queries/useGetSingleBlogById";
 
 const SingleBlogPage = () => {
   const router = useRouter();
-  const [blogData, setBlogData] = useState(null);
-
-  useEffect(() => {
-    const url = router.query.slug;
-    const fetchSingleBlog = async () => {
-      api
-        .get(`https://api.akkukachasma.com/api/blogs/${url}`)
-        .then((res) => {
-          setBlogData(res?.data[0]);
-        })
-        .catch((e) => {
-          console.error(e);
-        });
-    };
-    fetchSingleBlog();
-  }, [router.query.slug]);
-
+  const slug = router.query?.slug;
+  const {data:blogData, refetch} = useGetSingleBlogById(slug)
   return (
     <div className="">
       {/* Header */}
@@ -32,25 +18,17 @@ const SingleBlogPage = () => {
       </div>
       {/* Header/Heading */}
       <div className="flex flex-col items-center justify-center shadow-sm">
-        <Image
-          width={100}
-          height={100}
-          alt=""
-          src={"/blog.png"}
-          className="w-[180px]"
-        />
-        <h1 className="text-sm tracking-wider -mt-4">with @akkukachasma</h1>
         <span className="mt-3">
           <hr />
         </span>
       </div>
       {/* Remove height Vh */}
-      <div className="w-full ">
+      <div className="w-full py-6">
         <div className="border w-[60%] mx-auto p-3">
           <div className="space-y-5">
             <div>
               <h1 className="text-3xl tracking-wide font-bold text-center">
-                {blogData?.heading}
+                {blogData[0]?.heading}
               </h1>
               <div></div>
             </div>
@@ -59,14 +37,14 @@ const SingleBlogPage = () => {
                 width={100}
                 height={100}
                 alt=""
-                src={blogData?.imageArray}
+                src={blogData[0]?.image}
                 className="border"
               />
             </div>
           </div>
 
           <div className="space-y-5 text-md tracking-wide mt-8 text-justify">
-            <p dangerouslySetInnerHTML={{ __html: blogData?.description }}></p>
+            <p dangerouslySetInnerHTML={{ __html: blogData[0]?.description }}></p>
           </div>
         </div>
       </div>
