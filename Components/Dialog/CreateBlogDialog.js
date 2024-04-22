@@ -45,9 +45,13 @@ const CreateBlogDialog = (props) => {
       description: data?.description,
       heading: data?.heading,
       tag: replaceSpaceWithHyphen(data?.tag),
+      metaDescription: data?.metaDescription,
+      seo_title:data?.heading,
+      thumb: data?.thumb,
     };
+    console.log(payload);
     form.append("data", JSON.stringify(payload));
-    await mutate(form);
+    mutate(form);
   };
 
   return (
@@ -74,6 +78,9 @@ const CreateBlogDialog = (props) => {
                   {...register("heading")}
                 />
               </div>
+              <div>
+                <Input label="Thumb" name="thumb" {...register("thumb")} />
+              </div>
               <Controller
                 name="description"
                 control={control}
@@ -88,6 +95,13 @@ const CreateBlogDialog = (props) => {
               />
               <div>
                 <Textarea label="Tags" name="tags" {...register("tag")} />
+              </div>
+              <div>
+                <Textarea
+                  label="Meta description"
+                  name="metaDescription"
+                  {...register("metaDescription")}
+                />
               </div>
               <div>
                 <Button
