@@ -10,16 +10,8 @@ import axios from "axios";
 const SingleBlogPage = () => {
   const router = useRouter();
   const slug = router.query?.slug;
-  const [blogData, setBlogData] = useState()
-  const fetchApi = async() =>{
-    if(slug){
-      const resp = await axios.get(`https://api.akkukachasma.com/api/blogs/${slug}`)
-      setBlogData(resp?.data)
-    }
-  }
-  useEffect(() => {
-    fetchApi()
-  }, [slug, blogData]);
+  const { data: blogData } = useGetSingleBlogById(slug);
+  useEffect(()=>{},[slug, blogData])
   return (
     <div className="">
       {/* Header */}

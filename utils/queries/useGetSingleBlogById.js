@@ -5,8 +5,10 @@ const useGetSingleBlogById = (url) => {
   const data = useQuery({
     queryKey: ["api/blog"],
     queryFn: async () => {
-      const res = await api.get(`/blogs/${url}`);
-      return res?.data;
+      if (url) {
+        const res = await api.get(`/blogs/${url}`);
+        return res?.data;
+      }
     },
   });
   return data;
