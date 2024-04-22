@@ -33,7 +33,7 @@ const Index = () => {
       {/* Header */}
       <Header1 />
       {/* Header/Heading */}
-      <div className="w-1/3  text-center   mx-auto shadow-sm">
+      {/* <div className="w-1/3  text-center   mx-auto shadow-sm">
         <Image
           width={100}
           height={100}
@@ -45,7 +45,7 @@ const Index = () => {
         <span className="mt-3">
           <hr />
         </span>
-      </div>
+      </div> */}
 
       {/* Body  */}
       <div className=" grid grid-cols-2 px-5  w-full h-full bg-gray-50">
