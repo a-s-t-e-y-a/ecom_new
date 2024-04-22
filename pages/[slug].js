@@ -5,12 +5,21 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import useGetSingleBlogById from "@/utils/queries/useGetSingleBlogById";
+import axios from "axios";
 
 const SingleBlogPage = () => {
   const router = useRouter();
   const slug = router.query?.slug;
-  const {data:blogData, refetch} = useGetSingleBlogById(slug);
-  console.log(blogData, 'blogData')
+  const [blogData, setBlogData] = useState()
+  const fetchApi = async() =>{
+    if(slug){
+      const resp = await axios.get(`https://api.akkukachasma.com/api/blogs/${slug}`)
+      setBlogData(resp?.data)
+    }
+  }
+  useEffect(() => {
+    fetchApi()
+  }, [slug, blogData]);
   return (
     <div className="">
       {/* Header */}
@@ -34,12 +43,12 @@ const SingleBlogPage = () => {
               <div></div>
             </div>
             <div className="flex place-content-center">
-              <Image
-                width={100}
-                height={100}
-                alt=""
+              <img
+                width={300}
+                height={300}
+                alt={blogData?.thumb}
                 src={blogData?.image}
-                className="border"
+                // className="border"
               />
             </div>
           </div>

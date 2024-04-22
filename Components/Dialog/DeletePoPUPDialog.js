@@ -1,7 +1,6 @@
 import React from "react";
 
 function DeletePoPUPDialog({ payload, Deletefunction, Closefunction }) {
-  console.log(payload);
   return (
     <div className=" bg-gray-50 shadow-lg p-10 rounded relative">
       <h3 className=" text-xl font-normal mb-3">
