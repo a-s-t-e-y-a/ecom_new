@@ -16,7 +16,7 @@ function Home() {
   const fecthMultipleData = () => {
     const url = [
       "https://api.akkukachasma.com/api/products",
-      "https://api.akkukachasma.com/api/categories/3",
+      "https://api.akkukachasma.com/api/categories/Eyeglass",
       "https://api.akkukachasma.com/api/shape",
     ];
     axios.all(url.map((endpoints) => axios.get(endpoints))).then((data) => {
