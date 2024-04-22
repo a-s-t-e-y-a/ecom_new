@@ -1,17 +1,19 @@
 import Footer from "@/Components/Footer/Footer";
 import Header1 from "@/Components/Header/Header1";
-import api from "@/api";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
-import Image from "next/image";
+import React, { useEffect } from "react";
 import useGetSingleBlogById from "@/utils/queries/useGetSingleBlogById";
-import axios from "axios";
 
 const SingleBlogPage = () => {
   const router = useRouter();
   const slug = router.query?.slug;
-  const { data: blogData } = useGetSingleBlogById(slug);
-  useEffect(()=>{},[slug, blogData])
+  const { data: blogData,refetch } = useGetSingleBlogById(slug);
+  useEffect(()=>{
+    if(!blogData){
+      refetch()
+    }
+  },[slug, blogData, refetch]);
+  
   return (
     <div className="">
       {/* Header */}
