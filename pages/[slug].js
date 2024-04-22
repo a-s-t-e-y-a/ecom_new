@@ -9,7 +9,8 @@ import useGetSingleBlogById from "@/utils/queries/useGetSingleBlogById";
 const SingleBlogPage = () => {
   const router = useRouter();
   const slug = router.query?.slug;
-  const {data:blogData, refetch} = useGetSingleBlogById(slug)
+  const {data:blogData, refetch} = useGetSingleBlogById(slug);
+  console.log(blogData, 'blogData')
   return (
     <div className="">
       {/* Header */}
@@ -28,7 +29,7 @@ const SingleBlogPage = () => {
           <div className="space-y-5">
             <div>
               <h1 className="text-3xl tracking-wide font-bold text-center">
-                {blogData[0]?.heading}
+                {blogData?.heading}
               </h1>
               <div></div>
             </div>
@@ -37,14 +38,14 @@ const SingleBlogPage = () => {
                 width={100}
                 height={100}
                 alt=""
-                src={blogData[0]?.image}
+                src={blogData?.image}
                 className="border"
               />
             </div>
           </div>
 
           <div className="space-y-5 text-md tracking-wide mt-8 text-justify">
-            <p dangerouslySetInnerHTML={{ __html: blogData[0]?.description }}></p>
+            <p dangerouslySetInnerHTML={{ __html: blogData?.description }}></p>
           </div>
         </div>
       </div>
