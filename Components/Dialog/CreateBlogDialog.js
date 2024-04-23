@@ -44,10 +44,11 @@ const CreateBlogDialog = (props) => {
     const payload = {
       description: data?.description,
       heading: data?.heading,
-      tag: replaceSpaceWithHyphen(data?.tag),
+      tag: data?.tag,
       metaDescription: data?.metaDescription,
       seo_title:data?.heading,
       thumb: data?.thumb,
+      url: replaceSpaceWithHyphen(data?.url)
     };
     console.log(payload);
     form.append("data", JSON.stringify(payload));
@@ -76,6 +77,13 @@ const CreateBlogDialog = (props) => {
                   label="Heading"
                   name="heading"
                   {...register("heading")}
+                />
+              </div>
+              <div>
+                <Input
+                  label="SEO URI"
+                  name="url"
+                  {...register("url")}
                 />
               </div>
               <div>

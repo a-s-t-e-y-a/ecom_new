@@ -15,7 +15,7 @@ const SingleBlogPage = () => {
   },[slug, blogData, refetch]);
   
   return (
-    <div className="">
+    <div className="w-full h-full">
       {/* Header */}
       <div className=" px-3">
         <Header1 />
@@ -28,7 +28,7 @@ const SingleBlogPage = () => {
       </div>
       {/* Remove height Vh */}
       <div className="w-full py-6">
-        <div className="border w-[60%] mx-auto p-3">
+        <div className="border-2 w-full mx-auto p-3">
           <div className="space-y-5">
             <div>
               <h1 className="text-3xl tracking-wide font-bold text-center">
@@ -38,8 +38,8 @@ const SingleBlogPage = () => {
             </div>
             <div className="flex place-content-center">
               <img
-                width={300}
-                height={300}
+                width={500}
+                height={800}
                 alt={blogData?.thumb}
                 src={blogData?.image}
                 // className="border"
