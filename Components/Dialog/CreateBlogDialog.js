@@ -38,7 +38,7 @@ const CreateBlogDialog = (props) => {
     delete data.file;
 
     function replaceSpaceWithHyphen(text) {
-      return text.replace(/\s+/g, "-");
+      return text.trim().replace(/\s+/g, "-");
     }
 
     const payload = {

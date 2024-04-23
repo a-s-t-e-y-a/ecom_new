@@ -15,31 +15,31 @@ const SingleBlogPage = () => {
   },[slug, blogData, refetch]);
   
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full border-4">
       {/* Header */}
-      <div className=" px-3">
+      <div className="px-3">
         <Header1 />
       </div>
       {/* Header/Heading */}
-      <div className="flex flex-col items-center justify-center shadow-sm">
+      {/* <div className="flex flex-col items-center justify-center shadow-sm">
         <span className="mt-3">
           <hr />
         </span>
-      </div>
+      </div> */}
       {/* Remove height Vh */}
-      <div className="w-full py-6">
-        <div className="border-2 w-full mx-auto p-3">
+      <div className="w-[90%] mx-auto p-6">
+        <div className="w-full mx-auto p-3">
           <div className="space-y-5">
-            <div>
-              <h1 className="text-3xl tracking-wide font-bold text-center">
+            <div className="mb-12">
+              <h1 className="text-3xl tracking-wide font-semibold text-center">
                 {blogData?.heading}
               </h1>
               <div></div>
             </div>
             <div className="flex place-content-center">
               <img
-                width={500}
-                height={800}
+                width={450}
+                height={450}
                 alt={blogData?.thumb}
                 src={blogData?.image}
                 // className="border"
@@ -48,7 +48,7 @@ const SingleBlogPage = () => {
           </div>
 
           <div className="space-y-5 text-md tracking-wide mt-8 text-justify">
-            <p dangerouslySetInnerHTML={{ __html: blogData?.description }}></p>
+            <div dangerouslySetInnerHTML={{ __html: blogData?.description }}></div>
           </div>
         </div>
       </div>
