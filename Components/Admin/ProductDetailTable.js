@@ -60,22 +60,22 @@ const ProductDetailTable = ({ data, refetch, open }) => {
           {data.length > 0
             ? data.map((Product, index) => (
                 <tr className="" key={index}>
-                  <td className="py-2 border">{Product?.product_model_number}</td>
-                  <td className="py-2 border">{Product?.stokke}</td>
+                  <td className="py-2 pl-6 border text-left">{Product?.product_model_number}</td>
+                  <td className="py-2 pl-6 border text-left">{Product?.stokke}</td>
 
                   <td className="py-2 pl-6 border text-left">{Product?.product_model_name}</td>
-                  <td className="py-2 border">{Product?.discounted_price}</td>
-                  <td className="py-2 border">
-                    {Product?.shape || Product?.shape_}
+                  <td className="py-2 pl-6 border text-left">{Product?.discounted_price}</td>
+                  <td className="py-2 pl-6 border text-left">
+                    {Product?.shape_?.name}
                   </td>
-                  <td className="py-2 border">
-                    {Product?.material || Product?.material_}
+                  <td className="py-2 pl-6 border text-left">
+                    {Product?.material_?.name}
                   </td>
-                  <td className="py-2 border">{Product?.frame_width}</td>
-                  <td className="py-2 border">{Product?.LensWidth}</td>
-                  <td className="py-2 border">{Product?.lens_height}</td>
-                  <td className="py-2 border">
-                    {Product?.product_color || Product?.product_color_}
+                  <td className="py-2 pl-6 border text-left">{Product?.frame_width}</td>
+                  <td className="py-2 pl-6 border text-left">{Product?.Lens_width}</td>
+                  <td className="py-2 pl-6 border text-left">{Product?.lens_height}</td>
+                  <td className="py-2  border text-left">
+                    {Product?.product_color_?.name}
                   </td>
 
                   <td className="py-2 border">
