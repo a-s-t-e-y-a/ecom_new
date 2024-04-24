@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const Pagination = ({ pages, curr, total }) => {
   const [Page, setPage] = useState([]);
-  const [selectedIndex, setSelectedIndex] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   useEffect(() => {
     // Update Page state when curr or total changes
