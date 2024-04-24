@@ -60,7 +60,7 @@ const ProductDetailTable = ({ data, refetch, open }) => {
           {data.length > 0
             ? data.map((Product, index) => (
                 <tr className="" key={index}>
-                  <td className="py-2 border">{Product?.p_id}</td>
+                  <td className="py-2 border">{Product?.product_model_number}</td>
                   <td className="py-2 border">{Product?.stokke}</td>
 
                   <td className="py-2 pl-6 border text-left">{Product?.product_model_name}</td>
