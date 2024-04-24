@@ -9,11 +9,11 @@ const Layout = ({ children }) => {
   const router = useRouter();
   return (
     <>
-      <meta
-        name="google-site-verification"
-        content="f_5BjOCM0Qb1adYVI5nSK3RRB1NxYwNaEF7e3My7A8Y"
-      />
       <Head>
+        <meta
+          name="google-site-verification"
+          content="f_5BjOCM0Qb1adYVI5nSK3RRB1NxYwNaEF7e3My7A8Y"
+        />
         <title>akkukachasma</title>
       </Head>
 
