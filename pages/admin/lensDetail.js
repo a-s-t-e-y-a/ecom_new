@@ -101,7 +101,7 @@ const LensDetail = () => {
                   Price
                 </span>
               </div>
-              <div className="text-base tracking-wide font-semibold flex flex-col items-center gap-1">
+              <div className="flex flex-col items-center gap-1">
                 <span className="text-xs text-gray-400 tracking-wider">
                   Action
                 </span>
@@ -134,10 +134,10 @@ const LensDetail = () => {
                               ref={provided.innerRef}
                               className=" grid grid-cols-4 gap-[20%] text-center justify-between bg-slate-200 border rounded-md shadow-lg my-2 p-3"
                             >
-                              <p className=" w-full">{item?.heading}</p>
+                              <p className=" w-full">{item?.lens_feature}</p>
                               <p>{item?.power_type_?.name}</p>
                               <p>{item?.price}</p>
-                              <div className=" flex items-center justify-end">
+                              <div className=" flex items-center justify-end gap-8">
                                 <button
                                   onClick={() => deleteHandelr(item?.id)}
                                   className=" text-red-500 me-1"
