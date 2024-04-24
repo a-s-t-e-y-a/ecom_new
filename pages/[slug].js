@@ -7,13 +7,13 @@ import useGetSingleBlogById from "@/utils/queries/useGetSingleBlogById";
 const SingleBlogPage = () => {
   const router = useRouter();
   const slug = router.query?.slug;
-  const { data: blogData,refetch } = useGetSingleBlogById(slug);
-  useEffect(()=>{
-    if(!blogData){
-      refetch()
+  const { data: blogData, refetch } = useGetSingleBlogById(slug);
+  useEffect(() => {
+    if (!blogData) {
+      refetch();
     }
-  },[slug, blogData, refetch]);
-  
+  }, [slug, blogData, refetch]);
+
   return (
     <div className="w-full h-full border-4">
       {/* Header */}
@@ -48,7 +48,9 @@ const SingleBlogPage = () => {
           </div>
 
           <div className="space-y-5 text-md tracking-wide mt-8 text-justify">
-            <div dangerouslySetInnerHTML={{ __html: blogData?.description }}></div>
+            <div
+              dangerouslySetInnerHTML={{ __html: blogData?.description }}
+            ></div>
           </div>
         </div>
       </div>

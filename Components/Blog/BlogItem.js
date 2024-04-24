@@ -7,7 +7,7 @@ const BlogItem = ({ value }) => {
         <img
           className=" rounded object-contain mx-auto mb-4"
           src={value?.image}
-          alt={value?.thumb}
+          alt="content"
         />
         <h2 className="text-lg text-gray-900 font-bold mb-3">
           {value?.heading}
