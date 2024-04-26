@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const Pagination = ({ pages, curr, total }) => {
+const Pagination = ({ setpage, curr, total }) => {
   const [Page, setPage] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
 
@@ -31,13 +31,14 @@ const Pagination = ({ pages, curr, total }) => {
 
   const perviousHandler = () => {
     if (curr > 1) {
-      pages(curr - 1);
+      setpage(curr - 1);
     }
   };
 
   const nexthandler = () => {
+    console.log(curr, "current", total);
     if (curr < total) {
-      pages(curr + 1);
+      setpage(curr + 1);
     }
   };
 
@@ -59,10 +60,10 @@ const Pagination = ({ pages, curr, total }) => {
             <li
               key={i}
               className={`border-2 border-s-0 text-center flex items-center px-4 cursor-pointer ${
-                selectedIndex === i ? "bg-blue-500 text-white" : ""
+                curr === v ? "bg-blue-500 text-white" : ""
               }`}
               onClick={() => {
-                pages(v);
+                setpage(v);
                 setSelectedIndex(i);
               }}
             >

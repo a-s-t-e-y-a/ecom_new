@@ -18,7 +18,7 @@ const ProductDetail = () => {
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);
   const router = useRouter();
-  const { data, isLoading,refetch } = useGetAllProducts();
+  const { data, isLoading,refetch } = useGetAllProducts(page);
   const [logged, setlogged] = useState(false);
   const [Products, setproducts] = useState([]);
   console.log(data)
@@ -56,9 +56,8 @@ const ProductDetail = () => {
       setproducts(data?.products);
     }
   };
-  if(isLoading){
-    return <div>Loading ....</div>
-  }
+  
+
   if (logged) {
     return (
       <AdminLayout>
@@ -92,6 +91,7 @@ const ProductDetail = () => {
             </div>
           </div>
           <div className=" w-full mb-3">
+            {isLoading && <p>Loading...</p>}
             <ProductDetailTable
               data={Products}
               refetch={refetch}
@@ -99,7 +99,7 @@ const ProductDetail = () => {
             />
           </div>
         </div>
-        <Pagination pages={setpage} curr={page} total={data?.totalPages} />
+        <Pagination setpage={setpage} curr={page} total={data?.totalPages} />
       </AdminLayout>
     );
   }
