@@ -72,7 +72,7 @@ const ProductDetailTable = ({ data, refetch, open }) => {
                     {Product?.material_?.name}
                   </td>
                   <td className="py-2 pl-6 border text-left">{Product?.frame_width}</td>
-                  <td className="py-2 pl-6 border text-left">{Product?.Lens_width}</td>
+                  <td className="py-2 pl-6 border text-left">{Product?.lens_width}</td>
                   <td className="py-2 pl-6 border text-left">{Product?.lens_height}</td>
                   <td className="py-2 pl-6 border text-left">
                     {Product?.product_color_?.name}
