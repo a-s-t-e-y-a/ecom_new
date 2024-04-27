@@ -21,8 +21,7 @@ const ProductDetail = () => {
   const { data, isLoading,refetch } = useGetAllProducts(page);
   const [logged, setlogged] = useState(false);
   const [Products, setproducts] = useState([]);
-  console.log(data)
-  console.log(isLoading)
+ const [edit, setedit] = useState({})
   useEffect(() => {
     if (IsAuth("admin_info")) {
       setlogged(true);
@@ -57,12 +56,11 @@ const ProductDetail = () => {
     }
   };
   
-
   if (logged) {
     return (
       <AdminLayout>
         <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
-          <ProductDetailDialog onCancel={onHide} refetch={refetch} />
+          <ProductDetailDialog onCancel={onHide} refetch={refetch} editValue={edit} />
         </Modal>
         <div className="w-full">
           <button onClick={handleOpen} className=" mb-3">
@@ -96,10 +94,11 @@ const ProductDetail = () => {
               data={Products}
               refetch={refetch}
               open={handleOpen}
+              edit={setedit} opensEdit={setOpen}
             />
           </div>
         </div>
-        <Pagination setpage={setpage} curr={page} total={data?.totalPages} />
+        <Pagination setpage={setpage} curr={page} total={data?.totalPages}  />
       </AdminLayout>
     );
   }

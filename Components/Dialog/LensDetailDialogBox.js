@@ -12,9 +12,15 @@ import SingleSelectLensFeature from "../Admin/lensFeatureMultipleSelect";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import useGetAllPowerType from "@/utils/queries/usePowerType";
+import { useEffect } from "react";
 
-const LensDetailDialogBox = ({ onCancel, refetch, token }) => {
-  const { register, handleSubmit } = useForm();
+const LensDetailDialogBox = ({ onCancel, refetch, token,edit }) => {
+  const { register, handleSubmit ,setValue} = useForm();
+  useEffect(()=>{
+    for (const key in edit) {
+      setValue(key, edit[key]);
+    }
+  },[edit,setValue])
   const { mutate } = useMutation({
     mutationFn: CreateLensDeatils,
     onSuccess: () => {

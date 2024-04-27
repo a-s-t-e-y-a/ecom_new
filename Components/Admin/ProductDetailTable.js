@@ -7,8 +7,7 @@ import DeleteProduct from "@/utils/mutations/useDeletehandler";
 import Modal from "../Dialog/Modal";
 import DeletePoPUPDialog from "../Dialog/DeletePoPUPDialog";
 
-const ProductDetailTable = ({ data, refetch, open }) => {
-  console.log(data)
+const ProductDetailTable = ({ data, refetch, open,edit,opensEdit }) => {
   const [Delete, setDelete] = useState(false);
   const [DeletePayload, setDeletePayload] = useState({});
   const onHideDelete = () => setDelete(false);
@@ -80,7 +79,7 @@ const ProductDetailTable = ({ data, refetch, open }) => {
 
                   <td className="py-2 border">
                     <span className="text-sky-600 flex items-center justify-center w-full cursor-pointer">
-                      <TbEdit />
+                      <TbEdit onClick={() => {edit(Product);opensEdit(true) ; }}  />
                     </span>
                   </td>
                   <td className="py-2 border">

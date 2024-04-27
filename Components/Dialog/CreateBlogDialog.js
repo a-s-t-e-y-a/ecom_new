@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import {
   Button,
   Dialog,
@@ -14,8 +14,8 @@ import FileInput from "../Admin/FileInput";
 import QuillEditor from "../Admin/QuillEditor";
 
 const CreateBlogDialog = (props) => {
-  const { open, setOpen } = props;
-  const { register, handleSubmit, control } = useForm();
+  const { open, setOpen ,edit} = props;
+  const { register, handleSubmit, control ,setValue} = useForm();
   const [loading, setLoading] = useState(false); // State for loading button
   const { mutate } = useMutation({
     mutationFn: CreateBlog,
@@ -30,7 +30,11 @@ const CreateBlogDialog = (props) => {
       setLoading(false); // Set loading to false on error
     },
   });
-
+useEffect(()=>{
+  for (const key in edit) {
+    setValue(key, edit[key]);
+  }
+},[edit,setValue])
   const onSubmit = async (data) => {
     setLoading(true); // Set loading to true on form submit
     const form = new FormData();
@@ -57,7 +61,7 @@ const CreateBlogDialog = (props) => {
 
   return (
     <Fragment>
-      <Dialog open={open} className="border-2 overflow-scroll w-[90%]">
+      <Dialog open={open} className="border-2 overflow-scroll w-[100%]">
         <DialogBody divider className="">
           <div className="w-full space-y-5 text-gray-700">
             <h1 className="text-xl font-semibold tracking-wide text-center">

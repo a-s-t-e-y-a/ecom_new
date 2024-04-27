@@ -15,6 +15,7 @@ import { useMutation } from "@tanstack/react-query";
 import deleteBlogs from "@/utils/mutations/useDeleteBlog";
 import { toast } from "react-toastify";
 import DeletePoPUPDialog from "@/Components/Dialog/DeletePoPUPDialog";
+import { TbEdit } from "react-icons/tb";
 
 const Blog = () => {
   const router = useRouter();
@@ -26,6 +27,7 @@ const Blog = () => {
   const [DeletePayload, setDeletePayload] = useState({});
   const onHideDelete = () => setDelete(false);
   const onShowDelete = () => setDelete(true);
+  const [edit,setedit]=useState({})
   const Deletehandeler = (e, val) => {
     e.stopPropagation();
     onShowDelete();
@@ -59,7 +61,7 @@ const Blog = () => {
     return (
       <AdminLayout>
         <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
-          <CreateBlogDialog open={open} setOpen={setOpen} />
+          <CreateBlogDialog open={open} setOpen={setOpen} edit={edit}/>
         </Modal>
         <Modal isOpen={Delete} closeModal={onHideDelete} fullWidth={false}>
           <DeletePoPUPDialog
@@ -77,12 +79,15 @@ const Blog = () => {
               data.map((value, indx) => (
                 <div
                   key={indx}
-                  className=" relative"
-                  onClick={() => {
-                    handleRoute(value);
-                  }}
+                  className=" relative min-h-[400px] max-h-[400px]"
+                 
                 >
-                  <BlogItem value={value} />
+                  <BlogItem value={value}  onClick={() => {
+                    handleRoute(value);
+                  }} />
+                  <button onClick={()=>{setOpen(true);setedit(value)}} className=" absolute right-10 bottom-3 text-blue-500">
+                    <TbEdit size={20} />
+                  </button>
                   <button
                     onClick={(e) => {
                       Deletehandeler(e, value);

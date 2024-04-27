@@ -30,9 +30,10 @@ import { toast } from "react-toastify";
 import { useState } from "react";
 import SingleGenderSelect from "@/Components/Admin/SingleSelectGender";
 import { Controller, useFormContext } from "react-hook-form";
+import { useEffect } from "react";
 
-const ProductDetailDialog = ({ onCancel, refetch }) => {
-  const { register, handleSubmit, control } = useForm();
+const ProductDetailDialog = ({ onCancel, refetch,editValue }) => {
+  const { register, handleSubmit, control ,setValue} = useForm();
   const { mutate } = useMutation({
     mutationFn: CreateProduct,
     onSuccess: () => {
@@ -43,7 +44,6 @@ const ProductDetailDialog = ({ onCancel, refetch }) => {
       toast.error(err.message);
     },
   });
-
   const {
     data: brand,
     isLoading: brandLoading,
@@ -57,7 +57,16 @@ const ProductDetailDialog = ({ onCancel, refetch }) => {
   const { data: size } = useGetAllSize();
   const { data: style } = useGetAllStyle();
   const [activePOwer, setAcative] = useState(true);
-  console.log(categories);
+
+console.log(editValue);
+   useEffect(()=>{
+     for (const key in editValue) {
+    
+      setValue(key, editValue[key]);
+    
+     }
+   },[editValue,setValue]);
+
   const OnSubmit = async (data) => {
     const form = new FormData();
     // Append the 'main' files
