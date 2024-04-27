@@ -27,7 +27,7 @@ const Blog = () => {
   const [DeletePayload, setDeletePayload] = useState({});
   const onHideDelete = () => setDelete(false);
   const onShowDelete = () => setDelete(true);
-  const [edit,setedit]=useState({})
+  const [edit, setedit] = useState({});
 
   const Deletehandeler = (e, val) => {
     e.stopPropagation();
@@ -62,7 +62,7 @@ const Blog = () => {
     return (
       <AdminLayout>
         <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
-          <CreateBlogDialog open={open} setOpen={setOpen} edit={edit}/>
+          <CreateBlogDialog open={open} setOpen={setOpen} edit={edit} />
         </Modal>
         <Modal isOpen={Delete} closeModal={onHideDelete} fullWidth={false}>
           <DeletePoPUPDialog
@@ -72,7 +72,13 @@ const Blog = () => {
           />
         </Modal>
         <div>
-          <button onClick={() => {handleOpen();setedit({})}} className="mx-2">
+          <button
+            onClick={() => {
+              handleOpen();
+              setedit(null);
+            }}
+            className="mx-2"
+          >
             <IconButton label="Add Blog" icon={<FaBlog />} />
           </button>
           <div className="grid grid-cols-4 items-center gap-5 h-full pt-5 overflow-auto scrollbar-hide ">
@@ -81,12 +87,20 @@ const Blog = () => {
                 <div
                   key={indx}
                   className=" relative min-h-[400px] max-h-[400px]"
-                 
                 >
-                  <BlogItem value={value}  onClick={() => {
-                    handleRoute(value);
-                  }} />
-                  <button onClick={()=>{setOpen(true);setedit(value)}} className=" absolute right-10 bottom-3 text-blue-500">
+                  <BlogItem
+                    value={value}
+                    onClick={() => {
+                      handleRoute(value);
+                    }}
+                  />
+                  <button
+                    onClick={() => {
+                      setOpen(true);
+                      setedit(value);
+                    }}
+                    className=" absolute right-10 bottom-3 text-blue-500"
+                  >
                     <TbEdit size={20} />
                   </button>
                   <button

@@ -15,10 +15,10 @@ import QuillEditor from "../Admin/QuillEditor";
 import UpdateBlog from "@/utils/mutations/useupdateblog";
 
 const CreateBlogDialog = (props) => {
-  const { open, setOpen ,edit} = props;
-  const { register, handleSubmit, control ,setValue} = useForm();
+  const { open, setOpen, edit } = props;
+  const { register, handleSubmit, control, setValue } = useForm();
   const [loading, setLoading] = useState(false);
-  const{mutate:update}=UpdateBlog(edit?.id,setOpen,setLoading, ) // State for loading button
+  const { mutate: update } = UpdateBlog(edit?.id, setOpen, setLoading); // State for loading button
   const { mutate } = useMutation({
     mutationFn: CreateBlog,
     onSuccess: (data) => {
@@ -32,11 +32,12 @@ const CreateBlogDialog = (props) => {
       setLoading(false); // Set loading to false on error
     },
   });
-useEffect(()=>{
-  for (const key in edit) {
-    setValue(key, edit[key]);
-  }
-},[edit,setValue])
+
+  useEffect(() => {
+    for (const key in edit) {
+      setValue(key, edit[key]);
+    }
+  }, [edit, setValue]);
   const onSubmit = async (data) => {
     setLoading(true); // Set loading to true on form submit
     const form = new FormData();
@@ -52,16 +53,16 @@ useEffect(()=>{
       heading: data?.heading,
       tag: data?.tag,
       metaDescription: data?.metaDescription,
-      seo_title:data?.heading,
+      seo_title: data?.heading,
       thumb: data?.thumb,
-      url: replaceSpaceWithHyphen(data?.url)
+      url: replaceSpaceWithHyphen(data?.url),
     };
     form.append("data", JSON.stringify(payload));
-    if(edit){
-      update(form)
+    if (edit) {
+      update(form);
+    } else {
+      mutate(form);
     }
-    else{mutate(form);}
-    
   };
 
   return (
@@ -89,11 +90,7 @@ useEffect(()=>{
                 />
               </div>
               <div>
-                <Input
-                  label="SEO URI"
-                  name="url"
-                  {...register("url")}
-                />
+                <Input label="SEO URI" name="url" {...register("url")} />
               </div>
               <div>
                 <Input label="Thumb" name="thumb" {...register("thumb")} />
