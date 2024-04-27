@@ -28,6 +28,7 @@ const Blog = () => {
   const onHideDelete = () => setDelete(false);
   const onShowDelete = () => setDelete(true);
   const [edit,setedit]=useState({})
+
   const Deletehandeler = (e, val) => {
     e.stopPropagation();
     onShowDelete();
@@ -71,7 +72,7 @@ const Blog = () => {
           />
         </Modal>
         <div>
-          <button onClick={() => handleOpen()} className="mx-2">
+          <button onClick={() => {handleOpen();setedit({})}} className="mx-2">
             <IconButton label="Add Blog" icon={<FaBlog />} />
           </button>
           <div className="grid grid-cols-4 items-center gap-5 h-full pt-5 overflow-auto scrollbar-hide ">

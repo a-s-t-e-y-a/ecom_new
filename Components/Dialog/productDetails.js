@@ -3,13 +3,9 @@ import { useForm } from "react-hook-form";
 import FileInput from "../Admin/FileInput";
 import { TextField } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import useCreateLensDeatils from "@/utils/mutations/useCreateLensDetail";
 import useGetAllBrands from "@/utils/queries/useBrandsGetAll";
 import useGetAllCategories from "@/utils/queries/useCategoriesGetAll";
-import useGetAllLensFeature from "@/utils/queries/useLensFeature";
 import SingleSelectCategories from "../Admin/MultipleSelectCategories";
-import SingleSelectBrands from "../Admin/brandMultipleSelect";
-import SingleSelectLensFeature from "../Admin/lensFeatureMultipleSelect";
 import { Textarea } from "@material-tailwind/react";
 import useGetAllColor from "@/utils/queries/useColorGetAll";
 import useGetAllShape from "@/utils/queries/useShapeGetAll";
@@ -29,8 +25,8 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import SingleGenderSelect from "@/Components/Admin/SingleSelectGender";
-import { Controller, useFormContext } from "react-hook-form";
 import { useEffect } from "react";
+import UpdateProudct from "@/utils/mutations/useUpdateProductDetail";
 
 const ProductDetailDialog = ({ onCancel, refetch,editValue }) => {
   const { register, handleSubmit, control ,setValue} = useForm();
@@ -57,16 +53,15 @@ const ProductDetailDialog = ({ onCancel, refetch,editValue }) => {
   const { data: size } = useGetAllSize();
   const { data: style } = useGetAllStyle();
   const [activePOwer, setAcative] = useState(true);
-
-console.log(editValue);
+const {mutate:update}=UpdateProudct(editValue?.p_id)
    useEffect(()=>{
+    console.log(editValue);
      for (const key in editValue) {
     
       setValue(key, editValue[key]);
     
      }
    },[editValue,setValue]);
-
   const OnSubmit = async (data) => {
     const form = new FormData();
     // Append the 'main' files
@@ -86,9 +81,14 @@ console.log(editValue);
     delete data.file
     // Append the data object as JSON string
     form.append("data", JSON.stringify(data));
-
+   
     // Assuming mutate is an asynchronous function that sends the form data
-    mutate(form);
+    if(editValue){
+      update(form)
+    }
+    else{
+      mutate(form);
+    }
   };
 
   return (
@@ -124,6 +124,7 @@ console.log(editValue);
             register={register}
             name="gender"
           />
+       
 
           <SingleSelectCategories
             label={"Product Category"}

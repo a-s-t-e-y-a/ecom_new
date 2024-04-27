@@ -77,7 +77,7 @@ const[edit,setedit]=useState({});
             }
           </Modal>
           <div>
-            <span onClick={handleOpen}>
+            <span onClick={()=>{handleOpen();setedit({})}}>
               <IconButton
                 label="Add Lens Detail"
                 icon={<MdOutlineLensBlur />}

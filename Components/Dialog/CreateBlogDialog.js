@@ -12,11 +12,13 @@ import CreateBlog from "@/utils/mutations/useCreateblog";
 import { Controller, useForm } from "react-hook-form";
 import FileInput from "../Admin/FileInput";
 import QuillEditor from "../Admin/QuillEditor";
+import UpdateBlog from "@/utils/mutations/useupdateblog";
 
 const CreateBlogDialog = (props) => {
   const { open, setOpen ,edit} = props;
   const { register, handleSubmit, control ,setValue} = useForm();
-  const [loading, setLoading] = useState(false); // State for loading button
+  const [loading, setLoading] = useState(false);
+  const{mutate:update}=UpdateBlog(edit?.id,setOpen,setLoading, ) // State for loading button
   const { mutate } = useMutation({
     mutationFn: CreateBlog,
     onSuccess: (data) => {
@@ -54,9 +56,12 @@ useEffect(()=>{
       thumb: data?.thumb,
       url: replaceSpaceWithHyphen(data?.url)
     };
-    console.log(payload);
     form.append("data", JSON.stringify(payload));
-    mutate(form);
+    if(edit){
+      update(form)
+    }
+    else{mutate(form);}
+    
   };
 
   return (

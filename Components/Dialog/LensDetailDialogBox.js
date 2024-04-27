@@ -13,6 +13,7 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import useGetAllPowerType from "@/utils/queries/usePowerType";
 import { useEffect } from "react";
+import UpdatelensDetails from "@/utils/mutations/useupdateLensDeatil";
 
 const LensDetailDialogBox = ({ onCancel, refetch, token,edit }) => {
   const { register, handleSubmit ,setValue} = useForm();
@@ -21,6 +22,7 @@ const LensDetailDialogBox = ({ onCancel, refetch, token,edit }) => {
       setValue(key, edit[key]);
     }
   },[edit,setValue])
+ const {mutate:update}= UpdatelensDetails(edit?.id)
   const { mutate } = useMutation({
     mutationFn: CreateLensDeatils,
     onSuccess: () => {
@@ -42,7 +44,13 @@ const LensDetailDialogBox = ({ onCancel, refetch, token,edit }) => {
     const formData = new FormData();
     formData.append("file", data.file[0]);
     formData.append("data", JSON.stringify(data));
-    mutate(formData);
+    if(edit){
+   update(formData)
+    }
+    else{
+      mutate(formData);
+
+    }
   };
   return (
     <div className="relative border tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">

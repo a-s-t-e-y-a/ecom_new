@@ -63,7 +63,7 @@ const ProductDetail = () => {
           <ProductDetailDialog onCancel={onHide} refetch={refetch} editValue={edit} />
         </Modal>
         <div className="w-full">
-          <button onClick={handleOpen} className=" mb-3">
+          <button onClick={()=>{handleOpen();setedit({})}} className=" mb-3">
             <IconButton label="Add product details" />
           </button>
           <div className=" flex justify-between mb-3">
