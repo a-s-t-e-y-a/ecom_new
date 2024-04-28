@@ -1,17 +1,24 @@
 import IconButton from "@/Components/Admin/IconButton";
 import QuillEditor from "@/Components/Admin/QuillEditor";
-import AddIcon from "@mui/icons-material/Add";
-
 import AdminLayout from "@/Layout/AdminLayout";
-import { TbTextSize } from "react-icons/tb";
+import { TbTextSize, TbTruckReturn } from "react-icons/tb";
 import { IsAuth } from "@/utils/IsAuth";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useEffect } from "react";
+import AddIcon from "@mui/icons-material/Add";
+import { useForm, Controller } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
+import CreateDelivery from "@/utils/mutations/useCreateDeliveryTerm";
+import { toast } from "react-toastify";
+import { MdOutlineCurrencyFranc, MdPolicy } from "react-icons/md";
+import CreateSizeGuide from "@/utils/mutations/useCreateSize";
+
 const SizeGuide = () => {
   const router = useRouter();
-  const [value, setValue] = useState("")
   const [logged, setlogged] = useState(false);
+  const { control, handleSubmit, reset } = useForm();
+
   useEffect(() => {
     if (IsAuth("admin_info")) {
       setlogged(true);
@@ -19,18 +26,45 @@ const SizeGuide = () => {
       router.replace("login");
     }
   }, [router]);
+
+  const { mutate } = useMutation({
+    mutationFn: CreateSizeGuide,
+    onSuccess: () => {
+      toast.success("Created successfully");
+      reset(); // Reset the form after successful submission
+    },
+    onError: (err) => {
+      toast.error("Error occurred");
+    },
+  });
+
+  const onSubmit = (data) => {
+    mutate(data);
+  };
+
   if (logged) {
     return (
       <AdminLayout>
         <div>
           <div>
-            <IconButton label="Size Guides" icon={<TbTextSize />} />
+          <IconButton label="Size Guides" icon={<TbTextSize />} />
           </div>
           <div className="mt-6 flex items-center gap-3 flex-wrap w-full">
-            <QuillEditor value={value} onChange={(val)=>setValue(val)}/>
-            <button className=" bg-blue-500 rounded shadow  w-40 text-center text-white my-4" onClick={()=>console.log(value)}>
-              ADD <AddIcon />
-            </button>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <Controller
+                name="description"
+                control={control}
+                render={({ field }) => (
+                  <QuillEditor {...field} onChange={field.onChange} />
+                )}
+              />
+              <button
+                type="submit"
+                className=" bg-blue-500 rounded shadow w-40 text-center text-white my-4"
+              >
+                ADD <AddIcon />
+              </button>
+            </form>
           </div>
         </div>
       </AdminLayout>
@@ -39,3 +73,5 @@ const SizeGuide = () => {
 };
 
 export default SizeGuide;
+
+
