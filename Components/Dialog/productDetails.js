@@ -124,8 +124,6 @@ const {mutate:update}=UpdateProudct(editValue?.p_id)
             register={register}
             name="gender"
           />
-       
-
           <SingleSelectCategories
             label={"Product Category"}
             options={categories}
@@ -154,7 +152,6 @@ const {mutate:update}=UpdateProudct(editValue?.p_id)
             name="product_color"
           />
           <SingleSelectShape label="Select Shape" control={control} options={shape} register={register} name="shape" />
-
           <SingleSelectMaterial
            label="Select Material"
            control={control}
@@ -164,7 +161,6 @@ const {mutate:update}=UpdateProudct(editValue?.p_id)
           />
           <SingleSelectSize label="Select Size" control={control} options={size} register={register} name="size" />
           <SingleSelectStyle label="Select Style"  control={control} options={style} register={register} name="style" />
-
           <div>
             <TextField
               disabled
@@ -196,7 +192,6 @@ const {mutate:update}=UpdateProudct(editValue?.p_id)
               {...register("row_metrial_source_from")}
             />
           </div>
-
           <TextField
             fullWidth
             label="Discounted Product Price"
