@@ -28,7 +28,7 @@ const ProductDetailTable = ({ data, refetch, open, edit, opensEdit }) => {
   };
 
   return (
-    <div className="w-full tracking-wide  px-10 ">
+    <div className="w-full tracking-wide">
       <Modal isOpen={Delete} closeModal={onHideDelete} fullWidth={false}>
         <DeletePoPUPDialog
           Closefunction={onHideDelete}
