@@ -7,7 +7,7 @@ import DeleteProduct from "@/utils/mutations/useDeletehandler";
 import Modal from "../Dialog/Modal";
 import DeletePoPUPDialog from "../Dialog/DeletePoPUPDialog";
 
-const ProductDetailTable = ({ data, refetch, open,edit,opensEdit }) => {
+const ProductDetailTable = ({ data, refetch, open, edit, opensEdit }) => {
   const [Delete, setDelete] = useState(false);
   const [DeletePayload, setDeletePayload] = useState({});
   const onHideDelete = () => setDelete(false);
@@ -28,7 +28,7 @@ const ProductDetailTable = ({ data, refetch, open,edit,opensEdit }) => {
   };
 
   return (
-    <div className="w-full tracking-wide  px-10 ">
+    <div className="w-full tracking-wide">
       <Modal isOpen={Delete} closeModal={onHideDelete} fullWidth={false}>
         <DeletePoPUPDialog
           Closefunction={onHideDelete}
@@ -37,58 +37,73 @@ const ProductDetailTable = ({ data, refetch, open,edit,opensEdit }) => {
         />
       </Modal>
       <table className="w-full ">
-        <thead className=" text-xs font-normal text-gray-700 sticky -top-1 left-0 bg-white shadow-lg ng-blue-100 w-full overflow-auto">
+        <thead className=" text-xs font-normal text-gray-700 bg-white shadow-lg ng-blue-100 w-full overflow-auto">
           <tr className=" w-full  ">
-            <th className="py-2 border">Model No.</th>
-
-            <th className="py-2 border">Quantity</th>
-
-            <th className="py-2 border">Model Name </th>
-            <th className="py-2 border">Price</th>
-            <th className="py-2 border">Shape</th>
-            <th className="py-2 border">F Material</th>
-            <th className="py-2 border">F Width</th>
-            <th className="py-2 border">L Width</th>
-            <th className="py-2 border">L Height</th>
-            <th className="py-2 border">Color</th>
-            <th className="py-2 border">Edit</th>
-            <th className="py-2 border">Delete</th>
+            <th className="py-2 border flex-1 pl-6 text-left">Edit</th>
+            <th className="py-2 border flex-1 pl-6 text-left">Delete</th>
+            <th className="py-2 border flex-1 pl-6 text-left">Model No.</th>
+            <th className="py-2 border flex-1 pl-6 text-left">Quantity</th>
+            <th className="py-2 border flex-1 pl-6 text-left">Model Name </th>
+            <th className="py-2 border flex-1 pl-6 text-left">Price</th>
+            <th className="py-2 border flex-1 pl-6 text-left">Shape</th>
+            <th className="py-2 border flex-1 pl-6 text-left">F Material</th>
+            <th className="py-2 border flex-1 pl-6 text-left">F Width</th>
+            <th className="py-2 border flex-1 pl-6 text-left">L Width</th>
+            <th className="py-2 border flex-1 pl-6 text-left">L Height</th>
+            <th className="py-2 border flex-1 pl-6 text-left">Color</th>
           </tr>
         </thead>
         <tbody className="text-xs text-gray-600 text-center  ">
           {data.length > 0
             ? data.map((Product, index) => (
                 <tr className="" key={index}>
-                  <td className="py-2 pl-6 border text-left">{Product?.product_model_number}</td>
-                  <td className="py-2 pl-6 border text-left">{Product?.stokke}</td>
-
-                  <td className="py-2 pl-6 border text-left">{Product?.product_model_name}</td>
-                  <td className="py-2 pl-6 border text-left">{Product?.discounted_price}</td>
-                  <td className="py-2 pl-6 border text-left">
-                    {Product?.shape_?.name}
-                  </td>
-                  <td className="py-2 pl-6 border text-left">
-                    {Product?.material_?.name}
-                  </td>
-                  <td className="py-2 pl-6 border text-left">{Product?.frame_width}</td>
-                  <td className="py-2 pl-6 border text-left">{Product?.lens_width}</td>
-                  <td className="py-2 pl-6 border text-left">{Product?.lens_height}</td>
-                  <td className="py-2 pl-6 border text-left">
-                    {Product?.product_color_?.name}
-                  </td>
-
-                  <td className="py-2 border">
+                  <td className="py-2 border text-left">
                     <span className="text-sky-600 flex items-center justify-center w-full cursor-pointer">
-                      <TbEdit onClick={() => {edit(Product);opensEdit(true) ; }}  />
+                      <TbEdit
+                        onClick={() => {
+                          edit(Product);
+                          opensEdit(true);
+                        }}
+                      />
                     </span>
                   </td>
-                  <td className="py-2 border">
+                  <td className="py-2 border text-left">
                     <span
                       className="text-orange-600 flex items-center justify-center w-full cursor-pointer"
                       onClick={() => DeleteProductHandler(Product)}
                     >
                       <MdDelete />
                     </span>
+                  </td>
+                  <td className="py-2 pl-6 border text-left">
+                    {Product?.product_model_number}
+                  </td>
+                  <td className="py-2 pl-6 border text-left">
+                    {Product?.stokke}
+                  </td>
+                  <td className="py-2 pl-6 border text-left">
+                    {Product?.product_model_name}
+                  </td>
+                  <td className="py-2 pl-6 border text-left">
+                    {Product?.discounted_price}
+                  </td>
+                  <td className="py-2 pl-6 border text-left">
+                    {Product?.shape_?.name}
+                  </td>
+                  <td className="py-2 pl-6 border text-left">
+                    {Product?.material_?.name}
+                  </td>
+                  <td className="py-2 pl-6 border text-left">
+                    {Product?.frame_width}
+                  </td>
+                  <td className="py-2 pl-6 border text-left">
+                    {Product?.lens_width}
+                  </td>
+                  <td className="py-2 pl-6 border text-left">
+                    {Product?.lens_height}
+                  </td>
+                  <td className="py-2 pl-6 border text-left">
+                    {Product?.product_color_?.name}
                   </td>
                 </tr>
               ))

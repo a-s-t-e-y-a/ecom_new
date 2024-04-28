@@ -132,7 +132,7 @@ const AdminSideBar = () => {
         open ? "w-64" : " w-20 "
       } bg-gray-100  p-4 pt-7 relative z-10 me-5 duration-300 border-r `}
     >
-      <div className="flex gap-x-10 items-center text-gray-700 pb-3">
+      <div className="flex gap-x-4 items-center text-gray-700 pb-3">
         <span
           className={`pl-2 cursor-pointer duration-500 ${
             open && "rotate-[360deg]"
