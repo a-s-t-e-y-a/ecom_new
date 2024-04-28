@@ -62,7 +62,7 @@ const ProductDetail = () => {
         <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
           <ProductDetailDialog onCancel={onHide} refetch={refetch} editValue={edit} />
         </Modal>
-        <div className="w-full">
+        <div className="w-full px-4">
           <button onClick={() => { handleOpen(); setedit({}) }} className=" mb-3">
             <IconButton label="Add product details" />
           </button>
