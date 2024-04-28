@@ -3,13 +3,9 @@ import { useForm } from "react-hook-form";
 import FileInput from "../Admin/FileInput";
 import { TextField } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import useCreateLensDeatils from "@/utils/mutations/useCreateLensDetail";
 import useGetAllBrands from "@/utils/queries/useBrandsGetAll";
 import useGetAllCategories from "@/utils/queries/useCategoriesGetAll";
-import useGetAllLensFeature from "@/utils/queries/useLensFeature";
 import SingleSelectCategories from "../Admin/MultipleSelectCategories";
-import SingleSelectBrands from "../Admin/brandMultipleSelect";
-import SingleSelectLensFeature from "../Admin/lensFeatureMultipleSelect";
 import { Textarea } from "@material-tailwind/react";
 import useGetAllColor from "@/utils/queries/useColorGetAll";
 import useGetAllShape from "@/utils/queries/useShapeGetAll";
@@ -29,10 +25,11 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import SingleGenderSelect from "@/Components/Admin/SingleSelectGender";
-import { Controller, useFormContext } from "react-hook-form";
+import { useEffect } from "react";
+import UpdateProudct from "@/utils/mutations/useUpdateProductDetail";
 
-const ProductDetailDialog = ({ onCancel, refetch }) => {
-  const { register, handleSubmit, control } = useForm();
+const ProductDetailDialog = ({ onCancel, refetch,editValue }) => {
+  const { register, handleSubmit, control ,setValue} = useForm();
   const { mutate } = useMutation({
     mutationFn: CreateProduct,
     onSuccess: () => {
@@ -43,7 +40,6 @@ const ProductDetailDialog = ({ onCancel, refetch }) => {
       toast.error(err.message);
     },
   });
-
   const {
     data: brand,
     isLoading: brandLoading,
@@ -57,7 +53,15 @@ const ProductDetailDialog = ({ onCancel, refetch }) => {
   const { data: size } = useGetAllSize();
   const { data: style } = useGetAllStyle();
   const [activePOwer, setAcative] = useState(true);
-  console.log(categories);
+const {mutate:update}=UpdateProudct(editValue?.p_id)
+   useEffect(()=>{
+    console.log(editValue);
+     for (const key in editValue) {
+    
+      setValue(key, editValue[key]);
+    
+     }
+   },[editValue,setValue]);
   const OnSubmit = async (data) => {
     const form = new FormData();
     // Append the 'main' files
@@ -77,9 +81,14 @@ const ProductDetailDialog = ({ onCancel, refetch }) => {
     delete data.file
     // Append the data object as JSON string
     form.append("data", JSON.stringify(data));
-
+   
     // Assuming mutate is an asynchronous function that sends the form data
-    mutate(form);
+    if(editValue){
+      update(form)
+    }
+    else{
+      mutate(form);
+    }
   };
 
   return (
@@ -115,7 +124,6 @@ const ProductDetailDialog = ({ onCancel, refetch }) => {
             register={register}
             name="gender"
           />
-
           <SingleSelectCategories
             label={"Product Category"}
             options={categories}
@@ -144,7 +152,6 @@ const ProductDetailDialog = ({ onCancel, refetch }) => {
             name="product_color"
           />
           <SingleSelectShape label="Select Shape" control={control} options={shape} register={register} name="shape" />
-
           <SingleSelectMaterial
            label="Select Material"
            control={control}
@@ -154,7 +161,6 @@ const ProductDetailDialog = ({ onCancel, refetch }) => {
           />
           <SingleSelectSize label="Select Size" control={control} options={size} register={register} name="size" />
           <SingleSelectStyle label="Select Style"  control={control} options={style} register={register} name="style" />
-
           <div>
             <TextField
               disabled
@@ -186,7 +192,6 @@ const ProductDetailDialog = ({ onCancel, refetch }) => {
               {...register("row_metrial_source_from")}
             />
           </div>
-
           <TextField
             fullWidth
             label="Discounted Product Price"

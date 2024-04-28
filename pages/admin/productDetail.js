@@ -18,11 +18,10 @@ const ProductDetail = () => {
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);
   const router = useRouter();
-  const { data, isLoading,refetch } = useGetAllProducts(page);
+  const { data, isLoading, refetch } = useGetAllProducts(page);
   const [logged, setlogged] = useState(false);
   const [Products, setproducts] = useState([]);
-  console.log(data)
-  console.log(isLoading)
+  const [edit, setedit] = useState({})
   useEffect(() => {
     if (IsAuth("admin_info")) {
       setlogged(true);
@@ -56,21 +55,20 @@ const ProductDetail = () => {
       setproducts(data?.products);
     }
   };
-  
 
   if (logged) {
     return (
       <AdminLayout>
         <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
-          <ProductDetailDialog onCancel={onHide} refetch={refetch} />
+          <ProductDetailDialog onCancel={onHide} refetch={refetch} editValue={edit} />
         </Modal>
-        <div className="w-full">
-          <button onClick={handleOpen} className=" mb-3">
+        <div className="w-full px-4">
+          <button onClick={() => { handleOpen(); setedit({}) }} className=" mb-3">
             <IconButton label="Add product details" />
           </button>
-          <div className=" flex justify-between mb-3">
-            <h2 className=" font-bold text-2xl">Add product</h2>
-            <div className=" flex gap-2">
+          <div className="flex justify-between mb-3">
+            <h2 className="font-bold text-lg">All Product Details</h2>
+            <div className="flex gap-2">
               <TextField
                 className="outline-none focus:ring-0 w-24 "
                 sx={{}}
@@ -90,12 +88,13 @@ const ProductDetail = () => {
               />
             </div>
           </div>
-          <div className=" w-full mb-3">
+          <div className="w-full mb-3">
             {isLoading && <p>Loading...</p>}
             <ProductDetailTable
               data={Products}
               refetch={refetch}
               open={handleOpen}
+              edit={setedit} opensEdit={setOpen}
             />
           </div>
         </div>

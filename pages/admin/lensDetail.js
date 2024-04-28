@@ -27,7 +27,7 @@ const LensDetail = () => {
   const [data, setData] = useState([]);
   const { data: Detail, refetch } = useGetAllLensDetails();
   const [get, setget] = useState(false);
-
+const[edit,setedit]=useState({});
   useEffect(() => {
     if (IsAuth("admin_info")) {
       setlogged(true);
@@ -72,11 +72,12 @@ const LensDetail = () => {
                 onCancel={onHide}
                 refetch={setget}
                 token={get}
+                edit={edit}
               />
             }
           </Modal>
           <div>
-            <span onClick={handleOpen}>
+            <span onClick={()=>{handleOpen();setedit({})}}>
               <IconButton
                 label="Add Lens Detail"
                 icon={<MdOutlineLensBlur />}
@@ -145,7 +146,7 @@ const LensDetail = () => {
                                   <DeleteOutlineIcon />
                                 </button>
                                 <button
-                                  onClick={() => handleOpen()}
+                                  onClick={() =>{ handleOpen();setedit(item) }}
                                   className=" text-blue-500 me-2 text-lg"
                                 >
                                   <TbEdit />
