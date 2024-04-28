@@ -28,7 +28,7 @@ const ProductDetailTable = ({ data, refetch, open, edit, opensEdit }) => {
   };
 
   return (
-    <div className="w-full tracking-wide">
+    <div className="w-full tracking-wide  px-10 ">
       <Modal isOpen={Delete} closeModal={onHideDelete} fullWidth={false}>
         <DeletePoPUPDialog
           Closefunction={onHideDelete}
@@ -37,7 +37,7 @@ const ProductDetailTable = ({ data, refetch, open, edit, opensEdit }) => {
         />
       </Modal>
       <table className="w-full ">
-        <thead className=" text-xs font-normal text-gray-700 bg-white shadow-lg ng-blue-100 w-full overflow-auto">
+        <thead className=" text-xs font-normal text-gray-700 sticky bg-white shadow-lg ng-blue-100 w-full overflow-auto">
           <tr className=" w-full  ">
             <th className="py-2 border flex-1 pl-6 text-left">Edit</th>
             <th className="py-2 border flex-1 pl-6 text-left">Delete</th>
