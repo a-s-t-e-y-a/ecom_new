@@ -12,7 +12,7 @@ const AdminLayout = ({ children }) => {
       <body>
         <div className="flex w-full">
           <AdminSideBar />
-          <main className=" w-full">
+          <main className="w-full">
             <AdminNavBar />
             {children}
           </main>
