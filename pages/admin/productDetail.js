@@ -21,7 +21,7 @@ const ProductDetail = () => {
   const { data, isLoading, refetch } = useGetAllProducts(page);
   const [logged, setlogged] = useState(false);
   const [Products, setproducts] = useState([]);
-  const [edit, setedit] = useState({})
+  const [edit, setedit] = useState({});
   useEffect(() => {
     if (IsAuth("admin_info")) {
       setlogged(true);
@@ -60,10 +60,20 @@ const ProductDetail = () => {
     return (
       <AdminLayout>
         <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
-          <ProductDetailDialog onCancel={onHide} refetch={refetch} editValue={edit} />
+          <ProductDetailDialog
+            onCancel={onHide}
+            refetch={refetch}
+            editValue={edit}
+          />
         </Modal>
         <div className="w-full px-4">
-          <button onClick={() => { handleOpen(); setedit({}) }} className=" mb-3">
+          <button
+            onClick={() => {
+              handleOpen();
+              setedit({});
+            }}
+            className=" mb-3"
+          >
             <IconButton label="Add product details" />
           </button>
           <div className="flex justify-between mb-3">
@@ -89,17 +99,25 @@ const ProductDetail = () => {
             </div>
           </div>
           <div className="w-full mb-3">
-            {isLoading && <p>Loading...</p>}
-            <ProductDetailTable
-              data={Products}
-              refetch={refetch}
-              open={handleOpen}
-              setedit={setedit} 
-              opensEdit={setOpen}
-            />
+            <div className="w-full">
+              {isLoading && <p>Loading...</p>}
+              <ProductDetailTable
+                data={Products}
+                refetch={refetch}
+                open={handleOpen}
+                setedit={setedit}
+                opensEdit={setOpen}
+              />
+              <div className="mt-4">
+                <Pagination
+                  setpage={setpage}
+                  curr={page}
+                  total={data?.totalPages}
+                />
+              </div>
+            </div>
           </div>
         </div>
-        <Pagination setpage={setpage} curr={page} total={data?.totalPages} />
       </AdminLayout>
     );
   }
