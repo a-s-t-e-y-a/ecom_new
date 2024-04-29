@@ -94,7 +94,8 @@ const ProductDetail = () => {
               data={Products}
               refetch={refetch}
               open={handleOpen}
-              edit={setedit} opensEdit={setOpen}
+              setedit={setedit} 
+              opensEdit={setOpen}
             />
           </div>
         </div>

@@ -28,8 +28,8 @@ import SingleGenderSelect from "@/Components/Admin/SingleSelectGender";
 import { useEffect } from "react";
 import UpdateProudct from "@/utils/mutations/useUpdateProductDetail";
 
-const ProductDetailDialog = ({ onCancel, refetch,editValue }) => {
-  const { register, handleSubmit, control ,setValue} = useForm();
+const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
+  const { register, handleSubmit, control, setValue } = useForm();
   const { mutate } = useMutation({
     mutationFn: CreateProduct,
     onSuccess: () => {
@@ -40,11 +40,6 @@ const ProductDetailDialog = ({ onCancel, refetch,editValue }) => {
       toast.error(err.message);
     },
   });
-  const {
-    data: brand,
-    isLoading: brandLoading,
-    isError: errorBrand,
-  } = useGetAllBrands();
   const { data: categories } = useGetAllCategories();
   const { data: color } = useGetAllColor();
   const { data: shape } = useGetAllShape();
@@ -53,15 +48,14 @@ const ProductDetailDialog = ({ onCancel, refetch,editValue }) => {
   const { data: size } = useGetAllSize();
   const { data: style } = useGetAllStyle();
   const [activePOwer, setAcative] = useState(true);
-const {mutate:update}=UpdateProudct(editValue?.p_id)
-   useEffect(()=>{
+  const { mutate: update } = UpdateProudct(editValue?.p_id);
+  
+  useEffect(() => {
     console.log(editValue);
-     for (const key in editValue) {
-    
+    for (const key in editValue) {
       setValue(key, editValue[key]);
-    
-     }
-   },[editValue,setValue]);
+    }
+  }, [editValue, setValue]);
   const OnSubmit = async (data) => {
     const form = new FormData();
     // Append the 'main' files
@@ -77,17 +71,18 @@ const {mutate:update}=UpdateProudct(editValue?.p_id)
         form.append("files", data.file[i]);
       }
     }
-    delete data.main
-    delete data.file
+    delete data.main;
+    delete data.file;
     // Append the data object as JSON string
     form.append("data", JSON.stringify(data));
-   
+
     // Assuming mutate is an asynchronous function that sends the form data
-    if(editValue){
-      update(form)
-    }
-    else{
+    if (Object.keys(editValue).length === 0) {
       mutate(form);
+      onCancel()
+    } else {
+      update(form);
+      onCancel()
     }
   };
 
@@ -151,16 +146,34 @@ const {mutate:update}=UpdateProudct(editValue?.p_id)
             register={register}
             name="product_color"
           />
-          <SingleSelectShape label="Select Shape" control={control} options={shape} register={register} name="shape" />
+          <SingleSelectShape
+            label="Select Shape"
+            control={control}
+            options={shape}
+            register={register}
+            name="shape"
+          />
           <SingleSelectMaterial
-           label="Select Material"
-           control={control}
+            label="Select Material"
+            control={control}
             options={material}
             register={register}
             name="material"
           />
-          <SingleSelectSize label="Select Size" control={control} options={size} register={register} name="size" />
-          <SingleSelectStyle label="Select Style"  control={control} options={style} register={register} name="style" />
+          <SingleSelectSize
+            label="Select Size"
+            control={control}
+            options={size}
+            register={register}
+            name="size"
+          />
+          <SingleSelectStyle
+            label="Select Style"
+            control={control}
+            options={style}
+            register={register}
+            name="style"
+          />
           <div>
             <TextField
               disabled
