@@ -86,7 +86,7 @@ const Blog = () => {
               data.map((value, indx) => (
                 <div
                   key={indx}
-                  className=" relative min-h-[400px] max-h-[400px]"
+                  className="flex flex-col relative min-h-[470px] max-h-[470px]"
                 >
                   <BlogItem
                     value={value}
@@ -94,7 +94,7 @@ const Blog = () => {
                       handleRoute(value);
                     }}
                   />
-                  <button
+                  {/* <button
                     onClick={() => {
                       setOpen(true);
                       setedit(value);
@@ -109,8 +109,8 @@ const Blog = () => {
                     }}
                     className=" absolute right-2 bottom-3 text-red-500"
                   >
-                    <DeleteOutlineIcon />
-                  </button>
+                    <DeleteOutlineIcon size={20} />
+                  </button> */}
                 </div>
               ))}
           </div>
