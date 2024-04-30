@@ -80,10 +80,10 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
 
     // Assuming mutate is an asynchronous function that sends the form data
     if (Object.keys(editValue).length === 0) {
-      // mutate(form);
+      mutate(form);
       onCancel()
     } else {
-      // update(form);
+      update(form);
       onCancel()
     }
   };
