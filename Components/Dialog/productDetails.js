@@ -27,6 +27,7 @@ import { useState } from "react";
 import SingleGenderSelect from "@/Components/Admin/SingleSelectGender";
 import { useEffect } from "react";
 import UpdateProudct from "@/utils/mutations/useUpdateProductDetail";
+import SingleSelectLensFeature from "../Admin/lensFeatureMultipleSelect";
 
 const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
   const { register, handleSubmit, control, setValue } = useForm();
@@ -43,7 +44,7 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
   const { data: categories } = useGetAllCategories();
   const { data: color } = useGetAllColor();
   const { data: shape } = useGetAllShape();
-  const { data: powerType } = useGetAllPowerType();
+  const { data: power } = useGetAllPowerType();
   const { data: material } = useGetAllMaterial();
   const { data: size } = useGetAllSize();
   const { data: style } = useGetAllStyle();
@@ -57,6 +58,7 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
     }
   }, [editValue, setValue]);
   const OnSubmit = async (data) => {
+    console.log(data)
     const form = new FormData();
     // Append the 'main' files
     if (data.main) {
@@ -78,10 +80,10 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
 
     // Assuming mutate is an asynchronous function that sends the form data
     if (Object.keys(editValue).length === 0) {
-      mutate(form);
+      // mutate(form);
       onCancel()
     } else {
-      update(form);
+      // update(form);
       onCancel()
     }
   };
@@ -131,13 +133,11 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
             name="select_Lense"
             setactive={setAcative}
           />
-          <SingleSelectPowerType
-            options={powerType}
+           <SingleSelectLensFeature
+            label="Power Type"
+            options={power}
             register={register}
-            name="show_lens_list"
-            label={"Power type"}
-            control={control}
-            active={activePOwer}
+            name="power_type_id"
           />
           <SingleSelectColor
             options={color}
