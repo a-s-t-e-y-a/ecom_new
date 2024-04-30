@@ -53,7 +53,10 @@ const LensFeature = () => {
         }
       </Modal>
       <div>
-        <div onClick={handleOpen}>
+        <div onClick={() => {
+              handleOpen();
+              setedit(null);
+            }}>
           <IconButton label="Add Lens Features" icon={<GiMicroscopeLens />} />
         </div>
         <div className="mt-10 grid grid-cols-2 items-center gap-5 w-full">

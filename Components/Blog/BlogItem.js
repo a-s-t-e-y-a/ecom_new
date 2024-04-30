@@ -1,10 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import { TbEdit } from "react-icons/tb";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import CreateBlogDialog from "@/Components/Dialog/CreateBlogDialog";
+import Modal from "@/Components/Dialog/Modal";
+import DeletePoPUPDialog from "@/Components/Dialog/DeletePoPUPDialog";
+import { useMutation } from "@tanstack/react-query";
+import deleteBlogs from "@/utils/mutations/useDeleteBlog";
 
 const BlogItem = ({ value }) => {
+  const [open, setOpen] = useState(false);
+  const [Delete, setDelete] = useState(false);
+  const [DeletePayload, setDeletePayload] = useState({});
+  const onHideDelete = () => setDelete(false);
+  const onShowDelete = () => setDelete(true);
+  const [edit, setedit] = useState({});
+  const onHide = () => setOpen(false);
+  const Deletehandeler = (e, val) => {
+    e.stopPropagation();
+    onShowDelete();
+    setDeletePayload(val);
+  };
+  const { mutate } = useMutation({
+    mutationFn: deleteBlogs,
+    onSuccess: () => {
+      toast.success("Blog deleted Successfully");
+      refetch();
+    },
+    onError: (err) => {
+      toast.error(err.message);
+    },
+  });
   return (
     <div className="">
+    <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
+          <CreateBlogDialog open={open} setOpen={setOpen} edit={edit} />
+        </Modal>
+        <Modal isOpen={Delete} closeModal={onHideDelete} fullWidth={false}>
+          <DeletePoPUPDialog
+            Closefunction={onHideDelete}
+            Deletefunction={mutate}
+            payload={DeletePayload}
+          />
+        </Modal>
       <div className="shadow-md  rounded-lg h-[450px] border-2">
         <div className="">
           <img

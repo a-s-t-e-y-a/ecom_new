@@ -88,7 +88,7 @@ const[edit,setedit]=useState({});
             <div className="w-full border rounded-md shadow-md px-5 py-3 flex items-center justify-between bg-gray-50">
               <div className="text-base tracking-wide font-semibold flex flex-col items-center gap-1">
                 <span className="text-xs text-gray-400 tracking-wider">
-                  Lens Heading
+                  Lens Feature
                 </span>
               </div>
 
