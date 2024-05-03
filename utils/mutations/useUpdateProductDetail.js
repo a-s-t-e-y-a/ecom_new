@@ -3,6 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
 const UpdateProudct = (id) => {
+    console.log(id)
     const update = useMutation({
         mutationKey: ["api/blog"],
         mutationFn: async (data) => {

@@ -58,7 +58,7 @@ const CreateBlogDialog = (props) => {
       url: replaceSpaceWithHyphen(data?.url),
     };
     form.append("data", JSON.stringify(payload));
-    if (edit) {
+    if (Object.keys(edit).length === 0) {
       update(form);
     } else {
       mutate(form);

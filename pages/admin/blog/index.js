@@ -94,7 +94,7 @@ const Blog = () => {
                       handleRoute(value);
                     }}
                   />
-                  {/* <button
+                  <button
                     onClick={() => {
                       setOpen(true);
                       setedit(value);
@@ -110,7 +110,7 @@ const Blog = () => {
                     className=" absolute right-2 bottom-3 text-red-500"
                   >
                     <DeleteOutlineIcon size={20} />
-                  </button> */}
+                  </button>
                 </div>
               ))}
           </div>

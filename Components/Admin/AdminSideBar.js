@@ -42,7 +42,7 @@ const AdminSideBar = () => {
       link: "/admin/placedOrder",
     },
     {
-      title: "Product Detail Edit",
+      title: "Product Detail",
       icon: <BiCalendarEdit />,
       link: "/admin/productDetail",
     },
