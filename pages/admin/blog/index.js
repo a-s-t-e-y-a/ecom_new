@@ -94,23 +94,6 @@ const Blog = () => {
                       handleRoute(value);
                     }}
                   />
-                  <button
-                    onClick={() => {
-                      setOpen(true);
-                      setedit(value);
-                    }}
-                    className=" absolute right-10 bottom-3 text-blue-500"
-                  >
-                    <TbEdit size={20} />
-                  </button>
-                  <button
-                    onClick={(e) => {
-                      Deletehandeler(e, value);
-                    }}
-                    className=" absolute right-2 bottom-3 text-red-500"
-                  >
-                    <DeleteOutlineIcon size={20} />
-                  </button>
                 </div>
               ))}
           </div>

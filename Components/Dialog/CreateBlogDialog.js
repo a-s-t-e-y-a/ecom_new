@@ -33,9 +33,18 @@ const CreateBlogDialog = (props) => {
     },
   });
 
+  const editPayload = {
+    heading: edit?.heading,
+    thumb: edit?.thumb,
+    description:edit?.description,
+    url: edit?.url,
+    seo_title: edit?.heading,
+    metaDescription: edit?.MetaDescription?.metaDescription,
+  };
+
   useEffect(() => {
-    for (const key in edit) {
-      setValue(key, edit[key]);
+    for (const key in editPayload) {
+      setValue(key, editPayload[key]);
     }
   }, [edit, setValue]);
   const onSubmit = async (data) => {
@@ -58,7 +67,7 @@ const CreateBlogDialog = (props) => {
       url: replaceSpaceWithHyphen(data?.url),
     };
     form.append("data", JSON.stringify(payload));
-    if (Object.keys(edit).length === 0) {
+    if (Object.keys(edit).length > 0) {
       update(form);
     } else {
       mutate(form);

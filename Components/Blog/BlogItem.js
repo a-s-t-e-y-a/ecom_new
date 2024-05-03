@@ -58,23 +58,25 @@ const BlogItem = ({ value }) => {
             <h3 className="text-gray-500 text-xs  mb-1  tracking-wide">
               {value?.created_on}
             </h3>
-            <button
-              onClick={() => {
-                setOpen(true);
-                setedit(value);
-              }}
-              className=" text-blue-500"
-            >
-              <TbEdit size={20} />
-            </button>
-            <button
-              onClick={(e) => {
-                Deletehandeler(e, value);
-              }}
-              className=" text-red-500"
-            >
-              <DeleteOutlineIcon />
-            </button>
+            <div className="flex justify-center gap-4">
+              <button
+                onClick={() => {
+                  setOpen(true);
+                  setedit(value);
+                }}
+                className=" text-blue-500"
+              >
+                <TbEdit size={20} />
+              </button>
+              <button
+                onClick={(e) => {
+                  Deletehandeler(e, value);
+                }}
+                className=" text-red-500"
+              >
+                <DeleteOutlineIcon />
+              </button>
+            </div>
           </div>
         </div>
       </div>
