@@ -30,7 +30,10 @@ import UpdateProudct from "@/utils/mutations/useUpdateProductDetail";
 import SingleSelectLensFeature from "../Admin/lensFeatureMultipleSelect";
 
 const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
-  const { register, handleSubmit, control, setValue } = useForm();
+  console.log(editValue, "editValue");
+  const { register, handleSubmit, control, setValue, reset } = useForm({
+    defaultValues: editValue
+  });
   const { mutate } = useMutation({
     mutationFn: CreateProduct,
     onSuccess: () => {
@@ -50,15 +53,14 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
   const { data: style } = useGetAllStyle();
   const [activePOwer, setAcative] = useState(true);
   const { mutate: update } = UpdateProudct(editValue?.p_id);
-  
+
   useEffect(() => {
-    console.log(editValue);
     for (const key in editValue) {
-      setValue(key, editValue[key]);
+      // setValue(key, editValue[key]);
     }
   }, [editValue, setValue]);
   const OnSubmit = async (data) => {
-    console.log(data)
+    console.log(data, "onSubmit");
     const form = new FormData();
     // Append the 'main' files
     if (data.main) {
@@ -84,9 +86,9 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
       onCancel();
       refetch();
     } else {
-      update(form);
-      onCancel()
-      refetch();
+      // update(form);
+      // onCancel()
+      // refetch();
     }
   };
 
@@ -121,7 +123,7 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
           <SingleGenderSelect
             options={["Men", "Women", "Kids", "Both(M/F)"]}
             register={register}
-            name="gender"
+            name="use_for"
           />
           <SingleSelectCategories
             label={"Product Category"}
@@ -135,7 +137,7 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
             name="select_Lense"
             setactive={setAcative}
           />
-           <SingleSelectLensFeature
+          <SingleSelectLensFeature
             label="Power Type"
             options={power}
             register={register}
