@@ -54,11 +54,11 @@ const BlogItem = ({ value }) => {
           <h2 className="text-lg text-gray-900 font-bold mb-3 ">
             {value?.heading}
           </h2>
-          <div className="flex flex-row justify-between">
+          <div className="flex flex-row justify-between w-full">
             <h3 className="text-gray-500 text-xs  mb-1  tracking-wide">
               {value?.created_on}
             </h3>
-            <div className="flex justify-center gap-4">
+            {/* <div className="flex justify-center gap-4">
               <button
                 onClick={() => {
                   setOpen(true);
@@ -76,7 +76,7 @@ const BlogItem = ({ value }) => {
               >
                 <DeleteOutlineIcon />
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

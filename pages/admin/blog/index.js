@@ -81,12 +81,12 @@ const Blog = () => {
           >
             <IconButton label="Add Blog" icon={<FaBlog />} />
           </button>
-          <div className="grid grid-cols-4 items-center gap-5 h-full pt-5 overflow-auto scrollbar-hide ">
+          <div className="relative grid grid-cols-4 items-center gap-5 h-full pt-5 overflow-auto scrollbar-hide  ">
             {data &&
               data.map((value, indx) => (
                 <div
                   key={indx}
-                  className="flex flex-col relative min-h-[470px] max-h-[470px]"
+                  className=" flex flex-col relative min-h-[470px] max-h-[470px]"
                 >
                   <BlogItem
                     value={value}
@@ -94,6 +94,25 @@ const Blog = () => {
                       handleRoute(value);
                     }}
                   />
+                  <div className="absolute flex flex-row bottom-11 left-20 ml-20 px-14 gap-4 justify-between">
+                    <button
+                      onClick={() => {
+                        setOpen(true);
+                        setedit(value);
+                      }}
+                      className=" text-blue-500"
+                    >
+                      <TbEdit size={20} />
+                    </button>
+                    <button
+                      onClick={(e) => {
+                        Deletehandeler(e, value);
+                      }}
+                      className=" text-red-500"
+                    >
+                      <DeleteOutlineIcon />
+                    </button>
+                  </div>
                 </div>
               ))}
           </div>
