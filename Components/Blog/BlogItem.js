@@ -7,7 +7,7 @@ import DeletePoPUPDialog from "@/Components/Dialog/DeletePoPUPDialog";
 import { useMutation } from "@tanstack/react-query";
 import deleteBlogs from "@/utils/mutations/useDeleteBlog";
 
-const BlogItem = ({ value }) => {
+const BlogItem = ({ value, showActions }) => {
   const [open, setOpen] = useState(false);
   const [Delete, setDelete] = useState(false);
   const [DeletePayload, setDeletePayload] = useState({});
@@ -32,16 +32,16 @@ const BlogItem = ({ value }) => {
   });
   return (
     <div className="">
-    <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
-          <CreateBlogDialog open={open} setOpen={setOpen} edit={edit} />
-        </Modal>
-        <Modal isOpen={Delete} closeModal={onHideDelete} fullWidth={false}>
-          <DeletePoPUPDialog
-            Closefunction={onHideDelete}
-            Deletefunction={mutate}
-            payload={DeletePayload}
-          />
-        </Modal>
+      <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
+        <CreateBlogDialog open={open} setOpen={setOpen} edit={edit} />
+      </Modal>
+      <Modal isOpen={Delete} closeModal={onHideDelete} fullWidth={false}>
+        <DeletePoPUPDialog
+          Closefunction={onHideDelete}
+          Deletefunction={mutate}
+          payload={DeletePayload}
+        />
+      </Modal>
       <div className="shadow-md  rounded-lg h-[450px] border-2">
         <div className="">
           <img
@@ -58,25 +58,28 @@ const BlogItem = ({ value }) => {
             <h3 className="text-gray-500 text-xs  mb-1  tracking-wide">
               {value?.created_on}
             </h3>
-            {/* <div className="flex justify-center gap-4">
-              <button
-                onClick={() => {
-                  setOpen(true);
-                  setedit(value);
-                }}
-                className=" text-blue-500"
-              >
-                <TbEdit size={20} />
-              </button>
-              <button
-                onClick={(e) => {
-                  Deletehandeler(e, value);
-                }}
-                className=" text-red-500"
-              >
-                <DeleteOutlineIcon />
-              </button>
-            </div> */}
+
+            {showActions && (
+              <div className="flex justify-center gap-4">
+                <button
+                  onClick={() => {
+                    setOpen(true);
+                    setedit(value);
+                  }}
+                  className=" text-blue-500"
+                >
+                  <TbEdit size={20} />
+                </button>
+                <button
+                  onClick={(e) => {
+                    Deletehandeler(e, value);
+                  }}
+                  className=" text-red-500"
+                >
+                  <DeleteOutlineIcon />
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>

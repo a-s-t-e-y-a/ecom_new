@@ -17,19 +17,19 @@ import UpdateBlog from "@/utils/mutations/useupdateblog";
 const CreateBlogDialog = (props) => {
   const { open, setOpen, edit } = props;
   const { register, handleSubmit, control, setValue } = useForm();
-  const [loading, setLoading] = useState(false);
-  const { mutate: update } = UpdateBlog(edit?.id, setOpen, setLoading); // State for loading button
-  const { mutate } = useMutation({
+  // const [loading, setLoading] = useState(false);
+  const { mutate: update } = UpdateBlog(edit?.id, setOpen); // State for loading button
+  const { mutate,isPending:loading } = useMutation({
     mutationFn: CreateBlog,
     onSuccess: (data) => {
       toast.success("Blogs created successfully");
-      setOpen(false);
-      setLoading(false); // Set loading to false after mutation
+     if(setOpen) setOpen(false)
+       // Set loading to false after mutation
     },
     onError: (err) => {
       toast.error(err.message);
       setOpen(false);
-      setLoading(false); // Set loading to false on error
+       // Set loading to false on error
     },
   });
 
@@ -66,6 +66,7 @@ const CreateBlogDialog = (props) => {
       thumb: data?.thumb,
       url: replaceSpaceWithHyphen(data?.url),
     };
+    console.log(data)
     form.append("data", JSON.stringify(payload));
     if (Object.keys(edit).length > 0) {
       update(form);

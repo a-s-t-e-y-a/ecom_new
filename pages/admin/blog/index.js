@@ -93,8 +93,9 @@ const Blog = () => {
                     onClick={() => {
                       handleRoute(value);
                     }}
+                    showActions
                   />
-                  <div className="absolute flex flex-row bottom-11 left-20 ml-20 px-14 gap-4 justify-between">
+                  {/* <div className="absolute flex flex-row bottom-11 left-20 ml-20 px-14 gap-4 justify-between">
                     <button
                       onClick={() => {
                         setOpen(true);
@@ -112,7 +113,7 @@ const Blog = () => {
                     >
                       <DeleteOutlineIcon />
                     </button>
-                  </div>
+                  </div> */}
                 </div>
               ))}
           </div>
