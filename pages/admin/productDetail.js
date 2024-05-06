@@ -3,9 +3,8 @@ import ProductDetailDialog from "@/Components/Dialog/productDetails";
 import AdminLayout from "@/Layout/AdminLayout";
 import IconButton from "@/Components/Admin/IconButton";
 import Modal from "@/Components/Dialog/Modal";
-import { InputAdornment, TextField } from "@mui/material";
-import { MdOutlineLensBlur } from "react-icons/md";
-import { BiSearch } from "react-icons/bi";
+import { TextField } from "@mui/material";
+
 import { IsAuth } from "@/utils/IsAuth";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
