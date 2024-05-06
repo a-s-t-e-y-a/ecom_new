@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import FileInput from "../Admin/FileInput";
 import { TextField } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
@@ -28,11 +28,12 @@ import SingleGenderSelect from "@/Components/Admin/SingleSelectGender";
 import { useEffect } from "react";
 import UpdateProudct from "@/utils/mutations/useUpdateProductDetail";
 import SingleSelectLensFeature from "../Admin/lensFeatureMultipleSelect";
+import SelectBox from "../ui/SelectBox";
+import { Gender } from "@/utils/contants";
 
 const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
-  console.log(editValue, "editValue");
   const { register, handleSubmit, control, setValue, reset } = useForm({
-    defaultValues: editValue
+    defaultValues: editValue,
   });
   const { mutate } = useMutation({
     mutationFn: CreateProduct,
@@ -53,12 +54,33 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
   const { data: style } = useGetAllStyle();
   const [activePOwer, setAcative] = useState(true);
   const { mutate: update } = UpdateProudct(editValue?.p_id);
-
   useEffect(() => {
-    for (const key in editValue) {
-      // setValue(key, editValue[key]);
+    if (Object.keys(editValue).length > 1) {
+      console.log(editValue, "editValue");
+      const payload = {
+        ...editValue,
+        product_model_name: editValue?.product_model_name,
+        product_model_number: editValue?.product_model_number,
+        category: typeof editValue == "array" ? editValue?.productCategories.map((item)=> item) : null,
+        product_color: editValue?.product_color_,
+        shape: editValue?.shape_,
+        power_type: editValue?.power_type,
+        material: editValue?.material_,
+        size: editValue?.size_,
+        style: editValue?.style_,
+        use_for: editValue?.use_for,
+        lens_feature: editValue?.lens_feature,
+        description: editValue?.description,
+        price: editValue?.price,
+        discount: editValue?.discount,
+        discount_price: editValue?.discount_price,
+        stock: editValue?.stock,
+        main: editValue?.main,
+        file: editValue?.file,
+      };
+      reset(payload); // Reset with pre-populated gender value
     }
-  }, [editValue, setValue]);
+  }, []);
   const OnSubmit = async (data) => {
     console.log(data, "onSubmit");
     const form = new FormData();
@@ -120,35 +142,71 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
             {...register("product_model_number")}
             sx={{ width: 298 }}
           />
-          <SingleGenderSelect
-            options={["Men", "Women", "Kids", "Both(M/F)"]}
-            register={register}
+          <Controller
             name="use_for"
-          />
-          <SingleSelectCategories
-            label={"Product Category"}
-            options={categories}
-            register={register}
-            name="productCategoriesId"
-          />
-          <SingleSelectUniversal
-            options={["Yes", "No"]}
-            register={register}
-            name="select_Lense"
-            setactive={setAcative}
-          />
-          <SingleSelectLensFeature
-            label="Power Type"
-            options={power}
-            register={register}
-            name="power_type_id"
-          />
-          <SingleSelectColor
-            options={color}
             control={control}
-            label="Select Color"
-            register={register}
+            render={({ field: { value, onChange } }) => (
+              <SelectBox
+                label="Gender"
+                options={Gender || ""}
+                value={value}
+                onChange={onChange}
+              />
+            )}
+          />
+          <Controller
+            name="productCategoriesId"
+            control={control}
+            render={({ field: { value, onChange } }) => (
+              <SelectBox
+                label="Product Category"
+                options={
+                  categories
+                    ? categories.map((category) => category)
+                    : []
+                }
+                multiple={true}
+                value={value}
+                onChange={onChange}
+              />
+            )}
+          />
+          <Controller
+            name="select_Lense"
+            control={control}
+            render={({ field: { value, onChange } }) => (
+              <SelectBox
+                label="Select lens"
+                options={["Yes", "No"]}
+                value={value}
+                onChange={onChange}
+              />
+            )}
+          />
+          <Controller
+            name="power_type_id"
+            control={control}
+            render={({ field: { value, onChange } }) => {
+              <SelectBox
+                label="Power Type"
+                options={power}
+                value={value}
+                onChange={onChange}
+              />;
+            }}
+          />
+          <Controller
             name="product_color"
+            control={control}
+            render={({ field: { value, onChange } }) => {
+              <SelectBox
+                label="Select Color"
+                options={color}
+                multiple={false}
+                value={value}
+                onChange={onChange}
+              />;
+            }}
           />
           <SingleSelectShape
             label="Select Shape"

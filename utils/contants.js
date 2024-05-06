@@ -30,3 +30,5 @@ export const Frame_size = {
   2: "S",
   3: "L",
 };
+
+export const Gender = ["Men", "Women", "Kids", "Both(M/F)"]
