@@ -29,7 +29,6 @@ export default function SingleSelectSize({
   return (
     <div>
       <FormControl sx={{ width: 298 }} size="small">
-      
         <Controller
           control={control}
           name={name}
@@ -39,16 +38,11 @@ export default function SingleSelectSize({
               disablePortal
               disabled={!active}
               options={options || []}
-              getOptionLabel={(option) => option.name} 
+              getOptionLabel={(option) => option.name}
               onChange={(event, value, reason, details) =>
                 field.onChange(value ? value.id : null)
               }
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label={label}
-                />
-              )}
+              renderInput={(params) => <TextField {...params} label={label} />}
             />
           )}
         />
@@ -56,6 +50,3 @@ export default function SingleSelectSize({
     </div>
   );
 }
-
-
-
