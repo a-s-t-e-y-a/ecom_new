@@ -77,7 +77,7 @@ const Footer = () => {
               <Link href={"/contact"}>Contact Us</Link>
             </li>
             <li>
-              <Link href={""}>Refund Policy</Link>
+              <Link href={"/refundPolicy"}>Refund Policy</Link>
             </li>
             <li>
               <Link href={"/help"}>Help</Link>

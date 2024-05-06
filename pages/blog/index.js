@@ -49,7 +49,7 @@ const Index = () => {
 
       {/* Body  */}
       <div className=" grid grid-cols-2 px-5  w-full h-full bg-gray-50">
-        <div className=" w-full col-span-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mb-5 gap-5">
+        <div className=" w-[86%] col-span-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mb-5 gap-5">
           {Blogs.map((blog) => (
             <div key={blog.id} onClick={() => handleBlogCLick(blog?.url)}>
               <BlogItem value={blog} />
