@@ -86,7 +86,7 @@ const Footer = () => {
               <Link href={"/help"}>Cancellation</Link>
             </li>
             <li>
-              <Link href={"/help"}>Terms & Condition</Link>
+              <Link href={"/termConditions"}>Terms & Condition</Link>
             </li>
             <li>
               <Link href={"/help"}>Returns & Exchanges</Link>

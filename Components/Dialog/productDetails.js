@@ -165,7 +165,6 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
                     ? categories.map((category) => category)
                     : []
                 }
-                multiple={true}
                 value={value}
                 onChange={onChange}
               />

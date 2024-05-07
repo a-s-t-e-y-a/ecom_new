@@ -6,7 +6,6 @@ const SelectBox = ({
   label = "",
   value,
   onChange,
-  multiple,
   options = [],
 }) => {
   const selectedValue = React.useMemo(() => {
@@ -30,7 +29,7 @@ const SelectBox = ({
         getOptionKey={(option) => option.id || option}
         getOptionLabel={(option) => option.label || option}
         autoHighlight 
-        multiple={multiple ? true : false}
+        // multiple={multiple ? true : false}
         sx={{ width: 300 }}
         value={selectedValue}
         onChange={(_, newValue) => onChange(newValue)}
