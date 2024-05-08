@@ -46,11 +46,11 @@ const LensDetailDialogBox = ({ onCancel, refetch, token, edit }) => {
     formData.append("data", JSON.stringify(data));
     
     if (Object.keys(edit).length === 0) {
-      update(formData);
+      mutate(formData);
       onCancel();
       refetch();
     } else {
-      mutate(formData);
+      update(formData);
       onCancel();
       refetch();
     }

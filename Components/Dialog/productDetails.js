@@ -61,7 +61,10 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
         ...editValue,
         product_model_name: editValue?.product_model_name,
         product_model_number: editValue?.product_model_number,
-        category: typeof editValue == "array" ? editValue?.productCategories.map((item)=> item) : null,
+        category:
+          typeof editValue == "array"
+            ? editValue?.productCategories.map((item) => item)
+            : null,
         product_color: editValue?.product_color_,
         shape: editValue?.shape_,
         power_type: editValue?.power_type,
@@ -114,6 +117,8 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
     }
   };
 
+  console.log(categories, "catogeroys");
+
   return (
     <div className="relative border mt-[1100px] md:mt-[300px] rounded-md shadow-lg w-full md:w-auto h-[calc(100%-1rem)] max-h-full ">
       <h1 className="text-md font-semibold text-center text-gray-700 mt-3 mb-5">
@@ -148,6 +153,7 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
             render={({ field: { value, onChange } }) => (
               <SelectBox
                 label="Gender"
+                multiple={true}
                 options={Gender || ""}
                 value={value}
                 onChange={onChange}
@@ -161,8 +167,8 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
               <SelectBox
                 label="Product Category"
                 options={
-                  categories
-                    ? categories.map((category) => category)
+                  categories?.length > 0
+                    ? categories.map((category) => category.name)
                     : []
                 }
                 value={value}
@@ -188,6 +194,7 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
             render={({ field: { value, onChange } }) => {
               <SelectBox
                 label="Power Type"
+                multiple={true}
                 options={power}
                 value={value}
                 onChange={onChange}
