@@ -48,7 +48,7 @@ const CreateBlogDialog = ({ open, setOpen, edit }) => {
     const payload = {
       description: data?.description,
       heading: data?.heading,
-      tag: data?.tag,
+      tags: data?.tag,
       metaDescription: data?.metaDescription,
       seo_title: data?.heading,
       thumb: data?.thumb,
@@ -93,7 +93,7 @@ const CreateBlogDialog = ({ open, setOpen, edit }) => {
                 />
               )}
             />
-            <Textarea label="Tags" name="tags" {...register("tag")} />
+            <Textarea label="Tags" name="tags" {...register("tags")} />
             <Textarea label="Meta description" name="metaDescription" {...register("metaDescription")} />
             <div className="flex justify-end">
               <Button variant="text" color="red" onClick={() => setOpen(false)} className="mr-1">
