@@ -30,6 +30,7 @@ const CreateBlogDialog = ({ open, setOpen, edit }) => {
     description: edit?.description,
     url: edit?.url,
     seo_title: edit?.heading,
+    tags:edit?.tags,
     metaDescription: edit?.MetaDescription?.metaDescription,
   };
 
@@ -57,7 +58,8 @@ const CreateBlogDialog = ({ open, setOpen, edit }) => {
     form.append("data", JSON.stringify(payload));
 
     if (edit && typeof edit === 'object' && edit !== null) {
-      update(form);
+      console.log("new")
+      update(payload);
     } else {
       mutate(form);
     }
