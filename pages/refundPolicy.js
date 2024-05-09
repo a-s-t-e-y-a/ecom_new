@@ -62,11 +62,11 @@ const refundPolicy = () => {
         • You are responsible for the shipping costs associated with returning
         the item.
       </p>
-      <p className="text-sm font-regular  px-16 pt-4">
+      <p className="text-sm font-regular  px-16 pt-4 pb-6">
         If you have any questions or need assistance with the return process,
         please don't hesitate to contact our friendly customer service team. We
         are here to help! You can reach out to our customer service team via
-        WhatsApp OR Call +918188881661
+        <span className="font-bold"> WhatsApp OR Call +918188881661</span>
       </p>
       </div>
     </Layout>

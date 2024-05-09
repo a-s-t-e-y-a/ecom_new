@@ -62,9 +62,9 @@ const termConditions = () => {
       <p className="text-sm font-regular py-1 px-16">
         If you have any questions or concerns regarding the delivery of your
         eyeglasses, our customer support team is here to assist you. You can
-        reach us by Call or Whatsapp via +918188881661
+        reach us by<span className="font-bold"> Call or Whatsapp via +918188881661</span>
       </p>
-      <p className="text-sm font-regular py-1 px-16">
+      <p className="text-sm font-regular py-1 px-16 pb-6">
         In rare cases where there are unforeseen delays or issues with your
         order, our customer support team will reach out to you promptly to
         provide updates and resolve any concerns.
