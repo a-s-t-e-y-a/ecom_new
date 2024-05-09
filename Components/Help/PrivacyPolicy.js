@@ -5,7 +5,7 @@ const PrivacyPolicy = () => {
     
         <div className="flex flex-col justify-center px-16">
       <div className="text-gray-700 font-bold p-2 text-center text-3xl rounded-md py-1 pt-6">
-        TERM & CONDITION
+        PRIVACYPOLICY
       </div>
       <p className="text-sm font-regular  px-16 pt-4">
         At Akku ka chasma , we understand the excitement of receiving your new
