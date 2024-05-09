@@ -20,7 +20,7 @@ const help = () => {
   return (
     <Layout>
         <div className='text-gray-700'>
-          <h1 className='text-5xl font-bold tracking-wide text-center'>We Here To Help You</h1>
+          <h1 className='text-5xl font-bold tracking-wide text-center pb-6'>We Here To Help You</h1>
           <div className='w-[90%] mx-auto'>
             <TabPanel TabPanelOption={TabPanelOption}/>
           </div>
