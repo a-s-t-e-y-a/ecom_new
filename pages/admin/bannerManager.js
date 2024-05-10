@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import useGetAllBanner from "@/utils/queries/useGetAllbanner";
+import BannerCard from "@/Components/Admin/BannerCard";
 const BannagerManager = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
@@ -40,8 +41,15 @@ const BannagerManager = () => {
           <div onClick={handleOpen}>
             <IconButton label="Bannager Manager" icon={<GiKnightBanner />} />
           </div>
-          <div className="mt-6 flex items-center gap-3 flex-wrap w-full">
-            {data && data?.map((banner, index) => console.log(banner))}
+          <div className="mt-6 flex justify-between items-center gap-2 flex-wrap w-full">
+            {data &&
+              data?.map((banner, index) => {
+                return (
+                  <div className="py-4 pr-6" key={index}>
+                    <BannerCard banner={banner}/>
+                  </div>
+                );
+              })}
           </div>
         </div>
       </AdminLayout>
