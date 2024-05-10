@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query"
-import axiosInstance from "@/api";
+import api from "@/api";
 
 const useGetAllDashboard = () => {
   const alltask = useQuery({
-    queryKey: ["api/Brands"],
+    queryKey: ["api/brands/count"],
     queryFn: async () => {
-      const res = await axiosInstance.get('/brands');
+      const res = await api.get('/brands/count');
       return res?.data?.data;
     },
   });
@@ -13,4 +13,3 @@ const useGetAllDashboard = () => {
 };
 
 export default useGetAllDashboard;
-    

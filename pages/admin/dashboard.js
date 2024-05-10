@@ -4,7 +4,6 @@ import { IsAuth } from "@/utils/IsAuth";
 import { Router } from "@mui/icons-material";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import useGetAllDashboard from "@/utils/queries/useDashBoardGetAll";
 
 // const items = [
 //   {
@@ -54,8 +53,8 @@ import useGetAllDashboard from "@/utils/queries/useDashBoardGetAll";
 const Dashboard = () => {
   const router = useRouter();
   const { data, refetch } = useGetAllDashboard();
-
   const [logged, setlogged] = useState(false);
+
   useEffect(() => {
     if (IsAuth("admin_info")) {
       setlogged(true);
