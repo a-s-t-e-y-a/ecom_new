@@ -8,9 +8,8 @@ import React, { useEffect, useState } from "react";
 
 const Dashboard = () => {
   const router = useRouter();
-  const { data, refetch } = useGetAllDashboard();
   const [logged, setlogged] = useState(false);
-  console.log(data, 'dashboard');
+  const { data, refetch } = useGetAllDashboard();
   const items = [
     {
       color: "bg-blue-300",
@@ -55,7 +54,6 @@ const Dashboard = () => {
       src: "/questions.png",
     },
   ];
-  console.log(items)
   useEffect(() => {
     if (IsAuth("admin_info")) {
       setlogged(true);
