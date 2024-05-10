@@ -62,8 +62,10 @@ const CreateBlogDialog = ({ closeModal, edit, refetch }) => {
     if (edit && typeof edit === "object" && edit !== null) {
       console.log("new");
       update(payload);
+      closeModal()
     } else {
       mutate(form);
+      closeModal();
     }
   };
 
@@ -108,7 +110,7 @@ const CreateBlogDialog = ({ closeModal, edit, refetch }) => {
               <Button
                 variant="text"
                 color="red"
-                onClick={() => setOpen(false)}
+                onClick={() => closeModal()}
                 className="mr-1"
               >
                 <span>Cancel</span>

@@ -16,13 +16,32 @@ import { useEffect } from "react";
 import UpdatelensDetails from "@/utils/mutations/useupdateLensDeatil";
 
 const LensDetailDialogBox = ({ onCancel, refetch, token, edit }) => {
-  const { register, handleSubmit, setValue } = useForm();
-  useEffect(() => {
-    for (const key in edit) {
-      setValue(key, edit[key]);
-    }
-  }, [edit, setValue]);
+  const { data: power } = useGetAllPowerType();
+  const { data: lens_feature } = useGetAllLensFeature();
   const { mutate: update } = UpdatelensDetails(edit?.id);
+  const { register, handleSubmit, reset } = useForm();
+  useEffect(() => {
+    console.log(edit);
+    const resetPayload = {
+      power_type_id: edit?.power_type_,
+      anti_scratch_coating: edit?.anti_scratch_coating,
+      blue_light_blocker: edit?.blue_light_blocker,
+      both_side_anti_glare_coating: edit?.both_side_anti_glare_coating,
+      both_side_anti_reflective_coating: edit?.both_side_anti_reflective_coating,
+      breakage_and_crack_resistant: edit?.breakage_and_crack_resistant,
+      categories_id: edit?.categories_id,
+      heading: edit?.heading,
+      lens_feature: edit?.lens_feature,
+      power_range: edit?.power_range,
+      power_type: edit?.power_type_,
+      price:edit?.price,
+      thickness: edit?.thickness,
+      uv_protection: edit?.uv_protection,
+      warranty_period:edit?.warranty_period,
+      water_and_dust_repellent: edit?.water_and_dust_repellent
+    };
+    reset(resetPayload);
+  }, [edit, reset]);
   const { mutate } = useMutation({
     mutationFn: CreateLensDeatils,
     onSuccess: () => {
@@ -33,18 +52,12 @@ const LensDetailDialogBox = ({ onCancel, refetch, token, edit }) => {
       toast.error("Error occurred");
     },
   });
-  const {
-    data: brand,
-    isLoading: brandLoading,
-    isError: errorBrand,
-  } = useGetAllBrands();
-  const { data: power } = useGetAllPowerType();
-  const { data: lens_feature } = useGetAllLensFeature();
+
   const onSubmit = (data) => {
     const formData = new FormData();
     formData.append("file", data.file[0]);
     formData.append("data", JSON.stringify(data));
-    
+
     if (Object.keys(edit).length === 0) {
       mutate(formData);
       onCancel();
