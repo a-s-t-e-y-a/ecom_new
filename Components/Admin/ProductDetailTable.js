@@ -130,10 +130,10 @@ const ProductDetailTable = ({ data, refetch, open, setedit, opensEdit }) => {
                     {product?.discounted_price}
                   </td>
                   <td className="py-2 pl-6 border text-left">
-                    {product?.shape_?.name}
+                    {product?.shape}
                   </td>
                   <td className="py-2 pl-6 border text-left">
-                    {product?.material_?.name}
+                    {product?.material}
                   </td>
                   <td className="py-2 pl-6 border text-left">
                     {product?.frame_width}
@@ -145,7 +145,10 @@ const ProductDetailTable = ({ data, refetch, open, setedit, opensEdit }) => {
                     {product?.lens_height}
                   </td>
                   <td className="py-2 pl-6 border text-left">
-                    {product?.product_color_?.name}
+                    {product?.product_color}
+                  </td>
+                  <td className="py-2 pl-6 border text-left">
+                    {product?.power_type}
                   </td>
                 </tr>
               ))
