@@ -2,7 +2,7 @@ import api, { Imageapi } from "@/api";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-const UpdateBlog = (id) => {
+const UpdateBlog = (id, setOpen, open, refetch) => {
     const update = useMutation({
         mutationKey: ["api/product"],
         mutationFn: async (data) => {
@@ -11,11 +11,11 @@ const UpdateBlog = (id) => {
         },
         onSuccess: () => {
             toast.success("Blogs update successfully");
-            
+            setOpen(!open);
+            refetch();
         },
         onError: (err) => {
             toast.error(err.message);
-            
         },
     });
     return update;
