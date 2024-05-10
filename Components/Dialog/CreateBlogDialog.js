@@ -48,7 +48,7 @@ const CreateBlogDialog = ({ open, setOpen, edit }) => {
     const payload = {
       description: data?.description,
       heading: data?.heading,
-      tags: data?.tag,
+      tags: data?.tags,
       metaDescription: data?.metaDescription,
       seo_title: data?.heading,
       thumb: data?.thumb,
