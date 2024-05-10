@@ -72,13 +72,13 @@ const Dashboard = () => {
           <h1 className=" text-4xl font-bold mb-5">Dashboard</h1>
           <div className=" grid grid-cols-4 gap-4">
             {data &&
-              data.map((item, id) => (
-                <div key={id}>
+              data.map((item) => (
+                <div key={item.id}>
                   <DashboardSingleItem
-                    color={item.color}
-                    title={item.title}
-                    number={item.number}
-                    src={item.src}
+                    totalCountBrand={item.totalCountBrand}
+                    totalCountCategories={item.totalCountCategories}
+                    totalCountProduct={item.totalCountProduct}
+                    totalCountUser={item.totalCountUser}
                   />
                 </div>
               ))}

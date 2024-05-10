@@ -9,10 +9,10 @@ const DashboardSingleItem = (props) => {
     >
       <div className="flex items-center justify-between p-2">
         <div className="flex flex-col items-start justify-start">
-          <span className="font-bold text-3xl">{number}</span>
-          <span>{title}</span>
+          <span className="font-bold text-3xl">{totalCountCategories}</span>
+          <span>{totalCountProduct}</span>
         </div>
-        <div>
+        {/* <div>
           <Image
             width={100}
             height={100}
@@ -20,10 +20,10 @@ const DashboardSingleItem = (props) => {
             src={src}
             className="w-16"
           />
-        </div>
+        </div> */}
       </div>
       <div className={`contrast-125 border-t-2 w-full text-center p-1 pb-2 `}>
-        More Info
+        {totalCountUser}
       </div>
     </div>
   );
