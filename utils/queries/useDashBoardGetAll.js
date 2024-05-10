@@ -6,7 +6,7 @@ const useGetAllDashboard = () => {
     queryKey: ["api/brands/count"],
     queryFn: async () => {
       const res = await api.get('/brands/count');
-      return res?.data?.data;
+      return res?.data;
     },
   });
   return alltask;

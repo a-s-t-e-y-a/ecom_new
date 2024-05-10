@@ -1,60 +1,61 @@
 import DashboardSingleItem from "@/Components/Admin/DashboardSingleItem";
 import AdminLayout from "@/Layout/AdminLayout";
 import { IsAuth } from "@/utils/IsAuth";
+import useGetAllDashboard from "@/utils/queries/useDashBoardGetAll";
 import { Router } from "@mui/icons-material";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-
-// const items = [
-//   {
-//     color: "bg-blue-300",
-//     title: "Total Place Order",
-//     number: 7,
-//     src: "/shop.png",
-//   },
-//   {
-//     color: "bg-pink-300",
-//     title: "Total Product Brands",
-//     number: 2,
-//     src: "/brand.png",
-//   },
-//   {
-//     color: "bg-lime-300",
-//     title: "Total Product Detail",
-//     number: 1817,
-//     src: "/package-delivery.png",
-//   },
-//   {
-//     color: "bg-cyan-300",
-//     title: "User Registrations",
-//     number: 5891,
-//     src: "/man.png",
-//   },
-//   {
-//     color: "bg-purple-300",
-//     title: "Product Catagories",
-//     number: 7,
-//     src: "/shop.png",
-//   },
-//   {
-//     color: "bg-yellow-300",
-//     title: "Total Email Subscribed",
-//     number: 123,
-//     src: "/subscribe.png",
-//   },
-//   {
-//     color: "bg-indigo-300",
-//     title: "Total Enquiry",
-//     number: 11025,
-//     src: "/questions.png",
-//   },
-// ];
 
 const Dashboard = () => {
   const router = useRouter();
   const { data, refetch } = useGetAllDashboard();
   const [logged, setlogged] = useState(false);
-
+  console.log(data, 'dashboard');
+  const items = [
+    {
+      color: "bg-blue-300",
+      title: "Total Place Order",
+      number: data?.totalCountPlaceOrder || 0,
+      src: "/shop.png",
+    },
+    {
+      color: "bg-pink-300",
+      title: "Total Product Brands",
+      number: data?.totalCountBrand || 0,
+      src: "/brand.png",
+    },
+    {
+      color: "bg-lime-300",
+      title: "Total Product Detail",
+      number: data?.totalCountProduct || 0,
+      src: "/package-delivery.png",
+    },
+    {
+      color: "bg-cyan-300",
+      title: "User Registrations",
+      number: data?.totalCountRegisteredUser || 0,
+      src: "/man.png",
+    },
+    {
+      color: "bg-purple-300",
+      title: "Product Catagories",
+      number: data?.totalCountCategories || 0,
+      src: "/shop.png",
+    },
+    {
+      color: "bg-yellow-300",
+      title: "Total Email Subscribed",
+      number: data?.TotalEmailSubscribed || 0,
+      src: "/subscribe.png",
+    },
+    {
+      color: "bg-indigo-300",
+      title: "Total Enquiry",
+      number: data?.totalEnquiry || 0,
+      src: "/questions.png",
+    },
+  ];
+  console.log(items)
   useEffect(() => {
     if (IsAuth("admin_info")) {
       setlogged(true);
@@ -70,8 +71,8 @@ const Dashboard = () => {
         <div className="px-5">
           <h1 className=" text-4xl font-bold mb-5">Dashboard</h1>
           <div className=" grid grid-cols-4 gap-4">
-            {data &&
-              data.map((item, id) => (
+            {items &&
+              items.map((item, id) => (
                 <div key={id}>
                   <DashboardSingleItem
                     color={item.color}
