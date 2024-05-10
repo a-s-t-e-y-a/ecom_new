@@ -56,15 +56,11 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
   const { mutate: update } = UpdateProudct(editValue?.p_id);
   useEffect(() => {
     if (Object.keys(editValue).length > 1) {
-      console.log(editValue, "editValue");
       const payload = {
         ...editValue,
         product_model_name: editValue?.product_model_name,
         product_model_number: editValue?.product_model_number,
-        category:
-          typeof editValue == "array"
-            ? editValue?.productCategories.map((item) => item)
-            : null,
+        productCategories: editValue?.productCategories,
         product_color: editValue?.product_color_,
         shape: editValue?.shape_,
         power_type: editValue?.power_type,
@@ -111,9 +107,9 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
       onCancel();
       refetch();
     } else {
-      // update(form);
-      // onCancel()
-      // refetch();
+      update(form);
+      onCancel();
+      refetch();
     }
   };
 
