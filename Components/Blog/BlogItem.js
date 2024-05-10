@@ -42,7 +42,7 @@ const BlogItem = ({ value, showActions }) => {
           payload={DeletePayload}
         />
       </Modal>
-      <div className="shadow-md  rounded-lg h-[450px] border-2 max-w-full">
+      <div className="shadow-md  rounded-lg h-[450px] border-2 max-w-96">
         <div className="">
           <img
             className="rounded object-cover h-[300px] rounded-t-md"
