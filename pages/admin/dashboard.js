@@ -1,6 +1,8 @@
 import DashboardSingleItem from "@/Components/Admin/DashboardSingleItem";
 import AdminLayout from "@/Layout/AdminLayout";
 import { IsAuth } from "@/utils/IsAuth";
+import useGetAllDashboard from "@/utils/queries/useDashBoardGetAll";
+import useGetAllDashboard from "@/utils/queries/useDashBoardGetAll";
 import { Router } from "@mui/icons-material";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
