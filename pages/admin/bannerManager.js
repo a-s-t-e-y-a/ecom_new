@@ -45,8 +45,8 @@ const BannagerManager = () => {
             {data &&
               data?.map((banner, index) => {
                 return (
-                  <div className="py-4 pr-6">
-                    <BannerCard banner={banner} key={index} />
+                  <div className="py-4 pr-6" key={index}>
+                    <BannerCard banner={banner}/>
                   </div>
                 );
               })}
