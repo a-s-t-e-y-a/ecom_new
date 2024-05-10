@@ -14,21 +14,19 @@ import FileInput from "../Admin/FileInput";
 import QuillEditor from "../Admin/QuillEditor";
 import UpdateBlog from "@/utils/mutations/useupdateblog";
 
-const CreateBlogDialog = ({ open, setOpen, edit, refetch }) => {
+const CreateBlogDialog = ({ closeModal, edit, refetch }) => {
   const { register, handleSubmit, control, reset } = useForm();
-  const { mutate: update } = UpdateBlog(edit?.id, setOpen, open, refetch);
+  const { mutate: update } = UpdateBlog(edit?.id, closeModal, refetch);
   const { mutate, isLoading } = useMutation({
     mutationFn: CreateBlog,
     onSuccess: () => {
       toast.success("Blogs created successfully");
       refetch();
-      setOpen(!open);
+      closeModal()
     },
     onError: (error) => {
       console.error("Error creating blog:", error);
       toast.error("Failed to create blog");
-      refetch();
-      setOpen(!open);
     },
   });
 

@@ -62,7 +62,7 @@ const Blog = () => {
     return (
       <AdminLayout>
         <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
-          <CreateBlogDialog open={open} setOpen={setOpen} edit={edit} refetch={refetch}/>
+          <CreateBlogDialog closeModal={onHide} edit={edit} refetch={refetch}/>
         </Modal>
         <Modal isOpen={Delete} closeModal={onHideDelete} fullWidth={false}>
           <DeletePoPUPDialog
