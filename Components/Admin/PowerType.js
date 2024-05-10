@@ -46,7 +46,7 @@ const PowerType = (props) => {
         <p className="font-semibold">{title}</p>
         <p className="text-sm text-gray-500">{description}</p>
       </div>
-      <div className="flex flex-row gap-4">
+      <div className="flex flex-row  items-center justify-around">
       <button
         className=" text-blue-500 cursor-pointer"
         onClick={() => {setOpen(true);
@@ -58,7 +58,7 @@ const PowerType = (props) => {
         className=" text-red-500 cursor-pointer"
         onClick={() => deletehandler(id)}
       >
-        <DeleteOutlineIcon className="text-base" />
+      <DeleteOutlineIcon className="text-base" size={20} />
       </button>
       </div>
     </div>
