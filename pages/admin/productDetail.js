@@ -3,14 +3,16 @@ import ProductDetailDialog from "@/Components/Dialog/productDetails";
 import AdminLayout from "@/Layout/AdminLayout";
 import IconButton from "@/Components/Admin/IconButton";
 import Modal from "@/Components/Dialog/Modal";
-import { TextField } from "@mui/material";
-
+import { InputAdornment, TextField } from "@mui/material";
+import { MdOutlineLensBlur } from "react-icons/md";
+import { BiSearch } from "react-icons/bi";
 import { IsAuth } from "@/utils/IsAuth";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import useGetAllProducts from "@/utils/queries/admin/UseProductGetAll";
 import Pagination from "@/Components/Pagination/Pagination";
+
 const ProductDetail = () => {
   const [open, setOpen] = useState(false);
   const [page, setpage] = useState(1);
@@ -21,6 +23,7 @@ const ProductDetail = () => {
   const [logged, setlogged] = useState(false);
   const [Products, setproducts] = useState([]);
   const [edit, setedit] = useState({});
+
   useEffect(() => {
     if (IsAuth("admin_info")) {
       setlogged(true);
@@ -32,6 +35,7 @@ const ProductDetail = () => {
     }
     refetch();
   }, [router, refetch, data]);
+  
   const NumberOfProducts = (e) => {
     const Numbers = e?.target?.value;
     if (Numbers > 0) {

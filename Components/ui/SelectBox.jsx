@@ -1,42 +1,32 @@
-import { Autocomplete, FormControl, TextField } from "@mui/material";
-import React from "react";
+"use client";
+import * as React from "react";
+import Autocomplete from "@mui/material/Autocomplete";
+import TextField from "@mui/material/TextField";
 
 const SelectBox = ({
-  size = "medium",
-  label = "",
+  options = [],
   value,
   onChange,
-  options = [],
+  label = "Sample Label",
+  placeholder = "",
+  id,
+  multiple = false,
 }) => {
-  const selectedValue = React.useMemo(() => {
-    if (typeof value === "object" && !value) {
-      console.log("jasmit if", value);
-
-      // Handle object type values
-      return options.find((option) => option.id === value?.id) || null;
-    } else {
-      // Handle primitive type values
-      console.log("jasmit", value);
-
-      return options.find((option) => option === value) || null;
-    }
-  }, [value, options]);
-
   return (
-    <FormControl sx={{ width: 300 }} size={size}>
-      <Autocomplete
-        disablePortal
-        options={options}
-        getOptionKey={(option) => option.id || option}
-        getOptionLabel={(option) => option.label || option}
-        autoHighlight 
-        // multiple={multiple ? true : false}
-        sx={{ width: 300 }}
-        value={value}
-        onChange={(_, newValue) => onChange(newValue)}
-        renderInput={(params) => <TextField {...params} label={label} />}
-      />
-    </FormControl>
+    <Autocomplete
+      multiple={multiple}
+      id={id}
+      options={options}
+      getOptionKey={(option) => option?.products_categories_id || option?.id || option}
+      getOptionLabel={(option) => option?.name}
+      filterSelectedOptions
+      value={value}
+      onChange={(_, value) => onChange(value)}
+      sx={{ width: "300px" }}
+      renderInput={(params) => (
+        <TextField {...params} label={label} placeholder={placeholder} />
+      )}
+    />
   );
 };
 

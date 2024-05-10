@@ -29,7 +29,6 @@ export default function SingleSelectPowerType({
   return (
     <div>
       <FormControl sx={{ width: 298 }} size="small">
-      
         <Controller
           control={control}
           name={name}

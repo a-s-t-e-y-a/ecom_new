@@ -120,7 +120,6 @@ const[edit,setedit]=useState({});
                 {data &&
                   data.map(
                     (item, index) => (
-                      console.log(item),
                       (
                         <Draggable
                           key={item?.id}

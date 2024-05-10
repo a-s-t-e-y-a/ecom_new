@@ -12,43 +12,6 @@ const ProductDetailTable = ({ data, refetch, open, setedit, opensEdit }) => {
   const [DeletePayload, setDeletePayload] = useState({});
   const onHideDelete = () => setDelete(false);
   const onShowDelete = () => setDelete(true);
-  const [product,setProduct] = useState ({
-    
-      "product_model_name": "Aviator Classic",
-      "product_model_number": "AV-001",
-      "capacity": "N/A",
-      "use_for": "Sunglasses",
-      "dimensions": "140mm x 50mm x 20mm",
-      "country_of_origin": "Italy",
-      "row_metrial_source_from": "China",
-      "show_lens_list": 1,
-      "warranty": "1 year manufacturer warranty",
-      "product_description": "Stylish aviator sunglasses with polarized lenses and a classic metal frame.",
-      "product_price": "99.99",
-      "discounted_price": 79,
-      "offer": "Buy one, get one 50% off",
-      "bought": "true",
-      "frame_width": "140mm",
-      "temple_length": "135mm",
-      "lens_height": "50mm",
-      "coupon_code": "SUMMER10",
-      "coupon_amount": 10,
-      "stokke": 50,
-      "product_url": "https://example.com/products/aviator-classic",
-      "seo_title": "Aviator Classic Sunglasses",
-      "keyword": "sunglasses, aviator, polarized",
-      "status": 1,
-      "lens_width": "60mm",
-      "productBrandId": 1,
-      "productCategories": [1, 2],
-      "product_color": 1,
-      "shape": 2,
-      "style": 3,
-      "size": 4,
-      "material": 5,
-      "power_type": 6
-    
-  })
   const { mutate: Deletes } = useMutation({
     mutationFn: DeleteProduct,
     onSuccess: (data) => {
@@ -63,10 +26,7 @@ const ProductDetailTable = ({ data, refetch, open, setedit, opensEdit }) => {
     setDeletePayload(Product);
     onShowDelete();
   };
- const handleSubmit = async (e) => {
-  e.preventDefault();
-  console.log('From Data',product);
- }
+
   return (
     <div className="w-full h-[700px] tracking-wide">
       <Modal isOpen={Delete} closeModal={onHideDelete} fullWidth={false}>
@@ -93,7 +53,6 @@ const ProductDetailTable = ({ data, refetch, open, setedit, opensEdit }) => {
             <th className="py-2 border flex-1 pl-6 text-left">Color</th>
           </tr>
         </thead>
-        <form onSubmit={handleSubmit}>
         <tbody className="text-xs text-gray-600 text-center  ">
           {data.length > 0
             ? data.map((Product, index) => (
@@ -118,43 +77,39 @@ const ProductDetailTable = ({ data, refetch, open, setedit, opensEdit }) => {
                     </span>
                   </td>
                   <td className="py-2 pl-6 border text-left">
-                    {product?.product_model_number}
+                    {Product?.product_model_number}
                   </td>
                   <td className="py-2 pl-6 border text-left">
-                    {product?.stokke}
+                    {Product?.stokke}
                   </td>
                   <td className="py-2 pl-6 border text-left">
-                    {product?.product_model_name}
+                    {Product?.product_model_name}
                   </td>
                   <td className="py-2 pl-6 border text-left">
-                    {product?.discounted_price}
+                    {Product?.discounted_price}
                   </td>
                   <td className="py-2 pl-6 border text-left">
-                    {product?.shape}
+                    {Product?.shape_?.name}
                   </td>
                   <td className="py-2 pl-6 border text-left">
-                    {product?.material}
+                    {Product?.material_?.name}
                   </td>
                   <td className="py-2 pl-6 border text-left">
-                    {product?.frame_width}
+                    {Product?.frame_width}
                   </td>
                   <td className="py-2 pl-6 border text-left">
-                    {product?.lens_width}
+                    {Product?.lens_width}
                   </td>
                   <td className="py-2 pl-6 border text-left">
-                    {product?.lens_height}
+                    {Product?.lens_height}
                   </td>
                   <td className="py-2 pl-6 border text-left">
-                    {product?.product_color}
-                  </td>
-                  <td className="py-2 pl-6 border text-left">
-                    {product?.power_type}
+                    {Product?.product_color_?.name}
                   </td>
                 </tr>
               ))
             : null}
         </tbody>
-        </form>
       </table>
     </div>
   );
