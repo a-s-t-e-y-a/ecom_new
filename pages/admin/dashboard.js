@@ -8,6 +8,7 @@ import React, { useEffect, useState } from "react";
 
 const Dashboard = () => {
   const router = useRouter();
+  const [logged, setlogged] = useState(false);
   const { data, refetch } = useGetAllDashboard();
   const items = [
     {
