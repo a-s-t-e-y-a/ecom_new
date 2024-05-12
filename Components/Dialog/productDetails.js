@@ -1,7 +1,7 @@
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import FileInput from "../Admin/FileInput";
-import { TextField } from "@mui/material";
+import { Autocomplete, TextField } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import useGetAllBrands from "@/utils/queries/useBrandsGetAll";
 import useGetAllCategories from "@/utils/queries/useCategoriesGetAll";
@@ -29,9 +29,9 @@ import { useEffect } from "react";
 import UpdateProudct from "@/utils/mutations/useUpdateProductDetail";
 import SingleSelectLensFeature from "../Admin/lensFeatureMultipleSelect";
 import SelectBox from "../ui/SelectBox";
-import { Gender } from "@/utils/contants";
 
 const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
+  const [options, setOptions] = useState(["Male", "Female", "Other"]);
   const { register, handleSubmit, control, setValue, reset } = useForm({
     defaultValues: editValue,
   });
@@ -82,35 +82,35 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
   }, []);
   const OnSubmit = async (data) => {
     console.log(data, "onSubmit");
-    const form = new FormData();
-    // Append the 'main' files
-    if (data.main) {
-      for (let i = 0; i < data.main.length; i++) {
-        form.append("files", data.main[i]);
-      }
-    }
+    // const form = new FormData();
+    // // Append the 'main' files
+    // if (data.main) {
+    //   for (let i = 0; i < data.main.length; i++) {
+    //     form.append("files", data.main[i]);
+    //   }
+    // }
 
-    // Append the 'file' files
-    if (data.file) {
-      for (let i = 0; i < data.file.length; i++) {
-        form.append("files", data.file[i]);
-      }
-    }
-    delete data.main;
-    delete data.file;
-    // Append the data object as JSON string
-    form.append("data", JSON.stringify(data));
+    // // Append the 'file' files
+    // if (data.file) {
+    //   for (let i = 0; i < data.file.length; i++) {
+    //     form.append("files", data.file[i]);
+    //   }
+    // }
+    // delete data.main;
+    // delete data.file;
+    // // Append the data object as JSON string
+    // form.append("data", JSON.stringify(data));
 
-    // Assuming mutate is an asynchronous function that sends the form data
-    if (Object.keys(editValue).length === 0) {
-      mutate(form);
-      onCancel();
-      refetch();
-    } else {
-      update(form);
-      onCancel();
-      refetch();
-    }
+    // // Assuming mutate is an asynchronous function that sends the form data
+    // if (Object.keys(editValue).length === 0) {
+    //   mutate(form);
+    //   onCancel();
+    //   refetch();
+    // } else {
+    //   update(form);
+    //   onCancel();
+    //   refetch();
+    // }
   };
 
   console.log(categories, "catogeroys");
@@ -147,55 +147,46 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
             name="use_for"
             control={control}
             render={({ field: { value, onChange } }) => (
-              <SelectBox
-                label="Gender"
-                multiple={true}
-                options={Gender || ""}
+              <Autocomplete
+                multiple
+                options={options}
                 value={value}
-                onChange={onChange}
-              />
-            )}
-          />
-          <Controller
-            name="productCategoriesId"
-            control={control}
-            render={({ field: { value, onChange } }) => (
-              <SelectBox
-                label="Product Category"
-                options={
-                  categories?.length > 0
-                    ? categories.map((category) => category.name)
-                    : []
-                }
-                value={value}
-                onChange={onChange}
-              />
-            )}
-          />
-          <Controller
-            name="select_Lense"
-            control={control}
-            render={({ field: { value, onChange } }) => (
-              <SelectBox
-                label="Select lens"
-                options={["Yes", "No"]}
-                value={value}
-                onChange={onChange}
+                sx={{ width: "300px" }}
+                onChange={(event, newValue) => {
+                  onChange(newValue);
+                }}
+                renderInput={(params) => (
+                  <TextField {...params} label="Gender" />
+                )}
               />
             )}
           />
           <Controller
             name="power_type_id"
             control={control}
-            render={({ field: { value, onChange } }) => {
+            render={({ field: { value, onChange } }) => (
               <SelectBox
                 label="Power Type"
                 multiple={true}
                 options={power}
                 value={value}
                 onChange={onChange}
-              />;
-            }}
+              />
+            )}
+          />
+
+          <Controller
+            name="product_color"
+            control={control}
+            render={({ field: { value, onChange } }) => (
+              <SelectBox
+                label="Select Color"
+                options={color}
+                multiple={false}
+                value={value}
+                onChange={onChange}
+              />
+            )}
           />
           <Controller
             name="product_color"
@@ -204,12 +195,30 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
               <SelectBox
                 label="Select Color"
                 options={color}
-                multiple={false}
                 value={value}
                 onChange={onChange}
               />;
             }}
           />
+            <Controller
+            name="select_Lense"
+            control={control}
+            render={({ field: { value, onChange } }) => (
+              <Autocomplete
+                multiple
+                options={["yes", "no"]}
+                value={value}
+                sx={{ width: "300px" }}
+                onChange={(event, newValue) => {
+                  onChange(newValue);
+                }}
+                renderInput={(params) => (
+                  <TextField {...params} label="Select lens" />
+                )}
+              />
+            )}
+          />
+
           <SingleSelectShape
             label="Select Shape"
             control={control}
@@ -250,7 +259,7 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
               }}
               variant="outlined"
               size="small"
-              {...register("dsfs")}
+              {...register("Lens_Material")}
               sx={{ height: 50 }}
             />
           </div>
