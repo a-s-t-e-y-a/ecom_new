@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import FileInput from "../Admin/FileInput";
 import { TextField } from "@mui/material";
@@ -12,8 +12,9 @@ import Loader from "../Loader";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-const LensFeatureDialogBox = ({ onCancel, refetch, token }) => {
-  const { register, handleSubmit, control } = useForm();
+const LensFeatureDialogBox = ({ onCancel, refetch, token, edit }) => {
+  console.log(edit, "edit");
+  const { register, handleSubmit, control, reset } = useForm();
   const { mutate } = useMutation({
     mutationFn: CreateLenseFeature,
     onSuccess: () => {
@@ -27,14 +28,14 @@ const LensFeatureDialogBox = ({ onCancel, refetch, token }) => {
   });
   const { data } = useGetAllPowerType();
 
-  //help to return power type id
-  const getPowerTypeId = (powerTypePayloadName) => {
-    const filteredData = data.filter(
-      (item) => item.name === powerTypePayloadName
-    );
-    console.log(filteredData[0].id, "returnId");
-    return filteredData[0].id;
-  };
+  useEffect(() => {
+    const resetPayload = {
+      power_type_id: edit?.power_type_,
+      title: edit?.title,
+      description: edit?.description
+    }
+    reset(resetPayload)
+  }, []);
 
   const onSubmit = (data) => {
     console.log(data);
@@ -61,8 +62,8 @@ const LensFeatureDialogBox = ({ onCancel, refetch, token }) => {
       >
         <FileInput title="" register={register} />
         <SingleSelectPowerType
-        label="Select Power Type"
-        control={control}
+          label="Select Power Type"
+          control={control}
           options={data}
           register={register}
           name="power_type_id"

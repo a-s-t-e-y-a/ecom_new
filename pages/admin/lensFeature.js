@@ -41,6 +41,7 @@ const LensFeature = () => {
 
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);
+
   return (
     <AdminLayout>
       <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
@@ -53,21 +54,18 @@ const LensFeature = () => {
         }
       </Modal>
       <div>
-        <div onClick={() => {
-              handleOpen();
-              setedit(null);
-            }}>
+        <div
+          onClick={() => {
+            handleOpen();
+          }}
+        >
           <IconButton label="Add Lens Features" icon={<GiMicroscopeLens />} />
         </div>
         <div className="mt-10 grid grid-cols-2 items-center gap-5 w-full">
           {data &&
             data.map((value) => (
               <PowerType
-                key={value?.id}
-                src={value?.image}
-                id={value?.id}
-                title={value?.title}
-                description={value?.description}
+                data={value}
                 mutate={mutate}
               />
             ))}

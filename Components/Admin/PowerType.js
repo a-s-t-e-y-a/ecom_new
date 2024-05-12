@@ -7,12 +7,11 @@ import { TbEdit } from "react-icons/tb";
 import LensFeatureDialogBox from "@/Components/Dialog/LensFeatureDialogBox";
 
 const PowerType = (props) => {
-  const { src, title, description, id, mutate } = props;
+  const { data, mutate, setEdit } = props;
   const [Delete, setDelete] = useState(false);
   const [DeletePayload, setDeletePayload] = useState({});
   const [edit, setedit] = useState({});
   const [open, setOpen] = useState(false);
-
 
   const onHideDelete = () => setDelete(false);
   const onShowDelete = () => setDelete(true);
@@ -26,8 +25,13 @@ const PowerType = (props) => {
   return (
     <div className=" grid grid-cols-4 items-center gap-2 border-2">
       <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
-          <LensFeatureDialogBox open={open} setOpen={setOpen} edit={edit} onCancel={onHide} />
-        </Modal>
+        <LensFeatureDialogBox
+          open={open}
+          setOpen={setOpen}
+          edit={edit}
+          onCancel={onHide}
+        />
+      </Modal>
       <Modal isOpen={Delete} closeModal={onHideDelete} fullWidth={false}>
         <DeletePoPUPDialog
           Closefunction={onHideDelete}
@@ -38,28 +42,31 @@ const PowerType = (props) => {
       <div className="">
         <img
           alt=""
-          src={src}
+          src={data?.src}
           className="w-[200px] h-[100px] object-contain rounded-full"
         />
       </div>
       <div className=" col-span-2">
-        <p className="font-semibold">{title}</p>
-        <p className="text-sm text-gray-500">{description}</p>
+        <p className="font-semibold">{data?.title}</p>
+        <p className="text-sm text-gray-500">{data?.description}</p>
       </div>
       <div className="flex flex-row  items-center justify-around">
-      <button
-        className=" text-blue-500 cursor-pointer"
-        onClick={() => {setOpen(true);
-          setedit(id);}}
-      >
-        <TbEdit className="text-base" size={20} />
-      </button>
-      <button
-        className=" text-red-500 cursor-pointer"
-        onClick={() => deletehandler(id)}
-      >
-      <DeleteOutlineIcon className="text-base" size={20} />
-      </button>
+        <button
+          className=" text-blue-500 cursor-pointer"
+          onClick={() => {
+            console.log(data)
+            setOpen(true);
+            setedit(data);
+          }}
+        >
+          <TbEdit className="text-base" size={20} />
+        </button>
+        <button
+          className=" text-red-500 cursor-pointer"
+          onClick={() => deletehandler(id)}
+        >
+          <DeleteOutlineIcon className="text-base" size={20} />
+        </button>
       </div>
     </div>
   );
