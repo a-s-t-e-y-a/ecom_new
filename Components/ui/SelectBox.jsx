@@ -17,9 +17,12 @@ const SelectBox = ({
       multiple={multiple}
       id={id}
       options={options}
-      getOptionKey={(option) => option?.products_categories_id || option?.id || option}
-      getOptionLabel={(option) => option?.name}
-      filterSelectedOptions
+      getOptionKey={(option) =>
+        option?.products_categories_id || option?.id || option
+      }
+      getOptionLabel={(option) => {
+        return option?.name || option;
+      }}
       value={value}
       onChange={(_, value) => onChange(value)}
       sx={{ width: "300px" }}

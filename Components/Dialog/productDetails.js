@@ -29,12 +29,10 @@ import { useEffect } from "react";
 import UpdateProudct from "@/utils/mutations/useUpdateProductDetail";
 import SingleSelectLensFeature from "../Admin/lensFeatureMultipleSelect";
 import SelectBox from "../ui/SelectBox";
+import { Gender } from "@/utils/contants";
 
 const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
-  const [options, setOptions] = useState(["Male", "Female", "Other"]);
-  const { register, handleSubmit, control, setValue, reset } = useForm({
-    defaultValues: editValue,
-  });
+  const { register, handleSubmit, control, setValue, reset } = useForm();
   const { mutate } = useMutation({
     mutationFn: CreateProduct,
     onSuccess: () => {
@@ -57,25 +55,7 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
   useEffect(() => {
     if (Object.keys(editValue).length > 1) {
       const payload = {
-        ...editValue,
-        product_model_name: editValue?.product_model_name,
-        product_model_number: editValue?.product_model_number,
-        productCategories: editValue?.productCategories,
-        product_color: editValue?.product_color_,
-        shape: editValue?.shape_,
-        power_type: editValue?.power_type,
-        material: editValue?.material_,
-        size: editValue?.size_,
-        style: editValue?.style_,
-        use_for: editValue?.use_for,
-        lens_feature: editValue?.lens_feature,
-        description: editValue?.description,
-        price: editValue?.price,
-        discount: editValue?.discount,
-        discount_price: editValue?.discount_price,
-        stock: editValue?.stock,
-        main: editValue?.main,
-        file: editValue?.file,
+        
       };
       reset(payload); // Reset with pre-populated gender value
     }
@@ -144,45 +124,26 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
             sx={{ width: 298 }}
           />
           <Controller
-            name="use_for"
-            control={control}
-            render={({ field: { value, onChange } }) => (
-              <Autocomplete
-                multiple
-                options={options}
-                value={value}
-                sx={{ width: "300px" }}
-                onChange={(event, newValue) => {
-                  onChange(newValue);
-                }}
-                renderInput={(params) => (
-                  <TextField {...params} label="Gender" />
-                )}
-              />
-            )}
-          />
-          <Controller
-            name="power_type_id"
+            name="productCategories"
             control={control}
             render={({ field: { value, onChange } }) => (
               <SelectBox
-                label="Power Type"
+                label="Category"
                 multiple={true}
-                options={power}
+                options={categories}
                 value={value}
                 onChange={onChange}
               />
             )}
           />
-
           <Controller
-            name="product_color"
+            name="use_for"
             control={control}
             render={({ field: { value, onChange } }) => (
               <SelectBox
-                label="Select Color"
-                options={color}
-                multiple={false}
+                label="Gender"
+                multiple={true}
+                options={Gender}
                 value={value}
                 onChange={onChange}
               />
@@ -200,7 +161,7 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
               />;
             }}
           />
-            <Controller
+          <Controller
             name="select_Lense"
             control={control}
             render={({ field: { value, onChange } }) => (
@@ -218,7 +179,32 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
               />
             )}
           />
-
+          <Controller
+            name="power_type_id"
+            control={control}
+            render={({ field: { value, onChange } }) => (
+              <SelectBox
+                label="Power Type"
+                multiple={true}
+                options={power}
+                value={value}
+                onChange={onChange}
+              />
+            )}
+          />
+          <Controller
+            name="product_color"
+            control={control}
+            render={({ field: { value, onChange } }) => (
+              <SelectBox
+                label="Select Color"
+                options={color}
+                multiple={false}
+                value={value}
+                onChange={onChange}
+              />
+            )}
+          />
           <SingleSelectShape
             label="Select Shape"
             control={control}
