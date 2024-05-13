@@ -32,7 +32,7 @@ import SelectBox from "../ui/SelectBox";
 import { Gender } from "@/utils/contants";
 
 const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
-  const { register, handleSubmit, control, setValue, reset } = useForm({
+  const { register, handleSubmit, control, reset, watch } = useForm({
     mode: "all",
     defaultValue: {
       ...editValue,
@@ -101,7 +101,7 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
 
     // Assuming mutate is an asynchronous function that sends the form data
     if (Object.keys(editValue).length === 0) {
-      mutate(form);
+      // mutate(form);
       // onCancel();
       // refetch();
     } else {
@@ -120,7 +120,7 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
         className="flex flex-col items-center justify-between gap-6 px-6 pb-6"
         onSubmit={handleSubmit(OnSubmit)}
       >
-        <div className="grid grid-cols-1 md:grid-cols-2  items-center justify-between w-full gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-2  items-center justify-between w-full gap-4">
           <FileInput title="Main Image" register={register} name="main" />
           <FileInput title="Other imsges" register={register} />
           <TextField
@@ -129,7 +129,8 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
             name="product_model_name"
             id="product_model_name"
             {...register("product_model_name")}
-            sx={{ width: 298 }}
+            size="small"
+            sx={{ width: 350 }}
           />
           <TextField
             fullWidth
@@ -137,7 +138,8 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
             name="product_model_number"
             id="product_model_number"
             {...register("product_model_number")}
-            sx={{ width: 298 }}
+            size="small"
+            sx={{ width: 350 }}
           />
           <Controller
             name="use_for"
@@ -171,12 +173,12 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
             control={control}
             render={({ field: { value, onChange } }) => (
               <SelectBox
-                  label="Select Lens"
-                  multiple={true}
-                  options={["Yes", "No"]}
-                  value={value}
-                  onChange={onChange}
-                />
+                label="Select Lens"
+                multiple={true}
+                options={["Yes", "No"]}
+                value={value}
+                onChange={onChange}
+              />
             )}
           />
           <Controller
@@ -187,6 +189,8 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
                 label="Power Type"
                 multiple={true}
                 options={power}
+                readOnly={watch("select_Lens") !== "yes"}
+                placeholder={watch("select_Lens") !== "yes" ? "No Power type(Read Only)" : ""}
                 value={value}
                 onChange={onChange}
               />
@@ -252,100 +256,44 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
               />
             )}
           />
-          <div>
-            <TextField
-              disabled
-              className="w-[300px]"
-              id=""
-              label="Lens Material"
-              defaultValue="Demo Polycarbonate"
-              InputProps={{
-                readOnly: true,
-              }}
-              variant="outlined"
-              size="small"
-              {...register("Lens_Material")}
-              sx={{ height: 50 }}
-            />
-          </div>
-          <div>
-            <TextField
-              disabled
-              className="w-[300px]"
-              id=""
-              label="Raw Material Sourced from"
-              defaultValue="Imported [International]"
-              InputProps={{
-                readOnly: true,
-              }}
-              variant="outlined"
-              size="small"
-              {...register("row_metrial_source_from")}
-            />
-          </div>
+
+          <TextField
+            disabled
+            className="w-[350px]"
+            id=""
+            label="Lens Material"
+            defaultValue="Demo Polycarbonate"
+            InputProps={{
+              readOnly: true,
+            }}
+            variant="outlined"
+            size="small"
+            {...register("Lens_Material")}
+          />
+
           <TextField
             fullWidth
-            label="Discounted Product Price"
-            name="discounted_price"
-            id="discounted_price"
+            disabled
+            className="w-[350px]"
+            id=""
+            label="Raw Material Sourced from"
+            defaultValue="Imported [International]"
+            InputProps={{
+              readOnly: true,
+            }}
+            variant="outlined"
             size="small"
-            {...register("discounted_price")}
-            sx={{ width: 298, height: 50 }}
+            {...register("row_metrial_source_from")}
           />
-          <TextField
-            fullWidth
-            label="Frame Width"
-            name="frame_width"
-            id="frame_width"
-            size="small"
-            {...register("frame_width")}
-            sx={{ width: 298, height: 50 }}
-          />
-          <TextField
-            fullWidth
-            label="Lens Width"
-            name="lens_width"
-            id="lens_width"
-            size="small"
-            {...register("lens_width")}
-            sx={{ width: 298, height: 50 }}
-          />
-          <TextField
-            fullWidth
-            label="Lens Height"
-            name="lens_height"
-            id="lens_height"
-            size="small"
-            {...register("lens_height")}
-            sx={{ width: 298, height: 50 }}
-          />
-          <TextField
-            fullWidth
-            label="Stock quantity"
-            name="stokke"
-            id="stokke"
-            size="small"
-            {...register("stokke")}
-            sx={{ width: 298, height: 50 }}
-          />
-          <TextField
-            fullWidth
-            label="SEO Title"
-            name="seo_title"
-            id="seo_title"
-            size="small"
-            {...register("seo_title")}
-            sx={{ width: 298, height: 50 }}
-          />
-          <TextField
-            fullWidth
-            label="Tags"
-            name="keyword"
-            id="keyword"
-            size="small"
-            {...register("keyword")}
-            sx={{ width: 298, height: 50 }}
-          />
+          <TextField fullWidth label="Selling Price" name="product_price" id="product_price" size="small" {...register("product_price")} sx={{ minWidth: 300 }} />
+          <TextField fullWidth label="Discounted Product Price" name="discounted_price" id="discounted_price" size="small" {...register("discounted_price")} sx={{ minWidth: 300 }} />
+          <TextField fullWidth label="Frame Width" name="frame_width" id="frame_width" size="small" {...register("frame_width")} sx={{ minWidth: 300 }} />
+          <TextField fullWidth label="Country of origin" name="country_of_origin" id="country_of_origin" size="small" {...register("country_of_origin")} sx={{ minWidth: 300 }} />
+          <TextField fullWidth label="Lens Height" name="lens_height" id="lens_height" size="small" {...register("lens_height")} sx={{ minWidth: 300 }} />
+          <TextField fullWidth label="Stock quantity" name="stokke" id="stokke" size="small" {...register("stokke")} sx={{ minWidth: 300 }} />
+          <TextField fullWidth label="SEO Title" name="seo_title" id="seo_title" size="small" {...register("seo_title")} sx={{ minWidth: 300 }} />
+          <TextField fullWidth label="Tags" name="keyword" id="keyword" size="small" {...register("keyword")} sx={{ minWidth: 300 }} />
+          <TextField fullWidth label="Temple length" name="temple_length" id="temple_length" size="small" {...register("temple_length")} sx={{ minWidth: 300 }} />
           <div className=" col-span-2">
             <Textarea
               label="Description"

@@ -28,7 +28,7 @@ const SelectBox = ({
       value={value || "" || [] || {}}
       readOnly={readOnly}
       onChange={(_, value) => onChange(value)}
-      sx={{ width: "300px" }}
+      sx={{ width: "350px" }}
       renderInput={(params) => (
         <TextField {...params} label={label} placeholder={placeholder} />
       )}
