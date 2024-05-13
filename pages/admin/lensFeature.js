@@ -63,8 +63,9 @@ const LensFeature = () => {
         </div>
         <div className="mt-10 grid grid-cols-2 items-center gap-5 w-full">
           {data &&
-            data.map((value) => (
+            data.map((value, index) => (
               <PowerType
+                key={index}
                 data={value}
                 mutate={mutate}
               />

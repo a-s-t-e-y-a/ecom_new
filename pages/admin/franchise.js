@@ -27,6 +27,8 @@ const Franchise = () => {
     }
   }, [router]);
 
+  // this is just shit, what is the point to use a hook inside a function ???
+  // CreateFranchise is nothing but a mutation hook in itself we could directly use that to extract the mutate function.
   const { mutate } = useMutation({
     mutationFn: CreateFranchise,
     onSuccess: () => {
