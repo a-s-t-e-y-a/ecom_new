@@ -78,6 +78,7 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
   }, [editValue, reset, categories]);
 
   const OnSubmit = async (data) => {
+    console.log(editValue, "editValue")
     console.log(data, "onSubmit");
     const form = new FormData();
     // Append the 'main' files
@@ -101,12 +102,12 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
     // Assuming mutate is an asynchronous function that sends the form data
     if (Object.keys(editValue).length === 0) {
       mutate(form);
-      onCancel();
-      refetch();
+      // onCancel();
+      // refetch();
     } else {
-      update(form);
-      onCancel();
-      refetch();
+      // update(form);
+      // onCancel();
+      // refetch();
     }
   };
 
