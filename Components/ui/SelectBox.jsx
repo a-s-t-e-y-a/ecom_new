@@ -19,11 +19,9 @@ const SelectBox = ({
       id={id}
       options={options}
       getOptionKey={(option) =>{
-        console.log(option, "key")
         return option.id || option || option.product_categories_id
       }}
       getOptionLabel={(option) => {
-        console.log(option, "")
         return option.name || option
       }}
       value={value || "" || [] || {}}

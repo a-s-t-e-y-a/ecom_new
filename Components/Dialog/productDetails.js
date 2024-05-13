@@ -37,32 +37,6 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
     defaultValue: {
       ...editValue,
       productCategories: [
-        [
-          {
-            products_categories_id: 31,
-            name: "Accessories",
-            image:
-              "https://akkukachasma.s3.amazonaws.com/1713360576210Box and Cloth.jpg",
-            created_on: "2024-04-17T13:29:37.500Z",
-            updated_on: "2024-04-17T13:29:37.500Z",
-            status: 1,
-            url: "Accessories",
-            imageArray:
-              "https://akkukachasma.s3.amazonaws.com/1713360576210Box and Cloth.jpg",
-          },
-          {
-            products_categories_id: 32,
-            name: "Offer 99",
-            image:
-              "https://akkukachasma.s3.amazonaws.com/1713360607751Offer99.png",
-            created_on: "2024-04-17T13:30:08.612Z",
-            updated_on: "2024-04-17T13:30:08.612Z",
-            status: 1,
-            url: "Offer 99",
-            imageArray:
-              "https://akkukachasma.s3.amazonaws.com/1713360607751Offer99.png",
-          },
-        ],
       ],
     },
   });
