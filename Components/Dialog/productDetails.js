@@ -329,6 +329,15 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
           <TextField fullWidth label="SEO Title" name="seo_title" id="seo_title" size="small" {...register("seo_title")} sx={{ minWidth: 300 }} />
           <TextField fullWidth label="Tags" name="keyword" id="keyword" size="small" {...register("keyword")} sx={{ minWidth: 300 }} />
           <TextField fullWidth label="Temple length" name="temple_length" id="temple_length" size="small" {...register("temple_length")} sx={{ minWidth: 300 }} />
+          <TextField
+            fullWidth
+            label="Lens Width"
+            name="lens_width"
+            id="lens_width"
+            {...register("lens_width")}
+            size="small"
+            sx={{ width: 350 }}
+          />
           <div className=" col-span-2">
             <Textarea
               label="Description"
