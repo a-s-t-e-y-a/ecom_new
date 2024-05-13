@@ -33,11 +33,39 @@ import { Gender } from "@/utils/contants";
 
 const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
   const { register, handleSubmit, control, setValue, reset } = useForm({
-    mode: "all", defaultValue: {
-      productCategories: [],
-    }
+    mode: "all",
+    defaultValue: {
+      ...editValue,
+      productCategories: [
+        [
+          {
+            products_categories_id: 31,
+            name: "Accessories",
+            image:
+              "https://akkukachasma.s3.amazonaws.com/1713360576210Box and Cloth.jpg",
+            created_on: "2024-04-17T13:29:37.500Z",
+            updated_on: "2024-04-17T13:29:37.500Z",
+            status: 1,
+            url: "Accessories",
+            imageArray:
+              "https://akkukachasma.s3.amazonaws.com/1713360576210Box and Cloth.jpg",
+          },
+          {
+            products_categories_id: 32,
+            name: "Offer 99",
+            image:
+              "https://akkukachasma.s3.amazonaws.com/1713360607751Offer99.png",
+            created_on: "2024-04-17T13:30:08.612Z",
+            updated_on: "2024-04-17T13:30:08.612Z",
+            status: 1,
+            url: "Offer 99",
+            imageArray:
+              "https://akkukachasma.s3.amazonaws.com/1713360607751Offer99.png",
+          },
+        ],
+      ],
+    },
   });
-
 
   const { mutate } = useMutation({
     mutationFn: CreateProduct,
@@ -59,7 +87,21 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
   const [activePOwer, setAcative] = useState(true);
   const { mutate: update } = UpdateProudct(editValue?.p_id);
 
+  useEffect(() => {
+    if (Object.keys(editValue).length > 1) {
+      const payload = {
+        ...editValue,
+        use_for: editValue?.use_for,
+        product_color: editValue?.product_color_,
+        shape: editValue?.shape_,
+        material: editValue?.material_,
+        size: editValue?.size_,
+        style: editValue?.style_
+      };
 
+      reset(payload);
+    }
+  }, [editValue, reset, categories]);
 
   const OnSubmit = async (data) => {
     console.log(data, "onSubmit");
@@ -94,18 +136,6 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
     // }
   };
 
-
-  useEffect(() => {
-    if (Object.keys(editValue).length > 1) {
-      const payload = {
-        productCategories: editValue?.productCategories?.map(pc => ({ id: pc.products_categories_id, label: pc.name })) || []
-      };
-
-      reset(payload);
-    }
-  }, [reset, categories, editValue]);
-
-
   return (
     <div className="relative border mt-[1100px] md:mt-[300px] rounded-md shadow-lg w-full md:w-auto h-[calc(100%-1rem)] max-h-full ">
       <h1 className="text-md font-semibold text-center text-gray-700 mt-3 mb-5">
@@ -135,28 +165,11 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
             sx={{ width: 298 }}
           />
           <Controller
-            name="productCategories"
-            control={control}
-            render={({ field: { value, onChange } }) => {
-              console.log("value", value);
-              return (
-                <SelectBox
-                  label="Category"
-                  multiple
-                  options={categories?.map(category => ({ id: category.products_categories_id, label: category.name })) || []}
-                  value={value}
-                  onChange={onChange}
-                />
-              )
-            }}
-          />
-          <Controller
             name="use_for"
             control={control}
             render={({ field: { value, onChange } }) => (
               <SelectBox
                 label="Gender"
-                multiple={true}
                 options={Gender}
                 value={value}
                 onChange={onChange}
@@ -164,33 +177,31 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
             )}
           />
           <Controller
-            name="product_color"
+            name="productCategories"
             control={control}
             render={({ field: { value, onChange } }) => {
-              <SelectBox
-                label="Select Color"
-                options={color}
-                value={value}
-                onChange={onChange}
-              />;
+              return (
+                <SelectBox
+                  label="Category"
+                  multiple={true}
+                  options={categories}
+                  value={value}
+                  onChange={onChange}
+                />
+              );
             }}
           />
           <Controller
-            name="select_Lense"
+            name="select_Lens"
             control={control}
             render={({ field: { value, onChange } }) => (
-              <Autocomplete
-                multiple
-                options={["yes", "no"]}
-                value={value}
-                sx={{ width: "300px" }}
-                onChange={(event, newValue) => {
-                  onChange(newValue);
-                }}
-                renderInput={(params) => (
-                  <TextField {...params} label="Select lens" />
-                )}
-              />
+              <SelectBox
+                  label="Select Lens"
+                  multiple={true}
+                  options={["Yes", "No"]}
+                  value={value}
+                  onChange={onChange}
+                />
             )}
           />
           <Controller
@@ -213,39 +224,58 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
               <SelectBox
                 label="Select Color"
                 options={color}
-                multiple={false}
                 value={value}
                 onChange={onChange}
               />
             )}
           />
-          <SingleSelectShape
-            label="Select Shape"
-            control={control}
-            options={shape}
-            register={register}
+          <Controller
             name="shape"
-          />
-          <SingleSelectMaterial
-            label="Select Material"
             control={control}
-            options={material}
-            register={register}
+            render={({ field: { value, onChange } }) => (
+              <SelectBox
+                label="Select Shape"
+                options={shape}
+                value={value}
+                onChange={onChange}
+              />
+            )}
+          />
+          <Controller
             name="material"
-          />
-          <SingleSelectSize
-            label="Select Size"
             control={control}
-            options={size}
-            register={register}
+            render={({ field: { value, onChange } }) => (
+              <SelectBox
+                label="Select Material"
+                options={material}
+                value={value}
+                onChange={onChange}
+              />
+            )}
+          />
+          <Controller
             name="size"
-          />
-          <SingleSelectStyle
-            label="Select Style"
             control={control}
-            options={style}
-            register={register}
+            render={({ field: { value, onChange } }) => (
+              <SelectBox
+                label="Select Size"
+                options={size}
+                value={value}
+                onChange={onChange}
+              />
+            )}
+          />
+          <Controller
             name="style"
+            control={control}
+            render={({ field: { value, onChange } }) => (
+              <SelectBox
+                label="Select Style"
+                options={style}
+                value={value}
+                onChange={onChange}
+              />
+            )}
           />
           <div>
             <TextField
