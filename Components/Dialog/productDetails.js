@@ -96,7 +96,7 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
         shape: editValue?.shape_,
         material: editValue?.material_,
         size: editValue?.size_,
-        style: editValue?.style_
+        style: editValue?.style_,
       };
 
       reset(payload);
@@ -104,7 +104,43 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
   }, [editValue, reset, categories]);
 
   const OnSubmit = async (data) => {
-    console.log(data, "onSubmit");
+    // console.log(data, "onSubmit");
+
+    const data_ = {
+      product_model_name: data.product_model_name,
+      product_model_number: data.product_model_number,
+      // "capacity":
+      use_for: data.use_for,
+      // "dimensions":data.dimensions
+      // "country_of_origin":data
+      row_metrial_source_from: "Imported",
+      show_lens_list: data.select_Lens[0],
+      // "warranty":data.wa
+      product_description: data.product_description,
+      product_price: data.discounted_price,
+      discounted_price: data.discounted_price,
+      // "offer":
+      // "bought":
+      frame_width: data.frame_width,
+      // "temple_length":data.
+      lens_height: data.lens_height,
+      stokke: data.stokke,
+      product_url: data.product_model_name + data.product_model_number,
+      seo_title: data.seo_title,
+      keyword: data.keyword,
+      status: 1,
+      lens_width: data.lens_width,
+      productCategoriesId: data.productCategories.map(
+        (i) => i.products_categories_id
+      ),
+      product_color: data.product_color.id,
+      shape: data.shape.id,
+      style: data.style.id,
+      size: data.size.id,
+      material: data.material.id,
+      power_type_id: data.power_type_id.map((i) => i.id),
+    };
+    console.log(data_)
     const form = new FormData();
     // Append the 'main' files
     if (data.main) {
@@ -122,7 +158,7 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
     delete data.main;
     delete data.file;
     // Append the data object as JSON string
-    form.append("data", JSON.stringify(data));
+    form.append("data", JSON.stringify(data_));
 
     // Assuming mutate is an asynchronous function that sends the form data
     if (Object.keys(editValue).length === 0) {
@@ -196,12 +232,12 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
             control={control}
             render={({ field: { value, onChange } }) => (
               <SelectBox
-                  label="Select Lens"
-                  multiple={true}
-                  options={["Yes", "No"]}
-                  value={value}
-                  onChange={onChange}
-                />
+                label="Select Lens"
+                multiple={true}
+                options={["Yes", "No"]}
+                value={value}
+                onChange={onChange}
+              />
             )}
           />
           <Controller
