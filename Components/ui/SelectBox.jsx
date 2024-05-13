@@ -12,16 +12,18 @@ const SelectBox = ({
   id,
   multiple = false,
 }) => {
+
+
   return (
     <Autocomplete
-      multiple={multiple}
       id={id}
+      key={value}
       options={options}
-      getOptionKey={(option) =>
-        option?.products_categories_id || option?.id || option
-      }
+      multiple={multiple}
+      filterSelectedOptions
+      getOptionKey={(option) => option.id}
       getOptionLabel={(option) => {
-        return option?.name || option;
+        return option?.label;
       }}
       value={value}
       onChange={(_, value) => onChange(value)}

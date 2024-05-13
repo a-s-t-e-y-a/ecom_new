@@ -32,7 +32,13 @@ import SelectBox from "../ui/SelectBox";
 import { Gender } from "@/utils/contants";
 
 const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
-  const { register, handleSubmit, control, setValue, reset } = useForm();
+  const { register, handleSubmit, control, setValue, reset } = useForm({
+    mode: "all", defaultValue: {
+      productCategories: [],
+    }
+  });
+
+
   const { mutate } = useMutation({
     mutationFn: CreateProduct,
     onSuccess: () => {
@@ -52,14 +58,9 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
   const { data: style } = useGetAllStyle();
   const [activePOwer, setAcative] = useState(true);
   const { mutate: update } = UpdateProudct(editValue?.p_id);
-  useEffect(() => {
-    if (Object.keys(editValue).length > 1) {
-      const payload = {
-        
-      };
-      reset(payload); // Reset with pre-populated gender value
-    }
-  }, []);
+
+
+
   const OnSubmit = async (data) => {
     console.log(data, "onSubmit");
     // const form = new FormData();
@@ -93,7 +94,17 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
     // }
   };
 
-  console.log(categories, "catogeroys");
+
+  useEffect(() => {
+    if (Object.keys(editValue).length > 1) {
+      const payload = {
+        productCategories: editValue?.productCategories?.map(pc => ({ id: pc.products_categories_id, label: pc.name })) || []
+      };
+
+      reset(payload);
+    }
+  }, [reset, categories, editValue]);
+
 
   return (
     <div className="relative border mt-[1100px] md:mt-[300px] rounded-md shadow-lg w-full md:w-auto h-[calc(100%-1rem)] max-h-full ">
@@ -126,15 +137,18 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
           <Controller
             name="productCategories"
             control={control}
-            render={({ field: { value, onChange } }) => (
-              <SelectBox
-                label="Category"
-                multiple={true}
-                options={categories}
-                value={value}
-                onChange={onChange}
-              />
-            )}
+            render={({ field: { value, onChange } }) => {
+              console.log("value", value);
+              return (
+                <SelectBox
+                  label="Category"
+                  multiple
+                  options={categories?.map(category => ({ id: category.products_categories_id, label: category.name })) || []}
+                  value={value}
+                  onChange={onChange}
+                />
+              )
+            }}
           />
           <Controller
             name="use_for"
