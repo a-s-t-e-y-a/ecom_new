@@ -78,7 +78,6 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
   }, [editValue, reset, categories]);
 
   const OnSubmit = async (data) => {
-    console.log(editValue, "editValue")
     console.log(data, "onSubmit");
     const form = new FormData();
     // Append the 'main' files
