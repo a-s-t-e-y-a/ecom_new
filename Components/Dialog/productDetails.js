@@ -105,35 +105,35 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
 
   const OnSubmit = async (data) => {
     console.log(data, "onSubmit");
-    // const form = new FormData();
-    // // Append the 'main' files
-    // if (data.main) {
-    //   for (let i = 0; i < data.main.length; i++) {
-    //     form.append("files", data.main[i]);
-    //   }
-    // }
+    const form = new FormData();
+    // Append the 'main' files
+    if (data.main) {
+      for (let i = 0; i < data.main.length; i++) {
+        form.append("files", data.main[i]);
+      }
+    }
 
-    // // Append the 'file' files
-    // if (data.file) {
-    //   for (let i = 0; i < data.file.length; i++) {
-    //     form.append("files", data.file[i]);
-    //   }
-    // }
-    // delete data.main;
-    // delete data.file;
-    // // Append the data object as JSON string
-    // form.append("data", JSON.stringify(data));
+    // Append the 'file' files
+    if (data.file) {
+      for (let i = 0; i < data.file.length; i++) {
+        form.append("files", data.file[i]);
+      }
+    }
+    delete data.main;
+    delete data.file;
+    // Append the data object as JSON string
+    form.append("data", JSON.stringify(data));
 
-    // // Assuming mutate is an asynchronous function that sends the form data
-    // if (Object.keys(editValue).length === 0) {
-    //   mutate(form);
-    //   onCancel();
-    //   refetch();
-    // } else {
-    //   update(form);
-    //   onCancel();
-    //   refetch();
-    // }
+    // Assuming mutate is an asynchronous function that sends the form data
+    if (Object.keys(editValue).length === 0) {
+      mutate(form);
+      onCancel();
+      refetch();
+    } else {
+      update(form);
+      onCancel();
+      refetch();
+    }
   };
 
   return (
