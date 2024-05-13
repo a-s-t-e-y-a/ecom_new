@@ -79,7 +79,7 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
 
   const OnSubmit = async (data) => {
     console.log(editValue, "editValue")
-    // console.log(data, "onSubmit");
+    console.log(data, "onSubmit");
 
     const data_ = {
       product_model_name: data.product_model_name,
@@ -89,7 +89,7 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
       // "dimensions":data.dimensions
       // "country_of_origin":data
       row_metrial_source_from: "Imported",
-      show_lens_list: data.select_Lens[0],
+      show_lens_list: data.select_Lens=="Yes"?1:0,
       // "warranty":data.wa
       product_description: data.product_description,
       product_price: data.discounted_price,
@@ -130,16 +130,15 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
         form.append("files", data.file[i]);
       }
     }
-    delete data.main;
-    delete data.file;
+
     // Append the data object as JSON string
     form.append("data", JSON.stringify(data_));
 
     // Assuming mutate is an asynchronous function that sends the form data
     if (Object.keys(editValue).length === 0) {
       mutate(form);
-      onCancel();
-      refetch();    
+      // onCancel();
+      // refetch();     
     } else {
       update(form);
       onCancel();
