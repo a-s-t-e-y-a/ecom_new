@@ -12,7 +12,8 @@ import { useMutation } from "@tanstack/react-query";
 import CreateDelivery from "@/utils/mutations/useCreateDeliveryTerm";
 import { toast } from "react-toastify";
 import { MdOutlineCurrencyFranc, MdPolicy } from "react-icons/md";
-import CreateFranchise from "@/utils/mutations/useCreateFrachise";
+import useCreateFranchise from "@/utils/mutations/useCreateFranchise";
+
 
 const Franchise = () => {
   const router = useRouter();
@@ -30,7 +31,7 @@ const Franchise = () => {
   // this is just shit, what is the point to use a hook inside a function ???
   // CreateFranchise is nothing but a mutation hook in itself we could directly use that to extract the mutate function.
   const { mutate } = useMutation({
-    mutationFn: CreateFranchise,
+    mutationFn: useCreateFranchise,
     onSuccess: () => {
       toast.success("Created successfully");
       reset(); // Reset the form after successful submission
