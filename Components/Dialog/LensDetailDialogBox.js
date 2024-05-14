@@ -1,25 +1,23 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import FileInput from "../Admin/FileInput";
 import { TextField } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import CreateLensDeatils from "@/utils/mutations/useCreateLensDetail";
-import useGetAllBrands from "@/utils/queries/useBrandsGetAll";
 import useGetAllLensFeature from "@/utils/queries/useLensFeature";
-import SingleSelectCategories from "../Admin/MultipleSelectCategories";
-import SingleSelectBrands from "../Admin/brandMultipleSelect";
 import SingleSelectLensFeature from "../Admin/lensFeatureMultipleSelect";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import useGetAllPowerType from "@/utils/queries/usePowerType";
 import { useEffect } from "react";
 import UpdatelensDetails from "@/utils/mutations/useupdateLensDeatil";
+import SelectBox from "../ui/SelectBox";
 
 const LensDetailDialogBox = ({ onCancel, refetch, token, edit }) => {
   const { data: power } = useGetAllPowerType();
   const { data: lens_feature } = useGetAllLensFeature();
   const { mutate: update } = UpdatelensDetails(edit?.id);
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, control } = useForm();
   useEffect(() => {
     console.log(edit);
     const resetPayload = {
@@ -79,19 +77,36 @@ const LensDetailDialogBox = ({ onCancel, refetch, token, edit }) => {
       >
         <div className="grid grid-cols-3 items-center justify-between gap-3">
           <FileInput title="" register={register} />
-          <SingleSelectLensFeature
-            label="Power Type"
-            options={power}
-            register={register}
+          <Controller
             name="power_type_id"
+            control={control}
+            render={({ field: { value, onChange } }) => (
+              <SelectBox
+                label="Power Type"
+                options={power}
+                value={value}
+                onChange={onChange}
+              />
+            )}
           />
-          <SingleSelectLensFeature
+          {/* <SingleSelectLensFeature
             label="Lens Feature"
             options={lens_feature}
             register={register}
             name="lens_feature_id"
+          /> */}
+          <Controller
+            name="lens_feature_id"
+            control={control}
+            render={({ field: { value, onChange } }) => (
+              <SelectBox
+                label="Lens Feature"
+                options={power}
+                value={value}
+                onChange={onChange}
+              />
+            )}
           />
-
           <TextField
             fullWidth
             label="Lens Heading"
