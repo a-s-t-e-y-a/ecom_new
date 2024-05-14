@@ -9,9 +9,11 @@ import Loader from "../Loader";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import SelectBox from "../ui/SelectBox";
+import useUpdateLensFeature from "@/utils/mutations/useUpdateLensFeature";
 
 const LensFeatureDialogBox = ({ onCancel, refetch, token, edit }) => {
   const { register, handleSubmit, control, reset } = useForm();
+  const { mutate: update } = useUpdateLensFeature(edit?.id);
   const { mutate } = useMutation({
     mutationFn: CreateLenseFeature,
     onSuccess: () => {
@@ -23,32 +25,48 @@ const LensFeatureDialogBox = ({ onCancel, refetch, token, edit }) => {
       toast.error("Error occurred");
     },
   });
-  const { data:power } = useGetAllPowerType();
+  const { data: power } = useGetAllPowerType();
 
   useEffect(() => {
     const resetPayload = {
       power_type_id: edit?.power_type_,
+      image:edit?.image,
       title: edit?.title,
-      description: edit?.description
-    }
-    reset(resetPayload)
+      description: edit?.description,
+    };
+    reset(resetPayload);
   }, [reset, power]);
 
   const onSubmit = (data) => {
     console.log(data);
     const formData = new FormData();
-    formData.append("file", data?.file[0]);
-    const payload = {
-      power_type_id: data?.power_type_id,
-      title: data?.title,
-      description: data?.description,
-    };
-    
-    const datas = JSON.stringify(payload);
-    formData.append("data", datas);
-    if(Object.keys(editValue).length === 0){
+
+    if (Object.keys(edit).length === 0) {
+      formData.append("file", data?.file[0]);
+      const payload = {
+        power_type_id: data?.power_type_id,
+        title: data?.title,
+        description: data?.description,
+      };
+
+      const datas = JSON.stringify(payload);
+      formData.append("data", datas);
       mutate(formData);
       refetch(!token);
+    } else {
+      console.log(data)
+      formData.append("file", data?.file[0]);
+      delete data.file
+      const payload = {
+        power_type_id: data?.power_type_id.id,
+        title: data?.title,
+        description: data?.description,
+        image:data?.image
+      };
+      const datas = JSON.stringify(payload);
+      formData.append("data", datas);
+      update(formData);
+      onCancel();
     }
   };
 
@@ -63,17 +81,17 @@ const LensFeatureDialogBox = ({ onCancel, refetch, token, edit }) => {
       >
         <FileInput title="" register={register} />
         <Controller
-            name="power_type_id"
-            control={control}
-            render={({ field: { value, onChange } }) => (
-              <SelectBox
-                label="Power Type"
-                options={power}
-                value={value}
-                onChange={onChange}
-              />
-            )}
-          />
+          name="power_type_id"
+          control={control}
+          render={({ field: { value, onChange } }) => (
+            <SelectBox
+              label="Power Type"
+              options={power}
+              value={value}
+              onChange={onChange}
+            />
+          )}
+        />
         <TextField
           fullWidth
           label="Title"

@@ -10,9 +10,11 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import Loader from "../Loader";
 import query from "@/utils/queryClinet";
+import useUpdatePowerType from "@/utils/mutations/useUpdatePowerType";
 
 const PowerTypesDialogBox = ({ onCancel, setOpen, refecth, token, edit }) => {
   const { register, handleSubmit, reset } = useForm();
+  const { mutate: update } = useUpdatePowerType(edit?.id);
   const [data, setdata] = useState([]);
   const {
     mutate,
@@ -33,14 +35,26 @@ const PowerTypesDialogBox = ({ onCancel, setOpen, refecth, token, edit }) => {
   const dispatch = useDispatch();
   const onSubmit = async (data) => {
     const formData = new FormData();
-    formData.append(
-      "data",
-      JSON.stringify({ title: data.title, description: data.description })
-    );
-    formData.append("file", data?.file[0]);
-    console.log(formData, 'formData')
-    mutate(formData);
-    onCancel()
+    
+    if (Object.keys(edit).length === 0) {
+      formData.append(
+        "data",
+        JSON.stringify({ title: data.title, description: data.description })
+      );
+      formData.append("file", data?.file[0]);
+      console.log(formData, 'formData')
+      mutate(formData);
+      onCancel();
+      refetch();
+    } else {
+      console.log(data)
+      formData.append("file", data?.file[0]);
+      delete data.file
+      formData.append('data',JSON.stringify(data))
+      update(formData)
+      onCancel();
+      refetch();
+    }
   };
   useEffect(() => {
     if (datas) {

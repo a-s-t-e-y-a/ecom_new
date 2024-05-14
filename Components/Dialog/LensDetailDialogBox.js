@@ -52,8 +52,13 @@ const LensDetailDialogBox = ({ onCancel, refetch, token, edit }) => {
   });
 
   const onSubmit = (data) => {
+    console.log(data)
+    data.power_type_id= data.power_type_id.id
+    data.lens_feature_id= data.lens_feature_id.id
+    console.log(data)
     const formData = new FormData();
     formData.append("file", data.file[0]);
+    delete data.file
     formData.append("data", JSON.stringify(data));
 
     if (Object.keys(edit).length === 0) {
@@ -101,7 +106,7 @@ const LensDetailDialogBox = ({ onCancel, refetch, token, edit }) => {
             render={({ field: { value, onChange } }) => (
               <SelectBox
                 label="Lens Feature"
-                options={power}
+                options={lens_feature}
                 value={value}
                 onChange={onChange}
               />
