@@ -5,6 +5,7 @@ import DeletePoPUPDialog from "@/Components/Dialog/DeletePoPUPDialog";
 import Modal from "../Dialog/Modal";
 import { TbEdit } from "react-icons/tb";
 import LensFeatureDialogBox from "@/Components/Dialog/LensFeatureDialogBox";
+import PowerTypesDialogBox from "../Dialog/PowerTypesDialogBox";
 
 const PowerType = (props) => {
   const { data, mutate, setEdit } = props;
@@ -25,7 +26,7 @@ const PowerType = (props) => {
   return (
     <div className=" grid grid-cols-4 items-center gap-2 border-2">
       <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
-        <LensFeatureDialogBox
+        <PowerTypesDialogBox
           open={open}
           setOpen={setOpen}
           edit={edit}

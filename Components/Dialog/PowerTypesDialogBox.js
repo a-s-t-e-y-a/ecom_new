@@ -11,8 +11,8 @@ import { toast } from "react-toastify";
 import Loader from "../Loader";
 import query from "@/utils/queryClinet";
 
-const PowerTypesDialogBox = ({ onCancel, setOpen, refecth, token }) => {
-  const { register, handleSubmit } = useForm();
+const PowerTypesDialogBox = ({ onCancel, setOpen, refecth, token, edit }) => {
+  const { register, handleSubmit, reset } = useForm();
   const [data, setdata] = useState([]);
   const {
     mutate,
@@ -29,6 +29,7 @@ const PowerTypesDialogBox = ({ onCancel, setOpen, refecth, token }) => {
       toast.error("Error occurred");
     },
   });
+
   const dispatch = useDispatch();
   const onSubmit = async (data) => {
     const formData = new FormData();
@@ -45,7 +46,12 @@ const PowerTypesDialogBox = ({ onCancel, setOpen, refecth, token }) => {
     if (datas) {
       setdata(datas);
     }
-  }, [datas]);
+    console.log(edit);
+    reset({
+      ...edit,
+      title: edit?.name
+    })
+  }, [datas, reset]);
 
   return (
     <div className="relative border tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
