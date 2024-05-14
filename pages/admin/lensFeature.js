@@ -41,38 +41,35 @@ const LensFeature = () => {
 
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);
-
-  return (
-    <AdminLayout>
-      <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
-        {
-          <LensFeatureDialogBox
-            onCancel={onHide}
-            refetch={setget}
-            token={get}
-          />
-        }
-      </Modal>
-      <div>
-        <div
-          onClick={() => {
-            handleOpen();
-          }}
-        >
-          <IconButton label="Add Lens Features" icon={<GiMicroscopeLens />} />
+  if (logged) {
+    return (
+      <AdminLayout>
+        <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
+          {
+            <LensFeatureDialogBox
+              onCancel={onHide}
+              refetch={setget}
+              token={get}
+            />
+          }
+        </Modal>
+        <div>
+          <div
+            onClick={() => {
+              handleOpen();
+            }}
+          >
+            <IconButton label="Add Lens Features" icon={<GiMicroscopeLens />} />
+          </div>
+          <div className="grid grid-cols-2 items-center gap-5 w-full pr-4 pt-4">
+            {data &&
+              data.map((value, index) => (
+                <PowerType key={index} data={value} mutate={mutate} />
+              ))}
+          </div>
         </div>
-        <div className="mt-10 grid grid-cols-2 items-center gap-5 w-full">
-          {data &&
-            data.map((value, index) => (
-              <PowerType
-                key={index}
-                data={value}
-                mutate={mutate}
-              />
-            ))}
-        </div>
-      </div>
-    </AdminLayout>
-  );
+      </AdminLayout>
+    );
+  }
 };
 export default LensFeature;

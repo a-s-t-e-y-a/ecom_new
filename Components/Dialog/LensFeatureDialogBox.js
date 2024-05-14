@@ -1,19 +1,16 @@
 import React, { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import FileInput from "../Admin/FileInput";
 import { TextField } from "@mui/material";
-import { useDispatch } from "react-redux";
 import AddIcon from "@mui/icons-material/Add";
-import SingleSelectPowerType from "../Admin/powerTypeMultipleSelect";
-import useGetAllLensFeature from "@/utils/queries/useLensFeature";
 import useGetAllPowerType from "@/utils/queries/usePowerType";
 import CreateLenseFeature from "@/utils/mutations/useCreateLensFeature";
 import Loader from "../Loader";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import SelectBox from "../ui/SelectBox";
 
 const LensFeatureDialogBox = ({ onCancel, refetch, token, edit }) => {
-  console.log(edit, "edit");
   const { register, handleSubmit, control, reset } = useForm();
   const { mutate } = useMutation({
     mutationFn: CreateLenseFeature,
@@ -26,7 +23,7 @@ const LensFeatureDialogBox = ({ onCancel, refetch, token, edit }) => {
       toast.error("Error occurred");
     },
   });
-  const { data } = useGetAllPowerType();
+  const { data:power } = useGetAllPowerType();
 
   useEffect(() => {
     const resetPayload = {
@@ -35,7 +32,7 @@ const LensFeatureDialogBox = ({ onCancel, refetch, token, edit }) => {
       description: edit?.description
     }
     reset(resetPayload)
-  }, []);
+  }, [reset, power]);
 
   const onSubmit = (data) => {
     console.log(data);
@@ -46,9 +43,13 @@ const LensFeatureDialogBox = ({ onCancel, refetch, token, edit }) => {
       title: data?.title,
       description: data?.description,
     };
+    
     const datas = JSON.stringify(payload);
     formData.append("data", datas);
-    mutate(formData);
+    if(Object.keys(editValue).length === 0){
+      mutate(formData);
+      refetch(!token);
+    }
   };
 
   return (
@@ -61,13 +62,18 @@ const LensFeatureDialogBox = ({ onCancel, refetch, token, edit }) => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <FileInput title="" register={register} />
-        <SingleSelectPowerType
-          label="Select Power Type"
-          control={control}
-          options={data}
-          register={register}
-          name="power_type_id"
-        />
+        <Controller
+            name="power_type_id"
+            control={control}
+            render={({ field: { value, onChange } }) => (
+              <SelectBox
+                label="Power Type"
+                options={power}
+                value={value}
+                onChange={onChange}
+              />
+            )}
+          />
         <TextField
           fullWidth
           label="Title"

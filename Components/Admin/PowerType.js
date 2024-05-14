@@ -63,7 +63,7 @@ const PowerType = (props) => {
         </button>
         <button
           className=" text-red-500 cursor-pointer"
-          onClick={() => deletehandler(id)}
+          onClick={() => deletehandler(data?.id)}
         >
           <DeleteOutlineIcon className="text-base" size={20} />
         </button>
