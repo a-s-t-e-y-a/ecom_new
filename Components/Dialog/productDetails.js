@@ -71,7 +71,7 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
         material: editValue?.material_,
         size: editValue?.size_,
         style: editValue?.style_,
-        select_Lens:editValue?.show_lens_list==1?"Yes":"No"
+        power_type_id: editValue?.power_type
       };
 
       reset(payload);
@@ -226,7 +226,7 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
                 multiple={true}
                 options={power}
                 readOnly={watch("select_Lens") !== "Yes"}
-                placeholder={watch("select_Lens") !== "Yes" ? "No Power type(Read Only)" : ""}
+                // placeholder={watch("select_Lens") !== "Yes" ? "No Power type(Read Only)" : ""}
                 value={value}
                 onChange={onChange}
               />
