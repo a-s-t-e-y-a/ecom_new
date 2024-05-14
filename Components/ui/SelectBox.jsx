@@ -20,10 +20,10 @@ const SelectBox = ({
       size="small"
       options={options}
       getOptionKey={(option) => {
-        return option.id || option || option.product_categories_id;
+        return option?.id || option || option?.product_categories_id;
       }}
       getOptionLabel={(option) => {
-        return option.name || option;
+        return option?.name || option || option?.title;
       }}
       value={value || "" || [] || {}}
       readOnly={readOnly}
