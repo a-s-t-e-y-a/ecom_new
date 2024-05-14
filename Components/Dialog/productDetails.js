@@ -71,7 +71,8 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
         material: editValue?.material_,
         size: editValue?.size_,
         style: editValue?.style_,
-        power_type_id: editValue?.power_type
+        power_type_id: editValue?.power_type,
+        select_Lens:editValue?.show_lens_list==1?"Yes":"No"
       };
 
       reset(payload);
@@ -79,44 +80,10 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
   }, [editValue, reset, categories]);
 
   const OnSubmit = async (data) => {
-    console.log(editValue, "editValue")
+    // console.log(editValue, "editValue")
     console.log(data, "onSubmit");
 
-    const data_ = {
-      product_model_name: data.product_model_name,
-      product_model_number: data.product_model_number,
-      // "capacity":
-      use_for: data.use_for,
-      // "dimensions":data.dimensions
-      // "country_of_origin":data
-      row_metrial_source_from: "Imported",
-      show_lens_list: data.select_Lens=="Yes"?1:0,
-      // "warranty":data.wa
-      product_description: data.product_description,
-      product_price: data.discounted_price,
-      discounted_price: data.discounted_price,
-      // "offer":
-      // "bought":
-      frame_width: data.frame_width,
-      // "temple_length":data.
-      lens_height: data.lens_height,
-      stokke: data.stokke,
-      product_url: data.product_model_name + data.product_model_number,
-      seo_title: data.seo_title,
-      keyword: data.keyword,
-      status: 1,
-      lens_width: data.lens_width,
-      productCategoriesId: data.productCategories.map(
-        (i) => i.products_categories_id
-      ),
-      product_color: data.product_color.id,
-      shape: data.shape.id,
-      style: data.style.id,
-      size: data.size.id,
-      material: data.material.id,
-      power_type_id: data.power_type_id.map((i) => i.id),
-    };
-    console.log(data_)
+   
     const form = new FormData();
     // Append the 'main' files
     if (data.main) {
@@ -132,18 +99,91 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
       }
     }
 
-    // Append the data object as JSON string
-    form.append("data", JSON.stringify(data_));
+   
+   
 
     // Assuming mutate is an asynchronous function that sends the form data
     if (Object.keys(editValue).length === 0) {
+      const data_ = {
+        product_model_name: data.product_model_name,
+        product_model_number: data.product_model_number,
+        // "capacity":
+        use_for: data.use_for,
+        // "dimensions":data.dimensions
+        // "country_of_origin":data
+        row_metrial_source_from: "Imported",
+        show_lens_list: data.select_Lens=="Yes"?1:0,
+        // "warranty":data.wa
+        product_description: data.product_description,
+        product_price: data.discounted_price,
+        discounted_price: data.discounted_price,
+        // "offer":
+        // "bought":
+        frame_width: data.frame_width,
+        // "temple_length":data.
+        lens_height: data.lens_height,
+        stokke: data.stokke,
+        product_url: data.product_model_name + data.product_model_number,
+        seo_title: data.seo_title,
+        keyword: data.keyword,
+        status: 1,
+        lens_width: data.lens_width,
+        productCategoriesId: data.productCategories.map(
+          (i) => i.products_categories_id
+        ),
+        product_color: data.product_color.id,
+        shape: data.shape.id,
+        style: data.style.id,
+        size: data.size.id,
+        material: data.material.id,
+        power_type_id: data.power_type_id.map((i) => i.id),
+      };
+      console.log(data_)
+      form.append("data", JSON.stringify(data_));
       mutate(form);
       onCancel();
       refetch();     
     } else {
+      const data_ = {
+        product_model_name: data.product_model_name,
+        product_model_number: data.product_model_number,
+        // "capacity":
+        use_for: data.use_for,
+        // "dimensions":data.dimensions
+        // "country_of_origin":data
+        row_metrial_source_from: "Imported",
+        show_lens_list: data.select_Lens=="Yes"?1:0,
+        // "warranty":data.wa
+        product_description: data.product_description,
+        product_price: data.discounted_price.toString(),
+        discounted_price: data.discounted_price,
+        // "offer":
+        // "bought":
+        frame_width: data.frame_width,
+        // "temple_length":data.
+        lens_height: data.lens_height,
+        stokke: data.stokke,
+        product_url: data.product_model_name + data.product_model_number,
+        seo_title: data.seo_title,
+        keyword: data.keyword,
+        status: 1,
+        lens_width: data.lens_width,
+        productCategoriesId: data.productCategories.map(
+          (i) => i.products_categories_id
+        ),
+        product_color: data.product_color.id,
+        shape: data.shape.id,
+        style: data.style.id,
+        size: data.size.id,
+        material: data.material.id,
+        power_type_id: data.power_type_id.map((i) => i.id),
+        product_images:data.product_images
+      };
+      console.log(data_)
+      form.append("data", JSON.stringify(data_));
       update(form);
-      onCancel();
-      refetch();
+      // onCancel();
+      // refetch();
     }
   };
 

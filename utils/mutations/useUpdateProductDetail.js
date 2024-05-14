@@ -1,4 +1,4 @@
-import api from "@/api";
+import api, { Imageapi } from "@/api";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
@@ -7,7 +7,7 @@ const UpdateProudct = (id) => {
     const update = useMutation({
         mutationKey: ["api/products"],
         mutationFn: async (data) => {
-            const res = await api.put(`/products/${id}`, data);
+            const res = await Imageapi.put(`/products/${id}`, data);
             return res.data;
         },
         onSuccess: () => {
