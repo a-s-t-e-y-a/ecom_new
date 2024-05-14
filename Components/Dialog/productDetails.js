@@ -71,6 +71,7 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
         material: editValue?.material_,
         size: editValue?.size_,
         style: editValue?.style_,
+        select_Lens:editValue?.show_lens_list==1?"Yes":"No"
       };
 
       reset(payload);
