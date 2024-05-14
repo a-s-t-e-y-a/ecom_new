@@ -21,7 +21,7 @@ const PowerType = (props) => {
     mutate(itemId);
     onShowDelete();
   };
-
+  
   return (
     <div className=" grid grid-cols-4 items-center gap-2 border-2">
       <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
@@ -42,7 +42,7 @@ const PowerType = (props) => {
       <div className="">
         <img
           alt=""
-          src={data?.src}
+          src={data?.image}
           className="w-[200px] h-[100px] object-contain rounded-full"
         />
       </div>
@@ -54,7 +54,6 @@ const PowerType = (props) => {
         <button
           className=" text-blue-500 cursor-pointer"
           onClick={() => {
-            console.log(data)
             setOpen(true);
             setedit(data);
           }}
