@@ -41,10 +41,10 @@ const LensFeatureDialogBox = ({ onCancel, refetch, token, edit }) => {
     console.log(data);
     const formData = new FormData();
 
-    if (Object.keys(edit).length === 0) {
+    if (edit==undefined || Object.keys(edit).length === 0) {
       formData.append("file", data?.file[0]);
       const payload = {
-        power_type_id: data?.power_type_id,
+        power_type_id: data?.power_type_id.id,
         title: data?.title,
         description: data?.description,
       };
