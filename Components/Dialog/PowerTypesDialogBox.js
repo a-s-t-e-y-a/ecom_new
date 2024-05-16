@@ -36,7 +36,8 @@ const PowerTypesDialogBox = ({ onCancel, setOpen, refecth, token, edit }) => {
   const onSubmit = async (data) => {
     const formData = new FormData();
     
-    if (Object.keys(edit).length === 0) {
+    if (edit==undefined || Object.keys(edit).length === 0) {
+      console.log(data)
       formData.append(
         "data",
         JSON.stringify({ title: data.title, description: data.description })
@@ -45,7 +46,7 @@ const PowerTypesDialogBox = ({ onCancel, setOpen, refecth, token, edit }) => {
       console.log(formData, 'formData')
       mutate(formData);
       onCancel();
-      refetch();
+      
     } else {
       console.log(data)
       formData.append("file", data?.file[0]);
@@ -53,14 +54,14 @@ const PowerTypesDialogBox = ({ onCancel, setOpen, refecth, token, edit }) => {
       formData.append('data',JSON.stringify(data))
       update(formData)
       onCancel();
-      refetch();
+     
     }
   };
   useEffect(() => {
     if (datas) {
       setdata(datas);
     }
-    console.log(edit);
+   
     reset({
       ...edit,
       title: edit?.name
