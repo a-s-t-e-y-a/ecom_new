@@ -353,24 +353,12 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
           />
           {/* <TextField fullWidth label="Selling Price" name="product_price" id="product_price" size="small" {...register("product_price")} sx={{ minWidth: 300 }} /> */}
           <TextField fullWidth label="Discounted Product Price" name="discounted_price" id="discounted_price" size="small" {...register("discounted_price")} sx={{ minWidth: 300 }} />
-          <TextField
-            fullWidth
-            label="Lens Width"
-            name="lens_width"
-            id="lens_width"
-            {...register("lens_width")}
-            size="small"
-            sx={{ width: 350 }}
-          />
-          <TextField fullWidth label="Frame Width" name="frame_width" id="frame_width" size="small" {...register("frame_width")} sx={{ minWidth: 300 }} />
+          <TextField fullWidth label="Lens Width" name="lens_width" id="lens_width" {...register("lens_width")} size="small" sx={{ width: 350 }} />
           <TextField fullWidth label="Lens Height" name="lens_height" id="lens_height" size="small" {...register("lens_height")} sx={{ minWidth: 300 }} />
-          {/* <TextField fullWidth label="Country of origin" name="country_of_origin" id="country_of_origin" size="small" {...register("country_of_origin")} sx={{ minWidth: 300 }} /> */}
-          
+          <TextField fullWidth label="Frame Width" name="frame_width" id="frame_width" size="small" {...register("frame_width")} sx={{ minWidth: 300 }} />
           <TextField fullWidth label="Stock quantity" name="stokke" id="stokke" size="small" {...register("stokke")} sx={{ minWidth: 300 }} />
           <TextField fullWidth label="Tags" name="keyword" id="keyword" size="small" {...register("keyword")} sx={{ minWidth: 300 }} />
           <TextField fullWidth label="SEO Title" name="seo_title" id="seo_title" size="small" {...register("seo_title")} sx={{ minWidth: 300 }} />
-         
-          {/* <TextField fullWidth label="Temple length" name="temple_length" id="temple_length" size="small" {...register("temple_length")} sx={{ minWidth: 300 }} /> */}
          
           <div className=" col-span-2">
             <Textarea
