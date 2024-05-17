@@ -80,10 +80,7 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
   }, [editValue, reset, categories]);
 
   const OnSubmit = async (data) => {
-    // console.log(editValue, "editValue")
-    console.log(data, "onSubmit");
 
-   
     const form = new FormData();
     // Append the 'main' files
     if (data.main) {
@@ -98,9 +95,6 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
         form.append("files", data.file[i]);
       }
     }
-
-   
-   
 
     // Assuming mutate is an asynchronous function that sends the form data
     if (Object.keys(editValue).length === 0) {
@@ -138,11 +132,8 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
         material: data.material.id,
         power_type_id: data.power_type_id.map((i) => i.id),
       };
-      console.log(data_)
       form.append("data", JSON.stringify(data_));
-      mutate(form);
-      onCancel();
-      refetch();     
+      mutate(form);    
     } else {
       const data_ = {
         product_model_name: data.product_model_name,
@@ -182,8 +173,7 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
       console.log(data_)
       form.append("data", JSON.stringify(data_));
       update(form);
-      // onCancel();
-      // refetch();
+      refetch();
     }
   };
 
