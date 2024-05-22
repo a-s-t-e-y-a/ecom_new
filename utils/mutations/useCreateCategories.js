@@ -1,7 +1,7 @@
-import { Imageapi } from "@/api";
+import { api } from "@/api";
 
 const CreateCategories = (data) => {
-  return Imageapi.post("/categories", data);
+  return api.post("/categories", data);
 };
 
 export default CreateCategories;

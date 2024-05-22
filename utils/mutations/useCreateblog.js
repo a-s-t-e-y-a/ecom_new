@@ -1,5 +1,5 @@
-import { Imageapi } from "@/api";
+import { api } from "@/api";
 const CreateBlog = (data) => {
-  return Imageapi.post("/blogs", data);
+  return api.post("/blogs", data);
 };
 export default CreateBlog;

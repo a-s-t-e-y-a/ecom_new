@@ -11,12 +11,16 @@ import useGetAllBanner from "@/utils/queries/useGetAllbanner";
 import BannerCard from "@/Components/Admin/BannerCard";
 const BannagerManager = () => {
   const [open, setOpen] = useState(false);
+  
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);
+
   const router = useRouter();
+
   const { data, refetch } = useGetAllBanner();
   const [get, setget] = useState(false);
   const [logged, setlogged] = useState(false);
+
   useEffect(() => {
     if (IsAuth("admin_info")) {
       setlogged(true);
@@ -25,6 +29,7 @@ const BannagerManager = () => {
     }
     refetch();
   }, [router, refetch, get]);
+
   if (logged) {
     return (
       <AdminLayout>
@@ -41,7 +46,7 @@ const BannagerManager = () => {
           <div onClick={handleOpen}>
             <IconButton label="Bannager Manager" icon={<GiKnightBanner />} />
           </div>
-          <div className="mt-6 flex justify-between items-center gap-2 flex-wrap w-full">
+          <div className="mt-6 grid grid-cols-4">
             {data &&
               data?.map((banner, index) => {
                 return (
