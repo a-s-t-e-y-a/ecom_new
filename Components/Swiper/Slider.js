@@ -33,11 +33,11 @@ export default function Slider({ data }) {
               key={index}
               className=" rounded-md  min-h-[100px]  py-10 "
             >
-              <div className=" text-cente  bg-white  rounded-md py-2  h-[100px] flex flex-col items-center justify-center gap-4">
+              <div className=" text-cente  bg-white  rounded-md py-2 flex flex-col items-center justify-center gap-4">
                 <div onClick={() => handleClick(slide)}>
                   <img
-                    width={200}
-                    height={200}
+                    width={300}
+                    height={300}
                     className=" w-full h-[100px] object-cover rounded  "
                     src={
                       slide?.imageArray?.length > 0

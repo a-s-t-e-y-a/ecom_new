@@ -2,15 +2,15 @@ import api from "@/api";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-const useRegister = () => {
+const useLogin = () => {
   const mutate = useMutation({
-    mutationKey: ["api/register"],
+    mutationKey: ["/login"],
     mutationFn: async (data) => {
-      const res = await api.post("auth/signup", data);
+      const res = await api.post("auth/login", data);
       return res.data;
     },
     onSuccess: (data) => {
-      toast.success("User registered succesfully");
+      toast.success("User Login succesfully");
     },
     onError: (err) => {
       toast.error(err.message);
@@ -18,4 +18,5 @@ const useRegister = () => {
   });
   return mutate;
 };
-export default useRegister;
+
+export default useLogin;
