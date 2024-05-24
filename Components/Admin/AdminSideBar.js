@@ -89,41 +89,41 @@ const AdminSideBar = () => {
       icon: <HiUserAdd />,
       link: "/admin/registeredUsers",
     },
-    { title: "About", icon: <FcAbout />, link: "/admin/about" },
+    // { title: "About", icon: <FcAbout />, link: "/admin/about" },
     { title: "try@Home", icon: <HiOutlineHome />, link: "/admin/try@Home" },
     { title: "Franchise", icon: <MdCurrencyFranc />, link: "/admin/franchise" },
+    {
+      title: "Enquiry",
+      icon: <RiCustomerService2Line />,
+      link: "/admin/enquiry",
+    },
+    // { title: "Size Guide", icon: <TbTextSize />, link: "/admin/sizeGuide" },
     // {
-    //   title: "Enquiry",
-    //   icon: <RiCustomerService2Line />,
-    //   link: "/admin/enquiry",
+    //   title: "Cancellation",
+    //   icon: <MdCancelScheduleSend />,
+    //   link: "/admin/cancellation",
     // },
-    { title: "Size Guide", icon: <TbTextSize />, link: "/admin/sizeGuide" },
-    {
-      title: "Cancellation",
-      icon: <MdCancelScheduleSend />,
-      link: "/admin/cancellation",
-    },
-    {
-      title: "Refund Policy",
-      icon: <HiOutlineReceiptRefund />,
-      link: "/admin/refundPolicy",
-    },
-    {
-      title: "Privacy Policy",
-      icon: <MdOutlinePrivacyTip />,
-      link: "/admin/privacyPolicy",
-    },
-    { title: "Guide To Buy", icon: <RiBook2Fill />, link: "/admin/guideToBuy" },
-    {
-      title: "7-Day Easy Return Policy",
-      icon: <MdPolicy />,
-      link: "/admin/easyReturnPolicy",
-    },
-    {
-      title: "Delivery & Shipping terms",
-      icon: <TbTruckReturn />,
-      link: "/admin/deliveryShippingTerms",
-    },
+    // {
+    //   title: "Refund Policy",
+    //   icon: <HiOutlineReceiptRefund />,
+    //   link: "/admin/refundPolicy",
+    // },
+    // {
+    //   title: "Privacy Policy",
+    //   icon: <MdOutlinePrivacyTip />,
+    //   link: "/admin/privacyPolicy",
+    // },
+    // { title: "Guide To Buy", icon: <RiBook2Fill />, link: "/admin/guideToBuy" },
+    // {
+    //   title: "7-Day Easy Return Policy",
+    //   icon: <MdPolicy />,
+    //   link: "/admin/easyReturnPolicy",
+    // },
+    // {
+    //   title: "Delivery & Shipping terms",
+    //   icon: <TbTruckReturn />,
+    //   link: "/admin/deliveryShippingTerms",
+    // },
   ];
 
   return (
