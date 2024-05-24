@@ -6,13 +6,17 @@ const nextConfig = {
     BASE_URL: process.env.BASE_URL || "http://3.24.191.174:5000/api/",
     BASE_IMAGE_URL:
       process.env.NASE_IMAGE_URL ||
-      "https://akkukachasma.s3.amazonaws.com/product_images/",
+      "https://akkukachasma.s3.us-east-1.amazonaws.com/",
   },
   images: {
+    domains: [
+      "akkukachasma.s3.us-east-1.amazonaws.com",
+      "cdn.pixabay.com",
+    ],
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "akkukachasma.s3.amazonaws.com",
+        hostname: "akkukachasma.s3.us-east-1.amazonaws.com",
         port: "",
         pathname: "/**",
       },
@@ -22,7 +26,7 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
-    ], // Change this to the domain only
+    ],
   },
   webpack: (config) => {
     config.resolve.alias["@"] = path.resolve(__dirname);
@@ -30,4 +34,4 @@ const nextConfig = {
   },
 };
 
-module.exports = { ...nextConfig }; // Merging redirects with nextConfig
+module.exports = { ...nextConfig };
