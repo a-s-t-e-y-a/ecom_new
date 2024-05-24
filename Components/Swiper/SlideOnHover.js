@@ -5,6 +5,8 @@ import Image from "next/image";
 
 const SlideOnHover = ({ data }) => {
   const [play, setPlay] = React.useState(false);
+  const imageArray = data?.product_images?.split(",");
+  console.log(imageArray, 'imageArray')
   return (
     <div className="w-full mx-auto ">
       <Carousel

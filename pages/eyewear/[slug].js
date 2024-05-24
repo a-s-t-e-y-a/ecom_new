@@ -19,15 +19,15 @@ import ProductTag from "@/Components/SingleItem/ProductTag";
 const SingleProduct = () => {
   const Dispacth = useDispatch();
   const [isOpen, setIsOpen] = React.useState(false);
-  const [productData, setProductdata] = React.useState(null);
+  const [productData, setProductdata] = React.useState();
   const router = useRouter();
 
   const { slug } = router.query;
   let Product = useGetProductDetail(slug);
   const TabPanelOption = [
-    { label: "SPECIFICATION", component: <Specification /> },
-    { label: "DESCRIPTION", component: <Description /> },
-    { label: "PRODUCTS TAGS", component: <ProductTag /> },
+    { label: "SPECIFICATION", component: <Specification Product={Product}/> },
+    { label: "DESCRIPTION", component: <Description Product={Product.data[0]}/> },
+    { label: "PRODUCTS TAGS", component: <ProductTag Product={Product.data[0]}/> },
   ];
 
   useEffect(() => {
@@ -104,10 +104,10 @@ const SingleProduct = () => {
                   <p>
                     Frame color:{" "}
                     <span>
-                      {colorMapping[productData?.product_color] || "Unknown"}
+                      {productData?.product_color_?.name}
                     </span>
                   </p>
-                  <p className=" ms-5">Size : {Product?.data?.size_?.name}</p>
+                  <p className=" ms-5">Size : {productData.size_?.name}</p>
                 </div>
               </div>
             </div>

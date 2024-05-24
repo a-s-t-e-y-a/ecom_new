@@ -28,32 +28,33 @@ export default function Slider({ data }) {
         className="mySwiper min-h-[200px]  "
       >
         {data &&
-          data?.map((slide, index) => (
-            <SwiperSlide
-              key={index}
-              className=" rounded-md  min-h-[100px]  py-10 "
-            >
-              <div className=" text-cente  bg-white  rounded-md py-2 flex flex-col items-center justify-center gap-4">
-                <div onClick={() => handleClick(slide)}>
-                  <img
-                    width={300}
-                    height={300}
-                    className=" w-full h-[100px] object-cover rounded  "
-                    src={
-                      slide?.imageArray?.length > 0
-                        ? slide?.imageArray[0]
-                        : "https://akkukachasma.s3.amazonaws.com/product_images/" +
-                          slide?.image
-                    }
-                    alt=""
-                  />
-                </div>
-                <span className="text-sm text-center font-semibold">
-                  {slide?.name}
-                </span>
-              </div>
-            </SwiperSlide>
-          ))}
+          data?.map((slide, index) => {
+            return (
+              <>
+                <SwiperSlide
+                  key={index}
+                  className=" rounded-md  min-h-[100px]  py-10 "
+                >
+                  <div className=" text-cente  bg-white  rounded-md py-2 flex flex-col items-center justify-center gap-4">
+                    <div onClick={() => handleClick(slide)}>
+                      <img
+                        width={300}
+                        height={300}
+                        className=" w-full h-[150px] object-cover rounded  "
+                        src={
+                          slide?.imageArray[0]
+                        }
+                        alt=""
+                      />
+                    </div>
+                    <span className="text-sm text-center font-semibold">
+                      {slide?.name}
+                    </span>
+                  </div>
+                </SwiperSlide>
+              </>
+            );
+          })}
       </Swiper>
     </div>
   );

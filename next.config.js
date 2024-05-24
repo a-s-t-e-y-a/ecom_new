@@ -11,6 +11,7 @@ const nextConfig = {
   images: {
     domains: [
       "akkukachasma.s3.us-east-1.amazonaws.com",
+      "akkukachasma.s3.amazonaws.com",
       "cdn.pixabay.com",
     ],
     remotePatterns: [
