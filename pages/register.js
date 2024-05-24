@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { BsFillPersonFill } from "react-icons/bs";
-import { MdOutlineAlternateEmail } from "react-icons/md";
+import { MdOutlineAlternateEmail, MdOutlineContactPhone } from "react-icons/md";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import useRegister from "@/utils/mutations/useRegister";
@@ -19,7 +19,13 @@ export default function Example() {
   } = useForm();
   const { mutate } = useRegister();
   const onSubmit = (data) => {
-    mutate(data);
+    const payload = {
+      name: data?.name,
+      email: data?.email,
+      password: data?.password,
+      mobile: data?.mobile,
+    };
+    mutate(payload);
   };
 
   return (
@@ -140,7 +146,22 @@ export default function Example() {
                 {...register("confirm-password", { required: true })}
               />
             </div>
-
+            <div className="w-auto">
+              <Input
+                label="Mobile Number"
+                type="tel"
+                name="phone"
+                id="phone"
+                className="bg-gray-50 border border-gray-300 text-gray-900 pl-7 sm:text-sm rounded-lg w-full p-2.5 focus:outline-none focus:ring-0"
+                icon={
+                  <MdOutlineContactPhone className="text-gray-600 relative top-3 left-2" />
+                }
+                labelProps={{
+                  className: "pl-4",
+                }}
+                {...register("mobile", { required: true })}
+              />
+            </div>
             <div className="flex items-center">
               <input
                 id="link-checkbox"
