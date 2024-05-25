@@ -11,7 +11,6 @@ import { useRouter } from "next/router";
 import useGetProductDetail from "@/utils/queries/useGetProductDetails";
 import { UpdaeSepcification } from "@/Slices/ProductSepcifcation";
 import { useDispatch } from "react-redux";
-import { colorMapping } from "@/utils/contants";
 import Loader from "@/Components/Loader";
 import Specification from "@/Components/SingleItem/Specification";
 import Description from "@/Components/SingleItem/Description";
@@ -36,7 +35,7 @@ const SingleProduct = () => {
       setProductdata(Product.data[0]);
       Dispacth(UpdaeSepcification(Product.data[0]));
     }
-  }, [Product, productData, Dispacth]);
+  }, [Product, productData, slug]);
 
   const productURL = productData?.product_url ?? "";
   const BASE_URI = `https://akkukachasma.com/eyewear/`;
