@@ -22,7 +22,10 @@ const SingleProduct = () => {
   const router = useRouter();
 
   const { slug } = router.query;
-  let Product = useGetProductDetail(slug);
+  if(slug){
+    let Product = useGetProductDetail(slug);
+    setProductdata(Product.data[0]);
+  }
   const TabPanelOption = [
     { label: "SPECIFICATION", component: <Specification Product={Product}/> },
     { label: "DESCRIPTION", component: <Description Product={Product.data[0]}/> },
