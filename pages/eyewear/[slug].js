@@ -15,30 +15,23 @@ import Loader from "@/Components/Loader";
 import Specification from "@/Components/SingleItem/Specification";
 import Description from "@/Components/SingleItem/Description";
 import ProductTag from "@/Components/SingleItem/ProductTag";
-const SingleProduct = () => {
-  const Dispacth = useDispatch();
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [productData, setProductdata] = React.useState();
-  const router = useRouter();
 
+const SingleProduct = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [productData, setProductData] = useState();
+  const dispatch = useDispatch();
+  const router = useRouter();
   const { slug } = router.query;
-  if(slug){
-    let Product = useGetProductDetail(slug);
-    setProductdata(Product.data[0]);
-  }
-  const TabPanelOption = [
-    { label: "SPECIFICATION", component: <Specification Product={Product}/> },
-    { label: "DESCRIPTION", component: <Description Product={Product.data[0]}/> },
-    { label: "PRODUCTS TAGS", component: <ProductTag Product={Product.data[0]}/> },
-  ];
+
+  // Ensure the hook is called unconditionally
+  const Product = useGetProductDetail(slug);
 
   useEffect(() => {
     if (Product.data) {
-      const user = localStorage.getItem("user_data");
-      setProductdata(Product.data[0]);
-      Dispacth(UpdaeSepcification(Product.data[0]));
+      setProductData(Product.data[0]);
+      dispatch(UpdaeSepcification(Product.data[0]));
     }
-  }, [Product, productData, slug]);
+  }, [Product.data, dispatch]);
 
   const productURL = productData?.product_url ?? "";
   const BASE_URI = `https://akkukachasma.com/eyewear/`;
@@ -46,28 +39,27 @@ const SingleProduct = () => {
     `Hello! I'm interested in this one! ${BASE_URI + productURL}`
   );
   const whatsappLink = `https://wa.me/8188881661?text=${messageToShare}`;
-
   const whatsappLinkToShare = `https://wa.me/?text=${messageToShare}`;
 
   const [value, setValue] = useState([]);
 
-  const addToCart = (productId, isLens = false) => {
-    // Construct the object based on whether it's a lens or product
-    setValue([
-      ...value,
-      {
-        Productid: productId,
-      },
-    ]);
-    localStorage.setItem(
-      "Productid",
-      JSON.stringify([...value, { Productid: productId }])
-    );
+  const addToCart = (productId) => {
+    setValue((prevValue) => {
+      const newValue = [...prevValue, { Productid: productId }];
+      localStorage.setItem("Productid", JSON.stringify(newValue));
+      return newValue;
+    });
   };
 
-  if (!Product?.data?.length > 0) {
+  if (!Product?.data?.length) {
     return <Loader />;
   }
+
+  const TabPanelOption = [
+    { label: "SPECIFICATION", component: <Specification Product={Product} /> },
+    { label: "DESCRIPTION", component: <Description Product={Product.data[0]} /> },
+    { label: "PRODUCTS TAGS", component: <ProductTag Product={Product.data[0]} /> },
+  ];
 
   return (
     <Layout>
