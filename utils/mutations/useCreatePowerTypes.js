@@ -1,6 +1,7 @@
-const { default: api, Imageapi } = require("@/api");
+import api from "@/api";
+
 
 const CreatePowerType = (data) => {
-  return Imageapi.post("/power-type", data);
+  return api.post("/power-type", data);
 };
 export default CreatePowerType;

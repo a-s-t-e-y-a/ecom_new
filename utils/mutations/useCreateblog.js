@@ -1,4 +1,5 @@
-import { api } from "@/api";
+import api from "@/api";
+
 const CreateBlog = (data) => {
   return api.post("/blogs", data);
 };

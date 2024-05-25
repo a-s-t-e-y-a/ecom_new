@@ -1,9 +1,7 @@
 import Layout from "@/Layout/Layout";
-import { Option, Select } from "@material-tailwind/react";
 import React from "react";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
-import { Toast } from "react-toastify";
 import useCreateFranchise from "@/utils/mutations/useCreateFranchise";
 
 
@@ -13,7 +11,6 @@ const FranchiseEnquiry = () => {
   const { mutate, isSuccess } = useCreateFranchise();
 
   const onSubmit = (data) => {
-      Toast
       mutate(data);
       if(isSuccess){
           reset()

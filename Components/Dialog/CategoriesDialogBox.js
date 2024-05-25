@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 const CategoriesDialogBox = ({ onCancel, refetch }) => {
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
+  
   const { mutate, isError } = useMutation({
     mutationFn: CreateCategories,
     onSuccess: (data) => {
@@ -22,6 +23,7 @@ const CategoriesDialogBox = ({ onCancel, refetch }) => {
       toast.error("Error occurred");
     },
   });
+
   const onSubmit = (data) => {
     const formData = new FormData();
     formData.append("data", JSON.stringify({ name: data?.name }));
