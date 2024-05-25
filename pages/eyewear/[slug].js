@@ -1,4 +1,4 @@
-"use params";
+"use client";
 import SwiperThumbs from "@/Components/Swiper/SwiperThumbs";
 import Layout from "@/Layout/Layout";
 import React, { useEffect, useState } from "react";
