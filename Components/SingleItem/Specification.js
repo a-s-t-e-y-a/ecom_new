@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 const Specification = ({ Product }) => {
-  console.log(Product.data[0], "Product 5");
+  console.log(Product);
   const {
     p_id,
     material_,
@@ -13,7 +13,7 @@ const Specification = ({ Product }) => {
     style,
     product_type,
     row_metrial_source_from,
-  } = Product.data[0];
+  } = Product;
   const SpecificationData = [
     { title: "Frame Material ", value: material_?.name },
     { title: "Lens Material ", value: lens_material },
