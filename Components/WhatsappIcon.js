@@ -6,7 +6,7 @@ import Image from "next/image";
 const WhatsappIcon = () => {
   return (
     <div
-      className="fixed right-2 bottom-14 rounded-full"
+      className="fixed right-6 bottom-14 rounded-full"
       style={{ zIndex: "1000" }}
     >
       <Tooltip title="WhatsApp Now">

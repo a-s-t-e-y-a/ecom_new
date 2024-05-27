@@ -90,7 +90,7 @@ const Header = () => {
   return (
     <>
       <CartDialog open={open} setOpen={setOpen} />
-      <header className="flex flex-col w-full  px-2 mb-4">
+      <header className="flex flex-col w-full  px-4 mb-4">
         {/* Top Part */}
         <div className="flex items-center justify-between h-14 mb-3 ">
           {/* Left */}
