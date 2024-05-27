@@ -101,7 +101,7 @@ const SingleProduct = () => {
                       {productData?.product_color_?.name}
                     </span>
                   </p>
-                  <p className=" ms-5">Size : {productData.size_?.name}</p>
+                  {/* <p className=" ms-5">Size : {productData.size_?.name}</p> */}
                 </div>
               </div>
             </div>
