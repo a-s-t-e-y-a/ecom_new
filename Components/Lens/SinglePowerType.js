@@ -14,7 +14,7 @@ const SinglePowerType = (props) => {
             height={100}
             alt=""
             src={src}
-            className="w-auto h-12"
+            className="w-auto h-22"
           />
         </div>
         <div>
