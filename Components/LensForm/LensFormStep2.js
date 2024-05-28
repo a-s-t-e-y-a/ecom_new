@@ -4,7 +4,6 @@ import useGetAllLensFeature from "@/utils/queries/useLensFeature";
 
 const LensFormStep2 = ({ onNext, onPrev }) => {
   const { data, isFetched } = useGetAllLensFeature();
-  console.log(data, "data");
   return (
     <div className="space-y-6 text-gray-800 w-[100%] h-[100vh] mt-20">
       <h1 className="text-xl font-semibold tracking-wide text-center">
