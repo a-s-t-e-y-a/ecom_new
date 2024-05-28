@@ -1,4 +1,4 @@
-"use params";
+"use client";
 import SwiperThumbs from "@/Components/Swiper/SwiperThumbs";
 import Layout from "@/Layout/Layout";
 import React, { useEffect, useState } from "react";
@@ -11,32 +11,27 @@ import { useRouter } from "next/router";
 import useGetProductDetail from "@/utils/queries/useGetProductDetails";
 import { UpdaeSepcification } from "@/Slices/ProductSepcifcation";
 import { useDispatch } from "react-redux";
-import { colorMapping } from "@/utils/contants";
 import Loader from "@/Components/Loader";
 import Specification from "@/Components/SingleItem/Specification";
 import Description from "@/Components/SingleItem/Description";
 import ProductTag from "@/Components/SingleItem/ProductTag";
-const SingleProduct = () => {
-  const Dispacth = useDispatch();
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [productData, setProductdata] = React.useState(null);
-  const router = useRouter();
 
+const SingleProduct = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [productData, setProductData] = useState();
+  const dispatch = useDispatch();
+  const router = useRouter();
   const { slug } = router.query;
-  let Product = useGetProductDetail(slug);
-  const TabPanelOption = [
-    { label: "SPECIFICATION", component: <Specification /> },
-    { label: "DESCRIPTION", component: <Description /> },
-    { label: "PRODUCTS TAGS", component: <ProductTag /> },
-  ];
+
+  // Ensure the hook is called unconditionally
+  const Product = useGetProductDetail(slug);
 
   useEffect(() => {
     if (Product.data) {
-      const user = localStorage.getItem("user_data");
-      setProductdata(Product.data[0]);
-      Dispacth(UpdaeSepcification(Product.data[0]));
+      setProductData(Product.data[0]);
+      dispatch(UpdaeSepcification(Product.data[0]));
     }
-  }, [Product, productData, Dispacth]);
+  }, [Product.data, dispatch]);
 
   const productURL = productData?.product_url ?? "";
   const BASE_URI = `https://akkukachasma.com/eyewear/`;
@@ -44,28 +39,27 @@ const SingleProduct = () => {
     `Hello! I'm interested in this one! ${BASE_URI + productURL}`
   );
   const whatsappLink = `https://wa.me/8188881661?text=${messageToShare}`;
-
   const whatsappLinkToShare = `https://wa.me/?text=${messageToShare}`;
 
   const [value, setValue] = useState([]);
 
-  const addToCart = (productId, isLens = false) => {
-    // Construct the object based on whether it's a lens or product
-    setValue([
-      ...value,
-      {
-        Productid: productId,
-      },
-    ]);
-    localStorage.setItem(
-      "Productid",
-      JSON.stringify([...value, { Productid: productId }])
-    );
+  const addToCart = (productId) => {
+    setValue((prevValue) => {
+      const newValue = [...prevValue, { Productid: productId }];
+      localStorage.setItem("Productid", JSON.stringify(newValue));
+      return newValue;
+    });
   };
 
-  if (!Product?.data?.length > 0) {
+  if (!Product?.data?.length) {
     return <Loader />;
   }
+
+  const TabPanelOption = [
+    { label: "SPECIFICATION", component: <Specification Product={Product} /> },
+    { label: "DESCRIPTION", component: <Description Product={Product.data[0]} /> },
+    { label: "PRODUCTS TAGS", component: <ProductTag Product={Product.data[0]} /> },
+  ];
 
   return (
     <Layout>
@@ -104,10 +98,10 @@ const SingleProduct = () => {
                   <p>
                     Frame color:{" "}
                     <span>
-                      {colorMapping[productData?.product_color] || "Unknown"}
+                      {productData?.product_color_?.name}
                     </span>
                   </p>
-                  <p className=" ms-5">Size : {Product?.data?.size_?.name}</p>
+                  {/* <p className=" ms-5">Size : {productData.size_?.name}</p> */}
                 </div>
               </div>
             </div>

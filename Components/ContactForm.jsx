@@ -1,14 +1,12 @@
 import useCreateContact from '@/utils/mutations/useCreateContact';
 import React from 'react'
 import { useForm } from 'react-hook-form';
-import {Toast} from 'react-toastify';
 
 const ContactForm = () => {
     const { register, handleSubmit, reset } = useForm();
     const { mutate, isSuccess } = useCreateContact();
 
     const onSubmit = (data) => {
-        Toast
         mutate(data);
         if(isSuccess){
             reset()

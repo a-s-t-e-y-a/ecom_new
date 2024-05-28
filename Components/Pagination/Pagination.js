@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const Pagination = ({ setpage, curr, total }) => {
+const Pagination = ({ pages, curr, total }) => {
   const [Page, setPage] = useState([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
 
@@ -10,20 +10,23 @@ const Pagination = ({ setpage, curr, total }) => {
   }, [curr, total]);
 
   const updatePageNumbers = () => {
-    const maxPagesToShow = 5;
+    const pageSize = 15; // Number of products per page
+    const maxPagesToShow = 5; // Maximum number of pages to show at once
+    const totalPages = Math.ceil(total / pageSize); // Calculate total number of pages
+
     const halfMaxPages = Math.floor(maxPagesToShow / 2);
     let startPage = curr - halfMaxPages;
-    startPage = Math.max(0, startPage); // Ensure startPage is not negative
+    startPage = Math.max(1, startPage); // Ensure startPage is at least 1
 
     let endPage = startPage + maxPagesToShow - 1;
-    if (endPage >= total) {
-      endPage = total - 1;
-      startPage = Math.max(0, endPage - maxPagesToShow + 1);
+    if (endPage > totalPages) {
+      endPage = totalPages;
+      startPage = Math.max(1, endPage - maxPagesToShow + 1);
     }
 
     const newPageNumbers = [];
     for (let i = startPage; i <= endPage; i++) {
-      newPageNumbers.push(i + 1);
+      newPageNumbers.push(i);
     }
 
     setPage(newPageNumbers);
@@ -31,14 +34,13 @@ const Pagination = ({ setpage, curr, total }) => {
 
   const perviousHandler = () => {
     if (curr > 1) {
-      setpage(curr - 1);
+      pages(curr - 1);
     }
   };
 
   const nexthandler = () => {
-    console.log(curr, "current", total);
     if (curr < total) {
-      setpage(curr + 1);
+      pages(curr + 1);
     }
   };
 
@@ -60,10 +62,10 @@ const Pagination = ({ setpage, curr, total }) => {
             <li
               key={i}
               className={`border-2 border-s-0 text-center flex items-center px-4 cursor-pointer ${
-                curr === v ? "bg-blue-500 text-white" : ""
+                curr === v || Page>0 ? "bg-blue-500 text-white" : ""
               }`}
               onClick={() => {
-                setpage(v);
+                pages(v);
                 setSelectedIndex(i);
               }}
             >

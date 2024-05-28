@@ -9,115 +9,101 @@ import LensForm from "@/Components/LensForm/LensForm";
 import TabPanel from "@/Components/Tab/TabPanel";
 import { useRouter } from "next/router";
 import useGetProductDetail from "@/utils/queries/useGetProductDetails";
-import { UpdaeSepcification } from "@/Slices/ProductSepcifcation";
+import { updateSpecification } from "../../Slices/ProductSepcifcation";
 import { useDispatch } from "react-redux";
-import { colorMapping } from "@/utils/contants";
+import { colorMapping } from "../../utils/contants";
 import Loader from "@/Components/Loader";
 import Specification from "@/Components/SingleItem/Specification";
 import Description from "@/Components/SingleItem/Description";
 import ProductTag from "@/Components/SingleItem/ProductTag";
-const SingleProduct = () => {
-  const Dispacth = useDispatch();
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [productData, setProductdata] = React.useState(null);
-  const router = useRouter();
+import { data } from "autoprefixer";
 
+const SingleProduct = () => {
+  const dispatch = useDispatch();
+  const [isOpen, setIsOpen] = useState(false);
+  const [productData, setProductData] = useState(null);
+  const [extraData, setExtraData] = useState("");
+  const [cartItems, setCartItems] = useState([]);
+
+  const router = useRouter();
   const { slug } = router.query;
-  let Product = useGetProductDetail(slug);
-  const TabPanelOption = [
-    { label: "SPECIFICATION", component: <Specification /> },
-    { label: "DESCRIPTION", component: <Description /> },
-    { label: "PRODUCTS TAGS", component: <ProductTag /> },
-  ];
 
   useEffect(() => {
-    if (Product.data) {
-      const user = localStorage.getItem("user_data");
-      setProductdata(Product.data[0]);
-      Dispacth(UpdaeSepcification(Product.data[0]));
+    if (router.isReady) {
+      const { extraData } = router.query;
+      setExtraData(extraData);
     }
-  }, [Product, productData, Dispacth]);
+  }, [router.isReady, router.query]);
+  console.log(extraData)
+  const { data: productDetails, isLoading } = useGetProductDetail(slug, extraData? extraData:undefined);
+
+  useEffect(() => {
+    if (productDetails) {
+      const user = localStorage.getItem("user_data");
+      setProductData(productDetails);
+      // dispatch(updateSpecification(productDetails));
+    }
+  }, [productDetails, dispatch]);
 
   const productURL = productData?.product_url ?? "";
   const BASE_URI = `https://akkukachasma.com/eyewear/`;
-  const messageToShare = encodeURIComponent(
-    `Hello! I'm interested in this one! ${BASE_URI + productURL}`
-  );
+  const messageToShare = encodeURIComponent(`Hello! I'm interested in this one! ${BASE_URI + productURL}`);
   const whatsappLink = `https://wa.me/8188881661?text=${messageToShare}`;
-
   const whatsappLinkToShare = `https://wa.me/?text=${messageToShare}`;
 
-  const [value, setValue] = useState([]);
-
-  const addToCart = (productId, isLens = false) => {
-    // Construct the object based on whether it's a lens or product
-    setValue([
-      ...value,
-      {
-        Productid: productId,
-      },
-    ]);
-    localStorage.setItem(
-      "Productid",
-      JSON.stringify([...value, { Productid: productId }])
-    );
+  const addToCart = (productId) => {
+    const newCartItems = [...cartItems, { ProductId: productId }];
+    setCartItems(newCartItems);
+    localStorage.setItem("ProductId", JSON.stringify(newCartItems));
   };
 
-  if (!Product?.data?.length > 0) {
+  if (isLoading ) {
     return <Loader />;
   }
+
+  const TabPanelOption = [
+    { label: "SPECIFICATION", component: <Specification Product={productDetails}/> },
+    { label: "DESCRIPTION", component: <Description /> },
+    { label: "PRODUCT TAGS", component: <ProductTag /> },
+  ];
 
   return (
     <Layout>
       <LensForm show={isOpen} onHide={() => setIsOpen(false)} />
-      <section className="text-gray-600 ">
-        <div className="grid grid-cols-1 lg:grid-cols-2 items-center mx-auto ">
-          {/* Swiper Field  */}
+      <section className="text-gray-600">
+        <div className="grid grid-cols-1 lg:grid-cols-2 items-center mx-auto">
+          {/* Swiper Field */}
           <div className="w-full">
             <SwiperThumbs images={productData?.product_images} />
           </div>
 
-          {/* Detail  */}
-          <div className=" px-5">
-            <div className="">
-              <div className=" flex justify-between mb-5">
-                <h1 className=" text-2xl md:text-4xl">
-                  {productData?.product_model_name}
-                </h1>
-                <span className="text-xl font-semibold cursor-pointer">
-                  <AiOutlineHeart />
-                </span>
-              </div>
-              <div className="flex items-center justify-between mb-4">
-                <p className="text-sm font-semibold">
-                  {productData?.product_color_?.name}
+          {/* Detail */}
+          <div className="px-5">
+            <div className="flex justify-between mb-5">
+              <h1 className="text-2xl md:text-4xl">{productData?.product_model_name}</h1>
+              <span className="text-xl font-semibold cursor-pointer">
+                <AiOutlineHeart />
+              </span>
+            </div>
+            <div className="flex items-center justify-between mb-4">
+              <p className="text-sm font-semibold">{productData?.product_color_?.name}</p>
+              <span className="font-semibold tracking-wider text-lg">Rs. {productData?.discounted_price}</span>
+            </div>
+
+            <div className="flex items-center justify-between text-sm mb-5">
+              <div className="flex items-center justify-around gap-2">
+                <p>
+                  Frame color: <span>{colorMapping[productData?.product_color] || "Unknown"}</span>
                 </p>
-                <span className="font-semibold tracking-wider text-lg">
-                  Rs. {productData?.discounted_price}
-                </span>
+                <p className="ms-5">Size : {productDetails?.size_?.name}</p>
               </div>
             </div>
 
-            <div className="">
-              <div className="flex items-center justify-between text-sm mb-5">
-                <div className="flex items-center justify-around gap-2">
-                  <p>
-                    Frame color:{" "}
-                    <span>
-                      {colorMapping[productData?.product_color] || "Unknown"}
-                    </span>
-                  </p>
-                  <p className=" ms-5">Size : {Product?.data?.size_?.name}</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Buttons  */}
-            <div className="flex  flex-col md:flex-row md:items-center gap-3 text-xs justify-evenly mb-5">
+            {/* Buttons */}
+            <div className="flex flex-col md:flex-row md:items-center gap-3 text-xs justify-evenly mb-5">
               <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
                 <button className="flex w-full items-center justify-center gap-2 bg-gray-700 hover:bg-gray-800 text-white p-2 rounded-md">
-                  <HiOutlineShoppingCart strokeWidth={2} className="h-4 w-4" />{" "}
-                  Buy on Whatsapp
+                  <HiOutlineShoppingCart strokeWidth={2} className="h-4 w-4" /> Buy on Whatsapp
                 </button>
               </a>
               <button
@@ -126,36 +112,24 @@ const SingleProduct = () => {
               >
                 Select Lens
               </button>
-              <a
-                href={whatsappLinkToShare}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a href={whatsappLinkToShare} target="_blank" rel="noopener noreferrer">
                 <button className="flex w-full items-center justify-center gap-2 bg-gray-700 hover:bg-gray-800 text-white p-2 rounded-md">
-                  <IoIosShareAlt strokeWidth={2} className="h-4 w-4" /> Share
-                  Now
+                  <IoIosShareAlt strokeWidth={2} className="h-4 w-4" /> Share Now
                 </button>
               </a>
               <button
                 className="flex items-center justify-center gap-2 bg-gray-700 hover:bg-gray-800 text-white p-2 rounded-md"
-                onClick={() => {
-                  addToCart(productData?.p_id);
-                }}
+                onClick={() => addToCart(productData?.p_id)}
               >
                 Add to Cart
               </button>
             </div>
 
-            {/* Size And Rating  */}
+            {/* Size And Rating */}
             <div className="flex items-center justify-between mb-5">
-              <button className="border-2 text-sm px-4 py-1 rounded-md ">
-                Size Guide
-              </button>
-
+              <button className="border-2 text-sm px-4 py-1 rounded-md">Size Guide</button>
               <div className="flex items-center">
-                <p className="ml-2 text-sm font-bold text-gray-900 dark:text-slate-500">
-                  {productData?.rating}
-                </p>
+                <p className="ml-2 text-sm font-bold text-gray-900 dark:text-slate-500">{productData?.rating}</p>
                 <svg
                   aria-hidden="true"
                   className="w-3 h-3 text-gray-900"
@@ -177,7 +151,7 @@ const SingleProduct = () => {
             </div>
           </div>
         </div>
-        <div className=" my-5">
+        <div className="my-5">
           <TabPanel TabPanelOption={TabPanelOption} />
         </div>
       </section>

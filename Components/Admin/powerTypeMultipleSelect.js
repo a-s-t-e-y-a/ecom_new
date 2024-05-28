@@ -37,8 +37,9 @@ export default function SingleSelectPowerType({
               {...field}
               disablePortal
               disabled={!active}
-              options={options || []}
-              getOptionLabel={(option) => option.name} 
+              options={options}
+              getOptionKey={(option)=> option?.id}
+              getOptionLabel={(option) => option?.name} 
               onChange={(event, value, reason, details) =>
                 field.onChange(value ? value.id : null)
               }

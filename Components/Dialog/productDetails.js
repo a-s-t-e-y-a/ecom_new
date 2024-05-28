@@ -1,7 +1,7 @@
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import FileInput from "../Admin/FileInput";
-import { TextField } from "@mui/material";
+import { Autocomplete, TextField } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import useGetAllBrands from "@/utils/queries/useBrandsGetAll";
 import useGetAllCategories from "@/utils/queries/useCategoriesGetAll";
@@ -32,9 +32,15 @@ import SelectBox from "../ui/SelectBox";
 import { Gender } from "@/utils/contants";
 
 const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
-  const { register, handleSubmit, control, setValue, reset } = useForm({
-    defaultValues: editValue,
+  const { register, handleSubmit, control, reset, watch } = useForm({
+    mode: "all",
+    defaultValue: {
+      ...editValue,
+      productCategories: [
+      ],
+    },
   });
+
   const { mutate } = useMutation({
     mutationFn: CreateProduct,
     onSuccess: () => {
@@ -54,34 +60,27 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
   const { data: style } = useGetAllStyle();
   const [activePOwer, setAcative] = useState(true);
   const { mutate: update } = UpdateProudct(editValue?.p_id);
+
   useEffect(() => {
     if (Object.keys(editValue).length > 1) {
       const payload = {
         ...editValue,
-        product_model_name: editValue?.product_model_name,
-        product_model_number: editValue?.product_model_number,
-        productCategories: editValue?.productCategories,
+        use_for: editValue?.use_for,
         product_color: editValue?.product_color_,
         shape: editValue?.shape_,
-        power_type: editValue?.power_type,
         material: editValue?.material_,
         size: editValue?.size_,
         style: editValue?.style_,
-        use_for: editValue?.use_for,
-        lens_feature: editValue?.lens_feature,
-        description: editValue?.description,
-        price: editValue?.price,
-        discount: editValue?.discount,
-        discount_price: editValue?.discount_price,
-        stock: editValue?.stock,
-        main: editValue?.main,
-        file: editValue?.file,
+        power_type_id: editValue?.power_type,
+        select_Lens:editValue?.show_lens_list==1?"Yes":"No"
       };
-      reset(payload); // Reset with pre-populated gender value
+
+      reset(payload);
     }
-  }, []);
+  }, [editValue, reset, categories]);
+
   const OnSubmit = async (data) => {
-    console.log(data, "onSubmit");
+
     const form = new FormData();
     // Append the 'main' files
     if (data.main) {
@@ -96,24 +95,87 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
         form.append("files", data.file[i]);
       }
     }
-    delete data.main;
-    delete data.file;
-    // Append the data object as JSON string
-    form.append("data", JSON.stringify(data));
 
     // Assuming mutate is an asynchronous function that sends the form data
     if (Object.keys(editValue).length === 0) {
-      mutate(form);
-      onCancel();
-      refetch();
+      const data_ = {
+        product_model_name: data.product_model_name,
+        product_model_number: data.product_model_number,
+        // "capacity":
+        use_for: data.use_for,
+        // "dimensions":data.dimensions
+        // "country_of_origin":data
+        row_metrial_source_from: "Imported",
+        show_lens_list: data.select_Lens=="Yes"?1:0,
+        // "warranty":data.wa
+        product_description: data.product_description,
+        product_price: data.discounted_price,
+        discounted_price: data.discounted_price,
+        // "offer":
+        // "bought":
+        frame_width: data.frame_width,
+        // "temple_length":data.
+        lens_height: data.lens_height,
+        stokke: data.stokke,
+        product_url: data.product_model_name + data.product_model_number,
+        seo_title: data.seo_title,
+        keyword: data.keyword,
+        status: 1,
+        lens_width: data.lens_width,
+        productCategoriesId: data.productCategories.map(
+          (i) => i.products_categories_id
+        ),
+        product_color: data.product_color.id,
+        shape: data.shape.id,
+        style: data.style.id,
+        size: data.size.id,
+        material: data.material.id,
+        power_type_id: data.power_type_id.map((i) => i.id),
+      };
+      form.append("data", JSON.stringify(data_));
+      mutate(form);    
     } else {
+      const data_ = {
+        product_model_name: data.product_model_name,
+        product_model_number: data.product_model_number,
+        // "capacity":
+        use_for: data.use_for,
+        // "dimensions":data.dimensions
+        // "country_of_origin":data
+        row_metrial_source_from: "Imported",
+        show_lens_list: data.select_Lens=="Yes"?1:0,
+        // "warranty":data.wa
+        product_description: data.product_description,
+        product_price: data.discounted_price.toString(),
+        discounted_price: data.discounted_price,
+        // "offer":
+        // "bought":
+        frame_width: data.frame_width,
+        // "temple_length":data.
+        lens_height: data.lens_height,
+        stokke: data.stokke,
+        product_url: data.product_model_name + data.product_model_number,
+        seo_title: data.seo_title,
+        keyword: data.keyword,
+        status: 1,
+        lens_width: data.lens_width,
+        productCategoriesId: data.productCategories.map(
+          (i) => i.products_categories_id
+        ),
+        product_color: data.product_color.id,
+        shape: data.shape.id,
+        style: data.style.id,
+        size: data.size.id,
+        material: data.material.id,
+        power_type_id: data.power_type_id.map((i) => i.id),
+        product_images:data.product_images
+      };
+      console.log(data_)
+      form.append("data", JSON.stringify(data_));
       update(form);
-      onCancel();
       refetch();
     }
   };
-
-  console.log(categories, "catogeroys");
 
   return (
     <div className="relative border mt-[1100px] md:mt-[300px] rounded-md shadow-lg w-full md:w-auto h-[calc(100%-1rem)] max-h-full ">
@@ -124,7 +186,7 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
         className="flex flex-col items-center justify-between gap-6 px-6 pb-6"
         onSubmit={handleSubmit(OnSubmit)}
       >
-        <div className="grid grid-cols-1 md:grid-cols-2  items-center justify-between w-full gap-3">
+        <div className="grid grid-cols-1 md:grid-cols-2  items-center justify-between w-full gap-4">
           <FileInput title="Main Image" register={register} name="main" />
           <FileInput title="Other imsges" register={register} />
           <TextField
@@ -133,7 +195,8 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
             name="product_model_name"
             id="product_model_name"
             {...register("product_model_name")}
-            sx={{ width: 298 }}
+            size="small"
+            sx={{ width: 350 }}
           />
           <TextField
             fullWidth
@@ -141,7 +204,8 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
             name="product_model_number"
             id="product_model_number"
             {...register("product_model_number")}
-            sx={{ width: 298 }}
+            size="small"
+            sx={{ width: 350 }}
           />
           <Controller
             name="use_for"
@@ -149,35 +213,34 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
             render={({ field: { value, onChange } }) => (
               <SelectBox
                 label="Gender"
-                multiple={true}
-                options={Gender || ""}
+                options={Gender}
                 value={value}
                 onChange={onChange}
               />
             )}
           />
           <Controller
-            name="productCategoriesId"
+            name="productCategories"
             control={control}
-            render={({ field: { value, onChange } }) => (
-              <SelectBox
-                label="Product Category"
-                options={
-                  categories?.length > 0
-                    ? categories.map((category) => category.name)
-                    : []
-                }
-                value={value}
-                onChange={onChange}
-              />
-            )}
+            render={({ field: { value, onChange } }) => {
+              return (
+                <SelectBox
+                  label="Category"
+                  multiple={true}
+                  options={categories}
+                  value={value}
+                  onChange={onChange}
+                />
+              );
+            }}
           />
           <Controller
-            name="select_Lense"
+            name="select_Lens"
             control={control}
             render={({ field: { value, onChange } }) => (
               <SelectBox
-                label="Select lens"
+                label="Select Lens"
+                multiple={false}
                 options={["Yes", "No"]}
                 value={value}
                 onChange={onChange}
@@ -187,151 +250,116 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
           <Controller
             name="power_type_id"
             control={control}
-            render={({ field: { value, onChange } }) => {
+            render={({ field: { value, onChange } }) => (
               <SelectBox
                 label="Power Type"
                 multiple={true}
                 options={power}
+                readOnly={watch("select_Lens") !== "Yes"}
+                // placeholder={watch("select_Lens") !== "Yes" ? "No Power type(Read Only)" : ""}
                 value={value}
                 onChange={onChange}
-              />;
-            }}
+              />
+            )}
           />
           <Controller
             name="product_color"
             control={control}
-            render={({ field: { value, onChange } }) => {
+            render={({ field: { value, onChange } }) => (
               <SelectBox
                 label="Select Color"
                 options={color}
-                multiple={false}
                 value={value}
                 onChange={onChange}
-              />;
-            }}
+              />
+            )}
           />
-          <SingleSelectShape
-            label="Select Shape"
-            control={control}
-            options={shape}
-            register={register}
+          <Controller
             name="shape"
-          />
-          <SingleSelectMaterial
-            label="Select Material"
             control={control}
-            options={material}
-            register={register}
+            render={({ field: { value, onChange } }) => (
+              <SelectBox
+                label="Select Shape"
+                options={shape}
+                value={value}
+                onChange={onChange}
+              />
+            )}
+          />
+          <Controller
             name="material"
-          />
-          <SingleSelectSize
-            label="Select Size"
             control={control}
-            options={size}
-            register={register}
+            render={({ field: { value, onChange } }) => (
+              <SelectBox
+                label="Select Material"
+                options={material}
+                value={value}
+                onChange={onChange}
+              />
+            )}
+          />
+          <Controller
             name="size"
-          />
-          <SingleSelectStyle
-            label="Select Style"
             control={control}
-            options={style}
-            register={register}
+            render={({ field: { value, onChange } }) => (
+              <SelectBox
+                label="Select Size"
+                options={size}
+                value={value}
+                onChange={onChange}
+              />
+            )}
+          />
+          <Controller
             name="style"
+            control={control}
+            render={({ field: { value, onChange } }) => (
+              <SelectBox
+                label="Select Style"
+                options={style}
+                value={value}
+                onChange={onChange}
+              />
+            )}
           />
-          <div>
-            <TextField
-              disabled
-              className="w-[300px]"
-              id=""
-              label="Lens Material"
-              defaultValue="Demo Polycarbonate"
-              InputProps={{
-                readOnly: true,
-              }}
-              variant="outlined"
-              size="small"
-              {...register("dsfs")}
-              sx={{ height: 50 }}
-            />
-          </div>
-          <div>
-            <TextField
-              disabled
-              className="w-[300px]"
-              id=""
-              label="Raw Material Sourced from"
-              defaultValue="Imported [International]"
-              InputProps={{
-                readOnly: true,
-              }}
-              variant="outlined"
-              size="small"
-              {...register("row_metrial_source_from")}
-            />
-          </div>
+
+          <TextField
+            disabled
+            className="w-[350px]"
+            id=""
+            label="Lens Material"
+            defaultValue="Demo Polycarbonate"
+            InputProps={{
+              readOnly: true,
+            }}
+            variant="outlined"
+            size="small"
+            {...register("Lens_Material")}
+          />
+
           <TextField
             fullWidth
-            label="Discounted Product Price"
-            name="discounted_price"
-            id="discounted_price"
+            disabled
+            className="w-[350px]"
+            id=""
+            label="Raw Material Sourced from"
+            defaultValue="Imported [International]"
+            InputProps={{
+              readOnly: true,
+            }}
+            variant="outlined"
             size="small"
-            {...register("discounted_price")}
-            sx={{ width: 298, height: 50 }}
+            {...register("row_metrial_source_from")}
           />
-          <TextField
-            fullWidth
-            label="Frame Width"
-            name="frame_width"
-            id="frame_width"
-            size="small"
-            {...register("frame_width")}
-            sx={{ width: 298, height: 50 }}
-          />
-          <TextField
-            fullWidth
-            label="Lens Width"
-            name="lens_width"
-            id="lens_width"
-            size="small"
-            {...register("lens_width")}
-            sx={{ width: 298, height: 50 }}
-          />
-          <TextField
-            fullWidth
-            label="Lens Height"
-            name="lens_height"
-            id="lens_height"
-            size="small"
-            {...register("lens_height")}
-            sx={{ width: 298, height: 50 }}
-          />
-          <TextField
-            fullWidth
-            label="Stock quantity"
-            name="stokke"
-            id="stokke"
-            size="small"
-            {...register("stokke")}
-            sx={{ width: 298, height: 50 }}
-          />
-          <TextField
-            fullWidth
-            label="SEO Title"
-            name="seo_title"
-            id="seo_title"
-            size="small"
-            {...register("seo_title")}
-            sx={{ width: 298, height: 50 }}
-          />
-          <TextField
-            fullWidth
-            label="Tags"
-            name="keyword"
-            id="keyword"
-            size="small"
-            {...register("keyword")}
-            sx={{ width: 298, height: 50 }}
-          />
+          {/* <TextField fullWidth label="Selling Price" name="product_price" id="product_price" size="small" {...register("product_price")} sx={{ minWidth: 300 }} /> */}
+          <TextField fullWidth label="Discounted Product Price" name="discounted_price" id="discounted_price" size="small" {...register("discounted_price")} sx={{ minWidth: 300 }} />
+          <TextField fullWidth label="Lens Width" name="lens_width" id="lens_width" {...register("lens_width")} size="small" sx={{ width: 350 }} />
+          <TextField fullWidth label="Lens Height" name="lens_height" id="lens_height" size="small" {...register("lens_height")} sx={{ minWidth: 300 }} />
+          <TextField fullWidth label="Frame Width" name="frame_width" id="frame_width" size="small" {...register("frame_width")} sx={{ minWidth: 300 }} />
+          <TextField fullWidth label="Stock quantity" name="stokke" id="stokke" size="small" {...register("stokke")} sx={{ minWidth: 300 }} />
+          <TextField fullWidth label="Tags" name="keyword" id="keyword" size="small" {...register("keyword")} sx={{ minWidth: 300 }} />
+          <TextField fullWidth label="SEO Title" name="seo_title" id="seo_title" size="small" {...register("seo_title")} sx={{ minWidth: 300 }} />
+         
           <div className=" col-span-2">
             <Textarea
               label="Description"

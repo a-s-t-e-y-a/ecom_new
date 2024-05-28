@@ -6,7 +6,7 @@ const useRegister = () => {
   const mutate = useMutation({
     mutationKey: ["api/register"],
     mutationFn: async (data) => {
-      const res = await api.post("/signup", data);
+      const res = await api.post("auth/signup", data);
       return res.data;
     },
     onSuccess: (data) => {

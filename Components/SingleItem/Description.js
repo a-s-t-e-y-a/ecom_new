@@ -1,11 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-const Description = () => {
-  const { discription } = useSelector((state) => state.Sepcification);
+const Description = ({Product}) => {
+  
   return (
     <div
-      dangerouslySetInnerHTML={{ __html: discription }}
+      dangerouslySetInnerHTML={{ __html: Product?.product_description }}
       className="min-h-[420px]"
     ></div>
   );

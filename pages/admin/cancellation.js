@@ -12,7 +12,7 @@ import { useMutation } from "@tanstack/react-query";
 import CreateDelivery from "@/utils/mutations/useCreateDeliveryTerm";
 import { toast } from "react-toastify";
 import { MdCancelScheduleSend, MdOutlineCurrencyFranc, MdPolicy } from "react-icons/md";
-import CreateCancellation from "@/utils/mutations/useCreateCancellation";
+// import CreateCancellation from "@/utils/mutations/useCreateCancellation";
 
 const Cancellation = () => {
   const router = useRouter();
@@ -27,16 +27,16 @@ const Cancellation = () => {
     }
   }, [router]);
 
-  const { mutate } = useMutation({
-    mutationFn: CreateCancellation,
-    onSuccess: () => {
-      toast.success("Created successfully");
-      reset(); // Reset the form after successful submission
-    },
-    onError: (err) => {
-      toast.error("Error occurred");
-    },
-  });
+//   const { mutate } = useMutation({
+//     mutationFn: CreateCancellation,
+//     onSuccess: () => {
+//       toast.success("Created successfully");
+//       reset(); // Reset the form after successful submission
+//     },
+//     onError: (err) => {
+//       toast.error("Error occurred");
+//     },
+//   });
 
   const onSubmit = (data) => {
     mutate(data);

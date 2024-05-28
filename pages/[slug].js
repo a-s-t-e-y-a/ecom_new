@@ -20,12 +20,6 @@ const SingleBlogPage = () => {
       <div className="px-3">
         <Header1 />
       </div>
-      {/* Header/Heading */}
-      {/* <div className="flex flex-col items-center justify-center shadow-sm">
-        <span className="mt-3">
-          <hr />
-        </span>
-      </div> */}
       {/* Remove height Vh */}
       <div className="w-[90%] mx-auto p-6">
         <div className="w-full mx-auto p-3">

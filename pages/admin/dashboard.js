@@ -50,7 +50,7 @@ const Dashboard = () => {
     {
       color: "bg-indigo-300",
       title: "Total Enquiry",
-      number: data?.totalEnquiry || 0,
+      number: data?.totalCountEnquiry || 0,
       src: "/questions.png",
     },
   ];

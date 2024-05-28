@@ -11,31 +11,32 @@ import { toast } from "react-toastify";
 import SingleSelectShape from "../Admin/shapeSelect";
 import SingleSelectCategories from "../Admin/MultipleSelectCategories";
 import SingleSelectCategoriesById from "../Admin/singleCategories";
+import useCreatebanner from "@/utils/mutations/useCreateBanner";
 
 const BannerManagerDialogBox = ({ onCancel, refetch, token }) => {
   const { register, handleSubmit , control } = useForm();
   const { data: categories } = useGetAllCategories();
   const { data: shapes } = useGetAllShape();
-  const { mutate } = useMutation({
-    mutationFn: Createbanner,
-    onSuccess: () => {
-      toast.success("Banner created successfully");
-      refetch(!token);
-    },
-    onError: (err) => {
-      toast.error("Error occurred");
-    },
-  });
+  const { mutate, isSuccess } = useCreatebanner();
 
   const onSubmit = (data, event) => {
     event.preventDefault(); // Prevent form submission from reloading the page
     console.log(data);
+    const payload = {
+      products_categories_id: data?.products_categories_id,
+      shape_id_: data?.shape_id,
+    };
     const form = new FormData();
-    form.append('files', data.file[0])
-    delete data.file
-    form.append("data", JSON.stringify(data));
+    form.append("files", data.file[0]);
+    delete data.file;
+    form.append("data", JSON.stringify(payload));
     mutate(form);
   };
+
+  if(isSuccess){
+    onCancel()
+    refetch(!token);
+  }
 
   return (
     <div className="relative border p-2 tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
@@ -49,7 +50,7 @@ const BannerManagerDialogBox = ({ onCancel, refetch, token }) => {
         <div className="flex items-center justify-between gap-5">
           <FileInput title="main_image" register={register} />
           <SingleSelectCategoriesById
-          control={control}
+            control={control}
             label="SELECT CATEGORIES"
             options={categories}
             register={register}
@@ -57,7 +58,13 @@ const BannerManagerDialogBox = ({ onCancel, refetch, token }) => {
           />
         </div>
         <div className="flex items-center justify-between gap-5">
-        <SingleSelectShape label="Select Shape" control={control} options={shapes} register={register} name="shape_id" />
+          <SingleSelectShape
+            label="Select Shape"
+            control={control}
+            options={shapes}
+            register={register}
+            name="shape_id"
+          />
           <button
             type="submit"
             className="text-white bg-sky-400 hover:bg-sky-500 focus:outline-none font-medium rounded-lg text-sm inline-flex items-center px-5 py-2 text-center mr-2"

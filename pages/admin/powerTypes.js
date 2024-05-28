@@ -16,12 +16,21 @@ import { useEffect } from "react";
 
 const PowerTypes = () => {
   const { data, refetch } = useGetAllPowerType();
+
+  const [logged, setlogged] = useState(false);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);
   const [get, setget] = useState(false);
 
+  const router = useRouter();
+
   useEffect(() => {
+    if (IsAuth("admin_info")) {
+      setlogged(true);
+    } else {
+      router.replace("login");
+    }
     refetch();
   }, [get, refetch]);
   const { mutate } = useMutation({
@@ -35,31 +44,38 @@ const PowerTypes = () => {
       toast.error(err.message);
     },
   });
-  return (
-    <AdminLayout>
-      <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
-        {<PowerTypesDialogBox onCancel={onHide} refecth={setget} token={get} />}
-      </Modal>
 
-      <div>
-        <div onClick={handleOpen}>
-          <IconButton label="Add Power Types" icon={<GiPowerRing />} />
+  if (logged) {
+    return (
+      <AdminLayout>
+        <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
+          {
+            <PowerTypesDialogBox
+              onCancel={onHide}
+              refecth={setget}
+              token={get}
+            />
+          }
+        </Modal>
+
+        <div>
+          <div onClick={handleOpen}>
+            <IconButton label="Add Power Types" icon={<GiPowerRing />} />
+          </div>
+          <div className="mt-10 grid grid-cols-2 items-center gap-5 w-full">
+            {data &&
+              data.map((item, index) => (
+                <div key={index}>
+                  <PowerType
+                  data={item}
+                  mutate={mutate}
+                />
+                </div>
+              ))}
+          </div>
         </div>
-        <div className="mt-10 grid grid-cols-2 items-center gap-5 w-full">
-          {data &&
-            data.map((item, index) => (
-              <PowerType
-                key={item?.id}
-                src={item?.image}
-                title={item?.name}
-                description={item?.description}
-                id={item?.id}
-                mutate={mutate}
-              />
-            ))}
-        </div>
-      </div>
-    </AdminLayout>
-  );
+      </AdminLayout>
+    );
+  }
 };
 export default PowerTypes;

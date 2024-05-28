@@ -1,25 +1,24 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import FileInput from "../Admin/FileInput";
 import { TextField } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import CreateLensDeatils from "@/utils/mutations/useCreateLensDetail";
-import useGetAllBrands from "@/utils/queries/useBrandsGetAll";
 import useGetAllLensFeature from "@/utils/queries/useLensFeature";
-import SingleSelectCategories from "../Admin/MultipleSelectCategories";
-import SingleSelectBrands from "../Admin/brandMultipleSelect";
 import SingleSelectLensFeature from "../Admin/lensFeatureMultipleSelect";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import useGetAllPowerType from "@/utils/queries/usePowerType";
 import { useEffect } from "react";
 import UpdatelensDetails from "@/utils/mutations/useupdateLensDeatil";
+import SelectBox from "../ui/SelectBox";
 
 const LensDetailDialogBox = ({ onCancel, refetch, token, edit }) => {
   const { data: power } = useGetAllPowerType();
   const { data: lens_feature } = useGetAllLensFeature();
   const { mutate: update } = UpdatelensDetails(edit?.id);
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, control } = useForm();
+
   useEffect(() => {
     console.log(edit);
     const resetPayload = {
@@ -27,18 +26,19 @@ const LensDetailDialogBox = ({ onCancel, refetch, token, edit }) => {
       anti_scratch_coating: edit?.anti_scratch_coating,
       blue_light_blocker: edit?.blue_light_blocker,
       both_side_anti_glare_coating: edit?.both_side_anti_glare_coating,
-      both_side_anti_reflective_coating: edit?.both_side_anti_reflective_coating,
+      both_side_anti_reflective_coating:
+        edit?.both_side_anti_reflective_coating,
       breakage_and_crack_resistant: edit?.breakage_and_crack_resistant,
       categories_id: edit?.categories_id,
       heading: edit?.heading,
       lens_feature: edit?.lens_feature,
       power_range: edit?.power_range,
       power_type: edit?.power_type_,
-      price:edit?.price,
+      price: edit?.price,
       thickness: edit?.thickness,
       uv_protection: edit?.uv_protection,
-      warranty_period:edit?.warranty_period,
-      water_and_dust_repellent: edit?.water_and_dust_repellent
+      warranty_period: edit?.warranty_period,
+      water_and_dust_repellent: edit?.water_and_dust_repellent,
     };
     reset(resetPayload);
   }, [edit, reset]);
@@ -54,9 +54,27 @@ const LensDetailDialogBox = ({ onCancel, refetch, token, edit }) => {
   });
 
   const onSubmit = (data) => {
+    console.log(data);
+    const payload = {
+      heading: data.heading,
+      price: data.price,
+      warranty_period: data.warranty,
+      thickness: data.thickness,
+      power_range: data.power_range,
+      blue_light_blocker: data?.blue_light_blocker,
+      anti_scratch_coating: data?.anti_scratch_coating,
+      both_side_anti_glare_coating: data?.both_side_anti_glare_coating,
+      both_side_anti_reflective_coating: data?.both_side_anti_reflective_coating,
+      uv_protection: data.uv_protection,
+      water_and_dust_repellent: data?.water_and_dust_repellent,
+      breakage_and_crack_resistant: data?.breakage_and_crack_resistant,
+      lens_feature_: data?.lens_feature_id?.id,
+      power_type_: data?.power_type_id?.id
+    };
     const formData = new FormData();
     formData.append("file", data.file[0]);
-    formData.append("data", JSON.stringify(data));
+    delete data.file;
+    formData.append("data", JSON.stringify(payload));
 
     if (Object.keys(edit).length === 0) {
       mutate(formData);
@@ -68,6 +86,7 @@ const LensDetailDialogBox = ({ onCancel, refetch, token, edit }) => {
       refetch();
     }
   };
+
   return (
     <div className="relative border tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
       <h1 className="text-md font-semibold text-center text-gray-700 mt-3">
@@ -79,19 +98,30 @@ const LensDetailDialogBox = ({ onCancel, refetch, token, edit }) => {
       >
         <div className="grid grid-cols-3 items-center justify-between gap-3">
           <FileInput title="" register={register} />
-          <SingleSelectLensFeature
-            label="Power Type"
-            options={power}
-            register={register}
+          <Controller
             name="power_type_id"
+            control={control}
+            render={({ field: { value, onChange } }) => (
+              <SelectBox
+                label="Power Type"
+                options={power}
+                value={value}
+                onChange={onChange}
+              />
+            )}
           />
-          <SingleSelectLensFeature
-            label="Lens Feature"
-            options={lens_feature}
-            register={register}
+          <Controller
             name="lens_feature_id"
+            control={control}
+            render={({ field: { value, onChange } }) => (
+              <SelectBox
+                label="Lens Feature"
+                options={lens_feature}
+                value={value}
+                onChange={onChange}
+              />
+            )}
           />
-
           <TextField
             fullWidth
             label="Lens Heading"

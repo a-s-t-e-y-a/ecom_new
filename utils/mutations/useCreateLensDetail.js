@@ -1,6 +1,6 @@
-const { default: api, Imageapi } = require("@/api");
+import api from "@/api";
 
 const CreateLensDeatils = (data) => {
-  return Imageapi.post("/lenses", data);
+  return api.post("/lenses", data);
 };
 export default CreateLensDeatils;

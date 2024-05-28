@@ -43,10 +43,10 @@ const SwiperContainer = ({ data }) => {
             className="  min-h-[100px] "
             onClick={() => handleClick(elemt?.product_url)}
           >
-            <div className=" w-[200px] mb-3  mx-auto">
+            <div className=" w-[300px] mb-3 mx-auto items-center">
               <img
-                width={200}
-                height={200}
+                width={320}
+                height={320}
                 src={`${
                   elemt?.imageArray?.length > 0
                     ? elemt?.imageArray[0]
