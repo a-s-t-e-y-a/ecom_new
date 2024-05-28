@@ -102,7 +102,7 @@ const Header = () => {
               <MdOutlineMenu size={20} />
             </button>
             <ul
-              className={` md:flex items-center gap-5   absolute z-10  top-[20px] md:top-1/2 md:-translate-y-1/2  bg-white py-2 px-2 rounded ${
+              className={` md:flex items-center gap-5   absolute z-10  top-[20px] md:top-1/2 md:-translate-y-1/2 text-xs  bg-white py-2 px-2 rounded ${
                 Dropdown ? null : "hidden"
               }`}
             >
@@ -122,7 +122,7 @@ const Header = () => {
           </div>
           {/* Right  */}
           <div>
-            <ul className="flex items-center gap-5  ">
+            <ul className="flex items-center gap-5  text-xs ">
               <li
                 className="cursor-pointer flex items-center gap-1"
                 onClick={() => setOpen(true)}
@@ -145,9 +145,9 @@ const Header = () => {
 
         {/* Middle Part  */}
         <div className=" flex justify-between  ">
-          <div className=" hidden md:flex items-center gap-2 cursor-pointer  ">
+          <div className=" hidden md:flex items-center font-bold gap-2 cursor-pointer  ">
             <BsFillTelephonePlusFill />
-            +918188881661
+            +91-8188881661
           </div>
           <div className=" ">
             <Image
@@ -164,8 +164,8 @@ const Header = () => {
         </div>
 
         {/* Bottom Part  */}
-        <div className="flex items-center justify-between mb-4 py-2 rounded-lg w-full  overflow-x-auto">
-          <div className="flex items-center  lg:justify-center   text-sm  md:text-lg font-semibold tracking-wide w-full ">
+        <div className="flex items-center  justify-between mb-4 py-2 rounded-lg w-full  overflow-x-auto">
+          <div className="flex items-center gap-16 lg:justify-center   text-sm  md:text-lg font-semibold tracking-wide w-full ">
             <div className="cursor-pointer">
               <MenuComponentNested title="EyeGlasses" items={EyeGlassLinks} />
             </div>

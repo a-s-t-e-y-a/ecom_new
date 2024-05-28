@@ -46,9 +46,9 @@ function Home() {
         <div className=" overflow-auto flex">
           <GlassesType />
         </div>
-        <div>
-          <p className="  text-5xl text-center">EYEGLASSES</p>
-          <p className=" text-center  text-5xl  font-semibold mb-5">TREND</p>
+        <div className="flex flex-row">
+          <p className="text-5xl text-center mt-8">EYEGLASSES<span className="text-center text-5xl font-semibold mb-5"> TREND</span></p>
+          {/* <p className=" text-center  text-5xl  font-semibold mb-5">TREND</p> */}
           <Slider data={Round} />
         </div>
 
@@ -85,7 +85,7 @@ function Home() {
           />
         </div>
 
-        <div className="w-full border p-2 bg-gray-50">
+        <div className="w-[97%] border p-2 mx-4 bg-gray-50">
           <div className="w-full text-center bg-white tracking-wider space-y-3">
             <p className="text-xl py-1 ">
               Discount On Every Single Item On Our Site.
@@ -143,7 +143,7 @@ function Home() {
           </div>
         </div>
 
-        <div className="w-full text-center gap-3 bg-gray-100 space-y-3 p-10 my-2 tracking-wider">
+        <div className="w-[97%] mx-4 text-center gap-3 bg-gray-100 space-y-3 p-10 my-2 tracking-wider">
           <p className="text-xl">
             Save Up | What a great Deal | Don&apos;t think Do It!
           </p>
@@ -160,7 +160,7 @@ function Home() {
             alt=""
             className="w-full h-auto object-cover"
           />
-          <div className="absolute top-0 left-1/2 -translate-x-1/2  text-center space-y-2">
+          <div className="absolute top-0 my-8 left-1/2 -translate-x-1/2  text-center space-y-2">
             <p className="text-sm min-[500]:text-lg md:text-xl text-gray-500">
               save up to 30% off
             </p>
