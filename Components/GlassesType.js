@@ -12,7 +12,7 @@ const GlassesType = () => {
     router.push(`/catagories/${item?.products_categories_id}`);
   };
   return (
-    <motion.div className=" mx-auto flex justify-around gap-10 lg:px-16">
+    <motion.div className=" mx-auto flex justify-between gap-16 lg:px-0">
       {categoryItems?.map((item, index) => {
         return (
           <div
