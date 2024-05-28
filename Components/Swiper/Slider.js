@@ -25,7 +25,7 @@ export default function Slider({ data }) {
         loop={true}
         navigation={true}
         modules={[Navigation]}
-        className="mySwiper min-h-[200px]  "
+        className="mySwiper min-h-[200px]"
       >
         {data &&
           data?.map((slide, index) => (
@@ -38,7 +38,7 @@ export default function Slider({ data }) {
                   <img
                     width={200}
                     height={200}
-                    className=" w-full h-[100px] object-cover rounded  "
+                    className=" w-full h-[100px] object-cover rounded hover:shadow-2xl"
                     src={
                       slide?.imageArray?.length > 0
                         ? slide?.imageArray[0]

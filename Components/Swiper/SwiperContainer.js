@@ -53,7 +53,7 @@ const SwiperContainer = ({ data }) => {
                     : "https://akkukachasma.s3.amazonaws.com/product_images/" +
                       elemt.product_images?.split(",")[0]
                 }`}
-                className=" object-cover"
+                className=" object-cover hover:shadow-2xl"
                 alt="galess"
               />
             </div>
