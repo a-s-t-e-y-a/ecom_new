@@ -226,7 +226,7 @@ const SingleProduct = () => {
             className="w-full h-[350px] object-cover"
           />
         </div>
-        <button className="bg-gray-300 my-4 absolute ml-22 rounded-lg flex justify-center items-center w-[10%] text-blue-600 py-2">See More</button>
+        <button className="bg-gray-300 my-4 absolute ml-18 rounded-lg flex justify-center items-center w-[10%] text-blue-600 py-2">See More</button>
       </div>
       <div className="flex flex-row gap-2 divide-x-2">
         <div className="my-5">
