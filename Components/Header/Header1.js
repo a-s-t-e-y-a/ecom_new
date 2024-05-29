@@ -17,21 +17,21 @@ const Header1 = () => {
       <CartDialog open={open} setOpen={setOpen} />
       <div className=" w-full px-3">
         <header className="mb-3">
-          <div className="flex items-center justify-between py-4">
+          <div className="flex flex-row items-center justify-between py-4">
             {/* Image  */}
             <div>
               <Image
-                width={500}
-                height={500}
+                width={400}
+                height={400}
                 src="/logo.png"
                 className=" object-cover"
                 alt=""
                 onClick={() => router.push("/")}
               />
             </div>
-            {/* <div className="h-full w-[60%]">
+            <div className="h-10 w-[60%]">
               <Slider />
-            </div> */}
+            </div>
             <div className="flex items-center gap-3 text-2xl text-gray-700">
               <motion.span whileTap={{ scale: 0.8 }}>
                 <BsFillPersonFill />

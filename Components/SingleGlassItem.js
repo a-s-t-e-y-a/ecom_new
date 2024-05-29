@@ -1,23 +1,23 @@
 import React from "react";
 import SlideOnHover from "./Swiper/SlideOnHover";
 import { Frame_size } from "@/utils/contants";
-
+import { AiOutlineHeart } from "react-icons/ai";
 const SingleGlassItem = ({ value }) => {
   const imageArray = value?.product_images?.split(",");
   return (
-    <div className="  min-h-[300px]:">
+    <div className="h-[250px]">
       <SlideOnHover data={imageArray} />
-      <div className=" flex  justify-around px-2">
+      <div className="flex flex-row gap-6 px-4">
         <div>
-          <p className=" text-nowrap ">{value?.frame_width} mm</p>
-          <p className=" text-sm  text-nowrap font-semibold">Frame width</p>
+          <p className=" text-nowrap">{value?.frame_width} mm</p>
+          <p className=" text-sm  text-nowrap font-semibold">Frame Width</p>
         </div>
         <div>
-          <p className=" text-nowrap ">{value?.temple_length} mm</p>
-          <p className=" text-sm  text-nowrap font-semibold">Lens width</p>
+          <p className=" text-nowrap">{value?.temple_length} mm</p>
+          <p className=" text-sm  text-nowrap font-semibold">Lens Width</p>
         </div>
         <div>
-          <p className=" text-nowrap  ">
+          <p className=" text-nowrap">
             {value?.size_?.name || Frame_size[value?.size]}
           </p>
           <p className=" text-sm  text-nowrap font-semibold">Frame size</p>
