@@ -68,8 +68,8 @@ const LensDetailDialogBox = ({ onCancel, refetch, token, edit }) => {
       uv_protection: data.uv_protection,
       water_and_dust_repellent: data?.water_and_dust_repellent,
       breakage_and_crack_resistant: data?.breakage_and_crack_resistant,
-      lens_feature_: data?.lens_feature_id?.id,
-      power_type_: data?.power_type_id?.id
+      lens_feature_id: data?.lens_feature_id?.id,
+      power_type_id: data?.power_type_id?.id
     };
     const formData = new FormData();
     formData.append("file", data.file[0]);
