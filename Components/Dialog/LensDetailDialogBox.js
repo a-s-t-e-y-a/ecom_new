@@ -20,7 +20,7 @@ const LensDetailDialogBox = ({ onCancel, refetch, token, edit }) => {
   const { register, handleSubmit, reset, control } = useForm();
 
   useEffect(() => {
-    console.log(edit);
+    console.log(edit, 'edit');
     const resetPayload = {
       anti_scratch_coating: edit?.anti_scratch_coating,
       blue_light_blocker: edit?.blue_light_blocker,
@@ -53,11 +53,11 @@ const LensDetailDialogBox = ({ onCancel, refetch, token, edit }) => {
   });
 
   const onSubmit = (data) => {
-    console.log(data);
+    console.log(data, 'data');
     const payload = {
       heading: data.heading,
       price: data.price,
-      warranty_period: data.warranty,
+      warranty_period: data.warranty_period,
       thickness: data.thickness,
       power_range: data.power_range,
       blue_light_blocker: data?.blue_light_blocker,
@@ -70,6 +70,7 @@ const LensDetailDialogBox = ({ onCancel, refetch, token, edit }) => {
       lens_feature_id: data?.lens_feature_id?.id,
       power_type_id: data?.power_type_id?.id
     };
+    console.log(payload, 'payload')
     const formData = new FormData();
     formData.append("file", data.file[0]);
     delete data.file;
@@ -80,9 +81,9 @@ const LensDetailDialogBox = ({ onCancel, refetch, token, edit }) => {
       // onCancel();
       refetch();
     } else {
-      update(formData);
-      onCancel();
-      refetch();
+      // update(formData);
+      // onCancel();
+      // refetch();
     }
   };
 
@@ -162,10 +163,10 @@ const LensDetailDialogBox = ({ onCancel, refetch, token, edit }) => {
           <TextField
             fullWidth
             label="Warranty Period"
-            name="warrentyperiod"
-            id="warrentyperiod"
+            name="warranty_period"
+            id="warranty_period"
             size="small"
-            {...register("warranty")}
+            {...register("warranty_period")}
             sx={{ minWidth: 300 }}
           />
 
