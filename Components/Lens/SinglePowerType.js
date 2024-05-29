@@ -1,9 +1,21 @@
 import { Input } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
+import { useDispatch } from "react-redux";
+import { addFilter } from "@/Slices/filterSlice";
 
-const  SinglePowerType = (props) => {
+const SinglePowerType = (props) => {
+  const [isChecked, setIsChecked] = useState(false);
+  const dispatch = useDispatch();
   const { src, title, description } = props;
+
+  const handleChecked = (e) => {
+    setIsChecked(e.target.checked);
+  };
+
+  if (isChecked) {
+    dispatch(addFilter(title));
+  }
 
   return (
     <div className="flex items-center justify-between text-gray-700 border hover:shadow-lg rounded-md p-4 cursor-pointer w-[50%] mx-auto">
@@ -27,6 +39,7 @@ const  SinglePowerType = (props) => {
           type="checkbox"
           className="h-4 w-4 cursor-pointer"
           id="checkbox"
+          onChange={(e) => handleChecked(e)}
         />
       </div>
     </div>

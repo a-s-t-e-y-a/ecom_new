@@ -35,7 +35,6 @@ const SingleProduct = () => {
       setExtraData(extraData);
     }
   }, [router.isReady, router.query]);
-  console.log(extraData)
   const { data: productDetails, isLoading } = useGetProductDetail(slug, extraData ? extraData : undefined);
 
   useEffect(() => {

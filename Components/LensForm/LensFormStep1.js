@@ -17,7 +17,7 @@ const LensFormStep1 = ({ onNext, onCancel }) => {
               <>
                 <SinglePowerType
                   src={powerTypeData?.image}
-                  title={powerTypeData?.title}
+                  title={powerTypeData?.name}
                   description={powerTypeData?.description}
                 />
               </>

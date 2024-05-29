@@ -2,7 +2,6 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 const Specification = ({ Product }) => {
-  console.log(Product);
   const {
     p_id,
     material_,

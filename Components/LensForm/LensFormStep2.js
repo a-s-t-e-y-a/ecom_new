@@ -1,9 +1,19 @@
 import React from "react";
 import SinglePowerType from "../Lens/SinglePowerType";
 import useGetAllLensFeature from "@/utils/queries/useLensFeature";
+import { useSelector } from "react-redux";
 
 const LensFormStep2 = ({ onNext, onPrev }) => {
   const { data, isFetched } = useGetAllLensFeature();
+  const filterText = useSelector((state) => state?.filterText?.filterText);
+
+  let filteredDataOfPowerType = [];
+  if (isFetched) {
+    filteredDataOfPowerType = data.filter(
+      (item) => item?.power_type_?.name === filterText
+    );
+  }
+  
   return (
     <div className="space-y-6 text-gray-800 w-[100%] h-[100vh] mt-20">
       <h1 className="text-xl font-semibold tracking-wide text-center">
