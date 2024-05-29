@@ -53,7 +53,7 @@ const LensDetailDialogBox = ({ onCancel, refetch, token, edit }) => {
   });
 
   const onSubmit = (data) => {
-    console.log(data, 'data');
+    console.log(data);
     const payload = {
       heading: data.heading,
       price: data.price,
@@ -70,7 +70,7 @@ const LensDetailDialogBox = ({ onCancel, refetch, token, edit }) => {
       lens_feature_id: data?.lens_feature_id?.id,
       power_type_id: data?.power_type_id?.id
     };
-    console.log(payload, 'payload')
+    console.log(payload)
     const formData = new FormData();
     formData.append("file", data.file[0]);
     delete data.file;
