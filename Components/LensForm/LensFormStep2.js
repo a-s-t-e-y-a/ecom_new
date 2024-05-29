@@ -21,7 +21,7 @@ const LensFormStep2 = ({ onNext, onPrev }) => {
       </h1>
       <div className="space-y-3 h-[320px] overflow-auto scrollbar-hide">
         {isFetched &&
-          data?.map((lensFeatureData) => {
+          filteredDataOfPowerType?.map((lensFeatureData) => {
             return (
               <>
                 <SinglePowerType
