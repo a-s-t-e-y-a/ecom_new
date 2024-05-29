@@ -14,11 +14,11 @@ import { toast } from "react-toastify";
 import { MdOutlineCurrencyFranc, MdPolicy } from "react-icons/md";
 import useCreateFranchise from "@/utils/mutations/useCreateFranchise";
 
-
 const Franchise = () => {
   const router = useRouter();
   const [logged, setlogged] = useState(false);
   const { control, handleSubmit, reset } = useForm();
+  const { mutate } = useCreateFranchise();
 
   useEffect(() => {
     if (IsAuth("admin_info")) {
@@ -27,19 +27,6 @@ const Franchise = () => {
       router.replace("login");
     }
   }, [router]);
-
-  // this is just shit, what is the point to use a hook inside a function ???
-  // CreateFranchise is nothing but a mutation hook in itself we could directly use that to extract the mutate function.
-  const { mutate } = useMutation({
-    mutationFn: useCreateFranchise,
-    onSuccess: () => {
-      toast.success("Created successfully");
-      reset(); // Reset the form after successful submission
-    },
-    onError: (err) => {
-      toast.error("Error occurred");
-    },
-  });
 
   const onSubmit = (data) => {
     mutate(data);

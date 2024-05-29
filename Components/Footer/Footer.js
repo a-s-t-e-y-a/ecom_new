@@ -12,7 +12,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="flex flex-col px-4">
+    <footer className=" flex flex-col ">
       <div className="bg-gray-700  grid  grid-cols-2  md:grid-flow-col md:grid-cols-4 px-2 justify-items-center text-white py-2">
         <div className="flex items-center  tracking-wide md:text-lg ">
           <MdLocalShipping /> Free Shipping
@@ -28,7 +28,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="bg-gray-900 py-8 flex flex-col  items-center  ">
+      <div className="bg-gray-900 py-8 justify-evenly flex flex-row  items-center  ">
         <div className="flex items-center font-bold text-white tracking-wide mb-4">
           <span className="text-5xl me-10">
             <BsFillEnvelopePaperFill />
@@ -50,7 +50,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1  md:grid-cols-3 shadow-sm  px-5 gap-x-3 bg-gray-200 py-8">
+      <div className="grid grid-cols-1  md:grid-cols-3 shadow-sm  px-4 gap-x-6 bg-gray-200 py-8">
         <div className="flex flex-col items-center md:items-start w-full justify-center  py-3 mb-4  -mt-6 ">
           <Image
             src="/logo.png"

@@ -5,7 +5,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Input } from '@material-tailwind/react';
 const SearchBar = () => {
   return (
-    <div className='flex bg-white px-2 items-center w-60 '>
+    <div className='flex bg-white px-2 items-center w-70 '>
       <IconButton aria-label="delete" size="small">
         <SearchIcon fontSize="medium" />
       </IconButton>

@@ -25,7 +25,7 @@ export default function Slider({ data }) {
         loop={true}
         navigation={true}
         modules={[Navigation]}
-        className="mySwiper min-h-[200px]  "
+        className="mySwiper min-h-[200px]"
       >
         {data &&
           data?.map((slide, index) => {

@@ -1,24 +1,53 @@
 import { TextField } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import { useForm } from "react-hook-form";
 import FileInput from "../Admin/FileInput";
+import { useForm } from "react-hook-form";
 import { Toaster } from "react-hot-toast";
-import CreateShape from "@/utils/mutations/useCreateShape";
-import Loader from "../Loader";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import CreateTryAtHome from "@/utils/mutations/useCreateTryAtHome";
+import { useEffect, useState } from "react";
+import query from "@/utils/queryClinet";
 
-const TryHome = ({ onCancel, refetch, token }) => {
+
+const TryHome = ({onCancel, setOpen, refecth, token }) => {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => {
+  const [data, setdata] = useState([]);
+  const {
+    mutate,
+    data: datas,
+    isSuccess,
+  } = useMutation({
+    mutationFn:CreateTryAtHome,
+    onSuccess: () => {
+      toast.success("Try At Home created succesfully");
+      query.invalidateQueries({ queryKey: ["api/try_home"] });
+      refecth(!token);
+    },
+    onError: (err) => {
+      toast.error("Error occurred");
+    },
+  });
+  const dispatch = useDispatch();
+  const onSubmit = async (data) => {
     const formData = new FormData();
-
+    formData.append(
+      "data",
+      JSON.stringify({ title: data.title, description: data.description })
+    );
     formData.append("file", data?.file[0]);
-    delete data.file;
-    formData.append("data", JSON.stringify(data));
+    console.log(formData, 'formData')
     mutate(formData);
+    onCancel()
   };
+  useEffect(() => {
+    if (datas) {
+      setdata(datas);
+    }
+  }, [datas]);
 
+ 
   return (
     <div className="relative border p-2 tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
       <h1 className="text-md font-semibold text-center text-gray-700 mt-3">
@@ -34,7 +63,7 @@ const TryHome = ({ onCancel, refetch, token }) => {
             name="services"
             id="services"
             size="small"
-            {...register("name")}
+            {...register("services")}
           />
 
           <button
