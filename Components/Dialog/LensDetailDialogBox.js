@@ -57,7 +57,7 @@ const LensDetailDialogBox = ({ onCancel, refetch, token, edit }) => {
     const payload = {
       heading: data.heading,
       price: data.price,
-      warranty_period: data.warranty_period,
+      warranty: data.warranty_period,
       thickness: data.thickness,
       power_range: data.power_range,
       blue_light_blocker: data?.blue_light_blocker,

@@ -2,7 +2,7 @@ import { Input } from "@mui/material";
 import React from "react";
 import Image from "next/image";
 
-const SinglePowerType = (props) => {
+const  SinglePowerType = (props) => {
   const { src, title, description } = props;
 
   return (
