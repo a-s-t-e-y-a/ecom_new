@@ -22,7 +22,6 @@ const LensDetailDialogBox = ({ onCancel, refetch, token, edit }) => {
   useEffect(() => {
     console.log(edit);
     const resetPayload = {
-      power_type_id: edit?.power_type_,
       anti_scratch_coating: edit?.anti_scratch_coating,
       blue_light_blocker: edit?.blue_light_blocker,
       both_side_anti_glare_coating: edit?.both_side_anti_glare_coating,
@@ -31,9 +30,9 @@ const LensDetailDialogBox = ({ onCancel, refetch, token, edit }) => {
       breakage_and_crack_resistant: edit?.breakage_and_crack_resistant,
       categories_id: edit?.categories_id,
       heading: edit?.heading,
-      lens_feature: edit?.lens_feature,
+      lens_feature_id: edit?.lens_feature,
       power_range: edit?.power_range,
-      power_type: edit?.power_type_,
+      power_type_id: edit?.power_type_,
       price: edit?.price,
       thickness: edit?.thickness,
       uv_protection: edit?.uv_protection,
@@ -78,7 +77,7 @@ const LensDetailDialogBox = ({ onCancel, refetch, token, edit }) => {
 
     if (Object.keys(edit).length === 0) {
       mutate(formData);
-      onCancel();
+      // onCancel();
       refetch();
     } else {
       update(formData);
