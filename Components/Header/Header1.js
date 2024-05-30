@@ -5,6 +5,11 @@ import { BsFillPersonFill } from "react-icons/bs";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { motion } from "framer-motion";
 import Slider from "@/Components/Swiper/Slider";
+import {Swiper, SwiperSlide} from 'swiper/react';
+import {Navigation} from 'swiper';
+
+
+
 import { useRouter } from "next/router";
 import { useState } from "react";
 import CartDialog from "../Dialog/CartDialog";
@@ -25,7 +30,6 @@ const Header1 = () => {
       const round = AllProduct?.data?.data?.products?.filter(
         (Value) => Value?.shape_?.name === "Round" || "round"
       );
-
       setRound(round);
     });
   };
@@ -35,43 +39,67 @@ const Header1 = () => {
   return (
     <>
       <CartDialog open={open} setOpen={setOpen} />
-      <div className=" w-full px-3">
-        <header className="mb-3">
-          <div className="flex flex-row items-center justify-between py-4">
-            {/* Image  */}
-            <div>
-              <Image
-                width={400}
-                height={400}
-                src="/logo.png"
-                className=" object-cover"
-                alt=""
-                onClick={() => router.push("/")}
-              />
-            </div>
-            <div className="w-[60%]"><Slider data={Round} /></div>
-              
-            
-            <div className="flex items-center gap-3 text-2xl text-gray-700">
-              <motion.span whileTap={{ scale: 0.8 }}>
-                <BsFillPersonFill />
-              </motion.span>
-              <motion.span whileTap={{ scale: 0.8 }}>
-                <AiOutlineHeart />
-              </motion.span>
-              <motion.span whileTap={{ scale: 0.8 }}>
-                <BiSearchAlt2 />
-              </motion.span>
-              <motion.span
-                whileTap={{ scale: 0.8 }}
-                onClick={() => setOpen(true)}
-              >
-                <HiShoppingCart />
-              </motion.span>
-            </div>
-          </div>
-        </header>
-      </div>
+      <header className="flex flex-row items-center h-24 px-3">
+        {/* Image  */}
+        <div className="flex-shrink-0">
+          <Image
+            width={400}
+            height={500}
+            src="/logo.png"
+            className=""
+            alt=""
+            onClick={() => router.push("/")}
+          />
+        </div>
+
+        <div className="flex-grow h-full   overflow-hidden">
+          <Swiper
+            modules={[Navigation]}
+            slidesPerView={3}
+            autoplay
+            navigation
+            className="w-full h-full"
+          >
+            {
+              Array.isArray(Round) && Round.map((glass, index) => {
+                console.table("see this", glass);
+                return (
+                  <SwiperSlide 
+                    key={glass.id}
+                    className="ml-4 p-4"
+                  >
+                    <Image 
+                      src= {glass.imageArray[0]}
+                      width={100}
+                      height={400}
+                      alt=""
+                    />
+                  </SwiperSlide>
+                )
+              })
+            }
+           
+          </Swiper>
+        </div>
+
+        <div className="flex flex-shrink-0  gap-3 text-2xl text-gray-700">
+          <motion.span whileTap={{ scale: 0.8 }}>
+            <BsFillPersonFill />
+          </motion.span>
+          <motion.span whileTap={{ scale: 0.8 }}>
+            <AiOutlineHeart />
+          </motion.span>
+          <motion.span whileTap={{ scale: 0.8 }}>
+            <BiSearchAlt2 />
+          </motion.span>
+          <motion.span
+            whileTap={{ scale: 0.8 }}
+            onClick={() => setOpen(true)}
+          >
+            <HiShoppingCart />
+          </motion.span>
+        </div>
+      </header>
     </>
   );
 };

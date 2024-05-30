@@ -188,7 +188,7 @@ const SingleProduct = () => {
         </div>
       </div>
       <div className="flex flex-col">
-        <div className="font-bold text-black text-lg rounded-md shadow-lg">Related Products</div>
+        <div className="font-bold text-black text-lg my-4 px-4 py-4 rounded-md shadow-lg w-[20%]">Related Products</div>
         <div className="flex flex-row gap-4">
           <Image
             src="/banner1.jpg"
@@ -226,7 +226,7 @@ const SingleProduct = () => {
             className="w-full h-[350px] object-cover"
           />
         </div>
-        <button className="bg-gray-300 my-4 absolute ml-18 rounded-lg flex justify-center items-center w-[10%] text-blue-600 py-2">See More</button>
+        <button className="bg-gray-300 my-4  rounded-lg flex justify-center  w-[10%] text-blue-600 py-2">See More</button>
       </div>
       <div className="flex flex-row gap-2 divide-x-2">
         <div className="my-5">
