@@ -1,34 +1,47 @@
 import { loginTime } from "@/utils/IsAuth";
+import useAdminLogin from "@/utils/mutations/useCreateAdmin";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
 
 function Login() {
   const router = useRouter();
+  useEffect(() => {
+    // Check if the admin_info object is present in localStorage
+    const adminInfo = window.localStorage.getItem("admin_info");
+    if (adminInfo) {
+      // Redirect to the admin dashboard
+      router.push("dashboard");
+    }
+  }, []);
   const MoveSingupHandler = () => {
     router.push("registeredUsers");
   };
-  const loginHandler = (e) => {
-    e.preventDefault();
-    const username = e.target.username?.value;
-    const password = e.target.password?.value;
-    if (username === "Akash@gamil.com" && password === "akkukachassma@123") {
-      loginTime()
-      window.localStorage.setItem(
-        "admin_info",
-        JSON.stringify({
-          username: "Akash@gamil.com",
-          password: "akkukachassma@123",
-        })
-      );
-      router.push("dashboard");
-    }
+  const { mutate, isSuccess, data } = useAdminLogin();
+  const { register, handleSubmit } = useForm();
+
+  const loginHandler = (formData) => {
+    const payload = {
+      email: formData.username,
+      password: formData.password,
+    };
+    console.log(payload);
+    mutate(payload);
   };
+
+  if (isSuccess) {
+    console.log(data.data.token)
+    
+    window.localStorage.setItem("admin_info", JSON.stringify( data.data.token ));
+    // Redirect to dashboard or perform any other necessary actions
+    router.push("dashboard");
+  }
+
   return (
     <div className="w-[100vw] h-[100vh]">
       <form
         className="w-[40%] h-[40%] relative top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
-        onSubmit={(e) => {
-          loginHandler(e);
-        }}
+        onSubmit={handleSubmit(loginHandler)}
       >
         <h1 className="text-2xl my-2 text-center font-bold">Login</h1>
         <div className="w-72 mx-auto my-5">
@@ -36,7 +49,7 @@ function Login() {
             <input
               className="peer w-full h-full bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
               placeholder=" "
-              name="username"
+              {...register("username", { required: true })}
             />
             <label className="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal !overflow-visible truncate peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:content[' '] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[' '] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[3.75] text-gray-500 peer-focus:text-gray-900 before:border-blue-gray-200 peer-focus:before:!border-gray-900 after:border-blue-gray-200 peer-focus:after:!border-gray-900">
               Username
@@ -49,7 +62,7 @@ function Login() {
               type="password"
               className="peer w-full h-full bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
               placeholder=" "
-              name="password"
+              {...register("password", { required: true })}
             />
             <label className="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal !overflow-visible truncate peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:content[' '] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[' '] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[3.75] text-gray-500 peer-focus:text-gray-900 before:border-blue-gray-200 peer-focus:before:!border-gray-900 after:border-blue-gray-200 peer-focus:after:!border-gray-900">
               Password
@@ -69,10 +82,11 @@ function Login() {
           type="button"
           onClick={() => MoveSingupHandler()}
         >
-          SignUp
+          Sign Up
         </button>
       </form>
     </div>
   );
 }
+
 export default Login;
