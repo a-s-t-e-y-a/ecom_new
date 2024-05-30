@@ -6,7 +6,7 @@ const useGetAllLensDetails = () => {
     queryKey: ["api/LensDetails"],
     queryFn: async () => {
       const res = await api.get("/lenses ");
-      return res?.data?.data;
+      return res?.data?.data.data;
     },
   });
   return data_;

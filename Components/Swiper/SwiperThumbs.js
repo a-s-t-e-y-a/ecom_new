@@ -4,7 +4,6 @@ import { imageUrl } from "@/utils/contants";
 import Image from "next/image";
 const SwiperThumbs = ({ images }) => {
   const imageArray = images?.split(",");
-  console.log(imageArray, "imageArray");
   return (
     <Carousel
       className="h-full w-[88%] mx-auto my-auto"
@@ -15,7 +14,6 @@ const SwiperThumbs = ({ images }) => {
     >
       {imageArray &&
         imageArray.map((item, index) => {
-          console.log(item.trim(), 'item')
           return (
             <div key={index} className="">
               <Image

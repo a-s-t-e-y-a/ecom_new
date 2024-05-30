@@ -5,10 +5,23 @@ import "swiper/css";
 import "swiper/css/navigation";
 import LensPlanFeature from "../Lens/LensPlanFeature";
 import useGetAllLensDetails from "@/utils/queries/useLensDetail";
+import { useSelector } from "react-redux";
 
 const LensFormStep3 = ({ onNext, onPrev }) => {
   const { data, isFetched } = useGetAllLensDetails();
-  console.log(data, 'data')
+  const filtedText = useSelector((state) => state.filterText.filterText);
+  const { power_type, lens_feature } = filtedText;
+
+  const PowerTypeFilteredData = data?.filter(
+    (item) => {
+      return item.power_type_.name === power_type
+    }
+  );
+
+  const lensFeatureFilteredData = PowerTypeFilteredData.filter(
+    (item) => item?.lens_feature_.title === lens_feature
+  );
+  console.log(lensFeatureFilteredData, 'lensFeatureFilteredData')
   return (
     <div className="flex justify-center">
       <div className="text-gray-800 w-[100%] h-[100vh] my-4">
@@ -66,21 +79,14 @@ const LensFormStep3 = ({ onNext, onPrev }) => {
           </div>
           <div className="w-[75%]">
             <Swiper modules={[Navigation]} navigation slidesPerView={3}>
-              <SwiperSlide className="border">
-                <LensPlanFeature />
-              </SwiperSlide>
-              <SwiperSlide className="border">
-                <LensPlanFeature />
-              </SwiperSlide>
-              <SwiperSlide className="border">
-                <LensPlanFeature />
-              </SwiperSlide>
-              <SwiperSlide className="border">
-                <LensPlanFeature />
-              </SwiperSlide>
-              <SwiperSlide className="border">
-                <LensPlanFeature />
-              </SwiperSlide>
+              {isFetched &&
+                lensFeatureFilteredData.map((item) => {
+                  return (
+                    <SwiperSlide className="border">
+                      <LensPlanFeature item={item} />
+                    </SwiperSlide>
+                  );
+                })}
             </Swiper>
           </div>
         </div>

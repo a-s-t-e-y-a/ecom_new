@@ -1,7 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  filterText: "",
+  filterText: {
+    power_type:"",
+    lens_feature: ""
+  },
 };
 
 export const filterSlice = createSlice({
@@ -9,7 +12,8 @@ export const filterSlice = createSlice({
   initialState,
   reducers: {
     addFilter: (state, action) => {
-      state.filterText = action.payload
+      state.filterText.power_type = action.payload.power_type
+      state.filterText.lens_feature = action.payload.lens_feature
     },
   },
 });
