@@ -14,12 +14,12 @@ const LensFormStep3 = ({ onNext, onPrev }) => {
 
   const PowerTypeFilteredData = data?.filter(
     (item) => {
-      return item.power_type_.name === power_type
+      return item?.power_type_?.name === power_type
     }
   );
 
-  const lensFeatureFilteredData = PowerTypeFilteredData.filter(
-    (item) => item?.lens_feature_.title === lens_feature
+  const lensFeatureFilteredData = PowerTypeFilteredData?.filter(
+    (item) => item?.lens_feature_?.title === lens_feature
   );
   console.log(lensFeatureFilteredData, 'lensFeatureFilteredData')
   return (

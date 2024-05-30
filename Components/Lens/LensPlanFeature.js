@@ -1,7 +1,12 @@
 import React from 'react'
 import UploadLensImage from '../Global/UploadLensImage'
+import { useDispatch, useSelector } from 'react-redux';
+import { addData } from '@/Slices/CartSlice';
 
 const LensPlanFeature = ({item}) => {
+  const dispatch = useDispatch()
+  const previousData = useSelector((state)=>state.cart.data);
+  
   return (
     <div>
         <div>
@@ -19,6 +24,10 @@ const LensPlanFeature = ({item}) => {
                 <div>
                   <button className='text-xs px-4 py-1 text-white rounded-lg tracking-wider bg-gray-700' onClick={()=>{
                     console.log(item)
+                    dispatch(addData({
+                      ...previousData,
+                      lens: item
+                    }))
                   }}>Select This Lens</button>
                 </div>
               </div>

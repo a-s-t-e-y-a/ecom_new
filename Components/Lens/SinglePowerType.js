@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useDispatch } from "react-redux";
 import { addFilter } from "@/Slices/filterSlice";
+import { addData } from "@/Slices/CartSlice";
 
 const SinglePowerType = (props) => {
   const [isChecked, setIsChecked] = useState(false);
@@ -15,6 +16,7 @@ const SinglePowerType = (props) => {
 
   if (isChecked) {
     dispatch(addFilter({power_type:title}));
+    dispatch(addData({powerType: props}))
     onNext()
   }
 

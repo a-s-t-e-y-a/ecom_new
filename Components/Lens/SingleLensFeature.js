@@ -1,18 +1,23 @@
 import { Input } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addFilter } from "@/Slices/filterSlice";
+import { addData } from "@/Slices/CartSlice";
 
 const SingleLensFeature = (props) => {
   const [isChecked, setIsChecked] = useState(false);
   const dispatch = useDispatch();
+  const previousData = useSelector((state)=>state.cart.data)
   const { src, title, description, key, onNext, powerTypeText } = props;
 
   if (isChecked) {
     dispatch(addFilter({ lens_feature: title,
       power_type: powerTypeText
      }));
+     dispatch(addData({
+      ...previousData,
+      lensFeature: props}))
     onNext()
   }
 

@@ -1,7 +1,6 @@
 import React from "react";
 import SinglePowerType from "../Lens/SinglePowerType";
 import useGetAllPowerType from "@/utils/queries/usePowerType";
-import { useDispatch } from "react-redux";
 
 const LensFormStep1 = ({ onNext, onCancel }) => {
   const { data, isFetched, isLoading } = useGetAllPowerType();

@@ -3,12 +3,16 @@ import { HiOutlineDocumentPlus } from "react-icons/hi2";
 import { VscCloudUpload } from "react-icons/vsc";
 import PrescriptionFormDialog from "@/Components/Dialog/PrescriptionFormDialog";
 import PrescriptionImgDialog from "@/Components/Dialog/PrescriptionImgDialog";
+import { useSelector } from "react-redux";
 
 const LensFormStep2 = ({ onNext, onPrev, onCancel }) => {
   const [openPreForm, setOpenPreForm] = useState(false);
   const [openPreImg, setOpenPreImg] = useState(false);
   const handleOpenForm = () => setOpenPreForm(!openPreForm);
   const handleOpenImg = () => setOpenPreImg(!openPreImg);
+
+  const previousData = useSelector((state)=>state.cart.data);
+  console.log(previousData, 'previousData')
   return (
     <div className="flex justify-center items-start">
       <div className="text-gray-800 w-[100%] h-[100vh] mt-20">
