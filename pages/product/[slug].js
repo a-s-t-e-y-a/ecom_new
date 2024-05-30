@@ -72,34 +72,34 @@ const SingleProduct = () => {
     <Layout>
       <LensForm show={isOpen} onHide={() => setIsOpen(false)} />
       <section className="text-gray-600">
-        <div className="grid grid-cols-1 lg:grid-cols-2 items-center mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mx-auto">
           {/* Swiper Field */}
-          <div className="max-w-full ">
+          <div className="max-w-full ml-[25px]">
             <SwiperThumbs images={productData?.product_images} />
           </div>
 
           {/* Detail */}
-          <div className="px-5">
-            <div className="flex justify-between mb-5">
-              <h1 className="text-2xl md:text-4xl">{productData?.product_model_name}</h1>
+          <div className="py-6 w-[100%] ml-16 ">
+            <div className="flex justify-around mb-5">
+              <h1 className="text-lg font-normal">{productData?.product_model_name}</h1>
               <span className="text-xl font-semibold cursor-pointer">
                 <AiOutlineHeart />
               </span>
             </div>
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-around mb-4">
               <p className="text-sm font-semibold">{productData?.product_color_?.name}</p>
               <span className="font-semibold tracking-wider text-lg">Rs. {productData?.discounted_price}</span>
             </div>
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center my-5 justify-around">
               <div className="flex items-center justify-center gap-2">
               <span className="h-5 w-5 bg-blue-600 rounded-full border p-[2px]"></span>
               <span className="h-5 w-5 bg-green-600 rounded-full border p-[2px]"></span>
               <span className="h-5 w-5 bg-red-600 rounded-full border p-[2px]"></span>
               </div>
             
-            <span className="font-semibold tracking-wider text-lg">Medium(134mm)</span>
+            <span className="font-normal tracking-wider text-m">Medium(134mm)</span>
           </div>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-evenly">
           <div>
           <div className="flex flex-col gap-5 items-center">
           <div className="w-auto h-8">
@@ -116,7 +116,7 @@ const SingleProduct = () => {
           <div className="w-auto h-8">
           <img src="/1 (2).jpeg" className="h-full"/>
           </div>
-          <div className="flex flex-col items-center ">
+          <div className="flex flex-col  items-center ">
           <span className="font-bold text-sm tracking-wider">45 MM</span>
           <span className="text-xs text-gray-600">Lens Width</span>
           </div>
@@ -136,7 +136,7 @@ const SingleProduct = () => {
           </div>
 
           {/* Buttons */}
-          <div className="flex flex-col mt-4 md:flex-row md:items-center gap-3 text-xs justify-evenly mb-5">
+          <div className="flex flex-col my-8 md:flex-row md:items-center gap-3 text-xs justify-evenly">
             <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
               <button className="flex w-full items-center justify-center gap-2 bg-gray-700 hover:bg-gray-800 text-white p-2 rounded-md">
                 <HiOutlineShoppingCart strokeWidth={2} className="h-4 w-4" /> Buy on Whatsapp
@@ -162,7 +162,7 @@ const SingleProduct = () => {
           </div>
 
           {/* Size And Rating */}
-          <div className="flex items-center justify-between mb-5">
+          <div className="flex items-center justify-around mb-5">
             <button className="border-2 text-sm px-4 py-1 rounded-md">Size Guide</button>
             <div className="flex items-center">
               <p className="ml-2 text-sm font-bold text-gray-900 dark:text-slate-500">{productData?.rating}</p>
@@ -188,7 +188,7 @@ const SingleProduct = () => {
         </div>
       </div>
       <div className="flex flex-col">
-        <div className="font-bold text-black text-lg my-4 px-4 py-4 rounded-md shadow-lg w-[20%]">Related Products</div>
+        <div className="font-bold text-black text-lg my-4 px-4 py-2 rounded-md shadow-lg w-[20%]">Related Products</div>
         <div className="flex flex-row gap-4">
           <Image
             src="/banner1.jpg"
@@ -226,7 +226,7 @@ const SingleProduct = () => {
             className="w-full h-[350px] object-cover"
           />
         </div>
-        <button className="bg-gray-300 my-4  rounded-lg flex justify-center  w-[10%] text-blue-600 py-2">See More</button>
+        <button className="  flex justify-center py-2   text-blue-600 ">See More</button>
       </div>
       <div className="flex flex-row gap-2 divide-x-2">
         <div className="my-5">
