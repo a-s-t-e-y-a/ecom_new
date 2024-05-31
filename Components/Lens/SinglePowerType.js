@@ -1,13 +1,12 @@
 import { Input } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import { useDispatch } from "react-redux";
 import { addFilter } from "@/Slices/filterSlice";
-import { addData } from "@/Slices/CartSlice";
+import { useDispatch } from "react-redux";
 
 const SinglePowerType = (props) => {
   const [isChecked, setIsChecked] = useState(false);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const { src, title, description, key, onNext } = props;
 
   const handleChecked = (e) => {
@@ -16,7 +15,6 @@ const SinglePowerType = (props) => {
 
   if (isChecked) {
     dispatch(addFilter({power_type:title}));
-    dispatch(addData({powerType: props}))
     onNext()
   }
 

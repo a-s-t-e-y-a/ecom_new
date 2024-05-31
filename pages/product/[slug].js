@@ -11,13 +11,12 @@ import { useRouter } from "next/router";
 import useGetProductDetail from "@/utils/queries/useGetProductDetails";
 import { updateSpecification } from "../../Slices/ProductSepcifcation";
 import { useDispatch } from "react-redux";
-import { colorMapping } from "../../utils/contants";
 import Loader from "@/Components/Loader";
 import Specification from "@/Components/SingleItem/Specification";
 import Description from "@/Components/SingleItem/Description";
 import ProductTag from "@/Components/SingleItem/ProductTag";
-import { data } from "autoprefixer";
 import Image from "next/image";
+import { addData } from "@/Slices/CartSlice";
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
@@ -67,7 +66,7 @@ const SingleProduct = () => {
     { label: "DESCRIPTION", component: <Description /> },
     { label: "PRODUCT TAGS", component: <ProductTag /> },
   ];
-
+  console.log(productData, 'productData')
   return (
     <Layout>
       <LensForm show={isOpen} onHide={() => setIsOpen(false)} />
@@ -117,7 +116,7 @@ const SingleProduct = () => {
           <img src="/1 (2).jpeg" className="h-full"/>
           </div>
           <div className="flex flex-col items-center ">
-          <span className="font-bold text-sm tracking-wider">45 MM</span>
+          <span className="font-bold text-sm tracking-wider">{productData?.lens_width} MM</span>
           <span className="text-xs text-gray-600">Lens Width</span>
           </div>
           </div>
@@ -128,7 +127,7 @@ const SingleProduct = () => {
           <img src="/1 (3).jpeg" className="h-full"/>
           </div>
           <div className="flex flex-col items-center ">
-          <span className="font-bold text-sm tracking-wider">51 MM</span>
+          <span className="font-bold text-sm tracking-wider">{productData?.lens_height} MM</span>
           <span className="text-xs text-gray-600">Lens Height</span>
           </div>
           </div>
@@ -144,7 +143,10 @@ const SingleProduct = () => {
             </a>
             <button
               className="flex items-center justify-center gap-2 bg-gray-700 hover:bg-gray-800 text-white p-2 rounded-md"
-              onClick={() => setIsOpen(true)}
+              onClick={() => {
+                setIsOpen(true)
+                dispatch(addData({productId: productData?.p_id                }))
+              }}
             >
               Select Lens
             </button>
