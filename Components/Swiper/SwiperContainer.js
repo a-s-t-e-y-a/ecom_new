@@ -40,10 +40,10 @@ const SwiperContainer = ({ data }) => {
         {data?.map((elemt, indx) => (
           <SwiperSlide
             key={indx}
-            className="  min-h-[100px] "
+            className="flex w-8 items-center bg-green-300 min-h-[100px]  "
             onClick={() => handleClick(elemt?.product_url)}
           >
-            <div className=" w-[300px] mb-3 mx-auto items-center">
+            <div className=" w-[300px] bg-red-200">
               <img
                 width={320}
                 height={320}

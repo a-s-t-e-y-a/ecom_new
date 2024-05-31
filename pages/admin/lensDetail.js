@@ -84,25 +84,25 @@ const[edit,setedit]=useState({});
               />
             </span>
           </div>
-          <div className="mt-10 flex items-center gap-3 flex-wrap w-full">
+          <div className="mt-10 flex items-center gap-3 flex-wrap w-full grid-cols-4">
             <div className="w-full border rounded-md shadow-md px-5 py-3 flex items-center justify-between bg-gray-50">
-              <div className="text-base tracking-wide font-semibold flex flex-col items-center gap-1">
+              <div className="text-base tracking-wide font-semibold flex flex-col items-center gap-1 grid-cols-1">
                 <span className="text-xs text-gray-400 tracking-wider">
                   Lens Feature
                 </span>
               </div>
 
-              <div className="text-base tracking-wide font-semibold flex flex-col items-center gap-1">
+              <div className="text-base tracking-wide font-semibold flex flex-col items-center gap-1 grid-cols-2">
                 <span className="text-xs text-gray-400 tracking-wider">
                   Power Type
                 </span>
               </div>
-              <div className="text-base tracking-wide font-semibold flex flex-col items-center gap-1">
+              <div className="text-base tracking-wide font-semibold flex flex-col items-center gap-1 grid-cols-3">
                 <span className="text-xs text-gray-400 tracking-wider">
                   Price
                 </span>
               </div>
-              <div className="flex flex-col items-center gap-1">
+              <div className="flex flex-col items-center gap-1 grid-cols-4">
                 <span className="text-xs text-gray-400 tracking-wider">
                   Action
                 </span>
@@ -132,12 +132,12 @@ const[edit,setedit]=useState({});
                               {...provided.dragHandleProps}
                               {...provided.draggableProps}
                               ref={provided.innerRef}
-                              className=" grid grid-cols-4 gap-[20%] text-center justify-between bg-slate-200 border rounded-md shadow-lg my-2 p-3"
+                              className=" grid grid-cols-4 gap-[20%] text-center justify-between bg-slate-200 border rounded-md shadow-lg my-2 pt-2"
                             >
-                              <p className=" w-full grid-cols-1">{item?.lens_feature}</p>
-                              <p className="w-full grid-cols-2">{item?.power_type_?.name}</p>
-                              <p className="w-full grid-cols-3">{item?.price}</p>
-                              <div className=" flex items-center justify-end gap-8">
+                              <p className=" w-full mr-4">{item?.lens_feature}</p>
+                              <p className="w-full ml-4 grid-cols-3">{item?.power_type_?.name}</p>
+                              <p className="w-full ml-8">{item?.price}</p>
+                              <div className=" flex items-center justify-end gap-6 grid-cols-4">
                                 <button
                                   onClick={() => deleteHandelr(item?.id)}
                                   className=" text-red-500 me-1"

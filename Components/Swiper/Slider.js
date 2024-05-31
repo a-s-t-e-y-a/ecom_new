@@ -33,14 +33,14 @@ export default function Slider({ data }) {
               <>
                 <SwiperSlide
                   key={index}
-                  className=" rounded-md  min-h-[100px]  py-10 "
+                  className="min-h-[100px]"
                 >
-                  <div className=" text-cente  bg-white  rounded-md py-2 flex flex-col items-center justify-center gap-4">
+                  <div className="w-[200px]  mx-auto items-center">
                     <div onClick={() => handleClick(slide)}>
                       <img
-                        width={300}
-                        height={300}
-                        className=" w-full h-[150px] object-cover rounded  "
+                        width={600}
+                        height={600}
+                        className=" p-4 rounded flex items-center justify-center mt-16 "
                         src={
                           slide?.imageArray[0]
                         }
