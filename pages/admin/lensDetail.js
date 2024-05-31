@@ -134,9 +134,9 @@ const[edit,setedit]=useState({});
                               ref={provided.innerRef}
                               className=" grid grid-cols-4 gap-[20%] text-center justify-between bg-slate-200 border rounded-md shadow-lg my-2 p-3"
                             >
-                              <p className=" w-full">{item?.lens_feature}</p>
-                              <p>{item?.power_type_?.name}</p>
-                              <p>{item?.price}</p>
+                              <p className=" w-full grid-cols-1">{item?.lens_feature}</p>
+                              <p className="w-full grid-cols-2">{item?.power_type_?.name}</p>
+                              <p className="w-full grid-cols-3">{item?.price}</p>
                               <div className=" flex items-center justify-end gap-8">
                                 <button
                                   onClick={() => deleteHandelr(item?.id)}
