@@ -6,7 +6,7 @@ const useAddCartToSession = () => {
   const mutate = useMutation({
     mutationKey: ["/cartSession"],
     mutationFn: async (data) => {
-      const res = await api.post("api/cart/add-to-session", data);
+      const res = await api.post("/cart/add-to-session", data);
       return res.data;
     },
     onSuccess: (data) => {
