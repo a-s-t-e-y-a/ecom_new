@@ -15,9 +15,6 @@ const SingleLensFeature = (props) => {
     dispatch(addFilter({ lens_feature: title,
       power_type: powerTypeText
      }));
-     dispatch(addData({
-      ...previousData,
-      lensFeature: props}))
     onNext()
   }
 

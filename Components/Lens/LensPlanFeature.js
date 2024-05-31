@@ -23,7 +23,6 @@ const LensPlanFeature = ({item}) => {
                 </div>
                 <div>
                   <button className='text-xs px-4 py-1 text-white rounded-lg tracking-wider bg-gray-700' onClick={()=>{
-                    console.log(item)
                     dispatch(addData({
                       ...previousData,
                       lens: item

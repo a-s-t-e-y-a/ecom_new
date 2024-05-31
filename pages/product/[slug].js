@@ -11,13 +11,12 @@ import { useRouter } from "next/router";
 import useGetProductDetail from "@/utils/queries/useGetProductDetails";
 import { updateSpecification } from "../../Slices/ProductSepcifcation";
 import { useDispatch } from "react-redux";
-import { colorMapping } from "../../utils/contants";
 import Loader from "@/Components/Loader";
 import Specification from "@/Components/SingleItem/Specification";
 import Description from "@/Components/SingleItem/Description";
 import ProductTag from "@/Components/SingleItem/ProductTag";
-import { data } from "autoprefixer";
 import Image from "next/image";
+import { addData } from "@/Slices/CartSlice";
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
@@ -75,7 +74,7 @@ const SingleProduct = () => {
     { label: "DESCRIPTION", component: <Description /> },
     { label: "PRODUCT TAGS", component: <ProductTag /> },
   ];
-
+  console.log(productData, 'productData')
   return (
     <Layout>
       <LensForm show={isOpen} onHide={() => setIsOpen(false)} />
@@ -110,78 +109,64 @@ const SingleProduct = () => {
                 <span className="h-5 w-5 bg-green-600 rounded-full border p-[2px]"></span>
                 <span className="h-5 w-5 bg-red-600 rounded-full border p-[2px]"></span>
               </div>
+            
+            <span className="font-semibold tracking-wider text-lg">Medium(134mm)</span>
+          </div>
+          <div className="flex items-center justify-between">
+          <div>
+          <div className="flex flex-col gap-5 items-center">
+          <div className="w-auto h-8">
+          <img src="/1 (1).jpeg" className="h-full"/>
+          </div>
+          <div className="flex flex-col items-center ">
+          <span className="font-bold text-sm tracking-wider">135 MM</span>
+          <span className="text-xs text-gray-600">Frame Width</span>
+          </div>
+          </div>
+          </div>
+          <div>
+          <div className="flex flex-col gap-5 items-center">
+          <div className="w-auto h-8">
+          <img src="/1 (2).jpeg" className="h-full"/>
+          </div>
+          <div className="flex flex-col items-center ">
+          <span className="font-bold text-sm tracking-wider">{productData?.lens_width} MM</span>
+          <span className="text-xs text-gray-600">Lens Width</span>
+          </div>
+          </div>
+          </div>
+          <div>
+          <div className="flex flex-col gap-5 items-center">
+          <div className="w-auto h-8">
+          <img src="/1 (3).jpeg" className="h-full"/>
+          </div>
+          <div className="flex flex-col items-center ">
+          <span className="font-bold text-sm tracking-wider">{productData?.lens_height} MM</span>
+          <span className="text-xs text-gray-600">Lens Height</span>
+          </div>
+          </div>
+          </div>
+          </div>
 
-              <span className="font-semibold tracking-wider text-lg">
-                Medium(134mm)
-              </span>
-            </div>
-            <div className="flex items-center justify-between">
-              <div>
-                <div className="flex flex-col gap-5 items-center">
-                  <div className="w-auto h-8">
-                    <img src="/1 (1).jpeg" className="h-full" />
-                  </div>
-                  <div className="flex flex-col items-center ">
-                    <span className="font-bold text-sm tracking-wider">
-                      135 MM
-                    </span>
-                    <span className="text-xs text-gray-600">Frame Width</span>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div className="flex flex-col gap-5 items-center">
-                  <div className="w-auto h-8">
-                    <img src="/1 (2).jpeg" className="h-full" />
-                  </div>
-                  <div className="flex flex-col items-center ">
-                    <span className="font-bold text-sm tracking-wider">
-                      45 MM
-                    </span>
-                    <span className="text-xs text-gray-600">Lens Width</span>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div className="flex flex-col gap-5 items-center">
-                  <div className="w-auto h-8">
-                    <img src="/1 (3).jpeg" className="h-full" />
-                  </div>
-                  <div className="flex flex-col items-center ">
-                    <span className="font-bold text-sm tracking-wider">
-                      51 MM
-                    </span>
-                    <span className="text-xs text-gray-600">Lens Height</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Buttons */}
-            <div className="flex flex-col mt-4 md:flex-row md:items-center gap-3 text-xs justify-evenly mb-5">
-              <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
-                <button className="flex w-full items-center justify-center gap-2 bg-gray-700 hover:bg-gray-800 text-white p-2 rounded-md">
-                  <HiOutlineShoppingCart strokeWidth={2} className="h-4 w-4" />{" "}
-                  Buy on Whatsapp
-                </button>
-              </a>
-              <button
-                className="flex items-center justify-center gap-2 bg-gray-700 hover:bg-gray-800 text-white p-2 rounded-md"
-                onClick={() => setIsOpen(true)}
-              >
-                Select Lens
+          {/* Buttons */}
+          <div className="flex flex-col mt-4 md:flex-row md:items-center gap-3 text-xs justify-evenly mb-5">
+            <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
+              <button className="flex w-full items-center justify-center gap-2 bg-gray-700 hover:bg-gray-800 text-white p-2 rounded-md">
+                <HiOutlineShoppingCart strokeWidth={2} className="h-4 w-4" /> Buy on Whatsapp
               </button>
-              <a
-                href={whatsappLinkToShare}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <button className="flex w-full items-center justify-center gap-2 bg-gray-700 hover:bg-gray-800 text-white p-2 rounded-md">
-                  <IoIosShareAlt strokeWidth={2} className="h-4 w-4" /> Share
-                  Now
-                </button>
-              </a>
-              {/* <button
+            </a>
+            <button
+              className="flex items-center justify-center gap-2 bg-gray-700 hover:bg-gray-800 text-white p-2 rounded-md"
+              onClick={() => setIsOpen(true)}
+            >
+              Select Lens
+            </button>
+            <a href={whatsappLinkToShare} target="_blank" rel="noopener noreferrer">
+              <button className="flex w-full items-center justify-center gap-2 bg-gray-700 hover:bg-gray-800 text-white p-2 rounded-md">
+                <IoIosShareAlt strokeWidth={2} className="h-4 w-4" /> Share Now
+              </button>
+            </a>
+            {/* <button
                 className="flex items-center justify-center gap-2 bg-gray-700 hover:bg-gray-800 text-white p-2 rounded-md"
                 onClick={() => addToCart(productData?.p_id)}
               >
