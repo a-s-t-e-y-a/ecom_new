@@ -14,10 +14,11 @@ const LensFormStep2 = ({ onNext, onPrev, onCancel }) => {
   const handleOpenImg = () => setOpenPreImg(!openPreImg);
 
   const previousData = useSelector((state)=>state.cart.data);
-  console.log(previousData)
+  console.log(previousData, 'previousData')
   const addToCart = () => {
     console.log(previousData)
     const payload = {
+      productId:previousData.productId,
       "lensId":previousData.lens.id,
       "lensFeatureId":previousData.lens.lens_feature_.id,
       "powertype":previousData.lens.power_type_.id
