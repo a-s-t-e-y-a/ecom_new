@@ -134,17 +134,10 @@ const[edit,setedit]=useState({});
                               ref={provided.innerRef}
                               className="mx-4 grid grid-cols-4 gap-[20%] text-center justify-between bg-slate-200 border rounded-md shadow-lg my-2 pt-2"
                             >
-<<<<<<< HEAD
-                              <p className=" w-full mr-4">{item?.lens_feature}</p>
-                              <p className="w-full ml-4 grid-cols-3">{item?.power_type_?.name}</p>
-                              <p className="w-full ml-8">{item?.price}</p>
-                              <div className=" flex items-center justify-end gap-6 grid-cols-4">
-=======
                               <p className=" w-full">{item?.lens_feature_.title}</p>
                               <p>{item?.power_type_?.name}</p>
                               <p>{item?.price}</p>
                               <div className=" flex items-center justify-end gap-8">
->>>>>>> efb9f073028cc0dcad3618aef64a5ec40c8c7a8b
                                 <button
                                   onClick={() => deleteHandelr(item?.id)}
                                   className=" text-red-500 me-1"
