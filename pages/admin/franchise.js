@@ -13,6 +13,7 @@ import CreateDelivery from "@/utils/mutations/useCreateDeliveryTerm";
 import { toast } from "react-toastify";
 import { MdOutlineCurrencyFranc, MdPolicy } from "react-icons/md";
 import useCreateFranchise from "@/utils/mutations/useCreateFranchise";
+import { Textarea } from "@material-tailwind/react";
 
 const Franchise = () => {
   const router = useRouter();
@@ -44,13 +45,20 @@ const Franchise = () => {
           </div>
           <div className="mt-6 mx-4 flex items-center gap-3 flex-wrap w-full">
             <form onSubmit={handleSubmit(onSubmit)}>
-              <Controller
+              {/* <Controller
                 name="description"
                 control={control}
                 render={({ field }) => (
                   <QuillEditor {...field} onChange={field.onChange} />
                 )}
-              />
+              /> */}
+              
+            <Textarea
+              label="Franchise"
+              className="w-[600px]"
+              
+            />
+          
               <button
                 type="submit"
                 className=" bg-blue-500 rounded shadow w-40 text-center text-white my-4"

@@ -33,16 +33,9 @@ const TryAtHomeItem = (props) => {
         />
       </Modal>
       <div className=" col-span-2">
-        <p className="font-semibold">{services}</p>
+        <p className="font-semibold">Eye test at home</p>
       </div>
       <div className="flex flex-row  items-center justify-around">
-      <button
-        className=" text-blue-500 cursor-pointer"
-        onClick={() => {setOpen(true);
-          setedit(id);}}
-      >
-        <TbEdit className="text-base" size={20} />
-      </button>
       <button
         className=" text-red-500 cursor-pointer"
         onClick={() => deletehandler(id)}
