@@ -47,7 +47,7 @@ function Home() {
           <GlassesType />
         </div>
         <div className="flex flex-row">
-          <p className="text-5xl text-center mt-8">EYEGLASSES<span className="text-center text-5xl font-semibold mb-5"> TREND</span></p>
+          <p className="text-5xl text-center mt-16 font-bold">EYEGLASSES<span className="text-center text-5xl font-semibold mb-5"> TREND</span></p>
           {/* <p className=" text-center  text-5xl  font-semibold mb-5">TREND</p> */}
           <Slider data={Round} />
         </div>

@@ -107,7 +107,7 @@ const SingleProduct = () => {
             </div>
 
             {/* Buttons  */}
-            <div className="flex  flex-col md:flex-row md:items-center gap-3 text-xs justify-evenly mb-5">
+            <div className="flex  flex-col md:flex-row md:items-center gap-3 text-xs justify-around mb-5">
               <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
                 <button className="flex w-full items-center justify-center gap-2 bg-gray-700 hover:bg-gray-800 text-white p-2 rounded-md">
                   <HiOutlineShoppingCart strokeWidth={2} className="h-4 w-4" />{" "}

@@ -59,7 +59,7 @@ const PowerTypes = () => {
         </Modal>
 
         <div>
-          <div onClick={handleOpen}>
+          <div onClick={handleOpen} className="ml-4">
             <IconButton label="Add Power Types" icon={<GiPowerRing />} />
           </div>
           <div className="mt-10 grid grid-cols-2 items-center gap-5 w-full">

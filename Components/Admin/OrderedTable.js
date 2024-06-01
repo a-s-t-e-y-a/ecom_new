@@ -168,7 +168,7 @@ const data = [
 ];
 const OrderedTable = () => {
   return (
-    <div className="w-full tracking-wide h-[72vh] overflow-y-scroll scrollbar-hide border">
+    <div className="w-[1240px] mx-4 tracking-wide h-[72vh] overflow-y-scroll scrollbar-hide border">
       <table className="h-[30vh] shadow-md table-auto border-collapse border border-slate-400 w-full relative">
         <thead className="border border-slate-400 text-sm font-normal text-gray-700 sticky top-0 bg-white ">
           <tr className="py-2 border border-slate-400">

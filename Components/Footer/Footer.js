@@ -12,7 +12,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className=" flex flex-col ">
+    <footer className=" flex flex-col px-4 ">
       <div className="bg-gray-700  grid  grid-cols-2  md:grid-flow-col md:grid-cols-4 px-2 justify-items-center text-white py-2">
         <div className="flex items-center  tracking-wide md:text-lg ">
           <MdLocalShipping /> Free Shipping

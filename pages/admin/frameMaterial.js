@@ -73,7 +73,7 @@ const FrameMaterial = () => {
           />
         </Modal>
         <div>
-          <div onClick={handleOpen} className=" mb-4">
+          <div onClick={handleOpen} className="ml-4 mb-4">
             <IconButton label="Add Frame Material" icon={<CgFramer />} />
           </div>
           <div className=" grid grid-cols-3 gap-5">

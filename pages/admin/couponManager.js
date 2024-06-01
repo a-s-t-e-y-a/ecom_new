@@ -77,10 +77,10 @@ const CouponManager = () => {
           />
         </Modal>
         <div>
-          <div onClick={handleOpen} className=" mb-4">
+          <div onClick={handleOpen} className="ml-4 mb-4">
             <IconButton label="Add Coupons" icon={<SiCodeproject />} />
           </div>
-          <div className="grid grid-cols-6 mb-5 justify-items-center bg-gray-50 py-4 rounded shadow-lg   w-full">
+          <div className="grid mx-4 grid-cols-6 mb-5 justify-items-center bg-gray-50 py-4 rounded shadow-lg w-[1240px]">
             <div className="  text-gray-400 tracking-wider">CouponName</div>
 
             <div className="  text-gray-400 tracking-wider">Validity</div>
@@ -99,7 +99,7 @@ const CouponManager = () => {
             data?.map((coupon, index) => (
               <div
                 key={index}
-                className="w-full  grid grid-cols-6 justify-between justify-items-center bg-gray-50 py-3 shadow rounded"
+                className="w-[1240px] mx-4  grid grid-cols-6 justify-between justify-items-center bg-gray-50 py-3 shadow rounded"
               >
                 <div className="text-gray-600 font-semibold text-sm ">
                   {coupon?.name}

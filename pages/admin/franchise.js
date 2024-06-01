@@ -14,6 +14,10 @@ import { toast } from "react-toastify";
 import { MdOutlineCurrencyFranc, MdPolicy } from "react-icons/md";
 import useCreateFranchise from "@/utils/mutations/useCreateFranchise";
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> efb9f073028cc0dcad3618aef64a5ec40c8c7a8b
 const Franchise = () => {
   const router = useRouter();
   const [logged, setlogged] = useState(false);
@@ -28,6 +32,10 @@ const Franchise = () => {
     }
   }, [router]);
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> efb9f073028cc0dcad3618aef64a5ec40c8c7a8b
   const onSubmit = (data) => {
     mutate(data);
   };

@@ -49,19 +49,19 @@ const Brand = () => {
           {<BrandDialogBox onCancel={onHide} refetch={setget} token={get} />}
         </Modal>
         <div>
-          <div onClick={handleOpen} className=" mb-5">
+          <div onClick={handleOpen} className="ml-4 mb-5">
             <IconButton label="Add Brand" icon={<TbBrandAdonisJs />} />
           </div>
           <div>
-            <table className="w-full">
+            <table className="w-[1240px]">
               <thead className="w-full">
-                <tr className=" flex w-full justify-around bg-gray-200 rounded-s-md rounded-e-md py-3">
+                <tr className=" flex w-full mx-4 justify-around bg-gray-200 rounded-s-md rounded-e-md py-3">
                   <th className=" font-semibold">Brand Name</th>
                   <th className=" font-semibold">Product Catogaries Name</th>
                   <th className=" font-semibold">Action</th>
                 </tr>
               </thead>
-              <tbody className="w-full">
+              <tbody className=" mx-4 w-full">
                 {data &&
                   data.map((val) => (
                     <tr
