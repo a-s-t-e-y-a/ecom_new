@@ -21,7 +21,7 @@ const NewsLetter = () => {
     return (
       <AdminLayout>
         <div className="ml-4">
-          <IconButton label="Subscribed Number" icon={<HiOutlineNewspaper />} />
+          {/* <IconButton label="Subscribed Number" icon={<HiOutlineNewspaper />} /> */}
         </div>
         <div className="mt-5  flex items-center gap-3 flex-wrap w-full">
           <div className="w-full mx-4 border rounded-md shadow-md px-5 py-3 flex items-center justify-between bg-gray-50">
