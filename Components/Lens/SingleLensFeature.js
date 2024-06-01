@@ -1,20 +1,20 @@
 import { Input } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import { useDispatch, useSelector } from "react-redux";
 import { addFilter } from "@/Slices/filterSlice";
-import { useDispatch } from "react-redux";
+import { addData } from "@/Slices/CartSlice";
 
-const SinglePowerType = (props) => {
+const SingleLensFeature = (props) => {
   const [isChecked, setIsChecked] = useState(false);
-  const dispatch = useDispatch()
-  const { src, title, description, key, onNext } = props;
-
-  const handleChecked = (e) => {
-    setIsChecked(e.target.checked);
-  };
+  const dispatch = useDispatch();
+  const previousData = useSelector((state)=>state.cart.data)
+  const { src, title, description, key, onNext, powerTypeText } = props;
 
   if (isChecked) {
-    dispatch(addFilter({power_type:title}));
+    dispatch(addFilter({ lens_feature: title,
+      power_type: powerTypeText
+     }));
     onNext()
   }
 
@@ -25,7 +25,7 @@ const SinglePowerType = (props) => {
           <Image
             width={100}
             height={100}
-            alt=""
+            alt={title}
             src={src}
             className="w-auto h-22"
           />
@@ -40,11 +40,11 @@ const SinglePowerType = (props) => {
           type="checkbox"
           className="h-4 w-4 cursor-pointer"
           id="checkbox"
-          onChange={(e) => handleChecked(e)}
+          onChange={(e) => setIsChecked(e.target.checked)}
         />
       </div>
     </div>
   );
 };
 
-export default SinglePowerType;
+export default SingleLensFeature;

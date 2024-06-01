@@ -20,9 +20,8 @@ const LensDetailDialogBox = ({ onCancel, refetch, token, edit }) => {
   const { register, handleSubmit, reset, control } = useForm();
 
   useEffect(() => {
-    console.log(edit);
+    console.log(edit, 'edit');
     const resetPayload = {
-      power_type_id: edit?.power_type_,
       anti_scratch_coating: edit?.anti_scratch_coating,
       blue_light_blocker: edit?.blue_light_blocker,
       both_side_anti_glare_coating: edit?.both_side_anti_glare_coating,
@@ -31,9 +30,9 @@ const LensDetailDialogBox = ({ onCancel, refetch, token, edit }) => {
       breakage_and_crack_resistant: edit?.breakage_and_crack_resistant,
       categories_id: edit?.categories_id,
       heading: edit?.heading,
-      lens_feature: edit?.lens_feature,
+      lens_feature_id: edit?.lens_feature,
       power_range: edit?.power_range,
-      power_type: edit?.power_type_,
+      power_type_id: edit?.power_type_,
       price: edit?.price,
       thickness: edit?.thickness,
       uv_protection: edit?.uv_protection,
@@ -58,7 +57,7 @@ const LensDetailDialogBox = ({ onCancel, refetch, token, edit }) => {
     const payload = {
       heading: data.heading,
       price: data.price,
-      warranty_period: data.warranty,
+      warranty: data.warranty_period,
       thickness: data.thickness,
       power_range: data.power_range,
       blue_light_blocker: data?.blue_light_blocker,
@@ -68,9 +67,10 @@ const LensDetailDialogBox = ({ onCancel, refetch, token, edit }) => {
       uv_protection: data.uv_protection,
       water_and_dust_repellent: data?.water_and_dust_repellent,
       breakage_and_crack_resistant: data?.breakage_and_crack_resistant,
-      lens_feature_: data?.lens_feature_id?.id,
-      power_type_: data?.power_type_id?.id
+      lens_feature_id: data?.lens_feature_id?.id,
+      power_type_id: data?.power_type_id?.id
     };
+    console.log(payload)
     const formData = new FormData();
     formData.append("file", data.file[0]);
     delete data.file;
@@ -78,12 +78,12 @@ const LensDetailDialogBox = ({ onCancel, refetch, token, edit }) => {
 
     if (Object.keys(edit).length === 0) {
       mutate(formData);
-      onCancel();
+      // onCancel();
       refetch();
     } else {
-      update(formData);
-      onCancel();
-      refetch();
+      // update(formData);
+      // onCancel();
+      // refetch();
     }
   };
 
@@ -163,10 +163,10 @@ const LensDetailDialogBox = ({ onCancel, refetch, token, edit }) => {
           <TextField
             fullWidth
             label="Warranty Period"
-            name="warrentyperiod"
-            id="warrentyperiod"
+            name="warranty_period"
+            id="warranty_period"
             size="small"
-            {...register("warranty")}
+            {...register("warranty_period")}
             sx={{ minWidth: 300 }}
           />
 

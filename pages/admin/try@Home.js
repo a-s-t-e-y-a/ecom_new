@@ -66,10 +66,11 @@ const TryAtHome = () => {
         <div className="mt-10 grid grid-cols-2 items-center gap-5 w-full">
           {data &&
             data.map((item, index) => (
-              <TryAtHomeItem
-                
+              <div key={index}>
+                <TryAtHomeItem
                 services={item?.services}
               />
+              </div>
             ))}
         </div>
       </AdminLayout>

@@ -3,12 +3,28 @@ import { HiOutlineDocumentPlus } from "react-icons/hi2";
 import { VscCloudUpload } from "react-icons/vsc";
 import PrescriptionFormDialog from "@/Components/Dialog/PrescriptionFormDialog";
 import PrescriptionImgDialog from "@/Components/Dialog/PrescriptionImgDialog";
+import { useSelector } from "react-redux";
+import useAddCartToSession from "@/utils/mutations/useAddToCart";
 
 const LensFormStep2 = ({ onNext, onPrev, onCancel }) => {
   const [openPreForm, setOpenPreForm] = useState(false);
   const [openPreImg, setOpenPreImg] = useState(false);
+  const {mutate} = useAddCartToSession()
   const handleOpenForm = () => setOpenPreForm(!openPreForm);
   const handleOpenImg = () => setOpenPreImg(!openPreImg);
+
+  const previousData = useSelector((state)=>state.cart.data);
+  console.log(previousData, 'previousData')
+  const addToCart = () => {
+    console.log(previousData)
+    const payload = {
+      productId:previousData.productId,
+      "lensId":previousData.lens.id,
+      "lensFeatureId":previousData.lens.lens_feature_.id,
+      "powertype":previousData.lens.power_type_.id
+    }
+    mutate(payload)
+  };
   return (
     <div className="flex justify-center items-start">
       <div className="text-gray-800 w-[100%] h-[100vh] mt-20">
@@ -51,7 +67,7 @@ const LensFormStep2 = ({ onNext, onPrev, onCancel }) => {
             Pervious
           </button>
           <button
-            onClick={onCancel}
+            onClick={addToCart}
             className="px-3 py-1 text-sm bg-gray-700 text-white rounded-md tracking-wide flex mx-auto"
           >
             Add To Cart

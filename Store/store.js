@@ -8,6 +8,8 @@ import powerTypeSlice from "@/Slices/powerTypeSlice";
 import lensDetailSlice from "@/Slices/lensDetailSlice";
 import categoriesSlice from "@/Slices/categoriesSlice";
 import Sepcification from "@/Slices/ProductSepcifcation";
+import CartSlice from "@/Slices/CartSlice";
+import filterSlice from "@/Slices/filterSlice";
 
 export const store = configureStore({
   reducer: {
@@ -20,5 +22,7 @@ export const store = configureStore({
     lensDetail: lensDetailSlice,
     categories: categoriesSlice,
     Sepcification: Sepcification,
+    cart: CartSlice,
+    filterText: filterSlice
   },
 });
