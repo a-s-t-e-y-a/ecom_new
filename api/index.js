@@ -7,7 +7,7 @@ let token;
 export const baseURL = "https://api.akkukachasma.com/api/"
 
 export const Imageapi = axios.create({
-  // withCredentials: true,
+  withCredentials: true,
   baseURL,
   headers: {
     // token: token ? token : getCookie("token"),
@@ -16,7 +16,7 @@ export const Imageapi = axios.create({
 });
 
 const api = axios.create({
-  // withCredentials: true,
+  withCredentials: true,
   baseURL,
   headers: {
     // token: token ? token : getCookie("token"),
