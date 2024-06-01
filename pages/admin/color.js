@@ -64,7 +64,7 @@ const Color = () => {
           />
         </Modal>
         <div>
-          <div onClick={handleOpen}>
+          <div onClick={handleOpen} className="ml-4">
             <IconButton label="Add Color" icon={<IoColorPaletteOutline />} />
           </div>
           <div className="mt-10 flex items-center gap-5 flex-wrap">

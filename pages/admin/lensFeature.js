@@ -54,7 +54,7 @@ const LensFeature = () => {
           }
         </Modal>
         <div>
-          <div
+          <div className="ml-4"
             onClick={() => {
               handleOpen();
             }}

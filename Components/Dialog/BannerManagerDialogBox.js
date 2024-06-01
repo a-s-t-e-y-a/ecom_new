@@ -51,7 +51,7 @@ const BannerManagerDialogBox = ({ onCancel, refetch, token }) => {
           <FileInput title="main_image" register={register} />
           <SingleSelectCategoriesById
             control={control}
-            label="SELECT CATEGORIES"
+            label="Select Categories"
             options={categories}
             register={register}
             name="products_categories_id"

@@ -22,9 +22,9 @@ const PlacedOrder = () => {
       <AdminLayout>
         <div className="space-y-6">
           <div className="flex items-center justify-between ">
-            <h1 className="text-4xl font-bold tracking-wide">Placed Order</h1>
+            <h1 className="text-4xl ml-4 font-bold tracking-wide">Placed Order</h1>
             <div>
-              <div className="flex items-center justify-end">
+              <div className="flex items-center justify-end mr-4">
                 <TextField
                   className="outline-none focus:ring-0"
                   color="secondary"

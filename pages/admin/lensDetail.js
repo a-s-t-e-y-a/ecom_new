@@ -76,7 +76,7 @@ const[edit,setedit]=useState({});
               />
             }
           </Modal>
-          <div>
+          <div className="ml-4">
             <span onClick={()=>{handleOpen();setedit({})}}>
               <IconButton
                 label="Add Lens Detail"
@@ -84,8 +84,8 @@ const[edit,setedit]=useState({});
               />
             </span>
           </div>
-          <div className="mt-10 flex items-center gap-3 flex-wrap w-full grid-cols-4">
-            <div className="w-full border rounded-md shadow-md px-5 py-3 flex items-center justify-between bg-gray-50">
+          <div className="mt-10 flex items-center gap-3  flex-wrap w-full grid-cols-4">
+            <div className="w-full  mx-4 border rounded-md shadow-md px-5 py-3 flex items-center justify-between bg-gray-50">
               <div className="text-base tracking-wide font-semibold flex flex-col items-center gap-1 grid-cols-1">
                 <span className="text-xs text-gray-400 tracking-wider">
                   Lens Feature
@@ -132,7 +132,7 @@ const[edit,setedit]=useState({});
                               {...provided.dragHandleProps}
                               {...provided.draggableProps}
                               ref={provided.innerRef}
-                              className=" grid grid-cols-4 gap-[20%] text-center justify-between bg-slate-200 border rounded-md shadow-lg my-2 pt-2"
+                              className="mx-4 grid grid-cols-4 gap-[20%] text-center justify-between bg-slate-200 border rounded-md shadow-lg my-2 pt-2"
                             >
                               <p className=" w-full mr-4">{item?.lens_feature}</p>
                               <p className="w-full ml-4 grid-cols-3">{item?.power_type_?.name}</p>
