@@ -57,7 +57,7 @@ const CartDialog = (props) => {
                         </div>
                       </div>
 
-                      <CartSingleItem />d
+                      <CartSingleItem />
                       <CartSingleItem />
                       <CartSingleItem />
                     </div>
