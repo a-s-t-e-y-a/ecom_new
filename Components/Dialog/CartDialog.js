@@ -1,13 +1,37 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { RiCloseLine } from "react-icons/ri";
 import CartSingleItem from "../CartSingleItem";
 import { Button, Input } from "@material-tailwind/react";
+import useCartLocalStorage from "@/utils/mutations/useGetCartFromLocalStorage";
+
 
 const CartDialog = (props) => {
   const { open, setOpen } = props;
   const [promocode, setPromocode] = React.useState("");
-  const onChange = ({ target }) => setPromocode(target.value);
+  // const onChange = ({ target }) => {
+  //   setPromocode(target.value);
+  //   console.log("Promocode changed:", target.value);
+  // };
+
+  const { mutate, data, isLoading } = useCartLocalStorage();
+
+  useEffect(() => {
+    if (open) {
+      const cartData = JSON.parse(localStorage.getItem('cart'));
+      console.log("CartDialog opened, fetching cart data:", cartData);
+      mutate({ cartItems: cartData });
+    } else {
+      console.log("CartDialog closed");
+    }
+  }, [open, mutate]);
+
+  useEffect(() => {
+    if (data) {
+      console.log("Cart data fetched successfully:", data);
+    }
+  }, [data]);
+
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -57,15 +81,22 @@ const CartDialog = (props) => {
                         </div>
                       </div>
 
+<<<<<<< HEAD
                       <CartSingleItem />
                       <CartSingleItem />
                       <CartSingleItem />
+=======
+                      {isLoading && <p>Loading...</p>}
+                      {data && data.products.map((item) => (
+                        <CartSingleItem key={item.p_id} item={item} />
+                      ))}
+>>>>>>> 613074cf41afdfbfbd3e0f613db55f2446fd1a3b
                     </div>
 
                     <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                       <div className="flex justify-between text-base font-medium text-gray-900">
                         <p>Subtotal</p>
-                        <p>$262.00</p>
+                        <p>${data ? data.grandTotal : "0.00"}</p>
                       </div>
                       <p className="mt-0.5 text-xs text-gray-500">
                         Shipping and taxes calculated at checkout.
@@ -76,6 +107,8 @@ const CartDialog = (props) => {
                             type="text"
                             className="peer h-full w-full rounded-[7px] border border-blue-gray-200  bg-transparent px-3 py-2.5 pr-20  text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200  focus:border-gray-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                             placeholder=" "
+                            // onChange={onChange}
+                            // value={promocode}
                             required
                           />
                           <button
