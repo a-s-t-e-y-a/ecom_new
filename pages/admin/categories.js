@@ -74,10 +74,10 @@ const Categories = () => {
           />
         </Modal>
         <div>
-          <div onClick={handleOpen}>
+          <div onClick={handleOpen} className="ml-4">
             <IconButton label="Add Category" icon={<MdCategory />} />
           </div>
-          <div className="mt-10 flex items-center gap-5 flex-wrap overflow-scroll scrollbar-hide">
+          <div className="mt-10 flex mx-4 items-center gap-5 flex-wrap overflow-scroll scrollbar-hide">
             {!isLoading &&
               categories &&
               categories.map((category, index) => (

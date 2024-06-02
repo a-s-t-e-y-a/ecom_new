@@ -67,7 +67,7 @@ const Color = () => {
           <div onClick={handleOpen} className="ml-4">
             <IconButton label="Add Color" icon={<IoColorPaletteOutline />} />
           </div>
-          <div className="mt-10 flex items-center gap-5 flex-wrap">
+          <div className="mt-10 mx-4 flex items-center gap-5 flex-wrap">
             {data &&
               data.map((color, index) => (
                 <div

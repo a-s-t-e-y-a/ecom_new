@@ -43,10 +43,10 @@ const BannagerManager = () => {
           }
         </Modal>
         <div>
-          <div onClick={handleOpen}>
+          <div onClick={handleOpen} className="ml-4">
             <IconButton label="Bannager Manager" icon={<GiKnightBanner />} />
           </div>
-          <div className="mt-6 grid grid-cols-4">
+          <div className=" mx-4 mt-6 grid grid-cols-4">
             {data &&
               data?.map((banner, index) => {
                 return (

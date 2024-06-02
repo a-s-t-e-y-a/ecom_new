@@ -77,11 +77,11 @@ const Blog = () => {
               handleOpen();
               setedit(null);
             }}
-            className="mx-2"
+            className=" ml-4 mx-2"
           >
             <IconButton label="Add Blog" icon={<FaBlog />} />
           </button>
-          <div className="relative grid grid-cols-4 items-center gap-5 h-full pt-5 overflow-auto scrollbar-hide  ">
+          <div className=" mx-4 relative grid grid-cols-4 items-center gap-5 h-full pt-5 overflow-auto scrollbar-hide  ">
             {data &&
               data.map((value, indx) => (
                 <div

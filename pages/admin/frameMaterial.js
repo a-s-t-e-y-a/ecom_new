@@ -76,7 +76,7 @@ const FrameMaterial = () => {
           <div onClick={handleOpen} className="ml-4 mb-4">
             <IconButton label="Add Frame Material" icon={<CgFramer />} />
           </div>
-          <div className=" grid grid-cols-3 gap-5">
+          <div className="mx-4 grid grid-cols-3 gap-5">
             {data &&
               data.map((val) => (
                 <div

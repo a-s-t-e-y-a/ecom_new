@@ -60,7 +60,7 @@ const TryAtHome = () => {
           {<TryHome onCancel={onHide} refecth={setget} token={get} />}
         </Modal>
 
-        <div onClick={handleOpen} className=" mb-4">
+        <div onClick={handleOpen} className="ml-4 mb-4">
           <IconButton label="Try@Home" icon={<HiOutlineHome />} />
         </div>
         <div className="mt-10 grid grid-cols-2 items-center gap-5 w-full">

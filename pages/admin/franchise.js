@@ -14,10 +14,6 @@ import { toast } from "react-toastify";
 import { MdOutlineCurrencyFranc, MdPolicy } from "react-icons/md";
 import useCreateFranchise from "@/utils/mutations/useCreateFranchise";
 
-<<<<<<< HEAD
-
-=======
->>>>>>> efb9f073028cc0dcad3618aef64a5ec40c8c7a8b
 const Franchise = () => {
   const router = useRouter();
   const [logged, setlogged] = useState(false);
@@ -32,10 +28,6 @@ const Franchise = () => {
     }
   }, [router]);
 
-<<<<<<< HEAD
-
-=======
->>>>>>> efb9f073028cc0dcad3618aef64a5ec40c8c7a8b
   const onSubmit = (data) => {
     mutate(data);
   };
@@ -44,13 +36,13 @@ const Franchise = () => {
     return (
       <AdminLayout>
         <div>
-          <div>
+          <div className="ml-4">
             <IconButton
               label="Franchise Page"
               icon={<MdOutlineCurrencyFranc />}
             />
           </div>
-          <div className="mt-6 flex items-center gap-3 flex-wrap w-full">
+          <div className="mt-6 mx-4 flex items-center gap-3 flex-wrap w-full">
             <form onSubmit={handleSubmit(onSubmit)}>
               <Controller
                 name="description"

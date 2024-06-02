@@ -74,11 +74,11 @@ const AdminSideBar = () => {
       link: "/admin/couponManager",
     },
     { title: "Blog", icon: <FaBlog />, link: "/admin/blog" },
-    // {
-    //   title: "NewsLetter",
-    //   icon: <HiOutlineNewspaper />,
-    //   link: "/admin/newsLetter",
-    // },
+    {
+      title: "NewsLetter",
+      icon: <HiOutlineNewspaper />,
+      link: "/admin/newsLetter",
+    },
     {
       title: "Banner Manager",
       icon: <GiKnightBanner />,
