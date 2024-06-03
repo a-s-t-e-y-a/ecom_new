@@ -8,8 +8,6 @@ const useCategoryByURL = (slugs, page) => {
     queryFn: async () => {
       try {
         const res = await api.get(`categories/${slugs}?pageSize=15&page=${page}`);
-        console.log("Function is running");
-        console.log(res, "res");
         return res?.data?.data[0]?.products;
       } catch (error) {
         toast.error("Error fetching data");

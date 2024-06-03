@@ -1,3 +1,5 @@
+import { clearFromStorage } from "@/utils/contants";
+import { customLocalStorage } from "@/utils/Helpers";
 import {
   Menu,
   MenuHandler,
@@ -7,10 +9,19 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 const ProfileMenu = () => {
   const router = useRouter();
   const { user } = router.query;
+  const { removeItem } = customLocalStorage;
+
+  const handleLogout = () => {
+    clearFromStorage?.map((clrItem) => removeItem(clrItem));
+    toast.success("Logout successfully");
+    window.location.reload();
+  };
+
   return (
     <Menu>
       <MenuHandler>
@@ -40,17 +51,10 @@ const ProfileMenu = () => {
             My Orders
           </Typography>
         </MenuItem>
-
-        <hr className="my-2 border-blue-gray-50" />
         <MenuItem
           className="flex items-center gap-2 "
-          onClick={() => router.push(`/admin/dashboard`)}
+          onClick={() => handleLogout()}
         >
-          <Typography variant="small" className="font-normal">
-            Admin Panel
-          </Typography>
-        </MenuItem>
-        <MenuItem className="flex items-center gap-2 ">
           {/* <span><GoSignOut className="h-4 w-4" /></span> */}
           <Typography variant="small" className="font-normal">
             Sign Out

@@ -80,9 +80,9 @@ const LensFormStep3 = ({ onNext, onPrev }) => {
           <div className="w-[75%]">
             <Swiper modules={[Navigation]} navigation slidesPerView={3}>
               {isFetched &&
-                lensFeatureFilteredData.map((item) => {
+                lensFeatureFilteredData.map((item, index) => {
                   return (
-                    <SwiperSlide className="border">
+                    <SwiperSlide className="border" key={index}>
                       <LensPlanFeature item={item} />
                     </SwiperSlide>
                   );

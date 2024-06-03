@@ -13,7 +13,7 @@ const SingleGlassItem = ({ value }) => {
           <p className=" text-sm  text-nowrap font-semibold">Frame Width</p>
         </div>
         <div>
-          <p className=" text-nowrap">{value?.temple_length} mm</p>
+          <p className=" text-nowrap">{value?.lens_width} mm</p>
           <p className=" text-sm  text-nowrap font-semibold">Lens Width</p>
         </div>
         <div>

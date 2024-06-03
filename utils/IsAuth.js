@@ -23,3 +23,4 @@ export const checkAndLogoutAfter24Hours = () => {
 export const loginTime = () => {
   return localStorage.setItem('loginTime', Date.now());
 }
+
