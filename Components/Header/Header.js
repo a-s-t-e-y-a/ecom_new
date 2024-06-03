@@ -8,85 +8,29 @@ import { useRouter } from "next/router";
 import ProfileMenu from "../ProfileMenu";
 import MenuComponent from "../MenuComponent";
 import CartDialog from "../Dialog/CartDialog";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MenuComponentNested from "../MenuComponentNested";
-
-const PageLinks = [
-  { href: "/aboutus", label: "About Us" },
-  { href: "/Franchise-Enquiry", label: "Franchise Enquiry" },
-  { href: "/contact", label: "Contact" },
-  { href: "/help", label: "Help" },
-];
-
-const SunGlassLinks = [
-  {
-    label: "Shape1",
-    subItems: [
-      { href: "/sunglasses/shape/square", label: "Square" },
-      { href: "/sunglasses/shape/geometry", label: "Geometry" },
-      { href: "/sunglasses/shape/rectangle", label: "Rectangle" },
-      { href: "/sunglasses/shape/wayfarer", label: "Wayfarer" },
-      { href: "/sunglasses/shape/round", label: "Round" },
-    ],
-  },
-  {
-    label: "Shape2",
-    subItems: [
-      { href: "/sunglasses/shape/butterfly", label: "Butterfly" },
-      { href: "/sunglasses/shape/aviator", label: "Aviator" },
-      { href: "/sunglasses/shape/hexagon", label: "Hexagon" },
-      { href: "/sunglasses/shape/clubmaster", label: "Clubmaster" },
-      { href: "/sunglasses/shape/oval", label: "Oval" },
-      { href: "/sunglasses/shape/cateye", label: "CatEye" },
-    ],
-  },
-  {
-    label: "Style",
-    subItems: [
-      { href: "/sunglassestype/rimless", label: "Rimless" },
-      { href: "/sunglassestype/half-frame", label: "HalfFrame" },
-      { href: "/sunglassestype/full-frame", label: "FullFrame" },
-    ],
-  },
-];
-
-const EyeGlassLinks = [
-  {
-    label: "Shape1",
-    subItems: [
-      { href: "/eyeglasses/shape/square", label: "Square" },
-      { href: "/eyeglasses/shape/geometry", label: "Geometry" },
-      { href: "/eyeglasses/shape/rectangle", label: "Rectangle" },
-      { href: "/eyeglasses/shape/wayfarer", label: "Wayfarer" },
-      { href: "/eyeglasses/shape/round", label: "Round" },
-    ],
-  },
-  {
-    label: "Shape2",
-    subItems: [
-      { href: "/eyeglasses/shape/butterfly", label: "Butterfly" },
-      { href: "/eyeglasses/shape/aviator", label: "Aviator" },
-      { href: "/eyeglasses/shape/hexagon", label: "Hexagon" },
-      { href: "/eyeglasses/shape/clubmaster", label: "Clubmaster" },
-      { href: "/eyeglasses/shape/oval", label: "Oval" },
-      { href: "/eyeglasses/shape/cateye", label: "CatEye" },
-    ],
-  },
-  {
-    label: "Style",
-    subItems: [
-      { href: "/eyeglasses/type/rimless", label: "Rimless" },
-      { href: "/eyeglasses/type/half-frame", label: "HalfFrame" },
-      { href: "/eyeglasses/type/full-frame", label: "FullFrame" },
-    ],
-  },
-];
+import { customLocalStorage } from "@/utils/Helpers";
+import { EyeGlassLinks, PageLinks, SunGlassLinks } from "@/utils/contants";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
   const [Dropdown, setDropdown] = useState(false);
+  const [token, setToken] = useState(null);
+  const [userData, setUserData] = useState(null);
   const router = useRouter();
-  const { user } = router.query;
+
+  const { getItem } = customLocalStorage;
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const token = getItem("user_info");
+      const userData = getItem("user_data");
+      setToken(token);
+      setUserData(userData);
+    }
+  }, []);
+
   return (
     <>
       <CartDialog open={open} setOpen={setOpen} />
@@ -130,12 +74,16 @@ const Header = () => {
                 <MdShoppingCart className="h-4 w-4" />
                 Cart
               </li>
-              <li
-                className="cursor-pointer"
-                onClick={() => router.push("/login")}
-              >
-                SignIn & SignUp
-              </li>
+              {token ? (
+                <li className="underline cursor-pointer">{userData.name}</li>
+              ) : (
+                <li
+                  className="cursor-pointer"
+                  onClick={() => router.push("/login")}
+                >
+                  SignIn & SignUp
+                </li>
+              )}
               <li>
                 <ProfileMenu />
               </li>

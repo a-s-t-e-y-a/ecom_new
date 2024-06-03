@@ -17,7 +17,7 @@ export default function Example() {
     watch,
     formState: { errors },
   } = useForm();
-  const { mutate } = useRegister();
+  const { mutate, isSuccess } = useRegister();
   const onSubmit = (data) => {
     const payload = {
       name: data?.name,
@@ -27,6 +27,10 @@ export default function Example() {
     };
     mutate(payload);
   };
+
+  if(isSuccess){
+    router.push('/login')
+  }
 
   return (
     <section className="bg-gray-50 ">

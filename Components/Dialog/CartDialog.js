@@ -81,16 +81,10 @@ const CartDialog = (props) => {
                         </div>
                       </div>
 
-<<<<<<< HEAD
-                      <CartSingleItem />
-                      <CartSingleItem />
-                      <CartSingleItem />
-=======
                       {isLoading && <p>Loading...</p>}
-                      {data && data.products.map((item) => (
+                      {data && data?.products?.map((item) => (
                         <CartSingleItem key={item.p_id} item={item} />
                       ))}
->>>>>>> 613074cf41afdfbfbd3e0f613db55f2446fd1a3b
                     </div>
 
                     <div className="border-t border-gray-200 px-4 py-6 sm:px-6">

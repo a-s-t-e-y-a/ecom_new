@@ -10,7 +10,6 @@ const useCartLocalStorage = () => {
       return res.data;
     },
     onSuccess: (data) => {
-      toast.success("get all datas");
     },
     onError: (err) => {
       toast.error(err.message);
