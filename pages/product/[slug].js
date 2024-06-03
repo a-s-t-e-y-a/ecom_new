@@ -71,8 +71,8 @@ const SingleProduct = () => {
       label: "SPECIFICATION",
       component: <Specification Product={productDetails} />,
     },
-    { label: "DESCRIPTION", component: <Description /> },
-    { label: "PRODUCT TAGS", component: <ProductTag /> },
+    { label: "DESCRIPTION", component: <Description Product={productDetails} /> },
+    { label: "PRODUCT TAGS", component: <ProductTag Product={productDetails} /> },
   ];
   return (
     <Layout>
