@@ -121,7 +121,7 @@ const SingleProduct = () => {
                   </div>
                   <div className="flex flex-col items-center ">
                     <span className="font-bold text-sm tracking-wider">
-                      135 MM
+                      {productData?.frame_width} MM
                     </span>
                     <span className="text-xs text-gray-600">Frame Width</span>
                   </div>
@@ -156,7 +156,7 @@ const SingleProduct = () => {
             </div>
 
             {/* Buttons */}
-            <div className="flex flex-col mt-4 md:flex-row md:items-center gap-3 text-xs justify-evenly mb-5">
+            <div className="flex flex-col mt-4 md:flex-row md:items-center gap-3 text-xs justify-between mb-5">
               <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
                 <button className="flex w-full items-center justify-center gap-2 bg-gray-700 hover:bg-gray-800 text-white p-2 rounded-md">
                   <HiOutlineShoppingCart strokeWidth={2} className="h-4 w-4" />{" "}
@@ -164,7 +164,7 @@ const SingleProduct = () => {
                 </button>
               </a>
               <button
-                className="flex items-center justify-center gap-2 bg-gray-700 hover:bg-gray-800 text-white p-2 rounded-md"
+                className="flex items-center justify-center bg-gray-700 hover:bg-gray-800 text-white p-2 rounded-md"
                 onClick={() => {
                   setIsOpen(true);
                   dispatch(addData({ productId: productData?.p_id }));
@@ -182,12 +182,6 @@ const SingleProduct = () => {
                   Now
                 </button>
               </a>
-              {/* <button
-                className="flex items-center justify-center gap-2 bg-gray-700 hover:bg-gray-800 text-white p-2 rounded-md"
-                onClick={() => addToCart(productData?.p_id)}
-              >
-                Add to Cart
-              </button> */}
             </div>
 
             {/* Size And Rating */}
