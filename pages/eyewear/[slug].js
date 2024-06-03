@@ -72,7 +72,7 @@ const SingleProduct = () => {
           </div>
 
           {/* Detail  */}
-          <div className=" px-5">
+          <div className="sm:flex sm:mr-[150px] px-5">
             <div className="">
               <div className=" flex justify-between mb-5">
                 <h1 className=" text-2xl md:text-4xl">

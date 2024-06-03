@@ -12,7 +12,7 @@ const Specification = ({ Product }) => {
     style,
     product_type,
     row_metrial_source_from,
-  } = Product;
+  } = Product || {};
   const SpecificationData = [
     { title: "Frame Material ", value: material_?.name },
     { title: "Lens Material ", value: lens_material },

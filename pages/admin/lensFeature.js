@@ -61,7 +61,7 @@ const LensFeature = () => {
           >
             <IconButton label="Add Lens Features" icon={<GiMicroscopeLens />} />
           </div>
-          <div className="grid grid-cols-2 items-center gap-5 w-full pr-4 pt-4">
+          <div className="mx-4 grid grid-cols-2 items-center gap-5 w-[1250px] pr-4 pt-4">
             {data &&
               data.map((value, index) => (
                 <PowerType key={index} data={value} mutate={mutate} />

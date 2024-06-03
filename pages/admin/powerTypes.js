@@ -62,7 +62,7 @@ const PowerTypes = () => {
           <div onClick={handleOpen} className="ml-4">
             <IconButton label="Add Power Types" icon={<GiPowerRing />} />
           </div>
-          <div className="mt-10 grid grid-cols-2 items-center gap-5 w-full">
+          <div className="mt-10 mx-4 grid grid-cols-2 items-center gap-5 w-[1250px]">
             {data &&
               data.map((item, index) => (
                 <div key={index}>

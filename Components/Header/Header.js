@@ -165,7 +165,7 @@ const Header = () => {
 
         {/* Bottom Part  */}
         <div className="flex items-center  justify-between mb-4 py-2 rounded-lg w-full  overflow-x-auto">
-          <div className="flex items-center gap-16 lg:justify-center   text-sm  md:text-lg font-semibold tracking-wide w-full ">
+          <div className="flex items-center md:gap-16 lg:justify-center gap-4  text-sm  md:text-lg font-semibold tracking-wide w-full ">
             <div className="cursor-pointer">
               <MenuComponentNested title="EyeGlasses" items={EyeGlassLinks} />
             </div>

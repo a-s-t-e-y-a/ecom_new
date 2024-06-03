@@ -53,7 +53,7 @@ const Brand = () => {
             <IconButton label="Add Brand" icon={<TbBrandAdonisJs />} />
           </div>
           <div>
-            <table className="w-[1240px]">
+            <table className="w-[1230px]">
               <thead className="w-full">
                 <tr className=" flex w-full mx-4 justify-around bg-gray-200 rounded-s-md rounded-e-md py-3">
                   <th className=" font-semibold">Brand Name</th>

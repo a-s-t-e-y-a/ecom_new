@@ -46,7 +46,7 @@ function Home() {
         <div className=" overflow-auto flex">
           <GlassesType />
         </div>
-        <div className="flex flex-row">
+        <div className="flex flex-col md:flex-row">
           <p className="text-5xl text-center mt-16 font-bold">EYEGLASSES<span className="text-center text-5xl font-semibold mb-5"> TREND</span></p>
           {/* <p className=" text-center  text-5xl  font-semibold mb-5">TREND</p> */}
           <Slider data={Round} />
@@ -61,7 +61,7 @@ function Home() {
             className="w-full h-[350px] object-cover"
           />
         </div>
-        <div className="flex items-center justify-between gap-3">
+        <div className="flex md:items-center md:justify-between flex-col gap-3">
           <Image
             src="/banner1.png"
             alt=""
@@ -85,7 +85,7 @@ function Home() {
           />
         </div>
 
-        <div className="w-[97%] border p-2 mx-4 bg-gray-50">
+        <div className="w-[97%] border p-2 mx-2  bg-gray-50">
           <div className="w-full text-center bg-white tracking-wider space-y-3">
             <p className="text-xl py-1 ">
               Discount On Every Single Item On Our Site.
@@ -143,7 +143,7 @@ function Home() {
           </div>
         </div>
 
-        <div className="w-[97%] mx-4 text-center gap-3 bg-gray-100 space-y-3 p-10 my-2 tracking-wider">
+        <div className="w-[97%] mx-2  text-center gap-3 bg-gray-100 space-y-3 p-10 my-2 tracking-wider">
           <p className="text-xl">
             Save Up | What a great Deal | Don&apos;t think Do It!
           </p>
@@ -195,7 +195,7 @@ function Home() {
         </div>
 
         <div className="w-full space-y-3">
-          <div className="flex items-center justify-between gap-3">
+          <div className="md:flex md:items-center md:justify-between gap-3 flex flex-col">
             <Image
               src="/banner1.png"
               alt=""

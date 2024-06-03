@@ -5,9 +5,9 @@ import { AiOutlineHeart } from "react-icons/ai";
 const SingleGlassItem = ({ value }) => {
   const imageArray = value?.product_images?.split(",");
   return (
-    <div className="h-[250px]">
+    <div className="h-[250px] mr-4">
       <SlideOnHover data={imageArray} />
-      <div className="flex flex-row gap-6 px-4">
+      <div className="md:flex md:flex-row justify-center md:gap-6 md:px-4 flex flex-col items-center">
         <div>
           <p className=" text-nowrap">{value?.frame_width} mm</p>
           <p className=" text-sm  text-nowrap font-semibold">Frame Width</p>

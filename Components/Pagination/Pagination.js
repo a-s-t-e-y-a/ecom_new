@@ -48,7 +48,7 @@ const Pagination = ({ pages, curr, total }) => {
     <>
       <div aria-label="Page navigation example">
         <ul className="flex text-base justify-center">
-          <li className="p-2 md:px-4 rounded-s-lg border border-gray-300 bg-gray-800">
+          <li className="p-2 md:px-4 rounded-s-lg border  border-gray-300 bg-gray-800">
             <button
               href="#"
               className="leading-tight text-gray-200"

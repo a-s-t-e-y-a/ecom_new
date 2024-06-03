@@ -78,14 +78,14 @@ const SingleProduct = () => {
     <Layout>
       <LensForm show={isOpen} onHide={() => setIsOpen(false)} />
       <section className="text-gray-600">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mx-auto ">
           {/* Swiper Field */}
-          <div className="max-w-full ml-[25px]">
+          <div className="md:max-w-full md:ml-[25px] flex items-center mr-[80px] w-[280px] md:w-[3000px]">
             <SwiperThumbs images={productData?.product_images} />
           </div>
 
           {/* Detail */}
-          <div className="px-5 ml-[300px]">
+          <div className="px-5  md:ml-[280px] ">
             <div className="flex justify-between mb-5">
               <h1 className="text-2xl md:text-4xl">
                 {productData?.product_model_name}
@@ -102,7 +102,7 @@ const SingleProduct = () => {
                 Rs. {productData?.discounted_price}
               </span>
             </div>
-            <div className="flex items-center my-5 justify-between">
+            <div className="flex items-center my-5 justify-around">
               <div className="flex items-center justify-center gap-2">
                 <span className="h-5 w-5 bg-blue-600 rounded-full border p-[2px]"></span>
                 <span className="h-5 w-5 bg-green-600 rounded-full border p-[2px]"></span>
@@ -113,7 +113,7 @@ const SingleProduct = () => {
                 Medium(134mm)
               </span>
             </div>
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-around">
               <div>
                 <div className="flex flex-col gap-5 items-center">
                   <div className="w-auto h-8">
@@ -221,10 +221,10 @@ const SingleProduct = () => {
           </div>
         </div>
         <div className="flex flex-col">
-          <div className="font-bold text-black text-m text-lg my-4 px-2 py-2 rounded-md shadow-lg w-[15%]">
+          <div className="font-bold text-black  text-lg my-4 md:px-2 md:py-2 flex justify-center items-center rounded-md w-[100%] shadow-lg md:w-[12%]">
             Related Products
           </div>
-          <div className="flex flex-row gap-4">
+          <div className="flex md:flex-row gap-4 flex-col">
             <Image
               src="/banner1.jpg"
               width={100}
@@ -265,7 +265,7 @@ const SingleProduct = () => {
             See More
           </button>
         </div>
-        <div className="flex flex-row gap-2 divide-x-2">
+        <div className="flex md:flex-row flex-col my-4 gap-2 divide-x-2">
           <div className="my-5">
             <TabPanel TabPanelOption={TabPanelOption} />
           </div>

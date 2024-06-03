@@ -12,7 +12,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className=" flex flex-col px-4 ">
+    <footer className=" flex flex-col">
       <div className="bg-gray-700  grid  grid-cols-2  md:grid-flow-col md:grid-cols-4 px-2 justify-items-center text-white py-2">
         <div className="flex items-center  tracking-wide md:text-lg ">
           <MdLocalShipping /> Free Shipping
@@ -28,8 +28,8 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="bg-gray-900 py-8 justify-evenly flex flex-row  items-center  ">
-        <div className="flex items-center font-bold text-white tracking-wide mb-4">
+      <div className="bg-gray-900 py-8 md:flex flex-col justify-center  md:justify-evenly flex md:flex-row  md:items-center  ">
+        <div className="flex items-center font-bold text-white tracking-wide mb-4 ml-4">
           <span className="text-5xl me-10">
             <BsFillEnvelopePaperFill />
           </span>
@@ -38,7 +38,7 @@ const Footer = () => {
             <h2 className="text-2xl">JOIN OUR NEWSLETTER</h2>
           </div>
         </div>
-        <div className="flex items-center h-10 ">
+        <div className="flex items-center h-10 mx-4 ">
           <input
             type="text"
             placeholder="Enter Your Whatsapp Number"

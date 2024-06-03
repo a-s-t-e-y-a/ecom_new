@@ -39,9 +39,9 @@ const Header1 = () => {
   return (
     <>
       <CartDialog open={open} setOpen={setOpen} />
-      <header className="flex flex-row items-center h-24 px-3">
+      <header className="md:flex md:flex-row items-center flex flex-col mt-2 h-24 px-3">
         {/* Image  */}
-        <div className="flex-shrink-0">
+        <div className="md:flex-shrink-0">
           <Image
             width={400}
             height={500}
@@ -82,7 +82,7 @@ const Header1 = () => {
           </Swiper>
         </div>
 
-        <div className="flex flex-shrink-0  gap-3 text-2xl text-gray-700">
+        <div className="flex flex-shrink-0  gap-3 mb-4  text-2xl text-gray-700">
           <motion.span whileTap={{ scale: 0.8 }}>
             <BsFillPersonFill />
           </motion.span>
