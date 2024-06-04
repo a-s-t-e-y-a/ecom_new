@@ -12,7 +12,7 @@ const TabPanel = ({ TabPanelOption }) => {
             key={indx}
             className={({ selected }) =>
               classNames(
-                "w-[250px] rounded-lg py-2.5 text-sm bg-slate-300 font-medium leading-5",
+                "w-[250px]  rounded-lg py-2.5 text-sm bg-slate-300 font-medium leading-5",
                 "ring-white/60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2",
                 selected
                   ? "bg-white text-blue-700 shadow"

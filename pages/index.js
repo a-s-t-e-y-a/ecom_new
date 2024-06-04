@@ -61,7 +61,7 @@ function Home() {
             className="w-full h-[350px] object-cover"
           />
         </div>
-        <div className="flex md:items-center md:justify-between flex-col gap-3">
+        <div className="flex md:items-center md:justify-between md:flex-row flex-col gap-3">
           <Image
             src="/banner1.png"
             alt=""
@@ -195,7 +195,7 @@ function Home() {
         </div>
 
         <div className="w-full space-y-3">
-          <div className="md:flex md:items-center md:justify-between gap-3 flex flex-col">
+          <div className="md:flex md:items-center md:justify-between gap-3 flex md:flex-row flex-col">
             <Image
               src="/banner1.png"
               alt=""

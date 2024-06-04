@@ -8,7 +8,7 @@ const aboutus = () => {
         <div className="text-gray-700 font-bold p-2 text-center text-3xl rounded-md py-1 ">
           ABOUT US
         </div>
-        <p className="text-sm font-regular md:py-4 md:px-16 md:pt-4">
+        <p className="md:w-full text-sm font-regular w-[200px]   py-4 md:px-16 md:pt-4 ">
           Order Eyeglass and Sunglass Round - Square Geomantic shape eyeglass
           online from a vast range of products, styles and buy a pair of branded
           shades online from the portel. Open your eyeglasses style and adopt

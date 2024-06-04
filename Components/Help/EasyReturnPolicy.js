@@ -8,7 +8,7 @@ const EasyReturnPolicy = () => {
         <h1 className="text-2xl font-bold tracking-wide text-center">
           7 DAY EASY RETURN POLICY
         </h1>
-        <div className="flex gap-6">
+        <div className="flex md:flex-row flex-col gap-6">
           <Image
             width={100}
             height={100}

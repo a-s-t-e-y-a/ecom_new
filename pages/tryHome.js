@@ -6,7 +6,7 @@ const tryAtHome = () => {
   return (
     <Layout >
       <div className='text-5xl font-bold tracking-wider mb-8 text-center text-gray-700'>Try@Home</div>
-      <div className=' mx-auto space-y-5 w-[500px] bg-white py-9 px-6 shadow-lg'>
+      <div className=' mx-auto space-y-5 md:w-[500px] bg-white py-9 px-6 shadow-lg'>
         <h1 className='text-3xl font-bold tracking-wider text-center mb-6 text-gray-700'>Personal Detail</h1>
 
         <form className="w-full mx-auto space-y-6">

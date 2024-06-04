@@ -82,11 +82,7 @@ const CartDialog = (props) => {
                       </div>
 
                       {isLoading && <p>Loading...</p>}
-<<<<<<< HEAD
                       {data && data.products?.map((item) => (
-=======
-                      {data && data?.products?.map((item) => (
->>>>>>> 7ea12ea34553541656e4c56221f618935cdf9b4e
                         <CartSingleItem key={item.p_id} item={item} />
                       ))}
                     </div>

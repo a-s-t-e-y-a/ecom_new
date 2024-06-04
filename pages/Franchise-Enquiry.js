@@ -19,7 +19,7 @@ const FranchiseEnquiry = () => {
 
   return (
     <Layout>
-      <div className="text-gray-700 w-[85%] mx-auto">
+      <div className="text-gray-700 md:w-[85%] md:mx-auto flex flex-col">
         <h1 className="text-5xl font-bold tracking-wider text-center">
           Franchise
         </h1>
@@ -28,7 +28,7 @@ const FranchiseEnquiry = () => {
             Eyeglass Optical Franchise for Best investment for long Term
           </h1>
           <div className="mt-8 pr-6">
-            <div className="grid grid-cols-3 justify-between">
+            <div className="md:grid md:grid-cols-3 flex flex-col justify-between">
               <div className="col-span-2 space-y-7">
                 <p>
                   Hii We only give you to start your optical business at just up
@@ -120,8 +120,8 @@ const FranchiseEnquiry = () => {
 
               <div className="col-span-1">
                 <Image
-                  width={100}
-                  height={100}
+                  width={500}
+                  height={500}
                   alt=""
                   src={"/franchise1.png"}
                   className=""
@@ -135,7 +135,7 @@ const FranchiseEnquiry = () => {
               </h1>
               <div>
                 <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
-                  <div className="grid grid-cols-8 gap-10">
+                  <div className="md:grid md:grid-cols-8 md:gap-10 flex flex-col gap-4">
                     <div className="col-span-4">
                       <div className="relative z-0 w-full mb-6 group">
                         <input
