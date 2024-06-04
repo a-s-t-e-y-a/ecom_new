@@ -35,7 +35,7 @@ export default function Slider({ data }) {
                   key={index}
                   className="min-h-[100px]"
                 >
-                  <div className="w-[200px]   mx-auto items-center">
+                  <div className="md:w-[200px] w-[110px]    mx-auto items-center">
                     <div onClick={() => handleClick(slide)}>
                       <img
                         width={600}
