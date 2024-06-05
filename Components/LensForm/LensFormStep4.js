@@ -6,17 +6,19 @@ import PrescriptionImgDialog from "@/Components/Dialog/PrescriptionImgDialog";
 import { useSelector } from "react-redux";
 import useAddCartToSession from "@/utils/mutations/useAddToCart";
 import useGetCartSession from "@/utils/queries/useGetCart";
+import { useRouter } from "next/router";
 
 const LensFormStep2 = ({ onNext, onPrev, onCancel }) => {
+  const router = useRouter()
   const [openPreForm, setOpenPreForm] = useState(false);
   const [openPreImg, setOpenPreImg] = useState(false);
   const { mutate } = useAddCartToSession();
   const { data, isLoading } = useGetCartSession();
   const handleOpenForm = () => setOpenPreForm(!openPreForm);
   const handleOpenImg = () => setOpenPreImg(!openPreImg);
-  console.log(data);
+  
   const previousData = useSelector((state) => state.cart.data);
-  console.log(previousData, "previousData");
+  
   const addToCart = () => {
     console.log(previousData);
     const payload = {
@@ -35,6 +37,11 @@ const LensFormStep2 = ({ onNext, onPrev, onCancel }) => {
     localStorage.setItem("cart", JSON.stringify(cart));
     mutate(payload);
   };
+
+  const handleCheckout = () =>{
+    router.replace('/checkout')
+    onCancel()
+  }
   return (
     <div className="flex justify-center items-start">
       <div className="text-gray-800 w-[100%] h-[100vh] mt-20">
@@ -83,7 +90,7 @@ const LensFormStep2 = ({ onNext, onPrev, onCancel }) => {
               Add To Cart
             </button>
             <button
-              onClick={onCancel}
+              onClick={handleCheckout}
               className="px-3 py-1 text-sm bg-gray-700 text-white rounded-md tracking-wide flex mx-auto"
             >
               Proceed To Checkout
