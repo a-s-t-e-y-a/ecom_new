@@ -31,7 +31,8 @@ export const Frame_size = {
   3: "L",
 };
 
-export const Gender = ["Men", "Women", "Kids", "Both(M/F)"]
+export const Gender = [{
+  id:1,name:"Men"},{id:2,name: "Women"}, {id:3,name:"Kids"}, {id:4,name:"Both(M/F)"}]
 
 export const PageLinks = [
   { href: "/aboutus", label: "About Us" },

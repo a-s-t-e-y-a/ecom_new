@@ -4,7 +4,7 @@ import Image from "next/image";
 import { isUserLoggedIn } from "@/utils/IsAuth";
 import { useRouter } from "next/router";
 
-const checkout = () => {
+const Checkout = () => {
   const [logged, setlogged] = useState(false);
   const router = useRouter();
   useEffect(() => {
@@ -260,4 +260,4 @@ const checkout = () => {
   }
 };
 
-export default checkout;
+export default Checkout;

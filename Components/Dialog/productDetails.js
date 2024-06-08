@@ -241,7 +241,7 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
               <SelectBox
                 label="Select Lens"
                 multiple={false}
-                options={["Yes", "No"]}
+                options={[{id:1, name:"Yes"}, {id:0,name:"No"}]}
                 value={value}
                 onChange={onChange}
               />

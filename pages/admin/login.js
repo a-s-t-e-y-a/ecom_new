@@ -25,7 +25,6 @@ function Login() {
       email: formData.username,
       password: formData.password,
     };
-    console.log(payload);
     mutate(payload);
   };
 
