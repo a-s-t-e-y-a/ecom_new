@@ -177,6 +177,8 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
     }
   };
 
+  console.log(watch("select_Lens").name !== "Yes", "watcher is already running")
+
   return (
     <div className="relative border mt-[1100px] md:mt-[300px] rounded-md shadow-lg w-full md:w-auto h-[calc(100%-1rem)] max-h-full ">
       <h1 className="text-md font-semibold text-center text-gray-700 mt-3 mb-5">
@@ -254,9 +256,8 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
               <SelectBox
                 label="Power Type"
                 multiple={true}
+                readOnly={watch("select_Lens").name !== "Yes"}
                 options={power}
-                readOnly={watch("select_Lens") !== "Yes"}
-                // placeholder={watch("select_Lens") !== "Yes" ? "No Power type(Read Only)" : ""}
                 value={value}
                 onChange={onChange}
               />
