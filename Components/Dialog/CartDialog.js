@@ -9,25 +9,9 @@ import useGetCartSession from "@/utils/queries/useGetCart";
 const CartDialog = (props) => {
   const { open, setOpen } = props;
   const [promocode, setPromocode] = React.useState("");
-
   const { data, isLoading } = useGetCartSession();
 
-  // useEffect(() => {
-  //   if (open) {
-  //     const cartData = JSON.parse(localStorage.getItem('cart'));
-  //     console.log("CartDialog opened, fetching cart data:", cartData);
-  //     mutate({ cartItems: cartData });
-  //   } else {
-  //     console.log("CartDialog closed");
-  //   }
-  // }, [open, mutate]);
-
-  // useEffect(() => {
-  //   if (data) {
-  //     console.log("Cart data fetched successfully:", data);
-  //   }
-  // }, [data]);
-
+  console.log("Cart data fetched successfully", data)
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -78,15 +62,15 @@ const CartDialog = (props) => {
                       </div>
 
                       {isLoading && <p>Loading...</p>}
-                      {data && data.products?.map((item) => (
-                        <CartSingleItem key={item.p_id} item={item} />
+                      {data && data?.data?.items?.map((item) => (
+                        <CartSingleItem key={item.p_id} item={item}/>
                       ))}
                     </div>
 
                     <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                       <div className="flex justify-between text-base font-medium text-gray-900">
                         <p>Subtotal</p>
-                        <p>${data ? data.grandTotal : "0.00"}</p>
+                        <p>Rs. {data ? data?.data?.grandTotal : "0.00"}</p>
                       </div>
                       <p className="mt-0.5 text-xs text-gray-500">
                         Shipping and taxes calculated at checkout.
