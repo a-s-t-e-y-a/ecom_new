@@ -4,7 +4,6 @@ import SwiperContainer from "@/Components/Swiper/SwiperContainer";
 import Layout from "@/Layout/Layout";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-
 import axios from "axios";
 
 function Home() {
