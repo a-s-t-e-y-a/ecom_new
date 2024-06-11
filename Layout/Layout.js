@@ -4,7 +4,7 @@ import Header1 from "@/Components/Header/Header1";
 import Footer from "@/Components/Footer/Footer";
 import { useRouter } from "next/router";
 import WhatsappIcon from "@/Components/WhatsappIcon";
-import Script from "next/script";
+
 const Layout = ({ children }) => {
   const router = useRouter();
   return (
