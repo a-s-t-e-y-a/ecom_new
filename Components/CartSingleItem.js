@@ -137,7 +137,8 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import useAddCartToSession from '@/utils/mutations/useAddToCart';
 
-const CartSingleItem = () => {
+const CartSingleItem = ({item}) => {
+  console.log(item)
   const [cartProducts, setCartProducts] = useState([]);
   const router = useRouter();
   const user_info = "your_user_token"; // Replace with actual user token logic

@@ -10,23 +10,23 @@ const CartDialog = (props) => {
   const { open, setOpen } = props;
   const [promocode, setPromocode] = React.useState("");
 
-  const { mutate, data, isLoading } = useGetCartSession();
+  const { data, isLoading } = useGetCartSession();
 
-  useEffect(() => {
-    if (open) {
-      const cartData = JSON.parse(localStorage.getItem('cart'));
-      console.log("CartDialog opened, fetching cart data:", cartData);
-      mutate({ cartItems: cartData });
-    } else {
-      console.log("CartDialog closed");
-    }
-  }, [open, mutate]);
+  // useEffect(() => {
+  //   if (open) {
+  //     const cartData = JSON.parse(localStorage.getItem('cart'));
+  //     console.log("CartDialog opened, fetching cart data:", cartData);
+  //     mutate({ cartItems: cartData });
+  //   } else {
+  //     console.log("CartDialog closed");
+  //   }
+  // }, [open, mutate]);
 
-  useEffect(() => {
-    if (data) {
-      console.log("Cart data fetched successfully:", data);
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   if (data) {
+  //     console.log("Cart data fetched successfully:", data);
+  //   }
+  // }, [data]);
 
   return (
     <Transition.Root show={open} as={Fragment}>
