@@ -7,15 +7,15 @@ import { useRouter } from "next/router";
 const Checkout = () => {
   const [logged, setlogged] = useState(false);
   const router = useRouter();
-  useEffect(() => {
-    if (isUserLoggedIn()) {
-      setlogged(true);
-    } else {
-      router.replace("login");
-    }
-  }, [router]);
+  // useEffect(() => {
+  //   if (isUserLoggedIn()) {
+  //     setlogged(true);
+  //   } else {
+  //     router.replace("login");
+  //   }
+  // }, [router]);
   
-  if (logged) {
+  if (!logged) {
     return (
       <div className="w-screen h-[100vh]">
         <div className="p-3">
