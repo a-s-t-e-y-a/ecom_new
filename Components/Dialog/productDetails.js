@@ -254,7 +254,7 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
               <SelectBox
                 label="Power Type"
                 multiple={true}
-                readOnly={watch("select_Lens").name !== "Yes"}
+                readOnly={watch("select_Lens")?.name !== "Yes"}
                 options={power}
                 value={value}
                 onChange={onChange}
