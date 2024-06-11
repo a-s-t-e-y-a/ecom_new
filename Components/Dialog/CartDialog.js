@@ -3,14 +3,14 @@ import { Dialog, Transition } from "@headlessui/react";
 import { RiCloseLine } from "react-icons/ri";
 import CartSingleItem from "../CartSingleItem";
 import { Button, Input } from "@material-tailwind/react";
-import useCartLocalStorage from "@/utils/mutations/useGetCartFromLocalStorage";
+import useGetCartSession from "@/utils/queries/useGetCart";
 
 
 const CartDialog = (props) => {
   const { open, setOpen } = props;
   const [promocode, setPromocode] = React.useState("");
 
-  const { mutate, data, isLoading } = useCartLocalStorage();
+  const { mutate, data, isLoading } = useGetCartSession();
 
   useEffect(() => {
     if (open) {
