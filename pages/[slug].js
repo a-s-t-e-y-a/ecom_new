@@ -20,6 +20,7 @@ const SingleBlogPage = () => {
       <Head>
         <title>{blogData?.heading}</title>
         <meta name="description" content={blogData?.MetaDescription?.metaDescription} />
+        <meta name="keywords" content={blogData?.tags}/>
         <meta property="og:title" content={blogData?.seo_title} />
         <meta property="og:description" content={blogData?.MetaDescription?.metaDescription} />
         <meta property="og:image" content={blogData?.image} />

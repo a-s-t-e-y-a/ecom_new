@@ -81,6 +81,7 @@ const SingleProduct = () => {
       <Head>
         <title>{productDetails?.seo_title}</title>
         <meta name="description" content={productDetails?.product_description} />
+        <meta name="keywords" content={productDetails?.keyword}/>
         <meta property="og:title" content={productDetails?.seo_title} />
         <meta property="og:description" content={productDetails?.product_description} />
         <meta property="og:image" content={productDetails?.imageArray[0]} />

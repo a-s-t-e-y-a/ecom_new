@@ -29,6 +29,7 @@ const Index = () => {
     <Layout>
       <Head>
         <title>{data?.name}</title>
+        <meta name="keywords" content={data?.keyword}/>
         <meta property="og:title" content={data?.name} />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={data?.image} />
