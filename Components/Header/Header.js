@@ -75,7 +75,12 @@ const Header = () => {
                 Cart
               </li>
               {token ? (
-                <li className="underline cursor-pointer">{userData.name}</li>
+                <>
+                  <li className="underline cursor-pointer">{userData.name}</li>
+                  <li>
+                    <ProfileMenu />
+                  </li>
+                </>
               ) : (
                 <li
                   className="cursor-pointer"
@@ -84,9 +89,6 @@ const Header = () => {
                   SignIn & SignUp
                 </li>
               )}
-              <li>
-                <ProfileMenu />
-              </li>
             </ul>
           </div>
         </div>
