@@ -11,8 +11,7 @@ const Index = () => {
   const router = useRouter();
   const [page, setpage] = React.useState(1);
   const [data, setdata] = React.useState([]);
-  // const [isLoading,setLoading]=React.useState(true)
-  // const [isError,setError]=React.useState(false)
+ 
   const navigateToSingleProduct = (id) => {
     router.push(`/eyewear/${id}`);
   };

@@ -9,10 +9,6 @@ import useCartLocalStorage from "@/utils/mutations/useGetCartFromLocalStorage";
 const CartDialog = (props) => {
   const { open, setOpen } = props;
   const [promocode, setPromocode] = React.useState("");
-  // const onChange = ({ target }) => {
-  //   setPromocode(target.value);
-  //   console.log("Promocode changed:", target.value);
-  // };
 
   const { mutate, data, isLoading } = useCartLocalStorage();
 
