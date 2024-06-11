@@ -17,6 +17,7 @@ import Description from "@/Components/SingleItem/Description";
 import ProductTag from "@/Components/SingleItem/ProductTag";
 import Image from "next/image";
 import { addData } from "@/Slices/CartSlice";
+import Head from "next/head";
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
@@ -74,8 +75,22 @@ const SingleProduct = () => {
     { label: "DESCRIPTION", component: <Description Product={productDetails} /> },
     { label: "PRODUCT TAGS", component: <ProductTag Product={productDetails} /> },
   ];
+  console.log(productDetails, 'productDetails')
   return (
     <Layout>
+      <Head>
+        <title>{productDetails?.seo_title}</title>
+        <meta name="description" content={productDetails?.product_description} />
+        <meta property="og:title" content={productDetails?.seo_title} />
+        <meta property="og:description" content={productDetails?.product_description} />
+        <meta property="og:image" content={productDetails?.imageArray[0]} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`/blog/${productDetails?.product_url}`} />
+        {/* <meta name="twitter:title" content={productDetails?.seo_title} />
+        <meta name="twitter:description" content={productDetails?.product_description} />
+        <meta name="twitter:image" content={productDetails?.image} />
+        <meta name="twitter:url" content={`/blog/${productDetails?.product_url}`} /> */}
+      </Head>
       <LensForm show={isOpen} onHide={() => setIsOpen(false)} />
       <section className="text-gray-600">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mx-auto ">

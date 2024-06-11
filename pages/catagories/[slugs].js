@@ -10,13 +10,11 @@ import Head from "next/head";
 const Index = () => {
   const [page, setPage] = useState(1);
   const router = useRouter();
-  const { slugs } = router.query;
-  const { data, isLoading, isError } = useCategoryByURL(slugs, page);
-  const navigateToSingleProduct = (id, p_id) => {
-    router.push({
-      pathname: `/product/${id}`,
-      query: { extraData: p_id },
-    });
+  const slug = router.query?.slugs;
+  const { data, isLoading, isError } = useCategoryByURL(slug, page);
+  const navigateToSingleProduct = (url) => {
+    console.log(url);
+    router.push(`/product/${url}`);
   };
 
   if (isLoading) {
@@ -46,7 +44,7 @@ const Index = () => {
                 <div
                   key={index}
                   onClick={() =>
-                    navigateToSingleProduct(val?.product_url, val?.p_id)
+                    navigateToSingleProduct(val?.product_url)
                   }
                 >
                   <SingleGlassItem value={val} />
