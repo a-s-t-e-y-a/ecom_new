@@ -4,32 +4,31 @@ import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import useGetSingleBlogById from "@/utils/queries/useGetSingleBlogById";
 import Head from "next/head";
+import { QueryClient, dehydrate } from "react-query";
+import api from "@/api";
 
 const SingleBlogPage = () => {
   const router = useRouter();
   const slug = router.query?.slug;
-  const { data: blogData, refetch } = useGetSingleBlogById(slug);
-  useEffect(() => {
-    if (!blogData) {
-      refetch();
-    }
-  }, [slug, blogData, refetch]);
+  const { data: blogData } = useGetSingleBlogById(slug);
 
   return (
     <>
       <Head>
         <title>{blogData?.heading}</title>
-        <meta name="description" content={blogData?.MetaDescription?.metaDescription} />
-        <meta name="keywords" content={blogData?.tags}/>
+        <meta
+          name="description"
+          content={blogData?.MetaDescription?.metaDescription}
+        />
+        <meta name="keywords" content={blogData?.tags} />
         <meta property="og:title" content={blogData?.seo_title} />
-        <meta property="og:description" content={blogData?.MetaDescription?.metaDescription} />
+        <meta
+          property="og:description"
+          content={blogData?.MetaDescription?.metaDescription}
+        />
         <meta property="og:image" content={blogData?.image} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`/blog/${slug}`} />
-        {/* <meta name="twitter:title" content={blogData?.seo_title} />
-        <meta name="twitter:description" content={blogData?.MetaDescription?.metaDescription} />
-        <meta name="twitter:image" content={blogData?.image} />
-        <meta name="twitter:url" content={`/blog/${slug}`} /> */}
       </Head>
       <div className="w-full h-full border-4">
         {/* Header */}
@@ -71,5 +70,21 @@ const SingleBlogPage = () => {
     </>
   );
 };
+
+export async function getServerSideProps({ query }) {
+  const queryClient = new QueryClient();
+  const {slug} = query
+  await queryClient.prefetchQuery(['api/blog', slug], async () => {
+    const res = await api.get(`/blogs/${slug}`);
+    return res.data;
+  });
+
+  return {
+    props: {
+      initialBlogData: queryClient.getQueryData(['api/blog', slug]),
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+}
 
 export default SingleBlogPage;
