@@ -30,13 +30,13 @@ const MenuComponentNested = (props) => {
         <Menu.Items className=" absolute z-10  max-md:left-1/2 max-md:-translate-x-1/2 max-md:w-full  w-fit flex gap-auto origin-top-left rounded-md bg-white shadow-lg ring-1 focus:outline-none">
           {items?.map((link, i) => (
             /* Use the `active` state to conditionally style the active item. */
-            <div key={i} className="py-2 text-center flex">
+            <div key={i} className="py-2 text-center flex items-start">
               <Menu.Item key={link.href} as={Fragment} className="">
                 {({ active }) => (
-                    <div className="">
-                      <p className="font-bold tracking-wide py-2">{link.label}</p>
+                    <div className="m-2">
+                      <p className="font-bold tracking-wide py-2 px-4 text-left">{link.label}</p>
                       {link?.subItems?.map((link, i) => (
-                        <div key={i} className="py-1 text-center ">
+                        <div key={i} className="py-1 text-left">
                           <Menu.Item key={link.href} as={Fragment}>
                             {({ active }) => (
                               <Link
