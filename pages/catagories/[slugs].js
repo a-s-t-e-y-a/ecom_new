@@ -47,6 +47,7 @@ const Index = () => {
                   onClick={() =>
                     navigateToSingleProduct(val?.product_url)
                   }
+                  className="cursor-pointer"
                 >
                   <SingleGlassItem value={val} />
                 </div>

@@ -11,7 +11,7 @@ const CartDialog = (props) => {
   const [promocode, setPromocode] = React.useState("");
   const { data, isLoading } = useGetCartSession();
 
-  console.log("Cart data fetched successfully", data)
+  // console.log("Cart data fetched successfully", data)
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
