@@ -4,17 +4,14 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { BsFillPersonFill } from "react-icons/bs";
 import { BiSearchAlt2 } from "react-icons/bi";
 import { motion } from "framer-motion";
-import Slider from "@/Components/Swiper/Slider";
 import {Swiper, SwiperSlide} from 'swiper/react';
 import {Navigation} from 'swiper';
-
-
-
 import { useRouter } from "next/router";
 import { useState } from "react";
 import CartDialog from "../Dialog/CartDialog";
 import Image from "next/image";
 import axios from "axios";
+
 const Header1 = () => {
   const [open, setOpen] = useState(false);
   const [Round, setRound] = useState([]);
@@ -39,12 +36,12 @@ const Header1 = () => {
   return (
     <>
       <CartDialog open={open} setOpen={setOpen} />
-      <header className="md:flex md:flex-row items-center flex flex-col mt-2 h-24 px-3">
+      <header className="md:flex md:flex-row items-center mt-4 flex flex-col gap-4  h-24 px-3">
         {/* Image  */}
         <div className="md:flex-shrink-0">
           <Image
             width={400}
-            height={500}
+            height={400}
             src="/logo.png"
             className=""
             alt=""
@@ -52,28 +49,33 @@ const Header1 = () => {
           />
         </div>
 
-        <div className="flex-grow h-full   overflow-hidden">
+        <div className="flex-grow h-full mt-4  overflow-hidden">
           <Swiper
             modules={[Navigation]}
-            slidesPerView={3}
+            slidesPerView={4}
             autoplay
             navigation
             className="w-full h-full"
           >
             {
               Array.isArray(Round) && Round.map((glass, index) => {
+                console.log(glass)
                 return (
                   <SwiperSlide 
                     key={glass.id}
-                    className="ml-4 p-4"
+                    className="ml-4 px-4"
                   >
                     <Image 
                       src= {glass.imageArray[0]}
-                      width={100}
+                      width={400}
                       height={400}
                       alt=""
                     />
+                    <span className="text-sm text-center font-semibold">
+                      {glass.name}
+                    </span>
                   </SwiperSlide>
+                  
                 )
               })
             }

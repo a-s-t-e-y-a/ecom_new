@@ -11,8 +11,8 @@ const Filter = () => {
     <motion.div
       className={`  sticky z-20 ${
         display
-          ? " w-[24px] left-10  "
-          : " w-screen lg:w-[300px]  border rounded-md bg-white"
+          ? " w-[24px] left-0  "
+          : " w-screen lg:w-[250px] ml-[-20px] mt-4 border rounded-md bg-white"
       } space-x-2 `}
       animate={{
         transition: {

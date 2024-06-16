@@ -4,7 +4,6 @@ import Modal from "@/Components/Dialog/Modal";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import AdminLayout from "@/Layout/AdminLayout";
 import { CgFramer } from "react-icons/cg";
-import { useSelector } from "react-redux";
 import useGetAllMaterial from "@/utils/queries/useFrameMaterialGetAll";
 import { IsAuth } from "@/utils/IsAuth";
 import { useRouter } from "next/navigation";
@@ -12,7 +11,6 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import query from "@/utils/queryClinet";
 import deleteFrame from "@/utils/mutations/useDeleteFrameMaterial";
 import DeletePoPUPDialog from "@/Components/Dialog/DeletePoPUPDialog";
 

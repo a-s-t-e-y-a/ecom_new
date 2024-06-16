@@ -85,7 +85,7 @@ function Home() {
           />
         </div>
 
-        <div className="w-[97%] border p-2 mx-2  bg-gray-50">
+        <div className="w-[100%] border p-2  mr-2 bg-gray-50">
           <div className="w-full text-center bg-white tracking-wider space-y-3">
             <p className="text-xl py-1 ">
               Discount On Every Single Item On Our Site.
@@ -143,7 +143,7 @@ function Home() {
           </div>
         </div>
 
-        <div className="w-[97%] mx-2  text-center gap-3 bg-gray-100 space-y-3 p-10 my-2 tracking-wider">
+        <div className="w-[100%] mr-2  text-center gap-3 bg-gray-100 space-y-3 p-10 my-2 tracking-wider">
           <p className="text-xl">
             Save Up | What a great Deal | Don&apos;t think Do It!
           </p>
