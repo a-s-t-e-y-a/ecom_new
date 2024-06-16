@@ -80,7 +80,6 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
   }, [editValue, reset, categories]);
 
   const OnSubmit = async (data) => {
-
     const form = new FormData();
     // Append the 'main' files
     if (data.main) {
@@ -101,20 +100,13 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
       const data_ = {
         product_model_name: data.product_model_name,
         product_model_number: data.product_model_number,
-        // "capacity":
-        use_for: data.use_for,
-        // "dimensions":data.dimensions
-        // "country_of_origin":data
+        use_for: data.use_for.name,
         row_metrial_source_from: "Imported",
         show_lens_list: data.select_Lens=="Yes"?1:0,
-        // "warranty":data.wa
         product_description: data.product_description,
         product_price: data.discounted_price,
         discounted_price: data.discounted_price,
-        // "offer":
-        // "bought":
         frame_width: data.frame_width,
-        // "temple_length":data.
         lens_height: data.lens_height,
         stokke: data.stokke,
         product_url: data.product_model_name + data.product_model_number,
@@ -132,26 +124,20 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
         material: data.material.id,
         power_type_id: data.power_type_id.map((i) => i.id),
       };
+      console.log(data_)
       form.append("data", JSON.stringify(data_));
       mutate(form);    
     } else {
       const data_ = {
         product_model_name: data.product_model_name,
         product_model_number: data.product_model_number,
-        // "capacity":
-        use_for: data.use_for,
-        // "dimensions":data.dimensions
-        // "country_of_origin":data
+        use_for: data.use_for.name,
         row_metrial_source_from: "Imported",
         show_lens_list: data.select_Lens=="Yes"?1:0,
-        // "warranty":data.wa
         product_description: data.product_description,
         product_price: data.discounted_price.toString(),
         discounted_price: data.discounted_price,
-        // "offer":
-        // "bought":
         frame_width: data.frame_width,
-        // "temple_length":data.
         lens_height: data.lens_height,
         stokke: data.stokke,
         product_url: data.product_model_name + data.product_model_number,
@@ -241,7 +227,7 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
               <SelectBox
                 label="Select Lens"
                 multiple={false}
-                options={["Yes", "No"]}
+                options={[{id:1, name:"Yes"}, {id:0,name:"No"}]}
                 value={value}
                 onChange={onChange}
               />
@@ -254,9 +240,8 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
               <SelectBox
                 label="Power Type"
                 multiple={true}
+                readOnly={watch("select_Lens")?.name !== "Yes"}
                 options={power}
-                readOnly={watch("select_Lens") !== "Yes"}
-                // placeholder={watch("select_Lens") !== "Yes" ? "No Power type(Read Only)" : ""}
                 value={value}
                 onChange={onChange}
               />

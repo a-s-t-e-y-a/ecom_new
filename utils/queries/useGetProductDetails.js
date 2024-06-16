@@ -1,12 +1,12 @@
 import api from "@/api";
 import { useQuery } from "@tanstack/react-query"
 
-const useGetProductDetail = (id, extra) => {
+const useGetProductDetail = (url) => {
   const data_ = useQuery({
-    queryKey: ["api/productDetail"],
+    queryKey: ["api/productDetail", url],
     queryFn: async () => {
       console.log(extra)
-      const res = await api.get(`/products/${id}?p_id=${extra}`);
+      const res = await api.get(`/products/${url}`);
       return res?.data[0];
     },
   });

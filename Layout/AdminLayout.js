@@ -1,3 +1,4 @@
+'use client'
 import AdminNavBar from "@/Components/Admin/AdminNavBar";
 import AdminSideBar from "@/Components/Admin/AdminSideBar";
 import React from "react";

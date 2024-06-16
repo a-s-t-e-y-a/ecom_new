@@ -21,7 +21,6 @@ const LensFormStep3 = ({ onNext, onPrev }) => {
   const lensFeatureFilteredData = PowerTypeFilteredData?.filter(
     (item) => item?.lens_feature_?.title === lens_feature
   );
-  console.log(lensFeatureFilteredData, 'lensFeatureFilteredData')
   return (
     <div className="flex justify-center">
       <div className="text-gray-800 w-[100%] h-[100vh] my-4">

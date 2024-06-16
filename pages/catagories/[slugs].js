@@ -5,17 +5,16 @@ import SingleGlassItem from "@/Components/SingleGlassItem";
 import Layout from "@/Layout/Layout";
 import Pagination from "@/Components/Pagination/Pagination";
 import useCategoryByURL from "@/utils/queries/useCategoryByURL";
+import Head from "next/head";
 
 const Index = () => {
   const [page, setPage] = useState(1);
   const router = useRouter();
-  const { slugs } = router.query;
-  const { data, isLoading, isError } = useCategoryByURL(slugs, page);
-  const navigateToSingleProduct = (id, p_id) => {
-    router.push({
-      pathname: `/product/${id}`,
-      query: { extraData: p_id },
-    });
+  const slug = router.query?.slugs;
+  const { data, isLoading, isError } = useCategoryByURL(slug, page);
+  const navigateToSingleProduct = (url) => {
+    console.log(url);
+    router.push(`/product/${url}`);
   };
 
   if (isLoading) {
@@ -25,23 +24,30 @@ const Index = () => {
   if (isError) {
     return <div>Error fetching data</div>;
   }
-
+  console.log(data);
   return (
     <Layout>
+      <Head>
+        <title>{data?.name}</title>
+        <meta name="keywords" content={data?.keyword}/>
+        <meta property="og:title" content={data?.name} />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={data?.image} />
+        <meta property="og:url" content={data?.url} />
+      </Head>
       <section className="w-full flex px-5">
         <div className="w-fit absolute lg:relative lg:top-0 left-1 top-14 me-5">
           <Filter />
         </div>
         <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 mb-4">
-          {data &&
-            data.map((val, index) => {
-              console.log(val , 'val')
+          {data?.products?.map((val, index) => {
               return (
                 <div
                   key={index}
                   onClick={() =>
-                    navigateToSingleProduct(val?.product_url, val?.p_id)
+                    navigateToSingleProduct(val?.product_url)
                   }
+                  className="cursor-pointer"
                 >
                   <SingleGlassItem value={val} />
                 </div>

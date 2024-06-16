@@ -1,3 +1,4 @@
+'use client'
 import AdminLayout from "@/Layout/AdminLayout";
 import IconButton from "@/Components/Admin/IconButton";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";

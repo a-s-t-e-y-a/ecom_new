@@ -27,7 +27,7 @@ const LensDetail = () => {
   const [data, setData] = useState([]);
   const { data: Detail, refetch } = useGetAllLensDetails();
   const [get, setget] = useState(false);
-const[edit,setedit]=useState({});
+  const [edit, setedit] = useState({});
   useEffect(() => {
     if (IsAuth("admin_info")) {
       setlogged(true);
@@ -35,7 +35,7 @@ const[edit,setedit]=useState({});
       router.replace("login");
     }
     if (Detail) {
-      setData(Detail?.data);
+      setData(Detail);
     }
     refetch();
   }, [router, refetch, get, Detail]);
@@ -77,7 +77,7 @@ const[edit,setedit]=useState({});
             }
           </Modal>
           <div className="ml-4">
-            <span onClick={()=>{handleOpen();setedit({})}}>
+            <span onClick={() => handleOpen()}>
               <IconButton
                 label="Add Lens Detail"
                 icon={<MdOutlineLensBlur />}
@@ -118,45 +118,44 @@ const[edit,setedit]=useState({});
                 ref={provided.innerRef}
               >
                 {data &&
-                  data.map(
-                    (item, index) => (
-                      (
-                        <Draggable
-                          key={item?.id}
-                          draggableId={`${item?.id}`}
-                          index={index}
-                          className=" "
+                  data.map((item, index) => (
+                    <Draggable
+                      key={item?.id}
+                      draggableId={`${item?.id}`}
+                      index={index}
+                      className=" "
+                    >
+                      {(provided) => (
+                        <div
+                          {...provided.dragHandleProps}
+                          {...provided.draggableProps}
+                          ref={provided.innerRef}
+                          className="mx-4 grid grid-cols-4 gap-[20%] text-center justify-between bg-slate-200 border rounded-md shadow-lg my-2 pt-2"
                         >
-                          {(provided) => (
-                            <div
-                              {...provided.dragHandleProps}
-                              {...provided.draggableProps}
-                              ref={provided.innerRef}
-                              className="mx-4 grid grid-cols-4 gap-[20%] text-center justify-between bg-slate-200 border rounded-md shadow-lg my-2 pt-2"
+                          <p className=" w-full">{item?.lens_feature_.title}</p>
+                          <p>{item?.power_type_?.name}</p>
+                          <p>{item?.price}</p>
+                          <div className=" flex items-center justify-end gap-8">
+                            <button
+                              onClick={() => deleteHandelr(item?.id)}
+                              className=" text-red-500 me-1"
                             >
-                              <p className=" w-full">{item?.lens_feature_.title}</p>
-                              <p>{item?.power_type_?.name}</p>
-                              <p>{item?.price}</p>
-                              <div className=" flex items-center justify-end gap-8">
-                                <button
-                                  onClick={() => deleteHandelr(item?.id)}
-                                  className=" text-red-500 me-1"
-                                >
-                                  <DeleteOutlineIcon />
-                                </button>
-                                <button
-                                  onClick={() =>{ handleOpen();setedit(item) }}
-                                  className=" text-blue-500 me-2 text-lg"
-                                >
-                                  <TbEdit />
-                                </button>
-                              </div>
-                            </div>
-                          )}
-                        </Draggable>
-                      )
-                    )
-                  )}
+                              <DeleteOutlineIcon />
+                            </button>
+                            <button
+                              onClick={() => {
+                                handleOpen();
+                                setedit(item);
+                              }}
+                              className=" text-blue-500 me-2 text-lg"
+                            >
+                              <TbEdit />
+                            </button>
+                          </div>
+                        </div>
+                      )}
+                    </Draggable>
+                  ))}
                 {provided.placeholder}
               </div>
             )}

@@ -11,7 +11,9 @@ import CartDialog from "../Dialog/CartDialog";
 import { useEffect, useState } from "react";
 import MenuComponentNested from "../MenuComponentNested";
 import { customLocalStorage } from "@/utils/Helpers";
-import { EyeGlassLinks, PageLinks, SunGlassLinks } from "@/utils/contants";
+import { PageLinks, SunGlassLinks } from "@/utils/contants";
+import useGetAllShape from "@/utils/queries/useShapeGetAll";
+import useGetAllStyle from "@/utils/queries/useStyleGetAll";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -19,6 +21,8 @@ const Header = () => {
   const [token, setToken] = useState(null);
   const [userData, setUserData] = useState(null);
   const router = useRouter();
+  const {data} = useGetAllShape();
+  const {data:style} = useGetAllStyle()
 
   const { getItem } = customLocalStorage;
 
@@ -31,6 +35,46 @@ const Header = () => {
     }
   }, []);
 
+  const EyeGlassLinks = [
+    {
+      label: "Shape",
+      subItems: data?.map((item)=>{
+        return {
+          label: item.name,
+          href: `/eyeglasses/shape/${item.url}`,
+        }
+      })
+    },
+    {
+      label: "Style",
+      subItems: style?.map((item)=>{
+        return {
+          label: item.name,
+          href: `/eyeglasses/shape/${item.url}`,
+        }
+      })
+    },
+  ];
+  const SunGlassLinks = [
+    {
+      label: "Shape",
+      subItems: data?.map((item)=>{
+        return {
+          label: item.name,
+          href: `/sunglasses/shape/${item.name}`,
+        }
+      })
+    },
+    {
+      label: "Style",
+      subItems: style?.map((item)=>{
+        return {
+          label: item.name,
+          href: `/sunglasses/shape/${item.name}`,
+        }
+      })
+    },
+  ]
   return (
     <>
       <CartDialog open={open} setOpen={setOpen} />
@@ -75,7 +119,12 @@ const Header = () => {
                 Cart
               </li>
               {token ? (
-                <li className="underline cursor-pointer">{userData.name}</li>
+                <>
+                  <li className="underline cursor-pointer">{userData.name}</li>
+                  <li>
+                    <ProfileMenu />
+                  </li>
+                </>
               ) : (
                 <li
                   className="cursor-pointer"
@@ -84,9 +133,6 @@ const Header = () => {
                   SignIn & SignUp
                 </li>
               )}
-              <li>
-                <ProfileMenu />
-              </li>
             </ul>
           </div>
         </div>

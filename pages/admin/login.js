@@ -25,13 +25,10 @@ function Login() {
       email: formData.username,
       password: formData.password,
     };
-    console.log(payload);
     mutate(payload);
   };
 
-  if (isSuccess) {
-    console.log(data.data.token)
-    
+  if (isSuccess) {    
     window.localStorage.setItem("admin_info", JSON.stringify( data.data.token ));
     // Redirect to dashboard or perform any other necessary actions
     router.push("dashboard");

@@ -9,7 +9,6 @@ import LensForm from "@/Components/LensForm/LensForm";
 import TabPanel from "@/Components/Tab/TabPanel";
 import { useRouter } from "next/router";
 import useGetProductDetail from "@/utils/queries/useGetProductDetails";
-import { updateSpecification } from "../../Slices/ProductSepcifcation";
 import { useDispatch } from "react-redux";
 import Loader from "@/Components/Loader";
 import Specification from "@/Components/SingleItem/Specification";
@@ -17,6 +16,9 @@ import Description from "@/Components/SingleItem/Description";
 import ProductTag from "@/Components/SingleItem/ProductTag";
 import Image from "next/image";
 import { addData } from "@/Slices/CartSlice";
+import Head from "next/head";
+import { dehydrate, QueryClient } from "react-query";
+import api from "@/api";
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
@@ -36,8 +38,7 @@ const SingleProduct = () => {
   }, [router.isReady, router.query]);
 
   const { data: productDetails, isLoading } = useGetProductDetail(
-    slug,
-    extraData ? extraData : undefined
+    slug
   );
 
   useEffect(() => {
@@ -71,11 +72,36 @@ const SingleProduct = () => {
       label: "SPECIFICATION",
       component: <Specification Product={productDetails} />,
     },
-    { label: "DESCRIPTION", component: <Description Product={productDetails} /> },
-    { label: "PRODUCT TAGS", component: <ProductTag Product={productDetails} /> },
+    {
+      label: "DESCRIPTION",
+      component: <Description Product={productDetails} />,
+    },
+    {
+      label: "PRODUCT TAGS",
+      component: <ProductTag Product={productDetails} />,
+    },
   ];
   return (
     <Layout>
+      <Head>
+        <title>{productDetails?.seo_title}</title>
+        <meta
+          name="description"
+          content={productDetails?.product_description}
+        />
+        <meta name="keywords" content={productDetails?.keyword} />
+        <meta property="og:title" content={productDetails?.seo_title} />
+        <meta
+          property="og:description"
+          content={productDetails?.product_description}
+        />
+        <meta property="og:image" content={productDetails?.imageArray[0]} />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content={`/blog/${productDetails?.product_url}`}
+        />
+      </Head>
       <LensForm show={isOpen} onHide={() => setIsOpen(false)} />
       <section className="text-gray-600">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mx-auto ">
@@ -277,5 +303,21 @@ const SingleProduct = () => {
     </Layout>
   );
 };
+
+export async function getServerSideProps({ query }) {
+  const queryClient = new QueryClient();
+  const { slug } = query;
+  await queryClient.prefetchQuery(["api/productDetail", slug], async () => {
+    const res = await api.get(`/products/${slug}`);
+    return res.data;
+  });
+
+  return {
+    props: {
+      initialBlogData: queryClient.getQueryData(["api/productDetail", slug]),
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+}
 
 export default SingleProduct;

@@ -24,3 +24,10 @@ export const loginTime = () => {
   return localStorage.setItem('loginTime', Date.now());
 }
 
+export function isUserLoggedIn(){
+  const UserAuth = localStorage.getItem("user_info")
+  if (UserAuth) {
+    return true;
+  }
+  return false;
+}
