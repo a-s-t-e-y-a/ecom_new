@@ -41,7 +41,7 @@ const Header = () => {
       subItems: data?.map((item)=>{
         return {
           label: item.name,
-          href: `/eyeglasses/shape/${item.url}`,
+          href: `/Eyeglass/shape/${item.url}`,
         }
       })
     },
@@ -50,7 +50,7 @@ const Header = () => {
       subItems: style?.map((item)=>{
         return {
           label: item.name,
-          href: `/eyeglasses/shape/${item.url}`,
+          href: `/Eyeglass/style/${item.url}`,
         }
       })
     },
@@ -61,7 +61,7 @@ const Header = () => {
       subItems: data?.map((item)=>{
         return {
           label: item.name,
-          href: `/sunglasses/shape/${item.name}`,
+          href: `/Sunglasses/shape/${item.url}`,
         }
       })
     },
@@ -70,7 +70,7 @@ const Header = () => {
       subItems: style?.map((item)=>{
         return {
           label: item.name,
-          href: `/sunglasses/shape/${item.name}`,
+          href: `/Sunglasses/style/${item.url}`,
         }
       })
     },

@@ -12,8 +12,8 @@ const Index = () => {
   const router = useRouter();
   const slug = router.query?.slugs;
   const { data, isLoading, isError } = useCategoryByURL(slug, page);
+  
   const navigateToSingleProduct = (url) => {
-    console.log(url);
     router.push(`/product/${url}`);
   };
 
@@ -25,6 +25,7 @@ const Index = () => {
     return <div>Error fetching data</div>;
   }
   console.log(data);
+
   return (
     <Layout>
       <Head>
