@@ -24,7 +24,6 @@ const Index = () => {
   if (isError) {
     return <div>Error fetching data</div>;
   }
-  console.log(data);
 
   return (
     <Layout>
