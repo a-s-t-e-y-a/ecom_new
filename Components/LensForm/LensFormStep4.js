@@ -10,16 +10,16 @@ import { useRouter } from "next/router";
 import Cookies from "js-cookie";
 
 const LensFormStep2 = ({ onNext, onPrev, onCancel }) => {
-  const router = useRouter()
+  const router = useRouter();
   const [openPreForm, setOpenPreForm] = useState(false);
   const [openPreImg, setOpenPreImg] = useState(false);
   const { mutate } = useAddCartToSession();
   const { data, isLoading } = useGetCartSession();
   const handleOpenForm = () => setOpenPreForm(!openPreForm);
   const handleOpenImg = () => setOpenPreImg(!openPreImg);
-  
+
   const previousData = useSelector((state) => state.cart.data);
-  
+
   const addToCart = () => {
     // console.log(previousData);
     const payload = {
@@ -29,15 +29,24 @@ const LensFormStep2 = ({ onNext, onPrev, onCancel }) => {
       powertype: previousData.lens.power_type_.id,
     };
 
-    Cookies.set("cart", JSON.stringify(payload), { expires: 7 });
-    
+    // Get the current cart data from local storage
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    // Add the new payload to the cart array
+    cart.push(payload);
+
+    // Save the updated cart array back to local storage
+    localStorage.setItem("cart", JSON.stringify(cart));
+    mutate(payload);
+
+    Cookies.set("cart", JSON.stringify(payload));
   };
 
-  const handleCheckout = () =>{
-    router.replace('/checkout')
-    onCancel()
-  }
-  
+  const handleCheckout = () => {
+    router.replace("/checkout");
+    onCancel();
+  };
+
   return (
     <div className="flex justify-center items-start">
       <div className="text-gray-800 w-[100%] h-[100vh] mt-20">

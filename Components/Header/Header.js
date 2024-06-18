@@ -41,7 +41,7 @@ const Header = () => {
       subItems: data?.map((item)=>{
         return {
           label: item.name,
-          href: `/Eyeglass/shape/${item.url}`,
+          href: `/Eyeglass/shape/${item.name}`,
         }
       })
     },
@@ -61,7 +61,7 @@ const Header = () => {
       subItems: data?.map((item)=>{
         return {
           label: item.name,
-          href: `/Sunglasses/shape/${item.url}`,
+          href: `/Sunglasses/shape/${item.name}`,
         }
       })
     },
