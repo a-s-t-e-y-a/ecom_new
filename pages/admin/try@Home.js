@@ -58,7 +58,7 @@ const TryAtHome = () => {
   return (
     <AdminLayout>
       <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
-        {<TryHome onCancel={onHide} refecth={setget} token={get} />}
+        <TryHome onCancel={onHide} refecth={setget} token={get} />
       </Modal>
 
       <div>

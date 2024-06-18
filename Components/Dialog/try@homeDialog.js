@@ -1,3 +1,4 @@
+'use client'
 import { TextField } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import FileInput from "../Admin/FileInput";
@@ -36,18 +37,10 @@ const TryHome = ({onCancel, setOpen, refecth, token }) => {
       "data",
       JSON.stringify({ title: data.title, description: data.description })
     );
-    formData.append("file", data?.file[0]);
-    console.log(formData, 'formData')
     mutate(formData);
     onCancel()
   };
-  useEffect(() => {
-    if (datas) {
-      setdata(datas);
-    }
-  }, [datas]);
 
- 
   return (
     <div className="relative border p-2 tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
       <h1 className="text-md font-semibold text-center text-gray-700 mt-3">
