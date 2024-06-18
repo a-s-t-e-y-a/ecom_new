@@ -32,7 +32,7 @@ const Dashboard = () => {
     {
       color: "bg-cyan-300",
       title: "User Registrations",
-      number: data?.totalCountRegisteredUser || 0,
+      number: data?.totalCountUser || 0,
       src: "/man.png",
     },
     {
