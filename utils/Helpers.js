@@ -33,3 +33,10 @@ export const customLocalStorage = {
       }
     }
   };
+
+  export const formatSlug = (slug) => {
+    if (typeof slug === "string" && slug.includes("%20")) {
+      return slug.replace(/%20/g, "-");
+    }
+    return slug;
+  };

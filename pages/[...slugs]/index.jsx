@@ -6,11 +6,12 @@ import Layout from "@/Layout/Layout";
 import Pagination from "@/Components/Pagination/Pagination";
 import Head from "next/head";
 import useGetAllTypeData from "@/utils/queries/useGetAllTypeData";
+import { formatSlug } from "@/utils/Helpers";
 
 const Index = () => {
   const router = useRouter();
   const slug = router.query?.slugs;
-
+  console.log(slug);
   // Ensure slug is an array before destructuring
   let type, TypeSlug;
   if (Array.isArray(slug)) {
@@ -19,7 +20,7 @@ const Index = () => {
 
   const [page, setPage] = useState(1);
 
-  const { data, isLoading, isError } = useGetAllTypeData(type, TypeSlug, page);
+  const { data, isLoading, isError } = useGetAllTypeData(type, formatSlug(TypeSlug), page);
 
   const navigateToSingleProduct = (url) => {
     router.push(`/product/${url}`);
