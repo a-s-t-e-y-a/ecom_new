@@ -104,7 +104,7 @@ const SingleProduct = () => {
       </Head>
       <LensForm show={isOpen} onHide={() => setIsOpen(false)} />
       <section className="text-gray-600">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mx-auto ">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mx-auto mt-8">
           {/* Swiper Field */}
           <div className="md:max-w-full md:ml-[25px] flex items-center mr-[80px] w-[280px] md:w-[3000px]">
             <SwiperThumbs images={productData?.product_images} />

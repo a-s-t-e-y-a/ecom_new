@@ -6,7 +6,7 @@ function classNames(...classes) {
 const TabPanel = ({ TabPanelOption }) => {
   return (
     <Tab.Group>
-      <Tab.List className={"flex"}>
+      <Tab.List className={"flex gap-2"}>
         {TabPanelOption.map((list, indx) => (
           <Tab
             key={indx}
