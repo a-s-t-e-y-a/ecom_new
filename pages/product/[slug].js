@@ -112,7 +112,7 @@ const SingleProduct = () => {
 
           {/* Detail */}
           <div className="px-5  md:ml-[280px] ">
-            <div className="flex justify-between mb-5">
+            <div className="flex justify-between items-center mb-5">
               <h1 className="text-2xl md:text-4xl">
                 {productData?.product_model_name}
               </h1>
@@ -128,18 +128,17 @@ const SingleProduct = () => {
                 Rs. {productData?.discounted_price}
               </span>
             </div>
-            <div className="flex items-center my-5 justify-around">
+            <div className="flex items-center my-5 justify-between">
               <div className="flex items-center justify-center gap-2">
                 <span className="h-5 w-5 bg-blue-600 rounded-full border p-[2px]"></span>
                 <span className="h-5 w-5 bg-green-600 rounded-full border p-[2px]"></span>
                 <span className="h-5 w-5 bg-red-600 rounded-full border p-[2px]"></span>
               </div>
-
               <span className="font-semibold tracking-wider text-lg">
                 Medium(134mm)
               </span>
             </div>
-            <div className="flex items-center justify-around">
+            <div className="flex items-center justify-between">
               <div>
                 <div className="flex flex-col gap-5 items-center">
                   <div className="w-auto h-8">
@@ -180,7 +179,6 @@ const SingleProduct = () => {
                 </div>
               </div>
             </div>
-
             {/* Buttons */}
             <div className="flex flex-col mt-4 md:flex-row md:items-center gap-3 text-xs justify-between mb-5">
               <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
@@ -209,7 +207,6 @@ const SingleProduct = () => {
                 </button>
               </a>
             </div>
-
             {/* Size And Rating */}
             <div className="flex items-center justify-between mb-5">
               <button className="border-2 text-sm px-4 py-1 rounded-md">
