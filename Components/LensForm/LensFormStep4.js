@@ -7,26 +7,28 @@ import { useSelector } from "react-redux";
 import useAddCartToSession from "@/utils/mutations/useAddToCart";
 import useGetCartSession from "@/utils/queries/useGetCart";
 import { useRouter } from "next/router";
+import Cookies from "js-cookie";
 
 const LensFormStep2 = ({ onNext, onPrev, onCancel }) => {
-  const router = useRouter()
+  const router = useRouter();
   const [openPreForm, setOpenPreForm] = useState(false);
   const [openPreImg, setOpenPreImg] = useState(false);
   const { mutate } = useAddCartToSession();
   const { data, isLoading } = useGetCartSession();
   const handleOpenForm = () => setOpenPreForm(!openPreForm);
   const handleOpenImg = () => setOpenPreImg(!openPreImg);
-  
+
   const previousData = useSelector((state) => state.cart.data);
-  
+
   const addToCart = () => {
-    console.log(previousData);
+    // console.log(previousData);
     const payload = {
       productId: previousData.productId,
       lens: previousData.lens.id,
       lensFeature: previousData.lens.lens_feature_.id,
       powertype: previousData.lens.power_type_.id,
     };
+
     // Get the current cart data from local storage
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -36,12 +38,15 @@ const LensFormStep2 = ({ onNext, onPrev, onCancel }) => {
     // Save the updated cart array back to local storage
     localStorage.setItem("cart", JSON.stringify(cart));
     mutate(payload);
+
+    Cookies.set("cart", JSON.stringify(payload));
   };
 
-  const handleCheckout = () =>{
-    router.replace('/checkout')
-    onCancel()
-  }
+  const handleCheckout = () => {
+    router.replace("/checkout");
+    onCancel();
+  };
+
   return (
     <div className="flex justify-center items-start">
       <div className="text-gray-800 w-[100%] h-[100vh] mt-20">

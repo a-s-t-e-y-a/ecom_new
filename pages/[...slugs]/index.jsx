@@ -1,18 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Filter from "@/Components/Filter";
 import SingleGlassItem from "@/Components/SingleGlassItem";
 import Layout from "@/Layout/Layout";
 import Pagination from "@/Components/Pagination/Pagination";
-import useCategoryByURL from "@/utils/queries/useCategoryByURL";
 import Head from "next/head";
+import useGetAllTypeData from "@/utils/queries/useGetAllTypeData";
 
 const Index = () => {
-  const [page, setPage] = useState(1);
   const router = useRouter();
   const slug = router.query?.slugs;
-  const { data, isLoading, isError } = useCategoryByURL(slug, page);
-  
+
+  // Ensure slug is an array before destructuring
+  let type, TypeSlug;
+  if (Array.isArray(slug)) {
+    [, type, TypeSlug] = slug;
+  }
+
+  const [page, setPage] = useState(1);
+
+  // Redirect or show error if slug is not defined
+  useEffect(() => {
+    if (!slug || !Array.isArray(slug) || slug.length < 2) {
+      router.replace("/error"); // Redirect to an error page or a custom error handler
+    }
+  }, [slug]);
+
+  const { data, isLoading, isError } = useGetAllTypeData(type, TypeSlug, page);
+
   const navigateToSingleProduct = (url) => {
     router.push(`/product/${url}`);
   };

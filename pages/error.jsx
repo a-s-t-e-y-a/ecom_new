@@ -1,6 +1,7 @@
+import React from "react";
 import Link from "next/link";
 
-const Page404 = () => {
+const ErrorPage = () => {
   return (
     <div className="bg-white px-4 py-16 sm:px-6 sm:py-24 md:grid md:place-items-center lg:px-8">
       <div className="mx-auto max-w-max">
@@ -36,4 +37,4 @@ const Page404 = () => {
   );
 };
 
-export default Page404;
+export default ErrorPage;
