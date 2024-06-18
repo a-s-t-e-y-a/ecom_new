@@ -9,6 +9,7 @@ import { GlassesType } from "../../Layout/Data";
 import Image from "next/image";
 
 export default function Slider({ data }) {
+  console.log(data)
   const router = useRouter();
   function handleClick(item) {
     const itemName = encodeURIComponent(item?.title?.toLowerCase());
@@ -35,21 +36,21 @@ export default function Slider({ data }) {
                   key={index}
                   className="min-h-[100px]"
                 >
-                  <div className="md:w-[200px] w-[110px]    mx-auto items-center">
-                    <div onClick={() => handleClick(slide)}>
+                  <div className="p-1 md:w-[200px] w-[110px] mx-auto flex justify-center items-center">
+                    <div onClick={() => handleClick(slide)} className="w-full h-full flex flex-col items-center justify-center">
                       <img
                         width={600}
                         height={600}
-                        className=" p-4 rounded flex items-center justify-center mt-16 "
+                        className="p-2 rounded flex items-center justify-center mt-5"
                         src={
-                          slide?.imageArray[0]
+                          slide?.image
                         }
                         alt=""
                       />
-                    </div>
-                    <span className="text-sm text-center font-semibold">
+                      <span className="text-sm text-center font-semibold">
                       {slide?.name}
                     </span>
+                    </div>
                   </div>
                 </SwiperSlide>
               </>
