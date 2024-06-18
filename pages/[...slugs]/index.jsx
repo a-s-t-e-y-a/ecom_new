@@ -19,26 +19,11 @@ const Index = () => {
 
   const [page, setPage] = useState(1);
 
-  // Redirect or show error if slug is not defined
-  useEffect(() => {
-    if (!slug || !Array.isArray(slug) || slug.length < 2) {
-      router.replace("/error"); // Redirect to an error page or a custom error handler
-    }
-  }, [slug]);
-
   const { data, isLoading, isError } = useGetAllTypeData(type, TypeSlug, page);
 
   const navigateToSingleProduct = (url) => {
     router.push(`/product/${url}`);
   };
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (isError) {
-    return <div>Error fetching data</div>;
-  }
 
   return (
     <Layout>
