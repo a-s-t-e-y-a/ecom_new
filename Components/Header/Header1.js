@@ -59,7 +59,6 @@ const Header1 = () => {
           >
             {
               Array.isArray(Round) && Round.map((glass, index) => {
-                console.log(glass)
                 return (
                   <SwiperSlide 
                     key={glass.id}

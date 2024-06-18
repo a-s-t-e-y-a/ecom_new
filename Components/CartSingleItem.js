@@ -3,7 +3,6 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 
 const CartSingleItem = ({ item }) => {
-  console.log(item, 'items');
   const {product, lens } = item
   
   const removeItem = (id) => {

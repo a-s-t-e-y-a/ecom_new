@@ -21,6 +21,7 @@ const LensFormStep3 = ({ onNext, onPrev }) => {
   const lensFeatureFilteredData = PowerTypeFilteredData?.filter(
     (item) => item?.lens_feature_?.title === lens_feature
   );
+  
   return (
     <div className="flex justify-center">
       <div className="text-gray-800 w-[100%] h-[100vh] my-4">
@@ -32,7 +33,7 @@ const LensFormStep3 = ({ onNext, onPrev }) => {
           <div className="w-[25%] border">
             <ul className="text-xs font-semibold tracking-wider text-gray-700">
               <li className="flex items-center justify-center h-[180px] text-3xl shadow sm py-3 cursor-pointer tracking-wider">
-                Lens Features
+                Lens Details
               </li>
               <li className="flex items-center shadow-sm px-3 py-[7px]">
                 <span></span>
@@ -82,7 +83,7 @@ const LensFormStep3 = ({ onNext, onPrev }) => {
                 lensFeatureFilteredData.map((item, index) => {
                   return (
                     <SwiperSlide className="border" key={index}>
-                      <LensPlanFeature item={item} />
+                      <LensPlanFeature item={item} onNext={onNext}/>
                     </SwiperSlide>
                   );
                 })}

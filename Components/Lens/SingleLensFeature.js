@@ -8,18 +8,23 @@ import { addData } from "@/Slices/CartSlice";
 const SingleLensFeature = (props) => {
   const [isChecked, setIsChecked] = useState(false);
   const dispatch = useDispatch();
-  const previousData = useSelector((state)=>state.cart.data)
+  const previousData = useSelector((state) => state.cart.data);
   const { src, title, description, key, onNext, powerTypeText } = props;
 
   if (isChecked) {
-    dispatch(addFilter({ lens_feature: title,
-      power_type: powerTypeText
-     }));
-    onNext()
+    dispatch(addFilter({ lens_feature: title, power_type: powerTypeText }));
+    onNext();
   }
 
   return (
-    <div key={key} className="flex items-center justify-between text-gray-700 border hover:shadow-lg rounded-md p-4 cursor-pointer w-[50%] mx-auto">
+    <div
+      onClick={() => {
+        dispatch(addFilter({ lens_feature: title, power_type: powerTypeText }));
+        onNext();
+      }}
+      key={key}
+      className="flex items-center justify-between text-gray-700 border hover:shadow-lg rounded-md p-4 cursor-pointer w-[50%] mx-auto"
+    >
       <div className="flex items-center gap-4">
         <div className="w-28 flex items-center">
           <Image
