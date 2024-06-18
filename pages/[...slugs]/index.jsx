@@ -11,6 +11,7 @@ import useGetAllShape from "@/utils/queries/useShapeGetAll";
 import useGetAllStyle from "@/utils/queries/useStyleGetAll";
 
 const Index = () => {
+  const [page, setPage] = useState(1);
   const router = useRouter();
   const { data: shape } = useGetAllShape();
   const { data: style } = useGetAllStyle();
@@ -27,9 +28,6 @@ const Index = () => {
       return TypeSlug;
     }
 
-    // Replace %20 with -
-    const formatSlug = (slug) => slug.replace(/%20/g, "-");
-
     switch (type) {
       case "shape":
         return shape?.filter((item) => TypeSlug === item?.name);
@@ -43,12 +41,10 @@ const Index = () => {
         return formatSlug(TypeSlug.url);
     }
   };
-  const finalFilteredData = processSlug(type, TypeSlug);
-  console.log(finalFilteredData[0]?.id, 'finalFilteredData')
+  const finalFilteredData = processSlug(type, TypeSlug) || [];
+  let filteredD = finalFilteredData[0] || {}; // Ensure filteredD is an object
 
-  const [page, setPage] = useState(1);
-
-  const { data, isLoading, isError } = useGetAllTypeData(type, finalFilteredData[0]?.id, page);
+  const { data, isLoading, isError } = useGetAllTypeData(type, filteredD?.id, page);
   console.log(data, 'data')
   const navigateToSingleProduct = (url) => {
     router.push(`/product/${url}`);
