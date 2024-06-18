@@ -7,7 +7,7 @@ const useGetAllTypeData = (type, TypeSlug, page) => {
     queryKey: ["api/categories", type, TypeSlug, page],
     queryFn: async () => {
       try {
-        const res = await api.get(`products?shape="Geometric Eyeglass"`);
+        const res = await api.get(`products?${type}=${TypeSlug}`);
         return res?.data?.data;
       } catch (error) {
         toast.error("Error fetching data");

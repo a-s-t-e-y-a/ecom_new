@@ -16,4 +16,4 @@ export const shapeSlice = createSlice({
 })
 
 export default shapeSlice.reducer
-export const { addShape,deleteShape } = shapeSlice.actions
+export const { addShape } = shapeSlice.actions
