@@ -7,21 +7,49 @@ import Pagination from "@/Components/Pagination/Pagination";
 import Head from "next/head";
 import useGetAllTypeData from "@/utils/queries/useGetAllTypeData";
 import { formatSlug } from "@/utils/Helpers";
+import useGetAllShape from "@/utils/queries/useShapeGetAll";
+import useGetAllStyle from "@/utils/queries/useStyleGetAll";
 
 const Index = () => {
   const router = useRouter();
+  const { data: shape } = useGetAllShape();
+  const { data: style } = useGetAllStyle();
   const slug = router.query?.slugs;
-  console.log(slug);
   // Ensure slug is an array before destructuring
-  let type, TypeSlug;
+  let type, TypeSlug, TypeData;
   if (Array.isArray(slug)) {
     [, type, TypeSlug] = slug;
   }
 
+  // utils/slugUtils.js
+  const processSlug = (type, TypeSlug) => {
+    if (typeof TypeSlug !== "string" && !Array.isArray(TypeSlug)) {
+      return TypeSlug;
+    }
+
+    // Replace %20 with -
+    const formatSlug = (slug) => slug.replace(/%20/g, "-");
+
+    switch (type) {
+      case "shape":
+        return shape?.filter((item) => TypeSlug === item?.name);
+      case "style":
+        return style?.filter((item) => TypeSlug === item?.url);
+      default:
+        // Filter TypeSlug by url
+        if (Array.isArray(TypeSlug)) {
+          return TypeSlug.map((part) => formatSlug(part.url));
+        }
+        return formatSlug(TypeSlug.url);
+    }
+  };
+  const finalFilteredData = processSlug(type, TypeSlug);
+  console.log(finalFilteredData[0]?.id, 'finalFilteredData')
+
   const [page, setPage] = useState(1);
 
-  const { data, isLoading, isError } = useGetAllTypeData(type, formatSlug(TypeSlug), page);
-
+  const { data, isLoading, isError } = useGetAllTypeData(type, finalFilteredData[0]?.id, page);
+  console.log(data, 'data')
   const navigateToSingleProduct = (url) => {
     router.push(`/product/${url}`);
   };
@@ -30,7 +58,7 @@ const Index = () => {
     <Layout>
       <Head>
         <title>{data?.name}</title>
-        <meta name="keywords" content={data?.keyword}/>
+        <meta name="keywords" content={data?.keyword} />
         <meta property="og:title" content={data?.name} />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={data?.image} />
@@ -42,18 +70,16 @@ const Index = () => {
         </div>
         <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 mb-4">
           {data?.products?.map((val, index) => {
-              return (
-                <div
-                  key={index}
-                  onClick={() =>
-                    navigateToSingleProduct(val?.product_url)
-                  }
-                  className="cursor-pointer"
-                >
-                  <SingleGlassItem value={val} />
-                </div>
-              );
-            })}
+            return (
+              <div
+                key={index}
+                onClick={() => navigateToSingleProduct(val?.product_url)}
+                className="cursor-pointer"
+              >
+                <SingleGlassItem value={val} />
+              </div>
+            );
+          })}
         </div>
       </section>
       <div className="flex justify-center my-10 px-10">

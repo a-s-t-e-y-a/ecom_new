@@ -9,7 +9,6 @@ import { GlassesType } from "../../Layout/Data";
 import Image from "next/image";
 
 export default function Slider({ data }) {
-  console.log(data)
   const router = useRouter();
   function handleClick(item) {
     const itemName = encodeURIComponent(item?.title?.toLowerCase());
@@ -38,7 +37,7 @@ export default function Slider({ data }) {
                 >
                   <div className="p-1 md:w-[200px] w-[110px] mx-auto flex justify-center items-center">
                     <div onClick={() => handleClick(slide)} className="w-full h-full flex flex-col items-center justify-center">
-                      <img
+                      <Image
                         width={600}
                         height={600}
                         className="p-2 rounded flex items-center justify-center mt-5"
