@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Cookies from "js-cookie";
 import { useRouter } from "next/router";
@@ -7,53 +7,71 @@ import OrderItem from "@/Components/OrderItem";
 import { isUserLoggedIn } from "@/utils/IsAuth";
 import useAddToAddress from "@/utils/mutations/useAddAddress";
 import useGetCartSession from "@/utils/queries/useGetCart";
+import useGetHash from "@/utils/mutations/useAddToHash";
 
 const Checkout = () => {
-  const [logged, setlogged] = useState(false);
+  const [logged, setLogged] = useState(false);
   const { data, isLoading } = useGetCartSession();
-  const { mutate, data: AddResponse } = useAddToAddress()
+  const { mutate: addAddress, data: addResponse } = useAddToAddress();
+  const { data: cartData } = useGetCartSession();
+  const { mutate: generateHash, data: hashData, isSuccess } = useGetHash();
 
   const { register, handleSubmit } = useForm();
-
   const router = useRouter();
+
   useEffect(() => {
     if (isUserLoggedIn()) {
-      setlogged(true);
+      setLogged(true);
     } else {
       router.replace("login");
     }
   }, [router]);
-  // console.log(data);
 
-  const onSubmit = (data) => {
-    mutate(data)
+  const onSubmit = (formData) => {
+    addAddress(formData);
+  };
+
+  useMemo(() => {
+    if (addResponse?.id) {
+      Cookies.set("address", addResponse.id);
+    }
+    if (cartData?.data?.grandTotal) {
+      const total = cartData.data.grandTotal;
+      generateHash({ amount: total });
+    }
+  }, [addResponse, cartData, generateHash]);
+
+  if (isSuccess) {
+    console.log(hashData?.order, "hashData");
   }
-  console.log(AddResponse, 'AddResponse')
-  Cookies.set("address", AddResponse?.id);
+
   if (logged) {
     return (
       <div className="w-screen h-[100vh]">
         <div className="p-3">
           <div className="flex flex-col items-center justify-center py-5">
-            <Image
-              width={100}
-              height={100}
-              alt=""
-              src={"/logo.png"}
-              className="w-[420px]"
-            />
+            <Image width={400} height={400} alt="" src={"/logo.png"} />
             <span className="text-[12px] tracking-wider text-gray-500">
               Checkout with 100% safety
             </span>
           </div>
           <div className="grid grid-cols-6">
             <div className="h-[82vh] col-span-3 space-y-8 overflow-y-auto scrollbar-hide">
+              {cartData?.data?.items?.map((item) => {
+                return (
+                  <OrderItem
+                    key={item.id}
+                    item={item}
+                    total={cartData?.data?.grandTotal}
+                  />
+                );
+              })}
+              {/* <OrderItem /> */}
+              {/* <OrderItem />
               <OrderItem />
               <OrderItem />
               <OrderItem />
-              <OrderItem />
-              <OrderItem />
-              <OrderItem />
+              <OrderItem /> */}
             </div>
             <div className="col-span-3">
               <div className="w-[95%] text-gray-700 tracking-wide">
@@ -77,7 +95,9 @@ const Checkout = () => {
                         (Include GST)
                       </span>
                     </span>
-                    <span className="text-2xl font-semibold">$300</span>
+                    <span className="text-2xl font-semibold">
+                      &#x20B9; {cartData?.data?.grandTotal}
+                    </span>
                   </div>
                 </div>
                 <div className="pt-6">
@@ -246,7 +266,10 @@ const Checkout = () => {
                         </label>
                       </div>
                     </div>
-                    <button type="submit" className="w-full flex items-center justify-center rounded-md border border-transparent bg-gray-600 px-6 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700">
+                    <button
+                      type="submit"
+                      className="w-full flex items-center justify-center rounded-md border border-transparent bg-gray-600 px-6 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                    >
                       Checkout
                     </button>
                   </form>

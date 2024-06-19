@@ -2,7 +2,8 @@ import React from "react";
 import { TiTick } from "react-icons/ti";
 import Image from "next/image";
 
-const OrderItem = () => {
+const OrderItem = ({ item, total }) => {
+  const { lens, lensFeature, powerType, product } = item
   return (
     <div className="w-[90%] mx-auto">
       <div className="relative border rounded-md">
@@ -19,19 +20,19 @@ const OrderItem = () => {
         <div className="p-2">
           <div className="flex gap-5 py-5">
             <Image
-              width={100}
-              height={100}
+              width={300}
+              height={300}
               alt=""
-              src={"/1 (1).jpeg"}
+              src={product?.images[0]}
               className="w-56"
             />
             <div className="text-sm tracking-wide space-y-2">
               <div>
-                <p>Vincent Chase Online Eyeglasses</p>
-                <p className="text-xs text-gray-500">Hydrophobic Anti-Glore</p>
+                <p>{product?.product_model_name}</p>
+                <p className="text-xs text-gray-500">{lensFeature?.title}</p>
                 <p className="text-[10px] text-gray-400">Sold By Store</p>
               </div>
-              <p className="font-semibold">$675</p>
+              <p className="font-semibold">&#x20B9; {total}</p>
             </div>
           </div>
 
@@ -45,7 +46,7 @@ const OrderItem = () => {
                     <TiTick className="inline " />
                     Size :
                   </span>
-                  135 mm
+                  {product?.frame_width} mm
                 </p>
                 <p className="font-semibold tracking-wide">
                   <TiTick className="inline " />
