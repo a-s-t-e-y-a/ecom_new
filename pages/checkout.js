@@ -1,11 +1,20 @@
-import OrderItem from "@/Components/OrderItem";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { isUserLoggedIn } from "@/utils/IsAuth";
+import Cookies from "js-cookie";
 import { useRouter } from "next/router";
+import { useForm } from "react-hook-form";
+import OrderItem from "@/Components/OrderItem";
+import { isUserLoggedIn } from "@/utils/IsAuth";
+import useAddToAddress from "@/utils/mutations/useAddAddress";
+import useGetCartSession from "@/utils/queries/useGetCart";
 
 const Checkout = () => {
   const [logged, setlogged] = useState(false);
+  const { data, isLoading } = useGetCartSession();
+  const { mutate, data: AddResponse } = useAddToAddress()
+
+  const { register, handleSubmit } = useForm();
+
   const router = useRouter();
   useEffect(() => {
     if (isUserLoggedIn()) {
@@ -14,8 +23,14 @@ const Checkout = () => {
       router.replace("login");
     }
   }, [router]);
-  
-  if (!logged) {
+  // console.log(data);
+
+  const onSubmit = (data) => {
+    mutate(data)
+  }
+  console.log(AddResponse, 'AddResponse')
+  Cookies.set("address", AddResponse?.id);
+  if (logged) {
     return (
       <div className="w-screen h-[100vh]">
         <div className="p-3">
@@ -69,19 +84,20 @@ const Checkout = () => {
                   <h1 className="text-md font-semibold pb-4">
                     Shipping Address
                   </h1>
-                  <form className="w-full">
+                  <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
                     <div className="flex items-center justify-center gap-6">
                       <div className="relative z-0 w-full mb-6 group">
                         <input
                           type="text"
-                          name="firstname"
-                          id="firstname"
+                          name="first_name"
+                          id="first_name"
                           className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                           placeholder=" "
+                          {...register("first_name")}
                           required
                         />
                         <label
-                          for="firstname"
+                          for="first_name"
                           className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                         >
                           First Name
@@ -90,14 +106,15 @@ const Checkout = () => {
                       <div className="relative z-0 w-full mb-6 group">
                         <input
                           type="text"
-                          name="lastname"
-                          id="lastname"
+                          name="last_name"
+                          id="last_name"
                           className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                           placeholder=" "
+                          {...register("last_name")}
                           required
                         />
                         <label
-                          for="lastname"
+                          for="last_name"
                           className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                         >
                           Last Name
@@ -112,6 +129,7 @@ const Checkout = () => {
                           id="email"
                           className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                           placeholder=" "
+                          {...register("email")}
                           required
                         />
                         <label
@@ -124,14 +142,15 @@ const Checkout = () => {
                       <div className="relative z-0 w-full mb-6 group">
                         <input
                           type="text"
-                          name="phonenumber"
-                          id="phonenumber"
+                          name="phoneNo"
+                          id="phoneNo"
                           className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                           placeholder=" "
+                          {...register("phoneNo")}
                           required
                         />
                         <label
-                          for="phonenumber"
+                          for="phoneNo"
                           className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                         >
                           Phone No.
@@ -145,6 +164,7 @@ const Checkout = () => {
                         id="address"
                         className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                         placeholder=" "
+                        {...register("address")}
                         required
                       />
                       <label
@@ -162,6 +182,7 @@ const Checkout = () => {
                           id="city"
                           className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                           placeholder=" "
+                          {...register("city")}
                           required
                         />
                         <label
@@ -178,6 +199,7 @@ const Checkout = () => {
                           id="state"
                           className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                           placeholder=" "
+                          {...register("state")}
                           required
                         />
                         <label
@@ -192,14 +214,15 @@ const Checkout = () => {
                       <div className="relative z-0 w-full mb-6 group">
                         <input
                           type="text"
-                          name="pincode"
-                          id="pincode"
+                          name="pinCode"
+                          id="pinCode"
                           className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                           placeholder=" "
+                          {...register("pinCode")}
                           required
                         />
                         <label
-                          for="pincode"
+                          for="pinCode"
                           className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                         >
                           Zip/Pin Code
@@ -212,6 +235,7 @@ const Checkout = () => {
                           id="country"
                           className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                           placeholder=" "
+                          {...register("country")}
                           required
                         />
                         <label
@@ -222,10 +246,13 @@ const Checkout = () => {
                         </label>
                       </div>
                     </div>
+                    <button type="submit" className="w-full flex items-center justify-center rounded-md border border-transparent bg-gray-600 px-6 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700">
+                      Checkout
+                    </button>
                   </form>
                 </div>
 
-                <div className="flex items-center justify-between mt-3 gap-5">
+                {/* <div className="flex items-center justify-between mt-3 gap-5">
                   <div className="relative flex h-10 w-full min-w-[170px] max-w-[24rem]">
                     <input
                       type="text"
@@ -244,13 +271,7 @@ const Checkout = () => {
                       Enter Promocode
                     </label>
                   </div>
-                  <a
-                    href="#"
-                    className="w-full flex items-center justify-center rounded-md border border-transparent bg-gray-600 px-6 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-                  >
-                    Checkout
-                  </a>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

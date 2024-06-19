@@ -7,6 +7,7 @@ const useAddToAddress = () => {
     mutationKey: ["/addtoaddress"],
     mutationFn: async (data) => {
       const res = await api.post("/payment/address", data);
+      console.log(res);
       return res.data;
     },
     onSuccess: (data) => {

@@ -4,6 +4,7 @@ import { RiCloseLine } from "react-icons/ri";
 import CartSingleItem from "../CartSingleItem";
 import { Button, Input } from "@material-tailwind/react";
 import useGetCartSession from "@/utils/queries/useGetCart";
+import Link from "next/link";
 
 
 const CartDialog = (props) => {
@@ -82,7 +83,7 @@ const CartDialog = (props) => {
                             className="peer h-full w-full rounded-[7px] border border-blue-gray-200  bg-transparent px-3 py-2.5 pr-20  text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200  focus:border-gray-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
                             placeholder=" "
                             // onChange={onChange}
-                            // value={promocode}
+                            value={promocode}
                             required
                           />
                           <button
@@ -96,12 +97,12 @@ const CartDialog = (props) => {
                             Enter Promocode
                           </label>
                         </div>
-                        <a
-                          href="#"
+                        <Link
+                          href="checkout"
                           className="flex items-center justify-center rounded-md border border-transparent bg-gray-600 px-6 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                         >
                           Checkout
-                        </a>
+                        </Link>
                       </div>
                       <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                         <p>
