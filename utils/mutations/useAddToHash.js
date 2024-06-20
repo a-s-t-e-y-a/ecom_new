@@ -20,9 +20,9 @@ const useGetHash = () => {
         key:"rzp_test_BsvG3tVFWhJRmR",
         amount: data?.amount,
         currency: data?.currency,
-        name: "6 Pack Programmer",
+        name: "Aviator Sunglasses",
         description: "Tutorial of RazorPay",
-        image: "https://avatars.githubusercontent.com/u/25058652?v=4",
+        image: "https://avatars.githubusercontent.com/u/43995788?s=400&u=1a971d990957a4521d544eb9114e7224caf35d7b&v=4",
         order_id: data?.id,
         callback_url: `${api}/payment/success`,
         prefill: {
