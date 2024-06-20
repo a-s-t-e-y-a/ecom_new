@@ -122,7 +122,7 @@ const Header = () => {
                 <>
                   <li className="underline cursor-pointer">{userData.name}</li>
                   <li>
-                    <ProfileMenu />
+                    <ProfileMenu name={userData.name}/>
                   </li>
                 </>
               ) : (

@@ -5,7 +5,7 @@ import AccountInformation from "@/Components/User/AccountInformation";
 
 const Index = () => {
   // Sidebar active state change events
-  const [Show, setShow] = useState(false);
+  const [Show, setShow] = useState(true);
 
   return (
     <div className="w-[95%] h-screen mx-auto text-gray-700 overflow-hidden flex flex-col">
@@ -33,7 +33,7 @@ const Index = () => {
 
       <div className="  flex items-center gap-5 h-5/6 pt-2">
         <div className=" absolute top-28 md:top-0 md:relative bg-white  z-10 h-full">
-          {Show ? <UserSideBar /> : null}
+          <UserSideBar />
         </div>
         <div className="h-full w-full">
           <AccountInformation />

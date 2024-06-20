@@ -11,9 +11,8 @@ import {
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 
-const ProfileMenu = () => {
+const ProfileMenu = ({name}) => {
   const router = useRouter();
-  const { user } = router.query;
   const { removeItem } = customLocalStorage;
 
   const handleLogout = () => {
@@ -35,7 +34,7 @@ const ProfileMenu = () => {
       <MenuList className="space-y-2">
         <MenuItem
           className="flex items-center gap-2"
-          onClick={() => router.push(`/${user}`)}
+          onClick={() => router.push(`/user`)}
         >
           {/* <CgProfile className="h-4 w-4" /> */}
           <Typography variant="small" className="font-normal">
@@ -44,7 +43,7 @@ const ProfileMenu = () => {
         </MenuItem>
         <MenuItem
           className="flex items-center gap-2"
-          onClick={() => router.push(`${user}/myorder`)}
+          onClick={() => router.push(`user/myorder`)}
         >
           {/* <MdOutlineBusinessCenter className="h-4 w-4" /> */}
           <Typography variant="small" className="font-normal">
