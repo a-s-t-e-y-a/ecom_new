@@ -12,7 +12,7 @@ export const Imageapi = axios.create({
   baseURL,
   headers: {
     // token: token ? token : getCookie("token"),
-    Authorization: `Bearer ${token}`,
+    Authorization: `${token}`,
     "Content-Type": "multipart/formdata",
   },
 });
@@ -22,7 +22,7 @@ const api = axios.create({
   baseURL,
   headers: {
     // token: token ? token : getCookie("token"),
-    Authorization: `Bearer ${token}`,
+    Authorization: `${token}`,
     "Content-Type": "application/json",
   },
 });
