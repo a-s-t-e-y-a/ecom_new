@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Cookies from "js-cookie";
@@ -8,6 +9,7 @@ import { isUserLoggedIn } from "@/utils/IsAuth";
 import useAddToAddress from "@/utils/mutations/useAddAddress";
 import useGetCartSession from "@/utils/queries/useGetCart";
 import useGetHash from "@/utils/mutations/useAddToHash";
+import api from "@/api";
 
 const Checkout = () => {
   const [logged, setLogged] = useState(false);
@@ -35,14 +37,39 @@ const Checkout = () => {
     if (addResponse?.id) {
       Cookies.set("address", addResponse.id);
     }
-    if (cartData?.data?.grandTotal) {
+    if(cartData?.data?.grandTotal){
       const total = cartData.data.grandTotal;
       generateHash({ amount: total });
+    }else {
+      return ;
     }
-  }, [addResponse, cartData, generateHash]);
+  }, [addResponse, cartData, generateHash, cartData?.data?.grandTotal]);
 
   if (isSuccess) {
     console.log(hashData?.order, "hashData");
+    const options = {
+      key:"rzp_test_BsvG3tVFWhJRmR",
+      amount: cartData?.data?.grandTotal,
+      currency: "INR",
+      name: "6 Pack Programmer",
+      description: "Tutorial of RazorPay",
+      image: "https://avatars.githubusercontent.com/u/25058652?v=4",
+      order_id: order.id,
+      callback_url: `${api}/payment/success`,
+      prefill: {
+        name: "Shashi Ross",
+        email: "shashi.ross@example.com",
+        contact: "9999999999",
+      },
+      notes: {
+        address: "Razorpay Corporate Office",
+      },
+      theme: {
+        color: "#121212",
+      },
+    };
+    const razor = new window.Razorpay(options);
+    razor.open();
   }
 
   if (logged) {

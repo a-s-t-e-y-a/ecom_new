@@ -3,10 +3,18 @@ import React from "react";
 import MyCheckBox from "./MyCheckBox";
 import { TiFilter } from "react-icons/ti";
 import { motion } from "framer-motion";
+import useGetAllSize from "@/utils/queries/useGetAllSize";
+import useGetAllShape from "@/utils/queries/useShapeGetAll";
+import useGetAllStyle from "@/utils/queries/useStyleGetAll";
+import useGetAllColor from "@/utils/queries/useColorGetAll";
 
 const Filter = () => {
   const [display, setDisplay] = React.useState(true);
-
+  const {data:size} = useGetAllSize();
+  const {data:shape} = useGetAllShape();
+  const {data:style} = useGetAllStyle();
+  const {data:color} = useGetAllColor()
+  console.log(size)
   return (
     <motion.div
       className={`  sticky z-20 ${
@@ -37,11 +45,9 @@ const Filter = () => {
         <div className="">
           <span className="font-semibold tracking-wide text-sm">Size</span>
           <FormGroup className="">
-            <MyCheckBox label="Extra Narrow" />
-            <MyCheckBox label="Narrow" />
-            <MyCheckBox label="Medium" />
-            <MyCheckBox label="Wide" />
-            <MyCheckBox label="Extra Wide" />
+            {
+              size?.map((item)=><MyCheckBox label={item?.name} />)
+            }
           </FormGroup>
         </div>
         <div>
@@ -109,26 +115,21 @@ const Filter = () => {
           <span className="font-semibold tracking-wide text-sm">Shape</span>
           <FormGroup>
             <div className="grid grid-cols-2">
-              <MyCheckBox label="Butterfly" />
-              <MyCheckBox label="Aviator" />
-              <MyCheckBox label="Haxagon" />
-              <MyCheckBox label="Square" />
-              <MyCheckBox label="Oval" />
-              <MyCheckBox label="Cateye" />
-              <MyCheckBox label="Round" />
-              <MyCheckBox label="Wayfarer" />
-              <MyCheckBox label="Rectangle" />
-              <MyCheckBox label="Geometric" />
-              <MyCheckBox label="Clubmaster" />
+              {
+                shape?.map((item)=><MyCheckBox label={item?.name} />)
+              }
             </div>
           </FormGroup>
         </div>
         <div>
           <span className="font-semibold tracking-wide text-sm">Style</span>
           <FormGroup className="grid grid-cols-1">
-            <MyCheckBox label="Rimless" />
+            {
+              style?.map((item)=><MyCheckBox label={item?.name} />)
+            }
+            {/* <MyCheckBox label="Rimless" />
             <MyCheckBox label="Half Frame" />
-            <MyCheckBox label="Full Frame" />
+            <MyCheckBox label="Full Frame" /> */}
           </FormGroup>
         </div>
         <div>
@@ -144,7 +145,10 @@ const Filter = () => {
           <span className="font-semibold tracking-wide text-sm">Color</span>
           <FormGroup>
             <div className="grid grid-cols-2">
-              <MyCheckBox label="Black" />
+              {
+                color?.map((item)=><MyCheckBox label={item?.name} />)
+              }
+              {/* <MyCheckBox label="Black" />
               <MyCheckBox label="Blue" />
               <MyCheckBox label="Gray" />
               <MyCheckBox label="Brown" />
@@ -161,7 +165,7 @@ const Filter = () => {
               <MyCheckBox label="White" />
               <MyCheckBox label="Multi Color" />
               <MyCheckBox label="Voilet" />
-              <MyCheckBox label="Rese Gold" />
+              <MyCheckBox label="Rese Gold" /> */}
             </div>
           </FormGroup>
         </div>
