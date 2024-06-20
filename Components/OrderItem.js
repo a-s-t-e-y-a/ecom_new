@@ -3,7 +3,8 @@ import { TiTick } from "react-icons/ti";
 import Image from "next/image";
 
 const OrderItem = ({ item, total }) => {
-  const { lens, lensFeature, powerType, product } = item
+  const { lens, lensFeature, powerType, product } = item;
+  const totalPrice = Number(lens?.price) + Number(product?.product_price);
   return (
     <div className="w-[90%] mx-auto">
       <div className="relative border rounded-md">
@@ -32,7 +33,7 @@ const OrderItem = ({ item, total }) => {
                 <p className="text-xs text-gray-500">{lensFeature?.title}</p>
                 <p className="text-[10px] text-gray-400">Sold By Store</p>
               </div>
-              <p className="font-semibold">&#x20B9; {total}</p>
+              <p className="font-semibold">&#x20B9; {totalPrice}</p>
             </div>
           </div>
 

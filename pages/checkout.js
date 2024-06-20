@@ -7,21 +7,16 @@ import OrderItem from "@/Components/OrderItem";
 import { isUserLoggedIn } from "@/utils/IsAuth";
 import useAddToAddress from "@/utils/mutations/useAddAddress";
 import useGetCartSession from "@/utils/queries/useGetCart";
-import useGetHash from "@/utils/mutations/useAddToHash";
-import api from "@/api";
-import { useDispatch } from "react-redux";
-import { addData } from "@/Slices/CartSlice";
 
 const Checkout = () => {
   const router = useRouter();
-  const dispatch = useDispatch()
   const [logged, setLogged] = useState(false);
   const { register, handleSubmit } = useForm();
   const { data: cartData } = useGetCartSession();
 
-  let TotalAmount ;
-  if(cartData){
-    TotalAmount= cartData?.data?.grandTotal;
+  let TotalAmount;
+  if (cartData) {
+    TotalAmount = cartData?.data?.grandTotal;
   }
   const { mutate } = useAddToAddress(TotalAmount);
 
@@ -34,7 +29,6 @@ const Checkout = () => {
   }, [router, cartData]);
 
   const onSubmit = (formData) => {
-    dispatch(addData(cartData?.data))
     mutate(formData);
   };
 
@@ -51,20 +45,8 @@ const Checkout = () => {
           <div className="grid grid-cols-6">
             <div className="h-[82vh] col-span-3 space-y-8 overflow-y-auto scrollbar-hide">
               {cartData?.data?.items?.map((item) => {
-                return (
-                  <OrderItem
-                    key={item.id}
-                    item={item}
-                    total={cartData?.data?.grandTotal}
-                  />
-                );
+                return <OrderItem key={item.id} item={item} />;
               })}
-              {/* <OrderItem /> */}
-              {/* <OrderItem />
-              <OrderItem />
-              <OrderItem />
-              <OrderItem />
-              <OrderItem /> */}
             </div>
             <div className="col-span-3">
               <div className="w-[95%] text-gray-700 tracking-wide">
