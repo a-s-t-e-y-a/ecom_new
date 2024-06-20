@@ -34,7 +34,7 @@ const Checkout = () => {
   }, [router, cartData]);
 
   const onSubmit = (formData) => {
-    dispatch(addData(cartData))
+    dispatch(addData(cartData?.data))
     mutate(formData);
   };
 

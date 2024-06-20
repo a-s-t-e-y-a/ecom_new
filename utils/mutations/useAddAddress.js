@@ -5,7 +5,6 @@ import useGetHash from "./useAddToHash";
 import Cookies from "js-cookie";
 
 const useAddToAddress = (TotalAmount) => {
-
   const {mutate:hash} = useGetHash()
   const mutate = useMutation({
     mutationKey: ["/addtoaddress"],
@@ -16,7 +15,7 @@ const useAddToAddress = (TotalAmount) => {
     onSuccess: (data) => {
       toast.success("Address add sucesfully");
       Cookies.set("address", data?.id);
-      hash(TotalAmount)
+      hash({amount:TotalAmount})
     },
     onError: (err) => {
       toast.error(err.message);
