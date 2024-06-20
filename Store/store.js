@@ -10,6 +10,7 @@ import categoriesSlice from "@/Slices/categoriesSlice";
 import Sepcification from "@/Slices/ProductSepcifcation";
 import CartSlice from "@/Slices/CartSlice";
 import filterSlice from "@/Slices/filterSlice";
+import filterProductSlice from "@/Slices/filterProductSlice";
 
 export const store = configureStore({
   reducer: {
@@ -23,6 +24,7 @@ export const store = configureStore({
     categories: categoriesSlice,
     Sepcification: Sepcification,
     cart: CartSlice,
-    filterText: filterSlice
+    filterText: filterSlice,
+    filterProduct:filterProductSlice
   },
 });

@@ -42,3 +42,18 @@ export const PageLinks = [
 ];
 
 export const clearFromStorage = ["user_info", "user_data"];
+
+export const frameWidth = [
+  "123", "124", "125", "126", "127", "128", "129", "130", "131", "132", "133", 
+  "134", "135", "136", "137", "138", "139", "140", "141", "142", "143", "144", 
+  "145", "146", "147", "148"
+];
+
+export const lensWidth = [
+  "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", 
+  "34", "35", "36", "37", "38", "39"
+];
+
+export const gender = [
+  "Men", "Women", "Kids", "Both(M/F)"
+];

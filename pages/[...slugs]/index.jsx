@@ -9,6 +9,7 @@ import useGetAllTypeData from "@/utils/queries/useGetAllTypeData";
 import { formatSlug } from "@/utils/Helpers";
 import useGetAllShape from "@/utils/queries/useShapeGetAll";
 import useGetAllStyle from "@/utils/queries/useStyleGetAll";
+import { useSelector } from "react-redux";
 
 const Index = () => {
   const [page, setPage] = useState(1);
@@ -22,6 +23,7 @@ const Index = () => {
     [, type, TypeSlug] = slug;
   }
 
+
   // utils/slugUtils.js
   const processSlug = (type, TypeSlug) => {
     if (typeof TypeSlug !== "string" && !Array.isArray(TypeSlug)) {
@@ -33,21 +35,21 @@ const Index = () => {
         return shape?.filter((item) => TypeSlug === item?.name);
       case "style":
         return style?.filter((item) => TypeSlug === item?.url);
-      default:
-        // Filter TypeSlug by url
-        if (Array.isArray(TypeSlug)) {
-          return TypeSlug.map((part) => formatSlug(part.url));
+        default:
+          // Filter TypeSlug by url
+          if (Array.isArray(TypeSlug)) {
+            return TypeSlug.map((part) => formatSlug(part.url));
+          }
+          return formatSlug(TypeSlug.url);
         }
-        return formatSlug(TypeSlug.url);
-    }
-  };
-  const finalFilteredData = processSlug(type, TypeSlug) || [];
-  let filteredD = finalFilteredData[0] || {}; // Ensure filteredD is an object
-
-  const { data, isLoading, isError } = useGetAllTypeData(type, filteredD?.id, page);
-  console.log(data, 'data')
-  const navigateToSingleProduct = (url) => {
-    router.push(`/product/${url}`);
+      };
+      const finalFilteredData = processSlug(type, TypeSlug) || [];
+      let filteredD = finalFilteredData[0] || {}; // Ensure filteredD is an object
+      
+      const { data, isLoading, isError } = useGetAllTypeData(type, filteredD?.id, page);
+      console.log(data, 'data')
+      const navigateToSingleProduct = (url) => {
+        router.push(`/product/${url}`);
   };
 
   return (

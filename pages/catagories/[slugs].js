@@ -6,13 +6,16 @@ import Layout from "@/Layout/Layout";
 import Pagination from "@/Components/Pagination/Pagination";
 import useCategoryByURL from "@/utils/queries/useCategoryByURL";
 import Head from "next/head";
+import { useSelector } from "react-redux";
 
 const Index = () => {
   const [page, setPage] = useState(1);
   const router = useRouter();
   const slug = router.query?.slugs;
   const { data, isLoading, isError } = useCategoryByURL(slug, page);
-  
+  const selector = useSelector((state) => state?.filterProduct);
+  console.log(selector, "useSelector");
+
   const navigateToSingleProduct = (url) => {
     router.push(`/product/${url}`);
   };
@@ -29,7 +32,7 @@ const Index = () => {
     <Layout>
       <Head>
         <title>{data?.name}</title>
-        <meta name="keywords" content={data?.keyword}/>
+        <meta name="keywords" content={data?.keyword} />
         <meta property="og:title" content={data?.name} />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={data?.image} />
@@ -41,18 +44,16 @@ const Index = () => {
         </div>
         <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 mb-4">
           {data?.products?.map((val, index) => {
-              return (
-                <div
-                  key={index}
-                  onClick={() =>
-                    navigateToSingleProduct(val?.product_url)
-                  }
-                  className="cursor-pointer"
-                >
-                  <SingleGlassItem value={val} />
-                </div>
-              );
-            })}
+            return (
+              <div
+                key={index}
+                onClick={() => navigateToSingleProduct(val?.product_url)}
+                className="cursor-pointer"
+              >
+                <SingleGlassItem value={val} />
+              </div>
+            );
+          })}
         </div>
       </section>
       <div className="flex justify-center my-10 px-10">
