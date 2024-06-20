@@ -1,7 +1,6 @@
-'use client'
+"use client";
 import React, { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
-import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import OrderItem from "@/Components/OrderItem";
@@ -10,16 +9,21 @@ import useAddToAddress from "@/utils/mutations/useAddAddress";
 import useGetCartSession from "@/utils/queries/useGetCart";
 import useGetHash from "@/utils/mutations/useAddToHash";
 import api from "@/api";
+import { useDispatch } from "react-redux";
+import { addData } from "@/Slices/CartSlice";
 
 const Checkout = () => {
-  const [logged, setLogged] = useState(false);
-  const { data, isLoading } = useGetCartSession();
-  const { mutate: addAddress, data: addResponse } = useAddToAddress();
-  const { data: cartData } = useGetCartSession();
-  const { mutate: generateHash, data: hashData, isSuccess } = useGetHash();
-
-  const { register, handleSubmit } = useForm();
   const router = useRouter();
+  const dispatch = useDispatch()
+  const [logged, setLogged] = useState(false);
+  const { register, handleSubmit } = useForm();
+  const { data: cartData } = useGetCartSession();
+
+  let TotalAmount ;
+  if(cartData){
+    TotalAmount= cartData?.data?.grandTotal;
+  }
+  const { mutate } = useAddToAddress(TotalAmount);
 
   useEffect(() => {
     if (isUserLoggedIn()) {
@@ -27,50 +31,12 @@ const Checkout = () => {
     } else {
       router.replace("login");
     }
-  }, [router]);
+  }, [router, cartData]);
 
   const onSubmit = (formData) => {
-    addAddress(formData);
+    dispatch(addData(cartData))
+    mutate(formData);
   };
-
-  useMemo(() => {
-    if (addResponse?.id) {
-      Cookies.set("address", addResponse.id);
-    }
-    if(cartData?.data?.grandTotal){
-      const total = cartData.data.grandTotal;
-      generateHash({ amount: total });
-    }else {
-      return ;
-    }
-  }, [addResponse, cartData, generateHash, cartData?.data?.grandTotal]);
-
-  if (isSuccess) {
-    console.log(hashData?.order, "hashData");
-    const options = {
-      key:"rzp_test_BsvG3tVFWhJRmR",
-      amount: cartData?.data?.grandTotal,
-      currency: "INR",
-      name: "6 Pack Programmer",
-      description: "Tutorial of RazorPay",
-      image: "https://avatars.githubusercontent.com/u/25058652?v=4",
-      order_id: order.id,
-      callback_url: `${api}/payment/success`,
-      prefill: {
-        name: "Shashi Ross",
-        email: "shashi.ross@example.com",
-        contact: "9999999999",
-      },
-      notes: {
-        address: "Razorpay Corporate Office",
-      },
-      theme: {
-        color: "#121212",
-      },
-    };
-    const razor = new window.Razorpay(options);
-    razor.open();
-  }
 
   if (logged) {
     return (

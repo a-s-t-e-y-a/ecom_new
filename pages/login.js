@@ -37,6 +37,7 @@ export default function Example() {
           "user_data",
           JSON.stringify(response?.data?.data?.info_user)
         );
+        Cookie
         router.push("/");
       } else {
         toast.error("User not exist");
