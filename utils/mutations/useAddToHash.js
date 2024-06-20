@@ -46,6 +46,9 @@ const useGetHash = () => {
       razorScript.addEventListener('load', ()=>{
         alert("script loaded successfully");
         const rzp = new window.Razorpay(options);
+        rzp.on("payment.failed", response => {
+          console.log("see payment failed with this response", response?.error?.metadata);
+        });
         rzp.open();
       })
     },

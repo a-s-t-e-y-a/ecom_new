@@ -15,7 +15,7 @@ const useAddToAddress = (TotalAmount) => {
     onSuccess: (data) => {
       toast.success("Address add sucesfully");
       Cookies.set("address", data?.id);
-      hash({amount:TotalAmount})
+      hash({amount:TotalAmount, address: data})
     },
     onError: (err) => {
       toast.error(err.message);
