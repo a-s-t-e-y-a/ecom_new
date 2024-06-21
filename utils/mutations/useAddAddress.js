@@ -3,8 +3,12 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import useGetHash from "./useAddToHash";
 import Cookies from "js-cookie";
+import { useDispatch } from "react-redux";
+import { addAddress } from "@/Slices/addressSlice";
+
 
 const useAddToAddress = (TotalAmount) => {
+  const dispatch = useDispatch()
   const {mutate:hash} = useGetHash()
   const mutate = useMutation({
     mutationKey: ["/addtoaddress"],
@@ -15,6 +19,7 @@ const useAddToAddress = (TotalAmount) => {
     onSuccess: (data) => {
       toast.success("Address add sucesfully");
       Cookies.set("address", data?.id);
+      dispatch(addAddress(data))
       hash({amount:TotalAmount, address: data})
     },
     onError: (err) => {

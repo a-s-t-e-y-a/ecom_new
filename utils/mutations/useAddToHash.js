@@ -2,9 +2,11 @@ import api from "@/api";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import usePaymentSuccess from "./usePaymentSuccess";
+import { useSelector } from "react-redux";
 
 const useGetHash = () => {
   const {mutate:PaymentSuccess} = usePaymentSuccess()
+  const address = useSelector((state)=>state?.Address?.adress);
   const mutate = useMutation({
     mutationKey: ["/getHash"],
     mutationFn: async (data) => {
@@ -16,7 +18,7 @@ const useGetHash = () => {
       razorScript.setAttribute("type", "text/javascript");
       razorScript.setAttribute("src", "https://checkout.razorpay.com/v1/checkout.js");
       razorScript.setAttribute("async", true);
-
+      console.log(data, 'get hash from server')
       const options = {
         key:"rzp_test_BsvG3tVFWhJRmR",
         amount: data?.amount,
@@ -39,7 +41,7 @@ const useGetHash = () => {
         },
         handler: async (response)=>{
           console.log(response);
-          PaymentSuccess(response)
+          PaymentSuccess({response, address})
         }
       };
       document.body.appendChild(razorScript)
