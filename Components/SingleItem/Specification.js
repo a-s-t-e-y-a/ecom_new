@@ -3,14 +3,12 @@ import { useSelector } from "react-redux";
 
 const Specification = ({ Product }) => {
   const {
-    p_id,
+    product_model_number,
     material_,
-    lens_material,
     product_color_,
     shape_,
     use_for,
     style_,
-    product_type,
     row_metrial_source_from,
     size_
   } = Product || {};
@@ -21,7 +19,7 @@ const Specification = ({ Product }) => {
     { title: "Shape ", value: shape_?.name },
     { title: "Gender ", value: use_for },
     { title: "Style ", value: style_?.name },
-    { title: "Product Id ", value: p_id },
+    { title: "Product Id ", value: product_model_number },
     { title: "Product Type ", value: size_?.name },
     { title: "Packaged by ", value: "akku ka chasma India " },
     { title: "Raw Material Sourced from ", value: row_metrial_source_from },
