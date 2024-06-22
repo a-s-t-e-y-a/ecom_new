@@ -47,7 +47,7 @@ const PlacedOrder = () => {
           </div>
           <div className="">
             {
-              data?.map((item)=><OrderedTable items={item}/>)
+              data?.map((item, index)=><OrderedTable items={item} key={index}/>)
             }
           </div>
         </div>
