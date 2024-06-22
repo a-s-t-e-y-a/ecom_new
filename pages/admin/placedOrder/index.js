@@ -6,10 +6,12 @@ import { IsAuth } from "@/utils/IsAuth";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useEffect } from "react";
+import useGetPlacedOrders from "@/utils/queries/admin/useGetPlacedOrders";
 const PlacedOrder = () => {
   const router = useRouter();
-
   const [logged, setlogged] = useState(false);
+  const {data} = useGetPlacedOrders()
+
   useEffect(() => {
     if (IsAuth("admin_info")) {
       setlogged(true);
@@ -44,7 +46,9 @@ const PlacedOrder = () => {
             </div>
           </div>
           <div className="">
-            <OrderedTable />
+            {
+              data?.map((item)=><OrderedTable items={item}/>)
+            }
           </div>
         </div>
       </AdminLayout>

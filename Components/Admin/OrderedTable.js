@@ -1,172 +1,10 @@
 import React from "react";
 import { MdDelete } from "react-icons/md";
 import { BiShowAlt } from "react-icons/bi";
+import { formatDate } from "@/utils/Helpers";
 
-const data = [
-  {
-    OrderDate: "01/01/2012  02:30 pm",
-    OrderId: 235,
-    Name: "Ajit Kumar Singh ",
-    CoupneCode: "free200",
-    Amount: "Rs300",
-    Mobile: 123456987,
-    Prescription: "Yes",
-  },
-  {
-    OrderDate: "01/01/2012  02:30 pm",
-    OrderId: 235,
-    Name: "Ajit Kumar Singh ",
-    CoupneCode: "free200",
-    Amount: "Rs300",
-    Mobile: 123456987,
-    Prescription: "Yes",
-  },
-  {
-    OrderDate: "01/01/2012  02:30 pm",
-    OrderId: 235,
-    Name: "Ajit Kumar Singh ",
-    CoupneCode: "free200",
-    Amount: "Rs300",
-    Mobile: 123456987,
-    Prescription: "Yes",
-  },
-  {
-    OrderDate: "01/01/2012  02:30 pm",
-    OrderId: 235,
-    Name: "Ajit Kumar Singh ",
-    CoupneCode: "free200",
-    Amount: "Rs300",
-    Mobile: 123456987,
-    Prescription: "Yes",
-  },
-  {
-    OrderDate: "01/01/2012  02:30 pm",
-    OrderId: 235,
-    Name: "Ajit Kumar Singh ",
-    CoupneCode: "free200",
-    Amount: "Rs300",
-    Mobile: 123456987,
-    Prescription: "Yes",
-  },
-  {
-    OrderDate: "01/01/2012  02:30 pm",
-    OrderId: 235,
-    Name: "Ajit Kumar Singh ",
-    CoupneCode: "free200",
-    Amount: "Rs300",
-    Mobile: 123456987,
-    Prescription: "Yes",
-  },
-  {
-    OrderDate: "01/01/2012  02:30 pm",
-    OrderId: 235,
-    Name: "Ajit Kumar Singh ",
-    CoupneCode: "free200",
-    Amount: "Rs300",
-    Mobile: 123456987,
-    Prescription: "Yes",
-  },
-  {
-    OrderDate: "01/01/2012  02:30 pm",
-    OrderId: 235,
-    Name: "Ajit Kumar Singh ",
-    CoupneCode: "free200",
-    Amount: "Rs300",
-    Mobile: 123456987,
-    Prescription: "Yes",
-  },
-  {
-    OrderDate: "01/01/2012  02:30 pm",
-    OrderId: 235,
-    Name: "Ajit Kumar Singh ",
-    CoupneCode: "free200",
-    Amount: "Rs300",
-    Mobile: 123456987,
-    Prescription: "Yes",
-  },
-  {
-    OrderDate: "01/01/2012  02:30 pm",
-    OrderId: 235,
-    Name: "Ajit Kumar Singh ",
-    CoupneCode: "free200",
-    Amount: "Rs300",
-    Mobile: 123456987,
-    Prescription: "Yes",
-  },
-  {
-    OrderDate: "01/01/2012  02:30 pm",
-    OrderId: 235,
-    Name: "Ajit Kumar Singh ",
-    CoupneCode: "free200",
-    Amount: "Rs300",
-    Mobile: 123456987,
-    Prescription: "Yes",
-  },
-  {
-    OrderDate: "01/01/2012  02:30 pm",
-    OrderId: 235,
-    Name: "Ajit Kumar Singh ",
-    CoupneCode: "free200",
-    Amount: "Rs300",
-    Mobile: 123456987,
-    Prescription: "Yes",
-  },
-  {
-    OrderDate: "01/01/2012  02:30 pm",
-    OrderId: 235,
-    Name: "Ajit Kumar Singh ",
-    CoupneCode: "free200",
-    Amount: "Rs300",
-    Mobile: 123456987,
-    Prescription: "Yes",
-  },
-  {
-    OrderDate: "01/01/2012  02:30 pm",
-    OrderId: 235,
-    Name: "Ajit Kumar Singh ",
-    CoupneCode: "free200",
-    Amount: "Rs300",
-    Mobile: 123456987,
-    Prescription: "Yes",
-  },
-  {
-    OrderDate: "01/01/2012  02:30 pm",
-    OrderId: 235,
-    Name: "Ajit Kumar Singh ",
-    CoupneCode: "free200",
-    Amount: "Rs300",
-    Mobile: 123456987,
-    Prescription: "Yes",
-  },
-  {
-    OrderDate: "01/01/2012  02:30 pm",
-    OrderId: 235,
-    Name: "Ajit Kumar Singh ",
-    CoupneCode: "free200",
-    Amount: "Rs300",
-    Mobile: 123456987,
-    Prescription: "Yes",
-  },
-  {
-    OrderDate: "01/01/2012  02:30 pm",
-    OrderId: 235,
-    Name: "Ajit Kumar Singh ",
-    CoupneCode: "free200",
-    Amount: "Rs300",
-    Mobile: 123456987,
-    Prescription: "Yes",
-  },
-  {
-    OrderDate: "01/01/2012  02:30 pm",
-    OrderId: 235,
-    Name: "Ajit Kumar Singh ",
-    CoupneCode: "free200",
-    Amount: "Rs300",
-    Mobile: 123456987,
-    Prescription: "Yes",
-  },
-];
-const OrderedTable = () => {
+const OrderedTable = ({items}) => {
+  console.log(items, 'items')
   return (
     <div className="w-[1240px] mx-4 tracking-wide h-[72vh] overflow-y-scroll scrollbar-hide border">
       <table className="h-[30vh] shadow-md table-auto border-collapse border border-slate-400 w-full relative">
@@ -175,7 +13,6 @@ const OrderedTable = () => {
             <th className="border border-slate-300 py-2 ">Order Date</th>
             <th className="border border-slate-300 py-2 ">Order Id</th>
             <th className="border border-slate-300 py-2 ">Name</th>
-            <th className="border border-slate-300 py-2 ">Coupon Code</th>
             <th className="border border-slate-300 py-2 ">Amount</th>
             <th className="border border-slate-300 py-2 ">Mobile</th>
             <th className="border border-slate-300 py-2 ">Prescription</th>
@@ -183,31 +20,32 @@ const OrderedTable = () => {
           </tr>
         </thead>
         <tbody className="text-xs text-gray-600 text-center overflow-scroll mt-10">
-          {data.map((data, index) => (
-            <tr className="" key={index}>
-              <td className="border border-slate-300 py-2">{data.OrderDate}</td>
-              <td className="border border-slate-300 py-2">{data.OrderId}</td>
-              <td className="border border-slate-300 py-2">{data.Name}</td>
-              <td className="border border-slate-300 py-2">
-                {data.CoupneCode}
-              </td>
-              <td className="border border-slate-300 py-2">{data.Amount}</td>
-              <td className="border border-slate-300 py-2">{data.Mobile}</td>
-              <td className="border border-slate-300 py-2">
-                {data.Prescription}
-              </td>
-              <td className="border border-slate-300 py-2">
-                <div className="flex items-center justify-center gap-3 text-md ">
-                  <span className="text-lg text-blue-600 cursor-pointer">
-                    <BiShowAlt />
-                  </span>
-                  <span className="text-lg text-orange-600 cursor-pointer">
-                    <MdDelete />
-                  </span>
-                </div>
-              </td>
-            </tr>
-          ))}
+          {items?.order_item?.map((data, index) => {
+            console.log(data, 'data')
+            const name = items?.address?.first_name + " " + items.address?.last_name
+            return (
+              <tr className="" key={index}>
+                <td className="border border-slate-300 py-2">{formatDate(data.CreatedDate)}</td>
+                <td className="border border-slate-300 py-2">{data.id}</td>
+                <td className="border border-slate-300 py-2">{name}</td>
+                <td className="border border-slate-300 py-2">{items.total}</td>
+                <td className="border border-slate-300 py-2">{items.address?.phoneNo}</td>
+                <td className="border border-slate-300 py-2">
+                  {data.Prescription || "No"}
+                </td>
+                <td className="border border-slate-300 py-2">
+                  <div className="flex items-center justify-center gap-3 text-md ">
+                    <span className="text-lg text-blue-600 cursor-pointer">
+                      <BiShowAlt />
+                    </span>
+                    <span className="text-lg text-orange-600 cursor-pointer">
+                      <MdDelete />
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            )
+          })}
         </tbody>
       </table>
     </div>
