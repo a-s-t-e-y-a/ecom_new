@@ -29,28 +29,34 @@ const Index = () => {
     if (typeof TypeSlug !== "string" && !Array.isArray(TypeSlug)) {
       return TypeSlug;
     }
-
     switch (type) {
       case "shape":
         return shape?.filter((item) => TypeSlug === item?.name);
       case "style":
         return style?.filter((item) => TypeSlug === item?.url);
-        default:
-          // Filter TypeSlug by url
-          if (Array.isArray(TypeSlug)) {
-            return TypeSlug.map((part) => formatSlug(part.url));
-          }
-          return formatSlug(TypeSlug.url);
+      default:
+        if (Array.isArray(TypeSlug)) {
+          return TypeSlug.map((part) => formatSlug(part.url));
         }
-      };
-      const finalFilteredData = processSlug(type, TypeSlug) || [];
-      let filteredD = finalFilteredData[0] || {}; // Ensure filteredD is an object
-      
-      const { data, isLoading, isError } = useGetAllTypeData(type, filteredD?.id, page);
-      console.log(data, 'data')
-      const navigateToSingleProduct = (url) => {
-        router.push(`/product/${url}`);
+        return formatSlug(TypeSlug.url);
+    }
   };
+  const finalFilteredData = processSlug(type, TypeSlug) || [];
+  let filteredD = finalFilteredData[0] || {}; // Ensure filteredD is an object
+
+  const filteredProduct = useSelector((state) => state.filterProduct);
+  console.log(filteredProduct, 'filteredProduct')
+  const { category, label } = filteredProduct;
+
+  const { data, isLoading, isError } = useGetAllTypeData(category || type, label || filteredD?.name, page);
+  console.log(data, 'data')
+  const navigateToSingleProduct = (url) => {
+    router.push(`/product/${url}`);
+  };
+
+  useEffect(()=>{
+
+  }, [category])
 
   return (
     <Layout>
@@ -63,10 +69,10 @@ const Index = () => {
         <meta property="og:url" content={data?.url} />
       </Head>
       <section className="w-full flex px-5">
-        <div className="w-fit absolute lg:relative lg:top-0 left-1 top-14 me-5">
+        <div className="w-fit absolute lg:relative lg:top-2 left-1 top-14 me-5">
           <Filter />
         </div>
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 mb-4">
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mb-4">
           {data?.products?.map((val, index) => {
             return (
               <div

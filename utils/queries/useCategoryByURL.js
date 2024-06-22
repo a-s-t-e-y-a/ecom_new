@@ -2,12 +2,13 @@ import { useQuery } from "@tanstack/react-query";
 import api from "@/api";
 import { toast } from "react-toastify";
 
-const useCategoryByURL = (slugs, page) => {
+const useCategoryByURL = (slugs, page, category, label) => {
   const categoryData = useQuery({
-    queryKey: ["api/categories", slugs, page],
+    queryKey: ["api/categories", slugs, page, category, label],
     queryFn: async () => {
       try {
-        const res = await api.get(`categories/${slugs}?pageSize=15&page=${page}`);
+        const res = await api.get(
+          `categories/${slugs}?${category}=${label}?pageSize=15&page=${page}`);
         return res?.data?.data[0];
       } catch (error) {
         toast.error("Error fetching data");

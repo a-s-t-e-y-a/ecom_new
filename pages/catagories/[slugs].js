@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Filter from "@/Components/Filter";
 import SingleGlassItem from "@/Components/SingleGlassItem";
@@ -12,9 +12,9 @@ const Index = () => {
   const [page, setPage] = useState(1);
   const router = useRouter();
   const slug = router.query?.slugs;
-  const { data, isLoading, isError } = useCategoryByURL(slug, page);
   const selector = useSelector((state) => state?.filterProduct);
-  console.log(selector, "useSelector");
+  const { category, label } = selector;
+  const { data, isLoading, isError } = useCategoryByURL(slug, page, category, label);
 
   const navigateToSingleProduct = (url) => {
     router.push(`/product/${url}`);
@@ -39,21 +39,21 @@ const Index = () => {
         <meta property="og:url" content={data?.url} />
       </Head>
       <section className="w-full flex px-5">
-        <div className="w-fit absolute lg:relative lg:top-0 left-1 top-14 me-5">
+        <div className="w-fit absolute lg:relative lg:top-4 left-1 top-14 me-5">
           <Filter />
         </div>
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 mb-4">
-          {data?.products?.map((val, index) => {
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 my-5">
+          {data?.products.length > 0 ? data?.products?.map((val, index) => {
             return (
               <div
                 key={index}
                 onClick={() => navigateToSingleProduct(val?.product_url)}
-                className="cursor-pointer"
+                className="h-fit w-fit cursor-pointer"
               >
                 <SingleGlassItem value={val} />
               </div>
             );
-          })}
+          }) : <p>No Product Found !</p>}
         </div>
       </section>
       <div className="flex justify-center my-10 px-10">

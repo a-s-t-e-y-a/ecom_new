@@ -15,13 +15,13 @@ const Filter = () => {
   const dispatch = useDispatch()
   const [display, setDisplay] = useState(true);
   const [selectedValues, setSelectedValues] = useState({
-    size: null,
-    frameWidth: null,
-    lensWidth: null,
-    shape: null,
-    style: null,
-    gender: null,
-    color: null,
+    size: "",
+    frameWidth: "",
+    lensWidth: "",
+    shape: "",
+    style: "",
+    gender: "",
+    color: "",
   });
 
   const { data: size } = useGetAllSize();
