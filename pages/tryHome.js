@@ -1,182 +1,212 @@
-import Layout from '@/Layout/Layout'
-import { Option, Select } from '@material-tailwind/react'
-import React from 'react'
+import Layout from '@/Layout/Layout';
+import useGetTryAtHome from '@/utils/queries/useGetTryAtHome';
+import { Option, Select } from '@material-tailwind/react';
+import React from 'react';
+import { useForm } from 'react-hook-form';
 
-const tryAtHome = () => {
+const TryAtHome = () => {
+  const { data, isLoading, isError } = useGetTryAtHome();
+  const { register, handleSubmit, formState: { errors } } = useForm();
+
+  const onSubmit = (formData) => {
+    console.log(formData);
+  };
+
+  if (isLoading) {
+    return <>Loading ....</>;
+  }
+
   return (
-    <Layout >
+    <Layout>
       <div className='text-5xl font-bold tracking-wider mb-8 text-center text-gray-700'>Try@Home</div>
-      <div className=' mx-auto space-y-5 md:w-[500px] bg-white py-9 px-6 shadow-lg'>
+      <div className='mx-auto space-y-5 md:w-[500px] bg-white py-9 px-6 shadow-lg'>
         <h1 className='text-3xl font-bold tracking-wider text-center mb-6 text-gray-700'>Personal Detail</h1>
 
-        <form className="w-full mx-auto space-y-6">
-          <Select label="Select Version">
-            <Option>Eye test at Home</Option>
-            <Option>Eye Test at Store</Option>
-            <Option>Complete eyeglass booking at Home with eye test</Option>
-            <Option>I want to change my old glass only at home</Option>
-            <Option>I want to use my old lens in new frame at home</Option>
+        <form className="w-full mx-auto space-y-6" onSubmit={handleSubmit(onSubmit)}>
+          <Select label="Select Version" {...register("services", { required: true })}>
+            {data.data.map((info) => (
+              <Option key={info.id} value={info.description}>{info.description}</Option>
+            ))}
           </Select>
+          {errors.version && <p className="text-red-500 text-sm">Version is required</p>}
+
           <div className="flex items-center justify-center gap-6">
             <div className="relative z-0 w-full mb-6 group">
               <input
                 type="text"
                 name="firstname"
                 id="firstname"
-                className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
+                className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                 placeholder=" "
-                required
+                {...register("firstname", { required: true })}
               />
               <label
-                for="firstname"
-                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                htmlFor="firstname"
+                className="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >
                 First Name
               </label>
+              {errors.firstname && <p className="text-red-500 text-sm">First name is required</p>}
             </div>
             <div className="relative z-0 w-full mb-6 group">
               <input
                 type="text"
                 name="lastname"
                 id="lastname"
-                className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
+                className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                 placeholder=" "
-                required
+                {...register("lastname", { required: true })}
               />
               <label
-                for="lastname"
-                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                htmlFor="lastname"
+                className="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >
                 Last Name
               </label>
+              {errors.lastname && <p className="text-red-500 text-sm">Last name is required</p>}
             </div>
           </div>
+
           <div className="flex items-center justify-center gap-6">
             <div className="relative z-0 w-full mb-6 group">
               <input
                 type="email"
                 name="email"
                 id="email"
-                className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
+                className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                 placeholder=" "
-                required
+                {...register("email", { required: true })}
               />
               <label
-                for="email"
-                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                htmlFor="email"
+                className="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >
                 Email address
               </label>
+              {errors.email && <p className="text-red-500 text-sm">Email is required</p>}
             </div>
             <div className="relative z-0 w-full mb-6 group">
               <input
                 type="text"
                 name="phonenumber"
                 id="phonenumber"
-                className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
+                className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                 placeholder=" "
-                required
+                {...register("phonenumber", { required: true })}
               />
               <label
-                for="phonenumber"
-                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                htmlFor="phonenumber"
+                className="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >
                 Phone No.
               </label>
+              {errors.phonenumber && <p className="text-red-500 text-sm">Phone number is required</p>}
             </div>
           </div>
+
           <div className="relative z-0 w-full mb-6 group">
             <input
               type="text"
               name="address"
               id="address"
-              className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
+              className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer"
               placeholder=" "
-              required
+              {...register("address", { required: true })}
             />
             <label
-              for="address"
-              className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              htmlFor="address"
+              className="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
             >
               Address
             </label>
+            {errors.address && <p className="text-red-500 text-sm">Address is required</p>}
           </div>
+
           <div className="flex items-center justify-center gap-6">
             <div className="relative z-0 w-full mb-6 group">
               <input
                 type="text"
                 name="city"
                 id="city"
-                className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
+                className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                 placeholder=" "
-                required
+                {...register("city", { required: true })}
               />
               <label
-                for="city"
-                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                htmlFor="city"
+                className="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >
                 City
               </label>
+              {errors.city && <p className="text-red-500 text-sm">City is required</p>}
             </div>
             <div className="relative z-0 w-full mb-6 group">
               <input
                 type="text"
                 name="state"
                 id="state"
-                className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
+                className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                 placeholder=" "
-                required
+                {...register("state", { required: true })}
               />
               <label
-                for="state"
-                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                htmlFor="state"
+                className="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >
                 State
               </label>
+              {errors.state && <p className="text-red-500 text-sm">State is required</p>}
             </div>
           </div>
+
           <div className="flex items-center justify-center gap-6">
             <div className="relative z-0 w-full mb-6 group">
               <input
                 type="text"
-                name="pincode"
-                id="pincode"
-                className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
+                name="zipcode"
+                id="zipcode"
+                className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                 placeholder=" "
-                required
+                {...register("zipcode", { required: true })}
               />
               <label
-                for="pincode"
-                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                htmlFor="zipcode"
+                className="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >
-                Zip/Pin Code
+                Zip Code
               </label>
+              {errors.zipcode && <p className="text-red-500 text-sm">Zip code is required</p>}
             </div>
             <div className="relative z-0 w-full mb-6 group">
               <input
                 type="text"
                 name="country"
                 id="country"
-                className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
+                className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                 placeholder=" "
-                required
+                {...register("country", { required: true })}
               />
               <label
-                for="country"
-                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                htmlFor="country"
+                className="peer-focus:font-medium absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
               >
                 Country
               </label>
+              {errors.country && <p className="text-red-500 text-sm">Country is required</p>}
             </div>
           </div>
 
-          <div className='w-full flex items-center justify-center '>
-            <button className='px-4 py-1 text-white bg-gray-600 hover:bg-indigo-600 rounded-md tracking-wide'>Submit Now</button>
-          </div>
+          <button
+            type="submit"
+            className="block w-full bg-gray-700 text-white font-bold py-2 px-4 rounded-md hover:bg-gray-600"
+          >
+            Submit
+          </button>
         </form>
       </div>
     </Layout>
-  )
-}
+  );
+};
 
-export default tryAtHome
+export default TryAtHome;
+

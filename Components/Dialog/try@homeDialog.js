@@ -1,44 +1,16 @@
 'use client'
 import { TextField } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import FileInput from "../Admin/FileInput";
 import { useForm } from "react-hook-form";
 import { Toaster } from "react-hot-toast";
-import { useMutation } from "@tanstack/react-query";
-import { toast } from "react-toastify";
-import { useDispatch } from "react-redux";
-import CreateTryAtHome from "@/utils/mutations/useCreateTryAtHome";
-import { useEffect, useState } from "react";
-import query from "@/utils/queryClinet";
+import useTryHome from "@/utils/mutations/useCreateTryAtHome";
 
 
-const TryHome = ({onCancel, setOpen, refecth, token }) => {
+const TryHome = ({onCancel }) => {
   const { register, handleSubmit } = useForm();
-  const [data, setdata] = useState([]);
-  const {
-    mutate,
-    data: datas,
-    isSuccess,
-  } = useMutation({
-    mutationFn:CreateTryAtHome,
-    onSuccess: () => {
-      toast.success("Try At Home created succesfully");
-      query.invalidateQueries({ queryKey: ["api/try_home"] });
-      refecth(!token);
-    },
-    onError: (err) => {
-      toast.error("Error occurred");
-    },
-  });
-  const dispatch = useDispatch();
+  const {mutate} = useTryHome()
   const onSubmit = async (data) => {
-    const formData = new FormData();
-    formData.append(
-      "data",
-      JSON.stringify({ title: data.title, description: data.description })
-    );
-    mutate(formData);
-    onCancel()
+    mutate(data); 
   };
 
   return (
@@ -62,8 +34,6 @@ const TryHome = ({onCancel, setOpen, refecth, token }) => {
           <button
             type="submit"
             className="text-white bg-sky-400 hover:bg-sky-500  focus:outline-none font-medium rounded-lg text-sm inline-flex items-center px-5 py-2 text-center mr-2"
-            //   onClick={}
-            onSubmit={handleSubmit}
           >
             Add <AddIcon className="ml-1 font-bold text-base" />
           </button>

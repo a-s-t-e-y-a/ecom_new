@@ -2,15 +2,15 @@ import api from "@/api";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-const useTryHome = () => {
+const useNewsletter = () => {
   const mutate = useMutation({
-    mutationKey: ["/try_home"],
+    mutationKey: ["/newsletter"],
     mutationFn: async (data) => {
-      const res = await api.post("try_home", data);
+      const res = await api.post("newsletter", data);
       return res.data;
     },
     onSuccess: () => {
-      toast.success("Services added successfully ");
+      toast.success("Newsletter created successfully ");
     },
     onError: (err) => {
       toast.error(err.message);
@@ -19,4 +19,4 @@ const useTryHome = () => {
   return mutate;
 };
 
-export default useTryHome;
+export default useNewsletter;
