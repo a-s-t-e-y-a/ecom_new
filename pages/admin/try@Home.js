@@ -35,6 +35,7 @@ const TryAtHome = () => {
       toast.success("Deleted successully");
       query.invalidateQueries({ queryKey: ["api/try_home"] });
       setget(!get);
+      window.location.reload();
     },
     onError: (err) => {
       toast.error(err.message);
