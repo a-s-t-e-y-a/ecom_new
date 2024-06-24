@@ -1,6 +1,6 @@
 import api, { Imageapi } from "@/api";
 import { useMutation } from "@tanstack/react-query";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 const UpdateBlog = (id, closeModal, refetch) => {
     const update = useMutation({
