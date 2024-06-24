@@ -4,12 +4,12 @@ import { IsAuth } from "@/utils/IsAuth";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useEffect } from "react";
-import useGetPlacedOrders from "@/utils/queries/admin/useGetPlacedOrders";
+import useGetPlacedOrdersById from "@/utils/queries/admin/useGetPlaceOrderById";
 
 const PlacedOrderDetail = () => {
   const router = useRouter();
   const { singleOrder } = router.query;
-  const { data } = useGetPlacedOrders(singleOrder);
+  const { data } = useGetPlacedOrdersById(singleOrder);
 
   const [logged, setlogged] = useState(false);
   useEffect(() => {
