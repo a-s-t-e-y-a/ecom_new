@@ -8,32 +8,32 @@ import axios from "axios";
 
 function Home() {
   const [Shape, setShape] = useState([]);
-  const [Computer, setComputer] = useState([]);
-  const [Round, setRound] = useState([]);
-  const [Rimless, setRimless] = useState([]);
-  const [sungaless, setSungaless] = useState([]);
+  const [aviatorShape, setAviatorShape] = useState([]);
+  const [wayfarer, setWayfarer] = useState([]);
+  const [geometric, setGeometric] = useState([]);
+  const [rectangle, setRectangle] = useState([]);
+  const [hexa, setHexa] = useState([]);
+  
+
   const fecthMultipleData = () => {
     const url = [
-      "https://api.akkukachasma.com/api/products",
-      "https://api.akkukachasma.com/api/categories/Eyeglass",
       "https://api.akkukachasma.com/api/shape",
+      "https://api.akkukachasma.com/api/products?shape=Aviator eyeglass",
+      "https://api.akkukachasma.com/api/products?shape=Wayfarer eyeglass",
+      "https://api.akkukachasma.com/api/products?shape=Geometric eyeglass",
+      "https://api.akkukachasma.com/api/products?shape=Rectangle Eyeglass",
+      "https://api.akkukachasma.com/api/products?shape=Hexa",
     ];
     axios.all(url.map((endpoints) => axios.get(endpoints))).then((data) => {
-      const AllProduct = data[0];
-      const Computer = data[1];
-      const shape = data[2];
-      const round = AllProduct?.data?.data?.products?.filter(
-        (Value) => Value?.shape_?.name === "Round" || "round"
-      );
-      const rimless = AllProduct?.data?.data?.products?.filter(
-        (Value) => Value?.style_?.name === "Rimless" || "rimless"
-      );
+      console.log(data[5]?.data?.data?.products, 'aviatorShape')
+      const shape = data[0];
 
-      setSungaless(AllProduct?.data?.data?.products);
       setShape(shape?.data?.data);
-      setRound(round);
-      setRimless(rimless);
-      setComputer(Computer?.data?.data?.products);
+      setAviatorShape(data[1]?.data?.data?.products)
+      setWayfarer(data[2]?.data?.data?.products)
+      setGeometric(data[3]?.data?.data?.products)
+      setRectangle(data[4]?.data?.data?.products)
+      setHexa(data[5]?.data?.data?.products)
     });
   };
   useEffect(() => {
@@ -106,11 +106,11 @@ function Home() {
                   Best Seller
                 </span>
                 <span className="border-b-2 border-gray-700">
-                  Round Glasses
+                  Aviator Eyeglasses
                 </span>
               </h1>
             </div>
-            <SwiperContainer data={Round} />
+            <SwiperContainer data={aviatorShape} />
           </div>
 
           {/* <div className="mt-7">
@@ -134,11 +134,11 @@ function Home() {
                   Best Seller
                 </span>{" "}
                 <span className="border-b-2 border-gray-700">
-                  Rounded Glasses
+                  Wayfarer Eyeglass
                 </span>
               </h1>
             </div>
-            <SwiperContainer data={Round} />
+            <SwiperContainer data={wayfarer} />
           </div>
         </div>
 
@@ -173,10 +173,10 @@ function Home() {
                 <span className="uppercase text-gray-600 mr-2">
                   Best Seller
                 </span>{" "}
-                <span className="border-b-2 border-gray-700">Sun Glasses</span>
+                <span className="border-b-2 border-gray-700">Geometric Eyeglass</span>
               </h1>
             </div>
-            <SwiperContainer data={sungaless} />
+            <SwiperContainer data={geometric} />
           </div>
           <div className="mt-7">
             <div className="p-2 rounded-md mb-4">
@@ -185,11 +185,11 @@ function Home() {
                   Best Seller
                 </span>{" "}
                 <span className="border-b-2 border-gray-700">
-                  Rimless Glasses
+                  Rectangle Eyeglass
                 </span>
               </h1>
             </div>
-            <SwiperContainer data={Rimless} />
+            <SwiperContainer data={rectangle} />
           </div>
         </div>
 
@@ -223,10 +223,10 @@ function Home() {
                 <span className="uppercase text-gray-600 mr-2">
                   Best Seller
                 </span>
-                <span className="border-b-2 border-gray-700">Kids Glasses</span>
+                <span className="border-b-2 border-gray-700">Hexagon eyeglasses</span>
               </h1>
             </div>
-            <SwiperContainer data={[]} />
+            <SwiperContainer data={hexa} />
           </div>
         </div>
       </section>
