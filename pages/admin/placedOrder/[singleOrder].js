@@ -1,11 +1,15 @@
 import AdminLayout from "@/Layout/AdminLayout";
 import OrderItem from "@/Components/OrderItem";
 import { IsAuth } from "@/utils/IsAuth";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useEffect } from "react";
+import useGetPlacedOrders from "@/utils/queries/admin/useGetPlacedOrders";
+
 const PlacedOrderDetail = () => {
   const router = useRouter();
+  const { singleOrder } = router.query;
+  const { data } = useGetPlacedOrders(singleOrder);
 
   const [logged, setlogged] = useState(false);
   useEffect(() => {
@@ -15,18 +19,21 @@ const PlacedOrderDetail = () => {
       router.replace("login");
     }
   }, [router]);
+
+  console.log(data, "data");
+
   if (logged) {
     return (
       <AdminLayout>
         <div className="w-full h-fit space-y-3 pt-3">
           <div className="grid grid-cols-4">
             <div className="h-[80vh] col-span-2 space-y-8 overflow-y-auto scrollbar-hide">
+              {/* <OrderItem />
               <OrderItem />
               <OrderItem />
               <OrderItem />
               <OrderItem />
-              <OrderItem />
-              <OrderItem />
+              <OrderItem /> */}
             </div>
             <div className="col-span-2 space-y-8">
               <p className="text-center text-lg tracking-wide text-gray-900 font-semibold shadow-sm px-4 py-2 uppercase">
