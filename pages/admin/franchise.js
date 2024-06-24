@@ -29,22 +29,6 @@ const Franchise = () => {
           icon={<MdOutlineCurrencyFranc />}
         />
       </div>
-      <div className="mt-10">
-        {/* <div className="w-full mx-4 border rounded-md shadow-md px-5 py-3 bg-gray-50">
-          <div className="grid grid-cols-9 gap-3 text-center">
-            <div className="text-xs text-gray-400">Name</div>
-            <div className="text-xs text-gray-400">Email</div>
-            <div className="text-xs text-gray-400">Phone</div>
-            <div className="text-xs text-gray-400">City</div>
-            <div className="text-xs text-gray-400">State</div>
-            <div className="text-xs text-gray-400">Near By</div>
-            <div className="text-xs text-gray-400">Super Area</div>
-            <div className="text-xs text-gray-400">Carpet Area</div>
-            <div className="text-xs text-gray-400">Type</div>
-          </div>
-        </div> */}
-
-      </div>
       <table className="w-full rounded-md shadow-md mt-10">
         <thead className="bg-slate-900 rounded-lg">
           <tr>
