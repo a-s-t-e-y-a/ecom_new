@@ -9,21 +9,15 @@ import {
 import { HiMail, HiOutlineClock } from "react-icons/hi";
 import { RiCustomerService2Line } from "react-icons/ri";
 import Link from "next/link";
-
-import { useForm } from 'react-hook-form';
+import { useForm } from "react-hook-form";
 import useNewsletter from "@/utils/mutations/useAddNewsLetter";
 
-
-
 const Footer = () => {
-
-  
   const { register, handleSubmit } = useForm();
-  const {mutate} = useNewsletter()
+  const { mutate } = useNewsletter();
   const onSubmit = (data) => {
-    mutate(data)
-  }
-  
+    mutate(data);
+  };
 
   return (
     <footer className="md:mx-4 flex flex-col">
@@ -53,13 +47,21 @@ const Footer = () => {
           </div>
         </div>
         <div className="flex items-center h-10 mx-4 ">
-         <form onSubmit={handleSubmit(onSubmit)}>
-            <input type="text" placeholder="Enter Your Number" {...register("number", { required: true })} />
-        
-          <button type="submit" className="py-2 px-5 bg-gray-800 text-white tracking-wider font-semibold cursor-pointer">
-            SUBSCRIBE
-          </button>
-        </form>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <input
+              type="text"
+              placeholder="Enter Your Number"
+              className="text-gray-600 py-2 h-full w-full md:w-[350px] px-6 items-center focus:outline-none focus:ring-0"
+              {...register("number", { required: true })}
+            />
+
+            <button
+              type="submit"
+              className="py-2 px-5 bg-gray-800 text-white tracking-wider font-semibold cursor-pointer"
+            >
+              SUBSCRIBE
+            </button>
+          </form>
         </div>
       </div>
 
