@@ -13,7 +13,7 @@ import useGetAllCoupon from "@/utils/queries/useGetAllCupons";
 import DeletePoPUPDialog from "@/Components/Dialog/DeletePoPUPDialog";
 import useDeleteCoupon from "@/utils/mutations/useDeleteCoupon";
 import { useMutation } from "@tanstack/react-query";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 const CouponManager = () => {
   const router = useRouter();

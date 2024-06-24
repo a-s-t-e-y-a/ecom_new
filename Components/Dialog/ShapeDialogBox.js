@@ -6,7 +6,7 @@ import { Toaster } from "react-hot-toast";
 import CreateShape from "@/utils/mutations/useCreateShape";
 import Loader from "../Loader";
 import { useMutation } from "@tanstack/react-query";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 const ShapeDialogBox = ({ onCancel, refetch, token }) => {
   const { mutate } = useMutation({

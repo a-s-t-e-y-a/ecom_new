@@ -12,7 +12,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useMutation } from "@tanstack/react-query";
 import deleteBrand from "@/utils/mutations/useDeleteBrand";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 const Brand = () => {
   const { data, refetch } = useGetAllBrands();
   const [open, setOpen] = useState(false);

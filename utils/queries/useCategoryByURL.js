@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import api from "@/api";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 const useCategoryByURL = (slugs, page, category, label) => {
   const categoryData = useQuery({

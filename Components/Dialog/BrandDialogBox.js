@@ -5,7 +5,7 @@ import useGetAllCategories from "@/utils/queries/useCategoriesGetAll";
 import CreateBrand from "@/utils/mutations/useCreateBrand";
 import Loader from "../Loader";
 import { useMutation } from "@tanstack/react-query";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 const ProductCategoriesNameOption = ["SunGlasses", "Computer Glasses"];
 

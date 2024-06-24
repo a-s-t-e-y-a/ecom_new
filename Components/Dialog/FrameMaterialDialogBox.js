@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import Loader from "../Loader";
 import CreateMaterial from "@/utils/mutations/useCreateMaterial";
 import { useMutation } from "@tanstack/react-query";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 const FrameMaterialDialogBox = ({ onCancel, refetch, token }) => {
   const { mutate } = useMutation({

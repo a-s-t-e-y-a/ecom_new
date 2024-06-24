@@ -7,7 +7,7 @@ import useGetAllCategories from "@/utils/queries/useCategoriesGetAll";
 import useGetAllShape from "@/utils/queries/useShapeGetAll";
 import Createbanner from "@/utils/mutations/useCreateBanner";
 import { useMutation } from "@tanstack/react-query";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import SingleSelectShape from "../Admin/shapeSelect";
 import SingleSelectCategories from "../Admin/MultipleSelectCategories";
 import SingleSelectCategoriesById from "../Admin/singleCategories";

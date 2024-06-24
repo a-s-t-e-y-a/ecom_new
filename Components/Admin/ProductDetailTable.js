@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { TbEdit } from "react-icons/tb";
 import { MdDelete } from "react-icons/md";
 import { useMutation } from "@tanstack/react-query";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import DeleteProduct from "@/utils/mutations/useDeletehandler";
 import Modal from "../Dialog/Modal";
 import DeletePoPUPDialog from "../Dialog/DeletePoPUPDialog";

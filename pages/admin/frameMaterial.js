@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import deleteFrame from "@/utils/mutations/useDeleteFrameMaterial";
 import DeletePoPUPDialog from "@/Components/Dialog/DeletePoPUPDialog";
 

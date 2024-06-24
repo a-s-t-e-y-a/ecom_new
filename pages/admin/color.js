@@ -13,7 +13,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useMutation } from "@tanstack/react-query";
 import Deletecolor from "@/utils/mutations/useDeleteColor";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import DeletePoPUPDialog from "@/Components/Dialog/DeletePoPUPDialog";
 const Color = () => {
   const router = useRouter();

@@ -9,7 +9,7 @@ import { useEffect } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import { useForm, Controller } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import { MdOutlineCurrencyFranc, MdPolicy } from "react-icons/md";
 
 const Franchise = () => {
