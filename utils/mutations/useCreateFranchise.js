@@ -3,18 +3,19 @@ import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
 const useCreateFranchise = () => {
-  const CreateFranchise = useMutation({
+  const mutate = useMutation({
+    mutationKey: ["franchise"],
     mutationFn: async (data) => {
-      const res = await api.post("/contact/franchise", data);
+      const res = await api.post(`franchise/form`, data);
       return res.data;
     },
     onSuccess: (data) => {
-      toast.success("franchise added successfully");
+      toast.success("Your franchise request has been submitted. We'll connect you soon!");
     },
-    onError: (data) => {
-      toast.error(error.message);
+    onError: (err) => {
+      toast.error(err.message);
     },
   });
-  return CreateFranchise;
+  return mutate;
 };
 export default useCreateFranchise;
