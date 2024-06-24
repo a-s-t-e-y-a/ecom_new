@@ -10,13 +10,19 @@ const FranchiseEnquiry = () => {
   const { register, handleSubmit, reset, control } = useForm();
   const { mutate, isSuccess } = useCreateFranchise();
 
-  useEffect(()=>{
-
-  }, [isSuccess])
+  useEffect(() => {}, [isSuccess]);
 
   const onSubmit = (data) => {
     const payload = {
-      ...data,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      email: data.email,
+      phone: data.phone,
+      city: data.city,
+      state: data.state,
+      superArea: data.superArea,
+      carpetArea: data.carpetArea,
+      message: data.message,
       nearby: data?.nearby?.name,
       type: data?.type?.name,
     };
@@ -123,7 +129,7 @@ const FranchiseEnquiry = () => {
                     Between 100-500 square feet.
                     <br />
                     Any Educated person /Businessman/EntrepreneurInvestment: INR
-                    Up to 7-10 lakhsNo franchise fee.
+                    Up to 7-10 lakhs franchise fee.
                   </p>
                 </div>
               </div>
