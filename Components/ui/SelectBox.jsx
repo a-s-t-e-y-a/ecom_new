@@ -26,7 +26,7 @@ const SelectBox = ({
       getOptionLabel={(option) => {
         // Ensure the option is an object and has the necessary properties
         if (typeof option === 'object' && option !== null) {
-          return option.name || option.title || option;
+          return option.name || option.title || option.description || option
         }
         // Return an empty string if the option is not an object
         return '';
