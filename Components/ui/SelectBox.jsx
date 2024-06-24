@@ -34,10 +34,11 @@ const SelectBox = ({
       value={value || "" || [] || {}}
       readOnly={readOnly}
       onChange={(_, value) => onChange(value)}
-      sx={{ width: "350px" }}
+      sx={{ width: "100%" }}
       renderInput={(params) => (
         <TextField {...params} label={label} placeholder={placeholder} />
       )}
+      className="w-full"
     />
   );
 };

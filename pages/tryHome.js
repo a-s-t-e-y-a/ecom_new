@@ -13,10 +13,10 @@ const TryAtHome = () => {
     handleSubmit,
     formState: { errors },
     control,
-    reset
+    reset,
   } = useForm();
-  const {mutate} = useCreateEnquiry()
-  
+  const { mutate } = useCreateEnquiry();
+
   const onSubmit = (formData) => {
     const payload = {
       firstname: formData.firstname,
@@ -30,8 +30,8 @@ const TryAtHome = () => {
       country: formData.country,
       services: formData.services.id,
     };
-    mutate(payload)
-    reset()
+    mutate(payload);
+    reset();
   };
 
   if (isLoading) {
@@ -52,23 +52,25 @@ const TryAtHome = () => {
           className="w-full mx-auto space-y-6"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <Controller
-            name="services"
-            control={control}
-            render={({ field: { value, onChange } }) => {
-              return (
-                <SelectBox
-                  label="Select services"
-                  options={data?.data}
-                  value={value}
-                  onChange={onChange}
-                />
-              );
-            }}
-          />
-          {errors.services && (
-            <p className="text-red-500 text-sm">Services is required</p>
-          )}
+          <div className="w-full">
+            <Controller
+              name="services"
+              control={control}
+              render={({ field: { value, onChange } }) => {
+                return (
+                  <SelectBox
+                    label="Select services"
+                    options={data?.data}
+                    value={value}
+                    onChange={onChange}
+                  />
+                );
+              }}
+            />
+            {errors.services && (
+              <p className="text-red-500 text-sm">Services is required</p>
+            )}
+          </div>
 
           <div className="flex items-center justify-center gap-6">
             <div className="relative z-0 w-full mb-6 group">
