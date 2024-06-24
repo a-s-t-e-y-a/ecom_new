@@ -66,9 +66,9 @@ const Dashboard = () => {
   if (logged) {
     return (
       <AdminLayout>
-        <div className="px-5">
-          <h1 className=" text-4xl font-bold mb-5">Dashboard</h1>
-          <div className=" grid grid-cols-4 gap-4">
+        <div className="">
+          <h1 className="text-4xl font-bold mb-5">Dashboard</h1>
+          <div className="grid grid-cols-4 gap-4">
             {items &&
               items.map((item, id) => (
                 <div key={id}>

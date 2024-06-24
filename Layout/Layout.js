@@ -18,7 +18,7 @@ const Layout = ({ children }) => {
       </Head>
 
       {router.pathname === "/" ? <Header /> : <Header1 />}
-      <main className="mx-auto px-4 min-h-screen">{children}</main>
+      <main className="mx-auto px-4 min-h-screen pb-2">{children}</main>
       <WhatsappIcon />
       <Footer />
     </>
