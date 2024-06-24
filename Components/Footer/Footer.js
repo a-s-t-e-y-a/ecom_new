@@ -13,10 +13,11 @@ import { useForm } from "react-hook-form";
 import useNewsletter from "@/utils/mutations/useAddNewsLetter";
 
 const Footer = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const { mutate } = useNewsletter();
   const onSubmit = (data) => {
     mutate(data);
+    reset()
   };
 
   return (
