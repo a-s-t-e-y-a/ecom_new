@@ -26,11 +26,8 @@ const FranchiseEnquiry = () => {
       nearby: data?.nearby?.name,
       type: data?.type?.name,
     };
-    console.log(payload);
     mutate(payload);
-    if (isSuccess) {
-      reset();
-    }
+    if (isSuccess) reset();
   };
 
   return (
