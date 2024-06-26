@@ -2,7 +2,7 @@ import React from "react";
 import { TiTick } from "react-icons/ti";
 import Image from "next/image";
 
-const OrderItem = ({ item, total }) => {
+const OrderItem = ({ item }) => {
   const { lens, lensFeature, powerType, product } = item;
   const totalPrice = Number(lens?.price) + Number(product?.product_price);
   return (

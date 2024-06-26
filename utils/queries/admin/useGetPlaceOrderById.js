@@ -6,7 +6,7 @@ const useGetPlacedOrdersById = (id) => {
     queryKey: ["orderdetailsById", id],
     queryFn: async () => {
       const res = await api.get(`/orderdetails/${id}`);
-      return res;
+      return res?.data?.data;
     },
   });
   return data_;
