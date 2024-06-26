@@ -51,7 +51,7 @@ const Footer = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <input
               type="text"
-              placeholder="Enter Your WHATSAPP Number"
+              placeholder="Enter Your Whatsapp Number"
               className="text-gray-600 py-2 h-full w-full md:w-[350px] px-6 items-center focus:outline-none focus:ring-0"
               {...register("number", { required: true })}
             />
@@ -92,13 +92,13 @@ const Footer = () => {
             <li>
               <Link href={"/contact"}>Contact Us</Link>
             </li>
-            <li>
+            {/* <li>
               <Link href={"/refundPolicy"}>Refund Policy</Link>
-            </li>
+            </li> */}
             <li>
               <Link href={"/help"}>Help</Link>
             </li>
-            <li>
+            {/* <li>
               <Link href={"/help"}>Cancellation</Link>
             </li>
             <li>
@@ -109,7 +109,7 @@ const Footer = () => {
             </li>
             <li>
               <Link href={"/help"}>Shipping & Delivery</Link>
-            </li>
+            </li> */}
           </ul>
         </div>
         <div className=" flex flex-col py-3 mb-4 items-start">
