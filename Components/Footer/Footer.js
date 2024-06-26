@@ -44,14 +44,14 @@ const Footer = () => {
           </span>
           <div className=" px-5">
             <h2 className="font-normal">Sale Up To 20% Off For</h2>
-            <h2 className="text-2xl">JOIN OUR NEWSLETTER</h2>
+            <h2 className="text-2xl">JOIN WHATSAPP NEWSLETTER</h2>
           </div>
         </div>
         <div className="flex items-center h-10 mx-4 ">
           <form onSubmit={handleSubmit(onSubmit)}>
             <input
               type="text"
-              placeholder="Enter Your Number"
+              placeholder="Enter Your WHATSAPP Number"
               className="text-gray-600 py-2 h-full w-full md:w-[350px] px-6 items-center focus:outline-none focus:ring-0"
               {...register("number", { required: true })}
             />
