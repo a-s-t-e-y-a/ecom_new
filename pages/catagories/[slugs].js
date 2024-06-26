@@ -16,9 +16,26 @@ const Index = () => {
   const { category, label } = selector;
   const { data, isLoading, isError } = useCategoryByURL(slug, page, category, label);
 
+  const handleInfiniteScroll = async () => {
+    // console.log("scroll height", window.innerHeight + document.documentElement.scrollTop);
+    // console.log("inner height", window.innerHeight);
+    // console.log("scroll top", document.documentElement.scrollTop);
+    try {
+      if (window.innerHeight + document.documentElement.scrollTop >= 1850) {
+        setPage((prev) => prev + 1)
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   const navigateToSingleProduct = (url) => {
     router.push(`/product/${url}`);
   };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleInfiniteScroll)
+  }, [])
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -56,9 +73,9 @@ const Index = () => {
           }) : <p>No Product Found !</p>}
         </div>
       </section>
-      <div className="flex justify-center my-10 px-10">
+      {/* <div className="flex justify-center my-10 px-10">
         <Pagination pages={setPage} curr={page} total={data?.totalPages} />
-      </div>
+      </div> */}
     </Layout>
   );
 };

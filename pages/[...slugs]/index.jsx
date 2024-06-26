@@ -45,18 +45,16 @@ const Index = () => {
   let filteredD = finalFilteredData[0] || {}; // Ensure filteredD is an object
 
   const filteredProduct = useSelector((state) => state.filterProduct);
-  console.log(filteredProduct, 'filteredProduct')
   const { category, label } = filteredProduct;
+
+  useEffect(()=>{
+  }, [category])
 
   const { data, isLoading, isError } = useGetAllTypeData(category || type, label || filteredD?.name, page);
   console.log(data, 'data')
   const navigateToSingleProduct = (url) => {
     router.push(`/product/${url}`);
   };
-
-  useEffect(()=>{
-
-  }, [category])
 
   return (
     <Layout>
@@ -86,9 +84,6 @@ const Index = () => {
           })}
         </div>
       </section>
-      <div className="flex justify-center my-10 px-10">
-        <Pagination pages={setPage} curr={page} total={data?.totalPages} />
-      </div>
     </Layout>
   );
 };
