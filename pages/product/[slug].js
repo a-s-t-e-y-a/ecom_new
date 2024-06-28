@@ -19,6 +19,7 @@ import { addData } from "@/Slices/CartSlice";
 import Head from "next/head";
 import { dehydrate, QueryClient } from "react-query";
 import api from "@/api";
+import useAddWishlist from "@/utils/mutations/useAddWishlist";
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
@@ -26,6 +27,8 @@ const SingleProduct = () => {
   const [productData, setProductData] = useState(null);
   const [extraData, setExtraData] = useState("");
   const [cartItems, setCartItems] = useState([]);
+
+  const { mutate } = useAddWishlist()
 
   const router = useRouter();
   const { slug } = router.query;
@@ -111,12 +114,12 @@ const SingleProduct = () => {
           </div>
 
           {/* Detail */}
-          <div className="px-5  md:ml-[280px] ">
+          <div className="px-5  md:ml-[200px] ">
             <div className="flex justify-between items-center mb-5">
-              <h1 className="text-2xl md:text-4xl">
+              <h1 className="font-semibold capitalize text-2xl md:text-4xl">
                 {productData?.product_model_name}
               </h1>
-              <span className="text-xl font-semibold cursor-pointer">
+              <span className="text-xl font-semibold cursor-pointer" onClick={() => mutate({ pId: productDetails?.p_id })}>
                 <AiOutlineHeart />
               </span>
             </div>

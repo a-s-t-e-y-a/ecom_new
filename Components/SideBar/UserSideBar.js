@@ -34,14 +34,14 @@ const UserSideBar = () => {
             Address Books
           </Typography>
         </div>
-        <div 
+        {/* <div 
           onClick={()=>router.push(`/user/prescription`)}
           className='flex items-center gap-3 cursor-pointer  hover:bg-gray-100 rounded-md py-2 px-2 hover:border-l-8 hover:border-l-gray-600'>
           <BsPrescription2  className="h-5 w-5 text-gray-700 outline-none ring-0" />
           <Typography variant="small" className="font-normal tracking-wide">
             My Prescriptions
           </Typography>
-        </div>
+        </div> */}
     </div>
   )
 }
