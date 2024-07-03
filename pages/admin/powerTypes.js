@@ -6,7 +6,7 @@ import AdminLayout from "@/Layout/AdminLayout";
 import useGetAllPowerType from "@/utils/queries/usePowerType";
 import { useMutation } from "@tanstack/react-query";
 import query from "@/utils/queryClinet";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import DeletePowerType from "@/utils/mutations/useDeletePowerType";
 import { GiPowerRing } from "react-icons/gi";
 import { IsAuth } from "@/utils/IsAuth";

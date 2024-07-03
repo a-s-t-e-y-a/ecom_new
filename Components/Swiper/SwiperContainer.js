@@ -40,25 +40,25 @@ const SwiperContainer = ({ data }) => {
         {data?.map((elemt, indx) => (
           <SwiperSlide
             key={indx}
-            className="flex w-8 items-center max-h-[150px]  "
+            className="flex w-8 items-center max-h-[150px] mx-3"
             onClick={() => handleClick(elemt?.product_url)}
           >
             <div className=" w-[300px]">
               <img
-                width={320}
-                height={320}
+                width={300}
+                height={300}
                 src={`${
                   elemt?.imageArray?.length > 0
                     ? elemt?.imageArray[0]
                     : "https://akkukachasma.s3.amazonaws.com/product_images/" +
                       elemt.product_images?.split(",")[0]
                 }`}
-                className=" object-cover hover:shadow-2xl"
-                alt="galess"
+                className="object-cover hover:shadow-2xl"
+                alt={elemt?.product_model_name}
               />
             </div>
-            <p className=" text-center font-semibold ">
-              &#8377; {elemt?.discounted_price}
+            <p className="text-center font-semibold ">
+               1000
             </p>
           </SwiperSlide>
         ))}

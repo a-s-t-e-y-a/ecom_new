@@ -22,7 +22,7 @@ import SingleSelectSize from "../Admin/sizeMultiple";
 import SingleSelectStyle from "../Admin/styleMultiple";
 import CreateProduct from "@/utils/mutations/useCreateProduct";
 import { useMutation } from "@tanstack/react-query";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import { useState } from "react";
 import SingleGenderSelect from "@/Components/Admin/SingleSelectGender";
 import { useEffect } from "react";

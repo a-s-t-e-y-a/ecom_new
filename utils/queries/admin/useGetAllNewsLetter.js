@@ -1,15 +1,16 @@
 import { useQuery } from "@tanstack/react-query"
 import api from "@/api";
 
-const useGetAllProducts = (page) => {
+const useGetAllNewsLetter = () => {
   const alltask = useQuery({
-    queryKey: ["api/products",page],
+    queryKey: ["newsletter"],
     queryFn: async () => {
-      const res = await api.get(`/products?page=${page}`);
+      const res = await api.get('newsletter');
       return res?.data?.data;
     },
   });
   return alltask;
 };
 
-export default useGetAllProducts;
+export default useGetAllNewsLetter;
+    

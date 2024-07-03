@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import { useRouter } from "next/router";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 const ProfileMenu = ({name}) => {
   const router = useRouter();

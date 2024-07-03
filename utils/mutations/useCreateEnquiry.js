@@ -2,15 +2,16 @@ import api from "@/api";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
-const useCreateFranchise = () => {
+
+const useCreateEnquiry = () => {
   const mutate = useMutation({
-    mutationKey: ["franchise"],
+    mutationKey: ["/enquiry"],
     mutationFn: async (data) => {
-      const res = await api.post(`franchise/form`, data);
+      const res = await api.post("/try_home/form", data);
       return res.data;
     },
-    onSuccess: (data) => {
-      toast.success("Your franchise request has been submitted. We'll connect you soon!");
+    onSuccess: () => {
+      toast.success("Your enquiry has submitted successfully. we'll connect to you soon!");
     },
     onError: (err) => {
       toast.error(err.message);
@@ -18,4 +19,5 @@ const useCreateFranchise = () => {
   });
   return mutate;
 };
-export default useCreateFranchise;
+
+export default useCreateEnquiry;

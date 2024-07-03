@@ -7,7 +7,7 @@ import {
   Textarea,
 } from "@material-tailwind/react";
 import { useMutation } from "@tanstack/react-query";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import CreateBlog from "@/utils/mutations/useCreateblog";
 import { Controller, useForm } from "react-hook-form";
 import FileInput from "../Admin/FileInput";

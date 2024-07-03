@@ -7,7 +7,7 @@ import CreateLensDeatils from "@/utils/mutations/useCreateLensDetail";
 import useGetAllLensFeature from "@/utils/queries/useLensFeature";
 import SingleSelectLensFeature from "../Admin/lensFeatureMultipleSelect";
 import { useMutation } from "@tanstack/react-query";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import useGetAllPowerType from "@/utils/queries/usePowerType";
 import { useEffect } from "react";
 import UpdatelensDetails from "@/utils/mutations/useupdateLensDeatil";

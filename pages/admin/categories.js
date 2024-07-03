@@ -8,7 +8,7 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { MdCategory } from "react-icons/md";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import Image from "next/image";
 import { IsAuth } from "@/utils/IsAuth";
 import { useMutation } from "@tanstack/react-query";

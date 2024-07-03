@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { addColor } from "@/Slices/colorSlice";
 import CreateColor from "@/utils/mutations/useCreateColor";
 import { useMutation } from "@tanstack/react-query";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 const ColorDialogBox = ({ onCancel, refetch, token }) => {
   const dispatch = useDispatch();

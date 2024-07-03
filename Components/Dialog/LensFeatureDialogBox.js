@@ -7,7 +7,7 @@ import useGetAllPowerType from "@/utils/queries/usePowerType";
 import CreateLenseFeature from "@/utils/mutations/useCreateLensFeature";
 import Loader from "../Loader";
 import { useMutation } from "@tanstack/react-query";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import SelectBox from "../ui/SelectBox";
 import useUpdateLensFeature from "@/utils/mutations/useUpdateLensFeature";
 

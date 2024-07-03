@@ -31,8 +31,15 @@ export const Frame_size = {
   3: "L",
 };
 
-export const Gender = [{
-  id:1,name:"Men"},{id:2,name: "Women"}, {id:3,name:"Kids"}, {id:4,name:"Both(M/F)"}]
+export const Gender = [
+  {
+    id: 1,
+    name: "Men",
+  },
+  { id: 2, name: "Women" },
+  { id: 3, name: "Kids" },
+  { id: 4, name: "Both(M/F)" },
+];
 
 export const PageLinks = [
   { href: "/aboutus", label: "About Us" },
@@ -44,16 +51,79 @@ export const PageLinks = [
 export const clearFromStorage = ["user_info", "user_data"];
 
 export const frameWidth = [
-  "123", "124", "125", "126", "127", "128", "129", "130", "131", "132", "133", 
-  "134", "135", "136", "137", "138", "139", "140", "141", "142", "143", "144", 
-  "145", "146", "147", "148"
+  "123",
+  "124",
+  "125",
+  "126",
+  "127",
+  "128",
+  "129",
+  "130",
+  "131",
+  "132",
+  "133",
+  "134",
+  "135",
+  "136",
+  "137",
+  "138",
+  "139",
+  "140",
+  "141",
+  "142",
+  "143",
+  "144",
+  "145",
+  "146",
+  "147",
+  "148",
 ];
 
 export const lensWidth = [
-  "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", 
-  "34", "35", "36", "37", "38", "39"
+  "23",
+  "24",
+  "25",
+  "26",
+  "27",
+  "28",
+  "29",
+  "30",
+  "31",
+  "32",
+  "33",
+  "34",
+  "35",
+  "36",
+  "37",
+  "38",
+  "39",
 ];
 
-export const gender = [
-  "Men", "Women", "Kids", "Both(M/F)"
+export const gender = ["Men", "Women", "Kids", "Both(M/F)"];
+
+export const nearBy = [
+  {
+    id: 1,
+    name: "Market",
+  },
+  {
+    id: 2,
+    name: "College",
+  },
+  {
+    id: 3,
+    name: "Shop",
+  },
 ];
+
+export const type = [
+  {
+    id: 1,
+    name: "Lander",
+  },
+  {
+    id: 2,
+    name: "Another",
+  },
+  
+]

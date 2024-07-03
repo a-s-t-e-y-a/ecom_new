@@ -9,21 +9,16 @@ import {
 import { HiMail, HiOutlineClock } from "react-icons/hi";
 import { RiCustomerService2Line } from "react-icons/ri";
 import Link from "next/link";
-
-import { useForm } from 'react-hook-form';
+import { useForm } from "react-hook-form";
 import useNewsletter from "@/utils/mutations/useAddNewsLetter";
 
-
-
 const Footer = () => {
-
-  
-  const { register, handleSubmit } = useForm();
-  const {mutate} = useNewsletter()
+  const { register, handleSubmit, reset } = useForm();
+  const { mutate } = useNewsletter();
   const onSubmit = (data) => {
-    mutate(data)
-  }
-  
+    mutate(data);
+    reset()
+  };
 
   return (
     <footer className="md:mx-4 flex flex-col">
@@ -49,17 +44,25 @@ const Footer = () => {
           </span>
           <div className=" px-5">
             <h2 className="font-normal">Sale Up To 20% Off For</h2>
-            <h2 className="text-2xl">JOIN OUR NEWSLETTER</h2>
+            <h2 className="text-2xl">JOIN WHATSAPP NEWSLETTER</h2>
           </div>
         </div>
         <div className="flex items-center h-10 mx-4 ">
-         <form onSubmit={handleSubmit(onSubmit)}>
-            <input type="text" placeholder="Enter Your Number" {...register("number", { required: true })} />
-        
-          <button type="submit" className="py-2 px-5 bg-gray-800 text-white tracking-wider font-semibold cursor-pointer">
-            SUBSCRIBE
-          </button>
-        </form>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <input
+              type="text"
+              placeholder="Enter Your Whatsapp Number"
+              className="text-gray-600 py-2 h-full w-full md:w-[350px] px-6 items-center focus:outline-none focus:ring-0"
+              {...register("number", { required: true })}
+            />
+
+            <button
+              type="submit"
+              className="py-2 px-5 bg-gray-800 text-white tracking-wider font-semibold cursor-pointer"
+            >
+              SUBSCRIBE
+            </button>
+          </form>
         </div>
       </div>
 
@@ -89,13 +92,13 @@ const Footer = () => {
             <li>
               <Link href={"/contact"}>Contact Us</Link>
             </li>
-            <li>
+            {/* <li>
               <Link href={"/refundPolicy"}>Refund Policy</Link>
-            </li>
+            </li> */}
             <li>
               <Link href={"/help"}>Help</Link>
             </li>
-            <li>
+            {/* <li>
               <Link href={"/help"}>Cancellation</Link>
             </li>
             <li>
@@ -106,7 +109,7 @@ const Footer = () => {
             </li>
             <li>
               <Link href={"/help"}>Shipping & Delivery</Link>
-            </li>
+            </li> */}
           </ul>
         </div>
         <div className=" flex flex-col py-3 mb-4 items-start">

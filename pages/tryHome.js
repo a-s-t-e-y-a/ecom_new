@@ -1,15 +1,37 @@
-import Layout from '@/Layout/Layout';
-import useGetTryAtHome from '@/utils/queries/useGetTryAtHome';
-import { Option, Select } from '@material-tailwind/react';
-import React from 'react';
-import { useForm } from 'react-hook-form';
+import SelectBox from "@/Components/ui/SelectBox";
+import Layout from "@/Layout/Layout";
+import useCreateEnquiry from "@/utils/mutations/useCreateEnquiry";
+import useGetTryAtHome from "@/utils/queries/useGetTryAtHome";
+import { Option, Select } from "@material-tailwind/react";
+import React from "react";
+import { Controller, useForm } from "react-hook-form";
 
 const TryAtHome = () => {
   const { data, isLoading, isError } = useGetTryAtHome();
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    control,
+    reset,
+  } = useForm();
+  const { mutate } = useCreateEnquiry();
 
   const onSubmit = (formData) => {
-    console.log(formData);
+    const payload = {
+      firstname: formData.firstname,
+      lastname: formData.lastname,
+      email: formData.email,
+      phonenumber: formData.phonenumber,
+      address: formData.address,
+      city: formData.city,
+      state: formData.state,
+      zipcode: formData.zipcode,
+      country: formData.country,
+      services: formData.services.id,
+    };
+    mutate(payload);
+    reset();
   };
 
   if (isLoading) {
@@ -18,17 +40,37 @@ const TryAtHome = () => {
 
   return (
     <Layout>
-      <div className='text-5xl font-bold tracking-wider mb-8 text-center text-gray-700'>Try@Home</div>
-      <div className='mx-auto space-y-5 md:w-[500px] bg-white py-9 px-6 shadow-lg'>
-        <h1 className='text-3xl font-bold tracking-wider text-center mb-6 text-gray-700'>Personal Detail</h1>
+      <div className="text-5xl font-bold tracking-wider mb-8 text-center text-gray-700">
+        Try@Home
+      </div>
+      <div className="mx-auto space-y-5 md:w-[500px] bg-white py-9 px-6 shadow-lg">
+        <h1 className="text-3xl font-bold tracking-wider text-center mb-6 text-gray-700">
+          Personal Detail
+        </h1>
 
-        <form className="w-full mx-auto space-y-6" onSubmit={handleSubmit(onSubmit)}>
-          <Select label="Select Version" {...register("services", { required: true })}>
-            {data.data.map((info) => (
-              <Option key={info.id} value={info.description}>{info.description}</Option>
-            ))}
-          </Select>
-          {errors.version && <p className="text-red-500 text-sm">Version is required</p>}
+        <form
+          className="w-full mx-auto space-y-6"
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <div className="w-full">
+            <Controller
+              name="services"
+              control={control}
+              render={({ field: { value, onChange } }) => {
+                return (
+                  <SelectBox
+                    label="Select services"
+                    options={data?.data}
+                    value={value}
+                    onChange={onChange}
+                  />
+                );
+              }}
+            />
+            {errors.services && (
+              <p className="text-red-500 text-sm">Services is required</p>
+            )}
+          </div>
 
           <div className="flex items-center justify-center gap-6">
             <div className="relative z-0 w-full mb-6 group">
@@ -46,7 +88,9 @@ const TryAtHome = () => {
               >
                 First Name
               </label>
-              {errors.firstname && <p className="text-red-500 text-sm">First name is required</p>}
+              {errors.firstname && (
+                <p className="text-red-500 text-sm">First name is required</p>
+              )}
             </div>
             <div className="relative z-0 w-full mb-6 group">
               <input
@@ -63,7 +107,9 @@ const TryAtHome = () => {
               >
                 Last Name
               </label>
-              {errors.lastname && <p className="text-red-500 text-sm">Last name is required</p>}
+              {errors.lastname && (
+                <p className="text-red-500 text-sm">Last name is required</p>
+              )}
             </div>
           </div>
 
@@ -83,7 +129,9 @@ const TryAtHome = () => {
               >
                 Email address
               </label>
-              {errors.email && <p className="text-red-500 text-sm">Email is required</p>}
+              {errors.email && (
+                <p className="text-red-500 text-sm">Email is required</p>
+              )}
             </div>
             <div className="relative z-0 w-full mb-6 group">
               <input
@@ -100,7 +148,9 @@ const TryAtHome = () => {
               >
                 Phone No.
               </label>
-              {errors.phonenumber && <p className="text-red-500 text-sm">Phone number is required</p>}
+              {errors.phonenumber && (
+                <p className="text-red-500 text-sm">Phone number is required</p>
+              )}
             </div>
           </div>
 
@@ -119,7 +169,9 @@ const TryAtHome = () => {
             >
               Address
             </label>
-            {errors.address && <p className="text-red-500 text-sm">Address is required</p>}
+            {errors.address && (
+              <p className="text-red-500 text-sm">Address is required</p>
+            )}
           </div>
 
           <div className="flex items-center justify-center gap-6">
@@ -138,7 +190,9 @@ const TryAtHome = () => {
               >
                 City
               </label>
-              {errors.city && <p className="text-red-500 text-sm">City is required</p>}
+              {errors.city && (
+                <p className="text-red-500 text-sm">City is required</p>
+              )}
             </div>
             <div className="relative z-0 w-full mb-6 group">
               <input
@@ -155,7 +209,9 @@ const TryAtHome = () => {
               >
                 State
               </label>
-              {errors.state && <p className="text-red-500 text-sm">State is required</p>}
+              {errors.state && (
+                <p className="text-red-500 text-sm">State is required</p>
+              )}
             </div>
           </div>
 
@@ -175,7 +231,9 @@ const TryAtHome = () => {
               >
                 Zip Code
               </label>
-              {errors.zipcode && <p className="text-red-500 text-sm">Zip code is required</p>}
+              {errors.zipcode && (
+                <p className="text-red-500 text-sm">Zip code is required</p>
+              )}
             </div>
             <div className="relative z-0 w-full mb-6 group">
               <input
@@ -192,7 +250,9 @@ const TryAtHome = () => {
               >
                 Country
               </label>
-              {errors.country && <p className="text-red-500 text-sm">Country is required</p>}
+              {errors.country && (
+                <p className="text-red-500 text-sm">Country is required</p>
+              )}
             </div>
           </div>
 
@@ -209,4 +269,3 @@ const TryAtHome = () => {
 };
 
 export default TryAtHome;
-

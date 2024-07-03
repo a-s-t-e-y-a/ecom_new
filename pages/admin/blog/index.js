@@ -13,7 +13,7 @@ import { FaBlog } from "react-icons/fa";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { useMutation } from "@tanstack/react-query";
 import deleteBlogs from "@/utils/mutations/useDeleteBlog";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import DeletePoPUPDialog from "@/Components/Dialog/DeletePoPUPDialog";
 import { TbEdit } from "react-icons/tb";
 

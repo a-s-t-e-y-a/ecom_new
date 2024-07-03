@@ -43,7 +43,7 @@ const Header1 = () => {
             width={400}
             height={400}
             src="/logo.png"
-            className=""
+            className=" cursor-pointer"
             alt=""
             onClick={() => router.push("/")}
           />

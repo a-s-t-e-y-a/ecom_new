@@ -15,8 +15,8 @@ const AdminNavBar = () => {
     setDate(new Date().toLocaleDateString());
   }, [date]);
   return (
-    <div className="bg-gray-50 px-2 py-1 rounded-lg m-5 flex items-center justify-between">
-      <div className="flex items-center gap-5">
+    <div className="bg-gray-50 py-1 rounded-lg mt-4 flex items-center justify-between">
+      <div className="flex items-center gap-4">
         <span className="text-sm text-gray-700 tracking-wide">
           <span className="font-semibold hidden md:inline">
             Date : <span className="font-normal">{date}</span>

@@ -1,15 +1,15 @@
 import api from "@/api";
 import { useQuery } from "@tanstack/react-query";
 
-const useGetPlacedOrders = () => {
+const useGetPlacedOrdersById = (id) => {
   const data_ = useQuery({
-    queryKey: ["placedOrders"],
+    queryKey: ["orderdetailsById", id],
     queryFn: async () => {
-      const res = await api.get("/orderdetails");
+      const res = await api.get(`/orderdetails/${id}`);
       return res?.data?.data;
     },
   });
   return data_;
 };
 
-export default useGetPlacedOrders;
+export default useGetPlacedOrdersById;

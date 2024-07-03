@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { QueryClient, QueryClientProvider, HydrationBoundary as Hydrate } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import "swiper/css";
+import { Toaster } from "react-hot-toast";
 
 const Query = new QueryClient();
 
@@ -15,6 +16,7 @@ export default function App({ Component, pageProps }) {
       <Hydrate state={pageProps.dehydratedState}>
         <Provider store={store}>
           <Component {...pageProps} />
+          <Toaster position="top-right"/>
           <ToastContainer />
         </Provider>
         <ReactQueryDevtools initialIsOpen={false} />

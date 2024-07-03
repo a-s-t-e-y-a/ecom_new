@@ -7,7 +7,7 @@ import AddIcon from "@mui/icons-material/Add";
 import { addPowerType } from "@/Slices/powerTypeSlice";
 import CreatePowerType from "@/utils/mutations/useCreatePowerTypes";
 import { useMutation } from "@tanstack/react-query";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import Loader from "../Loader";
 import query from "@/utils/queryClinet";
 import useUpdatePowerType from "@/utils/mutations/useUpdatePowerType";

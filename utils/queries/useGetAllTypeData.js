@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import api from "@/api";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 const useGetAllTypeData = (type, TypeSlug, page) => {
   console.log(type, TypeSlug, page);

@@ -10,7 +10,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import useGetAllLensFeature from "@/utils/queries/useLensFeature";
 import { useMutation } from "@tanstack/react-query";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import query from "@/utils/queryClinet";
 import DeleteLensFeature from "@/utils/mutations/useDeletelensFeature";
 const LensFeature = () => {

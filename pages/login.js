@@ -6,7 +6,7 @@ import { BsFillPersonFill } from "react-icons/bs";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import axios from "axios";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 
 export default function Example() {
   const [show, setShow] = useState(false);

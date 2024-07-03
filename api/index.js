@@ -1,7 +1,5 @@
 import { customLocalStorage } from "@/utils/Helpers";
 import axios from "axios";
-// import { getCookie } from "cookies-next"
-// import { toast } from "react-toastify"
 
 // export const baseURL = "http://localhost:5000/api/"
 export const baseURL = "https://api.akkukachasma.com/api/"

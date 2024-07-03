@@ -15,7 +15,7 @@ import { FcAbout } from "react-icons/fc";
 import useGetAllLensDetails from "@/utils/queries/useLensDetail";
 import { useMutation } from "@tanstack/react-query";
 import deleteLensDetails from "@/utils/mutations/uselensDeatil";
-import { toast } from "react-toastify";
+import toast from "react-hot-toast";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 const LensDetail = () => {
   const lensDetailData = useSelector((state) => state.lensDetail);

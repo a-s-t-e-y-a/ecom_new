@@ -2,16 +2,10 @@ import AddIcon from "@mui/icons-material/Add";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { addCoupon } from "@/Slices/couponSlice";
-// import MultipleSelect from "../Admin/MultipleSelect";
 import { TextField } from "@mui/material";
-import { useMutation } from "@tanstack/react-query";
-import { toast } from "react-toastify";
 import useCreateCoupon from "@/utils/mutations/useCreateCoupon";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useGetAllCategories from "@/utils/queries/useCategoriesGetAll";
-import SingleSelectCategories from "../Admin/MultipleSelectCategories";
-const ProductCategoriesNameOption = ["SunGlasses", "Computer Glasses"];
-const ProductBrandNameOption = ["Normal", "Trends"];
 
 const CouponManagerDialogBox = ({ onCancel, refetch, token }) => {
   const dispatch = useDispatch();
