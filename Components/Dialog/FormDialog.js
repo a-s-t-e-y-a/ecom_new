@@ -7,14 +7,16 @@ import {
   DialogFooter,
 } from "@material-tailwind/react";
 import { useForm } from "react-hook-form";
-
+import useAddUserAddress from "@/utils/mutations/useAdduserAddress";
 
 const FormDialog = (props) => {
   const { open, setOpen, handleOpen } = props;
   const { register, handleSubmit } = useForm();
+  const {mutate} = useAddUserAddress()
 
   const onSubmit = (data) => {
     console.log(data);
+    mutate(data);
     setOpen(false);
   };
 
@@ -41,7 +43,7 @@ const FormDialog = (props) => {
                     type="text"
                     name="first_name"
                     id="first_name"
-                    className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
+                    className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                     placeholder=" "
                     {...register("first_name")}
                     required
@@ -58,7 +60,7 @@ const FormDialog = (props) => {
                     type="text"
                     name="last_name"
                     id="last_name"
-                    className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
+                    className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                     placeholder=" "
                     {...register("last_name")}
                     required
@@ -77,7 +79,7 @@ const FormDialog = (props) => {
                     type="email"
                     name="email"
                     id="email"
-                    className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
+                    className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                     placeholder=" "
                     {...register("email")}
                     required
@@ -94,7 +96,7 @@ const FormDialog = (props) => {
                     type="text"
                     name="phoneNo"
                     id="phoneNo"
-                    className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
+                    className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                     placeholder=" "
                     {...register("phoneNo")}
                     required
@@ -112,7 +114,7 @@ const FormDialog = (props) => {
                   type="text"
                   name="address"
                   id="address"
-                  className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
+                  className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                   placeholder=" "
                   {...register("address")}
                   required
@@ -130,7 +132,7 @@ const FormDialog = (props) => {
                     type="text"
                     name="city"
                     id="city"
-                    className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
+                    className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                     placeholder=" "
                     {...register("city")}
                     required
@@ -147,7 +149,7 @@ const FormDialog = (props) => {
                     type="text"
                     name="state"
                     id="state"
-                    className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
+                    className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                     placeholder=" "
                     {...register("state")}
                     required
@@ -166,7 +168,7 @@ const FormDialog = (props) => {
                     type="text"
                     name="pinCode"
                     id="pinCode"
-                    className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
+                    className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                     placeholder=" "
                     {...register("pinCode")}
                     required
@@ -183,7 +185,7 @@ const FormDialog = (props) => {
                     type="text"
                     name="country"
                     id="country"
-                    className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
+                    className="block py-2 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:border-gray-600 peer"
                     placeholder=" "
                     {...register("country")}
                     required
