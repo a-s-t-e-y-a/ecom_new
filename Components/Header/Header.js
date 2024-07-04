@@ -14,6 +14,7 @@ import { customLocalStorage } from "@/utils/Helpers";
 import { PageLinks, SunGlassLinks } from "@/utils/contants";
 import useGetAllShape from "@/utils/queries/useShapeGetAll";
 import useGetAllStyle from "@/utils/queries/useStyleGetAll";
+import WishlistDialog from "../Dialog/WishlistDialog";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -78,6 +79,7 @@ const Header = () => {
   return (
     <>
       <CartDialog open={open} setOpen={setOpen} />
+      <WishlistDialog open={open} setOpen={setOpen}/>
       <header className="flex flex-col w-full  px-4 mb-4">
         {/* Top Part */}
         <div className="flex items-center justify-between h-14 mb-3 ">
@@ -97,7 +99,7 @@ const Header = () => {
               <li className="cursor-pointer mb-2 border-b-2 md:mb-0 md:border-0 pb-1  text-nowrap">
                 Track order
               </li>
-              <li className="cursor-pointer mb-2 border-b-2 md:mb-0 md:border-0 pb-1 flex items-center">
+              <li className="cursor-pointer mb-2 border-b-2 md:mb-0 md:border-0 pb-1 flex items-center" onClick={()=>setOpen(!open)}>
                 <AiOutlineHeart className="h-4 w-4 me-1" /> Wishlist
               </li>
               <li
