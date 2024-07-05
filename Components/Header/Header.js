@@ -18,6 +18,7 @@ import WishlistDialog from "../Dialog/WishlistDialog";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
+  const [openFav, setOpenFav] = useState(false)
   const [Dropdown, setDropdown] = useState(false);
   const [token, setToken] = useState(null);
   const [userData, setUserData] = useState(null);
@@ -79,7 +80,7 @@ const Header = () => {
   return (
     <>
       <CartDialog open={open} setOpen={setOpen} />
-      <WishlistDialog open={open} setOpen={setOpen}/>
+      <WishlistDialog open={openFav} setOpen={setOpenFav}/>
       <header className="flex flex-col w-full  px-4 mb-4">
         {/* Top Part */}
         <div className="flex items-center justify-between h-14 mb-3 ">
@@ -99,7 +100,7 @@ const Header = () => {
               <li className="cursor-pointer mb-2 border-b-2 md:mb-0 md:border-0 pb-1  text-nowrap">
                 Track order
               </li>
-              <li className="cursor-pointer mb-2 border-b-2 md:mb-0 md:border-0 pb-1 flex items-center" onClick={()=>setOpen(!open)}>
+              <li className="cursor-pointer mb-2 border-b-2 md:mb-0 md:border-0 pb-1 flex items-center" onClick={()=>setOpenFav(!openFav)}>
                 <AiOutlineHeart className="h-4 w-4 me-1" /> Wishlist
               </li>
               <li
