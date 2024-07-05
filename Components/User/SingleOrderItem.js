@@ -3,7 +3,7 @@ import { CiDeliveryTruck } from "react-icons/ci";
 import { TiTick } from "react-icons/ti";
 import Image from "next/image";
 
-const SingleOrderItem = () => {
+const SingleOrderItem = ({ orderId, CreatedDate, total, order_item }) => {
   return (
     <div className="w-[90%] mx-auto">
       <div className="border rounded-md">
@@ -13,20 +13,20 @@ const SingleOrderItem = () => {
               <span className="text-xs font-normal tracking-wide">
                 Order Id :
               </span>{" "}
-              124535
+              {orderId}
             </div>
             <div className="font-semibold text-[14px]">
               <span className="text-xs font-normal tracking-wide">
                 Order Date :
               </span>{" "}
-              4 Sep
+              {CreatedDate}
             </div>
           </div>
           <div className="font-semibold text-[14px]">
             <span className="text-xs font-normal tracking-wide">
               Total Price :
             </span>{" "}
-            $1785
+            {total}
           </div>
         </div>
         <hr />
@@ -41,23 +41,28 @@ const SingleOrderItem = () => {
 
         <div className="p-2">
           <hr />
-          <div className="flex gap-5 py-5">
-            <Image
-              width={100}
-              height={100}
-              alt=""
-              src={"/1 (1).jpeg"}
-              className="w-56"
-            />
-            <div className="text-sm tracking-wide space-y-2">
-              <div>
-                <p>Vincent Chase Online Eyeglasses</p>
-                <p className="text-xs text-gray-500">Hydrophobic Anti-Glore</p>
-                <p className="text-[10px] text-gray-400">Sold By Store</p>
+          {order_item.map((info, index) => (
+            <div className="flex gap-5 py-5" key={index}>
+              <Image
+                width={100}
+                height={100}
+                alt=""
+                src={"/1 (1).jpeg"}
+                className="w-56"
+              />
+              <div className="text-sm tracking-wide space-y-2">
+                <div>
+                  <p>{info.pId.product_model_name}</p>
+                  <p className="text-xs text-gray-500">
+                    Hydrophobic Anti-Glore
+                  </p>
+                  <p className="text-[10px] text-gray-400">Sold By Store</p>
+                </div>
+                <p className="font-semibold">{info.pId.discounted_price}</p>
               </div>
-              <p className="font-semibold">$675</p>
             </div>
-          </div>
+          ))}
+
           <hr />
 
           <div className="flex items-center justify-between p-2">

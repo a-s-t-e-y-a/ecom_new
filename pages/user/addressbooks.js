@@ -11,9 +11,11 @@ const Addressbooks = () => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(!open);
 
-  const {data} = useGetAllAddress();
+  const { data, isLoading } = useGetAllAddress();
   console.log(data);
-
+  if (isLoading) {
+    return <>Loading....!!!!</>;
+  }
   return (
     <div className="w-[95%] h-screen mx-auto text-gray-700  flex flex-col">
       {/* Header  */}
@@ -61,29 +63,33 @@ const Addressbooks = () => {
           </div>
 
           {/* Save Address  */}
-          <div className=" relative w-[70%] text-sm mt-5 border p-2 rounded-md space-y-2 pl-5">
-            <div className="space-y-1">
-              <p>Name</p>
-              <p>Address Line 1</p>
-              <p>Address Line 2</p>
-              <p className="flex items-center gap-3">
-                <span>City</span>
-                <span>State</span>
-              </p>
-              <p className="flex items-center gap-3">
-                <span>Pin Code</span>
-                <span>Country</span>
-              </p>
+          {data.map((info, index) => (
+            <div
+              key={index}
+              className=" relative w-[70%] text-sm mt-5 border p-2 rounded-md space-y-2 pl-5"
+            >
+              <div className="space-y-1">
+                <p>{info.first_name + " " + info.last_name}</p>
+                <p>{info.address}</p>
+                <p className="flex items-center gap-3">
+                  <span>{info.city}</span>
+                  <span>{info.state}</span>
+                </p>
+                <p className="flex items-center gap-3">
+                  <span>{info.pinCode}</span>
+                  <span>{info.country}</span>
+                </p>
+              </div>
+              <div className="absolute top-2 right-2 text-lg text-gray-700 font-semibold gap-1 flex items-center">
+                <span>
+                  <HiPencil />
+                </span>
+                <span>
+                  <MdDeleteForever />
+                </span>
+              </div>
             </div>
-            <div className="absolute top-2 right-2 text-lg text-gray-700 font-semibold gap-1 flex items-center">
-              <span>
-                <HiPencil />
-              </span>
-              <span>
-                <MdDeleteForever />
-              </span>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>
