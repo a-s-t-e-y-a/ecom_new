@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import {
   Button,
   Dialog,
@@ -10,16 +10,39 @@ import { useForm } from "react-hook-form";
 import useAddUserAddress from "@/utils/mutations/useAdduserAddress";
 
 const FormDialog = (props) => {
-  const { open, setOpen, handleOpen } = props;
-  const { register, handleSubmit } = useForm();
-  const {mutate} = useAddUserAddress()
+  const { open, setOpen, handleOpen, edit } = props;
+  const { register, handleSubmit, reset } = useForm({
+    mode: "all",
+    defaultValue: {
+      ...edit,
+    },
+  });
+  const {mutate} = useAddUserAddress();
+
+  useEffect(()=>{
+    const payload={
+      first_name: edit?.first_name || '',
+      last_name: edit?.last_name || '',
+      address: edit?.address || '',
+      email: edit?.email || '',
+      phoneNo: edit?.phoneNo || '',
+      city: edit?.city || '',
+      state: edit?.state || '',
+      country: edit?.country || '',
+      pinCode: edit?.pinCode || '',
+    }
+    reset(payload)
+  },[reset, edit])
 
   const onSubmit = (data) => {
+    if(Object.keys(data).length){
+      
+    }
     console.log(data);
     mutate(data);
     setOpen(false);
   };
-
+  console.log(edit)
   return (
     <Fragment >
       <Dialog

@@ -9,10 +9,9 @@ import useGetAllAddress from "@/utils/queries/useGetAllAddress";
 
 const Addressbooks = () => {
   const [open, setOpen] = useState(false);
+  const [editable, setEditable] = useState({})
   const handleOpen = () => setOpen(!open);
-
   const { data, isLoading } = useGetAllAddress();
-  console.log(data);
   if (isLoading) {
     return <>Loading....!!!!</>;
   }
@@ -59,10 +58,10 @@ const Addressbooks = () => {
           </button>
 
           <div className="w-full">
-            <FormDialog open={open} setOpen={setOpen} handleOpen={handleOpen} />
+            <FormDialog open={open} setOpen={setOpen} handleOpen={handleOpen} edit={editable}/>
           </div>
-
-          {/* Save Address  */}
+          <section  className="w-full h-[30rem] overflow-y-auto scrollbar-default border rounded-lg px-4 my-4">
+            {/* Save Address  */}
           {data.map((info, index) => (
             <div
               key={index}
@@ -81,7 +80,10 @@ const Addressbooks = () => {
                 </p>
               </div>
               <div className="absolute top-2 right-2 text-lg text-gray-700 font-semibold gap-1 flex items-center">
-                <span>
+                <span onClick={()=>{
+                  setOpen(!open)
+                  setEditable(info)
+                }}>
                   <HiPencil />
                 </span>
                 <span>
@@ -90,6 +92,7 @@ const Addressbooks = () => {
               </div>
             </div>
           ))}
+          </section>
         </div>
       </div>
     </div>
