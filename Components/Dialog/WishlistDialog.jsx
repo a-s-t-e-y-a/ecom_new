@@ -7,8 +7,11 @@ import WhishlistSingleItem from "../whishlistSIngleItem";
 
 const WishlistDialog = (props) => {
   const { open, setOpen } = props;
-  const {data}  = useGetAllWhishlist()
-  console.log(data)
+  const { data, isLoading } = useGetAllWhishlist();
+  console.log(data);
+  if (isLoading) {
+    return <>Loading!!!</>;7yl
+  }
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -56,14 +59,10 @@ const WishlistDialog = (props) => {
                             />
                           </button>
                         </div>
-                        
                       </div>
-                        {
-                            data.map((info)=>(
-                                <WhishlistSingleItem key={info.p_id} item={info.pId} />
-                            ))
-                        }
-                      
+                      {data.map((info) => (
+                        <WhishlistSingleItem key={info.p_id} item={info.pId} />
+                      ))}
                     </div>
                   </div>
                 </Dialog.Panel>
