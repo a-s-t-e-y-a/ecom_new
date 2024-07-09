@@ -10,7 +10,7 @@ const WishlistDialog = (props) => {
   const { data, isLoading } = useGetAllWhishlist();
   console.log(data);
   if (isLoading) {
-    return <>Loading!!!</>;7yl
+    return <>Loading!!!</>
   }
   return (
     <Transition.Root show={open} as={Fragment}>
