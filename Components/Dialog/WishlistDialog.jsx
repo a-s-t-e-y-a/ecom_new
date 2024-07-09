@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { RiCloseLine } from "react-icons/ri";
-import CartSingleItem from "../CartSingleItem";
 import useGetAllWhishlist from "@/utils/queries/useGetAllWhishlist";
 import WhishlistSingleItem from "../whishlistSIngleItem";
 
@@ -10,7 +9,7 @@ const WishlistDialog = (props) => {
   const { data, isLoading } = useGetAllWhishlist();
   console.log(data);
   if (isLoading) {
-    return <>Loading!!!</>
+    return <>Loading!!!</>;
   }
   return (
     <Transition.Root show={open} as={Fragment}>

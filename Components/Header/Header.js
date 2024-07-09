@@ -18,13 +18,13 @@ import WishlistDialog from "../Dialog/WishlistDialog";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
-  const [openFav, setOpenFav] = useState(false)
+  const [openFav, setOpenFav] = useState(false);
   const [Dropdown, setDropdown] = useState(false);
   const [token, setToken] = useState(null);
   const [userData, setUserData] = useState(null);
   const router = useRouter();
-  const {data} = useGetAllShape();
-  const {data:style} = useGetAllStyle()
+  const { data } = useGetAllShape();
+  const { data: style } = useGetAllStyle();
 
   const { getItem } = customLocalStorage;
 
@@ -40,47 +40,47 @@ const Header = () => {
   const EyeGlassLinks = [
     {
       label: "Shape",
-      subItems: data?.map((item)=>{
+      subItems: data?.map((item) => {
         return {
           label: item.name,
           href: `/Eyeglass/shape/${item.name}`,
-        }
-      })
+        };
+      }),
     },
     {
       label: "Style",
-      subItems: style?.map((item)=>{
+      subItems: style?.map((item) => {
         return {
           label: item.name,
           href: `/Eyeglass/style/${item.url}`,
-        }
-      })
+        };
+      }),
     },
   ];
   const SunGlassLinks = [
     {
       label: "Shape",
-      subItems: data?.map((item)=>{
+      subItems: data?.map((item) => {
         return {
           label: item.name,
           href: `/Sunglasses/shape/${item.name}`,
-        }
-      })
+        };
+      }),
     },
     {
       label: "Style",
-      subItems: style?.map((item)=>{
+      subItems: style?.map((item) => {
         return {
           label: item.name,
           href: `/Sunglasses/style/${item.url}`,
-        }
-      })
+        };
+      }),
     },
-  ]
+  ];
   return (
     <>
       <CartDialog open={open} setOpen={setOpen} />
-      <WishlistDialog open={openFav} setOpen={setOpenFav}/>
+      <WishlistDialog open={openFav} setOpen={setOpenFav} />
       <header className="flex flex-col w-full  px-4 mb-4">
         {/* Top Part */}
         <div className="flex items-center justify-between h-14 mb-3 ">
@@ -100,7 +100,10 @@ const Header = () => {
               <li className="cursor-pointer mb-2 border-b-2 md:mb-0 md:border-0 pb-1  text-nowrap">
                 Track order
               </li>
-              <li className="cursor-pointer mb-2 border-b-2 md:mb-0 md:border-0 pb-1 flex items-center" onClick={()=>setOpenFav(!openFav)}>
+              <li
+                className="cursor-pointer mb-2 border-b-2 md:mb-0 md:border-0 pb-1 flex items-center"
+                onClick={() => setOpenFav(!openFav)}
+              >
                 <AiOutlineHeart className="h-4 w-4 me-1" /> Wishlist
               </li>
               <li
@@ -125,7 +128,7 @@ const Header = () => {
                 <>
                   <li className="underline cursor-pointer">{userData.name}</li>
                   <li>
-                    <ProfileMenu name={userData.name}/>
+                    <ProfileMenu name={userData.name} />
                   </li>
                 </>
               ) : (

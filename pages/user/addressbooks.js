@@ -6,15 +6,24 @@ import FormDialog from "@/Components/Dialog/FormDialog";
 import { HiPencil } from "react-icons/hi";
 import { MdDeleteForever } from "react-icons/md";
 import useGetAllAddress from "@/utils/queries/useGetAllAddress";
+import { useMutation, useQueryClient } from "react-query";
+import useDeleteAddress from "@/utils/mutations/useDeleteAddress";
 
 const Addressbooks = () => {
   const [open, setOpen] = useState(false);
-  const [editable, setEditable] = useState({})
+  const [editable, setEditable] = useState({});
   const handleOpen = () => setOpen(!open);
   const { data, isLoading } = useGetAllAddress();
+  const { mutate } = useDeleteAddress();
+
+  const deleteAddress = (id) => {
+    mutate(id);
+  };
+
   if (isLoading) {
     return <>Loading....!!!!</>;
   }
+
   return (
     <div className="w-[95%] h-screen mx-auto text-gray-700  flex flex-col">
       {/* Header  */}
@@ -29,7 +38,6 @@ const Addressbooks = () => {
           <h1 className="font-semibold tracking-wider text-2xl">
             Akku ka chashma
           </h1>
-          <h2 className="font-normal text-md">ankit@gmail.com</h2>
         </div>
       </div>
 
@@ -58,40 +66,49 @@ const Addressbooks = () => {
           </button>
 
           <div className="w-full">
-            <FormDialog open={open} setOpen={setOpen} handleOpen={handleOpen} edit={editable}/>
+            <FormDialog
+              open={open}
+              setOpen={setOpen}
+              handleOpen={handleOpen}
+              edit={editable}
+            />
           </div>
-          <section  className="w-full h-[30rem] overflow-y-auto scrollbar-default border rounded-lg px-4 my-4">
+          <section className="w-full h-[30rem] overflow-y-auto scrollbar-default border rounded-lg px-4 my-4">
             {/* Save Address  */}
-          {data.map((info, index) => (
-            <div
-              key={index}
-              className=" relative w-[70%] text-sm mt-5 border p-2 rounded-md space-y-2 pl-5"
-            >
-              <div className="space-y-1">
-                <p>{info.first_name + " " + info.last_name}</p>
-                <p>{info.address}</p>
-                <p className="flex items-center gap-3">
-                  <span>{info.city}</span>
-                  <span>{info.state}</span>
-                </p>
-                <p className="flex items-center gap-3">
-                  <span>{info.pinCode}</span>
-                  <span>{info.country}</span>
-                </p>
+            {data.map((info, index) => (
+              <div
+                key={index}
+                className=" relative w-[70%] text-sm mt-5 border p-2 rounded-md space-y-2 pl-5"
+              >
+                <div className="space-y-1">
+                  <p>{info.first_name + " " + info.last_name}</p>
+                  <p>{info.address}</p>
+                  <p className="flex items-center gap-3">
+                    <span>{info.city}</span>
+                    <span>{info.state}</span>
+                  </p>
+                  <p className="flex items-center gap-3">
+                    <span>{info.pinCode}</span>
+                    <span>{info.country}</span>
+                  </p>
+                </div>
+                <div className="absolute top-2 right-2 text-lg text-gray-700 font-semibold gap-1 flex items-center">
+                  <span
+                    onClick={() => {
+                      setOpen(!open);
+                      setEditable(info);
+                    }}
+                  >
+                    <HiPencil />
+                  </span>
+                  <span>
+                    <button onClick={() => deleteAddress(info.id)}>
+                      <MdDeleteForever />
+                    </button>
+                  </span>
+                </div>
               </div>
-              <div className="absolute top-2 right-2 text-lg text-gray-700 font-semibold gap-1 flex items-center">
-                <span onClick={()=>{
-                  setOpen(!open)
-                  setEditable(info)
-                }}>
-                  <HiPencil />
-                </span>
-                <span>
-                  <MdDeleteForever />
-                </span>
-              </div>
-            </div>
-          ))}
+            ))}
           </section>
         </div>
       </div>
