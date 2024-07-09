@@ -57,7 +57,7 @@ const SingleProduct = () => {
   const messageToShare = encodeURIComponent(
     `Hello! I'm interested in this one! ${BASE_URI + productURL}`
   );
-  const whatsappLink = `https://wa.me/8188881661?text=${messageToShare}`;
+  const whatsappLink = `https://wa.me/+918188881661?text=${messageToShare}`;
   const whatsappLinkToShare = `https://wa.me/?text=${messageToShare}`;
 
   const addToCart = (productId) => {
