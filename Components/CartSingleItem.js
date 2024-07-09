@@ -53,7 +53,7 @@ const CartSingleItem = ({ item }) => {
                 <div>
                   <div className="flex justify-between text-sm font-medium text-gray-900">
                     <h3>Total Price</h3>
-                    <p className="ml-4 text-gray-600">
+                    <p className="ml-4 text-xl font-semibold text-gray-600">
                       Rs. {parseInt(product?.discounted_price) + parseInt(lens?.price)}
                     </p>
                   </div>

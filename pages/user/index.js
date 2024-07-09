@@ -15,11 +15,11 @@ const Index = () => {
           src="/favicon.ico"
           alt="avatar"
           variant="circular"
-          className="w-11 h-11"
+          className="w-11 h-11 duration-300 cursor-pointer"
           onClick={(e) => {
             setShow(!Show);
             e.target.style.transform = `${
-              Show ? "rotate(0deg)" : "rotate(57deg)"
+              Show ? "rotate(0deg)" : "rotate(360deg)"
             }`;
           }}
         />
