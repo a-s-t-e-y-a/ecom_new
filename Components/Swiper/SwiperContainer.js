@@ -42,7 +42,7 @@ const SwiperContainer = ({ data }) => {
             className="flex w-8 items-center max-h-[150px] mx-3"
             onClick={() => handleClick(elemt?.product_url)}
           >
-            <div className=" w-[300px]">
+            <div className=" w-[300px] cursor-pointer">
               <Image
                 width={300}
                 height={300}
