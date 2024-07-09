@@ -6,7 +6,7 @@ import WhishlistSingleItem from "../whishlistSIngleItem";
 
 const WishlistDialog = (props) => {
   const { open, setOpen } = props;
-  const { data, isLoading } = useGetAllWhishlist();
+  const { data } = useGetAllWhishlist();
   console.log(data);
   if (isLoading) {
     return <>Loading!!!</>;
@@ -59,7 +59,7 @@ const WishlistDialog = (props) => {
                           </button>
                         </div>
                       </div>
-                      {data.map((info) => (
+                      {data?.map((info) => (
                         <WhishlistSingleItem key={info.p_id} item={info.pId} />
                       ))}
                     </div>
