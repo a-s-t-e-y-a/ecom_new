@@ -11,7 +11,6 @@ const Enquiry = () => {
   const router = useRouter();
   const [logged, setlogged] = useState(false);
   const { data } = useGetAllEnquiry()
-  console.log(data);
   useEffect(() => {
     if (IsAuth("admin_info")) {
       setlogged(true);

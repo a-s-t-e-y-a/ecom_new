@@ -20,7 +20,6 @@ const LensDetailDialogBox = ({ onCancel, refetch, token, edit }) => {
   const { register, handleSubmit, reset, control } = useForm();
 
   useEffect(() => {
-    console.log(edit, 'edit');
     const resetPayload = {
       anti_scratch_coating: edit?.anti_scratch_coating,
       blue_light_blocker: edit?.blue_light_blocker,
@@ -53,7 +52,6 @@ const LensDetailDialogBox = ({ onCancel, refetch, token, edit }) => {
   });
 
   const onSubmit = (data) => {
-    console.log(data);
     const payload = {
       heading: data.heading,
       price: data.price,
@@ -70,7 +68,6 @@ const LensDetailDialogBox = ({ onCancel, refetch, token, edit }) => {
       lens_feature_id: data?.lens_feature_id?.id,
       power_type_id: data?.power_type_id?.id
     };
-    console.log(payload)
     const formData = new FormData();
     formData.append("file", data.file[0]);
     delete data.file;

@@ -18,7 +18,6 @@ const useGetHash = () => {
       razorScript.setAttribute("type", "text/javascript");
       razorScript.setAttribute("src", "https://checkout.razorpay.com/v1/checkout.js");
       razorScript.setAttribute("async", true);
-      console.log(data, 'get hash from server')
       const options = {
         key:"rzp_test_BsvG3tVFWhJRmR",
         amount: data?.amount,
@@ -40,7 +39,6 @@ const useGetHash = () => {
           color: "#121212",
         },
         handler: async (response)=>{
-          console.log(response);
           PaymentSuccess({response, address})
         }
       };
@@ -49,7 +47,6 @@ const useGetHash = () => {
         alert("script loaded successfully");
         const rzp = new window.Razorpay(options);
         rzp.on("payment.failed", response => {
-          console.log("see payment failed with this response", response?.error?.metadata);
         });
         rzp.open();
       })

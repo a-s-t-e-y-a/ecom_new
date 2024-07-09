@@ -60,7 +60,6 @@ const CreateBlogDialog = ({ closeModal, edit, refetch }) => {
     form.append("data", JSON.stringify(payload));
 
     if (edit && typeof edit === "object" && edit !== null) {
-      console.log("new");
       update(payload);
       closeModal()
     } else {

@@ -10,7 +10,7 @@ const usePaymentSuccess = () => {
       return res.data?.order;
     },
     onSuccess: (data) => {
-      console.log("success", data);
+      // console.log("success", data);
     },
     onError: (err) => {
       toast.error(err.message);

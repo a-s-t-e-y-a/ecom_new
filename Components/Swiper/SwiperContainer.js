@@ -7,7 +7,6 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { useRouter } from "next/router";
-import { imageUrl } from "@/utils/contants";
 const breakpoints = {
   320: {
     slidesPerView: 1,
@@ -25,7 +24,7 @@ const breakpoints = {
 const SwiperContainer = ({ data }) => {
   const router = useRouter();
   function handleClick(item) {
-    router.push(`/eyewear/${item}`);
+    router.push(`/product/${item}`);
   }
   return (
     <div>
@@ -44,7 +43,7 @@ const SwiperContainer = ({ data }) => {
             onClick={() => handleClick(elemt?.product_url)}
           >
             <div className=" w-[300px]">
-              <img
+              <Image
                 width={300}
                 height={300}
                 src={`${

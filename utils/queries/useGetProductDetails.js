@@ -5,7 +5,6 @@ const useGetProductDetail = (url) => {
   const data_ = useQuery({
     queryKey: ["api/productDetail", url],
     queryFn: async () => {
-      console.log(extra)
       const res = await api.get(`/products/${url}`);
       return res?.data[0];
     },

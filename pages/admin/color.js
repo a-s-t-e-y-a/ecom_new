@@ -47,7 +47,6 @@ const Color = () => {
   const onShowDelete = () => setDelete(true);
   const Deletehandeler = (color) => {
     onShowDelete();
-    console.log(color);
     setDeletePayload(color);
   };
   if (logged) {

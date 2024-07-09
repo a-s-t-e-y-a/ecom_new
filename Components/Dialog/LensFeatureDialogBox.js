@@ -21,7 +21,6 @@ const LensFeatureDialogBox = ({ onCancel, refetch, token, edit }) => {
       refetch(!token);
     },
     onError: (err) => {
-      console.log(err);
       toast.error("Error occurred");
     },
   });
@@ -35,10 +34,9 @@ const LensFeatureDialogBox = ({ onCancel, refetch, token, edit }) => {
       description: edit?.description,
     };
     reset(resetPayload);
-  }, [reset, power]);
+  }, [reset, power, edit]);
 
   const onSubmit = (data) => {
-    console.log(data);
     const formData = new FormData();
 
     if (edit==undefined || Object.keys(edit).length === 0) {
@@ -54,7 +52,6 @@ const LensFeatureDialogBox = ({ onCancel, refetch, token, edit }) => {
       mutate(formData);
       refetch(!token);
     } else {
-      console.log(data)
       formData.append("file", data?.file[0]);
       delete data.file
       const payload = {

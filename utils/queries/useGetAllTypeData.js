@@ -3,7 +3,6 @@ import api from "@/api";
 import toast from "react-hot-toast";
 
 const useGetAllTypeData = (type, TypeSlug, page) => {
-  console.log(type, TypeSlug, page);
   const categoryData = useQuery({
     queryKey: ["api/categories", type, TypeSlug, page],
     queryFn: async () => {

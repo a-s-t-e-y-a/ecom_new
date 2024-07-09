@@ -21,7 +21,6 @@ const LensFormStep2 = ({ onNext, onPrev, onCancel }) => {
   const previousData = useSelector((state) => state.cart.data);
 
   const addToCart = () => {
-    // console.log(previousData);
     const payload = {
       productId: previousData.productId,
       lens: previousData.lens.id,

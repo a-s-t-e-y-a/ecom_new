@@ -22,7 +22,6 @@ const PlacedOrderDetail = () => {
     }
   }, [router]);
 
-  console.log(data, 'data')
 
   if (logged) {
     return (

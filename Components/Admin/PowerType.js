@@ -15,12 +15,10 @@ const PowerType = (props) => {
   const [open, setOpen] = useState(false);
 
   const path = usePathname();
-  console.log(path, "path");
   const onHideDelete = () => setDelete(false);
   const onShowDelete = () => setDelete(true);
   const onHide = () => setOpen(false);
   const deletehandler = (itemId) => {
-    console.log(itemId);
     mutate(itemId);
     onShowDelete();
   };

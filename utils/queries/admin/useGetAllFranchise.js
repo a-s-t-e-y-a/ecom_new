@@ -6,7 +6,6 @@ const useGetAllFranchise = () => {
     queryKey: ["api/franchise"],
     queryFn: async () => {
       const res = await api.get('franchise/form');
-      console.log(res.data, 'res')
       return res?.data;
     },
   });

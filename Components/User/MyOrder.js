@@ -4,7 +4,6 @@ import useGetAllOrder from "@/utils/queries/useGetAllOrder";
 
 const MyOrder = () => {
   const { data, isLoading } = useGetAllOrder();
-  console.log(data);
   if (isLoading) {
     return <>Loading...!!!!</>;
   }

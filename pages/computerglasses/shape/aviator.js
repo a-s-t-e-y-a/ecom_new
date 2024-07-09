@@ -22,7 +22,6 @@ const Aviator = () => {
         `https://api.akkukachasma.com/api/categories/3?pageSize=15&page=${page}`
       )
       .then((result) => {
-        console.log(result);
         const Data = result?.data?.data?.products.filter(
           (value) => value.shape === "aviator" || "Aviator"
         );

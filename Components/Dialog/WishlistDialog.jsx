@@ -7,7 +7,6 @@ import WhishlistSingleItem from "../whishlistSIngleItem";
 const WishlistDialog = (props) => {
   const { open, setOpen } = props;
   const { data, isLoading } = useGetAllWhishlist();
-  console.log(data);
   if (isLoading) {
     return <>Loading!!!</>;
   }

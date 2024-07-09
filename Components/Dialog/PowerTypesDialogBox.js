@@ -37,18 +37,15 @@ const PowerTypesDialogBox = ({ onCancel, setOpen, refecth, token, edit }) => {
     const formData = new FormData();
     
     if (edit==undefined || Object.keys(edit).length === 0) {
-      console.log(data)
       formData.append(
         "data",
         JSON.stringify({ title: data.title, description: data.description })
       );
       formData.append("file", data?.file[0]);
-      console.log(formData, 'formData')
       mutate(formData);
       onCancel();
       
     } else {
-      console.log(data)
       formData.append("file", data?.file[0]);
       delete data.file
       formData.append('data',JSON.stringify(data))

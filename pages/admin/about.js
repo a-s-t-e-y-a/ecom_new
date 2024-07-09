@@ -31,7 +31,7 @@ const AboutPage = () => {
             <QuillEditor value={value} onChange={(val)=>setValue(val)}/>
           </div>
           <div className="pt-4">
-            <Button variant="contained" color="primary" onClick={()=>console.log(value)}>Submit</Button>
+            <Button variant="contained" color="primary">Submit</Button>
           </div>
         </div>
       </AdminLayout>

@@ -5,7 +5,6 @@ import { formatDate } from "@/utils/Helpers";
 import { useRouter } from "next/router";
 
 const OrderedTable = ({ items }) => {
-  console.log(items, 'items');
   const router = useRouter();
   return (
     <div className="w-[1240px] mx-4 tracking-wide h-[72vh] overflow-y-scroll scrollbar-hide border">

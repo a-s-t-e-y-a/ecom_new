@@ -124,7 +124,6 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
         material: data.material.id,
         power_type_id: data.power_type_id.map((i) => i.id),
       };
-      console.log(data_)
       form.append("data", JSON.stringify(data_));
       mutate(form);    
     } else {
@@ -156,7 +155,6 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
         power_type_id: data.power_type_id.map((i) => i.id),
         product_images:data.product_images
       };
-      console.log(data_)
       form.append("data", JSON.stringify(data_));
       update(form);
       refetch();

@@ -16,7 +16,6 @@ const TryAtHomeItem = (props) => {
   const onShowDelete = () => setDelete(true);
   const onHide = () => setOpen(false);
   const deletehandler = (itemId) => {
-    console.log(itemId);
     mutate(itemId);
     onShowDelete();
   };

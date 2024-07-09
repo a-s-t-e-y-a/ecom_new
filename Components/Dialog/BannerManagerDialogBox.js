@@ -21,7 +21,6 @@ const BannerManagerDialogBox = ({ onCancel, refetch, token }) => {
 
   const onSubmit = (data, event) => {
     event.preventDefault(); // Prevent form submission from reloading the page
-    console.log(data);
     const payload = {
       products_categories_id: data?.products_categories_id,
       shape_id_: data?.shape_id,

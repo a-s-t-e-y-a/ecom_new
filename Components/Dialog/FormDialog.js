@@ -38,11 +38,9 @@ const FormDialog = (props) => {
     if(Object.keys(data).length){
       
     }
-    console.log(data);
     mutate(data);
     setOpen(false);
   };
-  console.log(edit)
   return (
     <Fragment >
       <Dialog

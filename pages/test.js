@@ -119,7 +119,6 @@ function Test() {
     reset(resetPayload)
   }, [reset]);
 
-  console.log("see this", value);
 
   return (
     <div className="h-screen grid place-content-center bg-slate-200">
@@ -128,7 +127,6 @@ function Test() {
         control={control}
         rules={{ required: true }}
         render={({ field: { value, onChange } }) => {
-          console.log("see this ", value)
           return (
             <SelectBox
               options={options}

@@ -11,7 +11,6 @@ export const addressSlice = createSlice({
   initialState,
   reducers: {
     addAddress: (state, action) => {
-      console.log(action.payload, 'action')
       state.adress = {...action.payload };
     },
   },

@@ -6,7 +6,6 @@ import { addData } from "@/Slices/CartSlice";
 const LensPlanFeature = ({ item, onNext }) => {
   const dispatch = useDispatch();
   const previousData = useSelector((state) => state.cart.data);
-  console.log(item)
   return (
     <div>
       <div>

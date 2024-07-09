@@ -11,8 +11,8 @@ import Image from "next/image";
 export default function Slider({ data }) {
   const router = useRouter();
   function handleClick(item) {
-    const itemName = encodeURIComponent(item?.title?.toLowerCase());
-    router.push(`/product?name=${itemName}`);
+    const itemName = encodeURIComponent(item?.name);
+    router.push(`/Eyeglass/shape/${itemName}`);
   }
   return (
     <div className="swiper w-full">

@@ -25,7 +25,6 @@ function Home() {
       "https://api.akkukachasma.com/api/products?shape=Hexa",
     ];
     axios.all(url.map((endpoints) => axios.get(endpoints))).then((data) => {
-      console.log(data[5]?.data?.data?.products, 'aviatorShape')
       const shape = data[0];
 
       setShape(shape?.data?.data);
