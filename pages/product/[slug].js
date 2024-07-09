@@ -131,14 +131,9 @@ const SingleProduct = () => {
                 Rs. {productData?.discounted_price}
               </span>
             </div>
-            <div className="flex items-center my-5 justify-between">
-              <div className="flex items-center justify-center gap-2">
-                <span className="h-5 w-5 bg-blue-600 rounded-full border p-[2px]"></span>
-                <span className="h-5 w-5 bg-green-600 rounded-full border p-[2px]"></span>
-                <span className="h-5 w-5 bg-red-600 rounded-full border p-[2px]"></span>
-              </div>
+            <div className="flex items-center my-5 justify-end">
               <span className="font-semibold tracking-wider text-lg">
-                Medium(134mm)
+                {productData?.size_?.name} {productData?.frame_width} MM
               </span>
             </div>
             <div className="flex items-center justify-between">
