@@ -25,7 +25,7 @@ const CartSingleItem = ({ item }) => {
                 <Image
                   width={100}
                   height={100}
-                  src={"/1 (3).jpeg"}
+                  src={product?.images[1]}
                   alt=""
                   className="h-full w-full object-fit object-center"
                 />

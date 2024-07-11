@@ -7,9 +7,6 @@ import WhishlistSingleItem from "../whishlistSIngleItem";
 const WishlistDialog = (props) => {
   const { open, setOpen } = props;
   const { data, isLoading } = useGetAllWhishlist();
-  if (isLoading) {
-    return <>Loading!!!</>;
-  }
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>

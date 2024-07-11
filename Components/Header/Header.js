@@ -11,7 +11,7 @@ import CartDialog from "../Dialog/CartDialog";
 import { useEffect, useState } from "react";
 import MenuComponentNested from "../MenuComponentNested";
 import { customLocalStorage } from "@/utils/Helpers";
-import { PageLinks, SunGlassLinks } from "@/utils/contants";
+import { PageLinks } from "@/utils/contants";
 import useGetAllShape from "@/utils/queries/useShapeGetAll";
 import useGetAllStyle from "@/utils/queries/useStyleGetAll";
 import WishlistDialog from "../Dialog/WishlistDialog";
@@ -35,7 +35,7 @@ const Header = () => {
       setToken(token);
       setUserData(userData);
     }
-  }, []);
+  }, [getItem]);
 
   const EyeGlassLinks = [
     {

@@ -12,6 +12,8 @@ const CartDialog = (props) => {
   const [promocode, setPromocode] = React.useState("");
   const { data, isLoading } = useGetCartSession();
 
+  console.log(data, 'data')
+
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -61,7 +63,6 @@ const CartDialog = (props) => {
                         </div>
                       </div>
 
-                      {isLoading && <p>Loading...</p>}
                       {data && data?.data?.items?.map((item) => (
                         <CartSingleItem key={item.p_id} item={item}/>
                       ))}

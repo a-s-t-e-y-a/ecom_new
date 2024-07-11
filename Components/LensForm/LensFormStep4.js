@@ -99,6 +99,12 @@ const LensFormStep2 = ({ onNext, onPrev, onCancel }) => {
             >
               Proceed To Checkout
             </button>
+            <button
+              onClick={()=>onCancel()}
+              className="px-3 py-1 text-sm bg-gray-700 text-white rounded-md tracking-wide flex mx-auto"
+            >
+              Continue shopping
+            </button>
           </div>
         </div>
 

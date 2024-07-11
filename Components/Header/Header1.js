@@ -11,9 +11,11 @@ import { useState } from "react";
 import CartDialog from "../Dialog/CartDialog";
 import Image from "next/image";
 import axios from "axios";
+import WishlistDialog from "../Dialog/WishlistDialog";
 
 const Header1 = () => {
   const [open, setOpen] = useState(false);
+  const [openFav, setOpenFav] = useState(false);
   const [Round, setRound] = useState([]);
   const router = useRouter();
   const fecthMultipleData = () => {
@@ -36,6 +38,7 @@ const Header1 = () => {
   return (
     <>
       <CartDialog open={open} setOpen={setOpen} />
+      <WishlistDialog open={openFav} setOpen={setOpenFav} />
       <header className="md:flex md:flex-row items-center mt-4 flex flex-col gap-4  h-24 px-3">
         {/* Image  */}
         <div className="md:flex-shrink-0">
