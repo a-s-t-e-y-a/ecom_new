@@ -12,7 +12,6 @@ const CartDialog = (props) => {
   const [promocode, setPromocode] = React.useState("");
   const { data, isLoading } = useGetCartSession();
 
-  console.log(data, 'data')
 
   return (
     <Transition.Root show={open} as={Fragment}>
