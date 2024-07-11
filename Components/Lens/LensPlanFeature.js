@@ -24,7 +24,7 @@ const LensPlanFeature = ({ item, onNext }) => {
               </div>
               <div>
                 <button
-                  className="text-xs px-4 py-1 text-white rounded-lg tracking-wider bg-gray-700"
+                  className="text-xs px-4 py-1 text-white rounded-lg tracking-wider bg-gray-600 hover:bg-gray-800"
                   onClick={() => {
                     dispatch(
                       addData({
@@ -32,6 +32,7 @@ const LensPlanFeature = ({ item, onNext }) => {
                         lens: item,
                       })
                     );
+                    onNext()
                   }}
                 >
                   Select This Lens

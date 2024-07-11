@@ -154,7 +154,7 @@ const Header = () => {
               src={"/logo.png"}
               width={500}
               height={100}
-              className=" object-cover mb-3  "
+              className="object-cover mb-3 cursor-pointer"
               alt=""
             />
           </div>

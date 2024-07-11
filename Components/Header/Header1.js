@@ -86,18 +86,19 @@ const Header1 = () => {
         </div>
 
         <div className="flex flex-shrink-0  gap-3 mb-4  text-2xl text-gray-700">
-          <motion.span whileTap={{ scale: 0.8 }}>
-            <BsFillPersonFill />
+          <motion.span whileTap={{ scale: 0.9 }} className="cursor-pointer">
+            <BsFillPersonFill onClick={() => router.push(`/user`)}/>
           </motion.span>
-          <motion.span whileTap={{ scale: 0.8 }}>
+          <motion.span whileTap={{ scale: 0.9 }} className="cursor-pointer" onClick={()=>setOpenFav(!openFav)}>
             <AiOutlineHeart />
           </motion.span>
-          <motion.span whileTap={{ scale: 0.8 }}>
+          {/* <motion.span whileTap={{ scale: 0.9 }}>
             <BiSearchAlt2 />
-          </motion.span>
+          </motion.span> */}
           <motion.span
-            whileTap={{ scale: 0.8 }}
+            whileTap={{ scale: 0.9 }}
             onClick={() => setOpen(true)}
+            className="cursor-pointer"
           >
             <HiShoppingCart />
           </motion.span>

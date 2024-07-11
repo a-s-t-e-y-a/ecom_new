@@ -91,18 +91,12 @@ const LensFormStep3 = ({ onNext, onPrev }) => {
           </div>
         </div>
 
-        <div className="flex items-center justify-between pt-7 ">
+        <div className="flex items-center justify-start pt-7 mr-[50rem]">
           <button
             onClick={onPrev}
             className="px-3 py-1 text-sm bg-gray-700 text-white rounded-md tracking-wide flex mx-auto"
           >
             Previous
-          </button>
-          <button
-            onClick={onNext}
-            className="px-3 py-1 text-sm bg-gray-700 text-white rounded-md tracking-wide flex mx-auto"
-          >
-            Next
           </button>
         </div>
       </div>
