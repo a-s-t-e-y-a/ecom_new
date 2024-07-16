@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import FileInput from "../Admin/FileInput";
 import { TextField } from "@mui/material";
 import { useDispatch } from "react-redux";
@@ -11,11 +11,13 @@ import toast from "react-hot-toast";
 import Loader from "../Loader";
 import query from "@/utils/queryClinet";
 import useUpdatePowerType from "@/utils/mutations/useUpdatePowerType";
+import CustomerImage from "../CustomImage";
 
 const PowerTypesDialogBox = ({ onCancel, setOpen, refecth, token, edit }) => {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, control } = useForm();
   const { mutate: update } = useUpdatePowerType(edit?.id);
   const [data, setdata] = useState([]);
+  const [image, setImage] = useState(null);
   const {
     mutate,
     data: datas,
@@ -32,39 +34,37 @@ const PowerTypesDialogBox = ({ onCancel, setOpen, refecth, token, edit }) => {
     },
   });
 
-  const dispatch = useDispatch();
   const onSubmit = async (data) => {
     const formData = new FormData();
-    
-    if (edit==undefined || Object.keys(edit).length === 0) {
+
+    if (edit == undefined || Object.keys(edit).length === 0) {
       formData.append(
         "data",
         JSON.stringify({ title: data.title, description: data.description })
       );
-      formData.append("file", data?.file[0]);
+      formData.append("file", image);
       mutate(formData);
       onCancel();
-      
+
     } else {
       formData.append("file", data?.file[0]);
       delete data.file
-      formData.append('data',JSON.stringify(data))
+      formData.append('data', JSON.stringify(data))
       update(formData)
       onCancel();
-     
+
     }
   };
   useEffect(() => {
     if (datas) {
       setdata(datas);
     }
-   
     reset({
       ...edit,
-      title: edit?.name
+      title: edit?.name,
     })
-  }, [datas, reset]);
-
+  }, [datas, reset, edit]);
+  console.log(image, 'image')
   return (
     <div className="relative border tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
       <h1 className="text-md font-semibold text-center text-gray-700 mt-3">
@@ -74,7 +74,12 @@ const PowerTypesDialogBox = ({ onCancel, setOpen, refecth, token, edit }) => {
         className="flex flex-col items-center justify-between gap-6 px-6 pb-6"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <FileInput title="" register={register} />
+
+        <CustomerImage
+        value={image ?? edit?.image}
+        onChange={(e)=>setImage(e)}
+        />
+
         <TextField
           fullWidth
           label="Title"

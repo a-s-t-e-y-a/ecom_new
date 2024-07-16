@@ -6,21 +6,16 @@ const CustomerImage = ({ onChange, value }) => {
   const [selectedImage, setSelectedImage] = useState(value);
 
   const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    if (!file) return; // handle no file selected
-
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setSelectedImage(reader.result);
-      onChange(file);
-    };
-    reader.readAsDataURL(file);
+    const file = event?.target?.files[0];
+    if (!file) return;
+      setSelectedImage(URL?.createObjectURL(file))
+      onChange(URL?.createObjectURL(file));
   };
 
   const imageSource = useMemo(() => (selectedImage || '/user-logo.png'), [selectedImage]);
 
   return (
-    <div className="w-28 h-28 rounded-full cursor-pointer flex justify-center items-center" onClick={() => document.getElementById('input-field').click()}>
+    <div className="w-28 h-28 rounded-full cursor-pointer flex justify-center items-center" onClick={() => document?.getElementById('input-field')?.click()}>
       <input type="file" accept="image/*" id="input-field" hidden onChange={handleImageChange} />
       <Image
         src={imageSource}
