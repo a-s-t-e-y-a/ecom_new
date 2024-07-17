@@ -14,7 +14,7 @@ import useUpdatePowerType from "@/utils/mutations/useUpdatePowerType";
 import CustomerImage from "../CustomImage";
 
 const PowerTypesDialogBox = ({ onCancel, setOpen, refetch, token, edit }) => {
-  const { register, handleSubmit, reset, control } = useForm();
+  const { register, handleSubmit, reset, watch, setValue } = useForm();
   const { mutate: update } = useUpdatePowerType(edit?.id);
   const [image, setImage] = useState(null);
   const {
@@ -60,6 +60,8 @@ const PowerTypesDialogBox = ({ onCancel, setOpen, refetch, token, edit }) => {
     }
   }, [edit, reset]);
 
+  const imageFile = watch('image');
+
   return (
     <div className="relative border tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
       <h1 className="text-md font-semibold text-center text-gray-700 mt-3">
@@ -70,11 +72,10 @@ const PowerTypesDialogBox = ({ onCancel, setOpen, refetch, token, edit }) => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <CustomerImage
-          value={image ?? edit?.image}
-          onChange={(e) => {
-            setImage(e)
-            console.log(e, 'image')
-          }}
+          register={register}
+          setValue={setValue}
+          name="image" // This should match the field name in your form
+          value={imageFile} // Provide the current value for image preview
         />
 
         <TextField
