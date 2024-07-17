@@ -7,9 +7,9 @@ const CustomerImage = ({ onChange, value }) => {
 
   const handleImageChange = (event) => {
     const file = event?.target?.files[0];
+    onChange(file);
     if (!file) return;
-      setSelectedImage(URL?.createObjectURL(file))
-      onChange(URL?.createObjectURL(file));
+    setSelectedImage(URL?.createObjectURL(file))
   };
 
   const imageSource = useMemo(() => (selectedImage || '/user-logo.png'), [selectedImage]);

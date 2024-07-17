@@ -13,10 +13,9 @@ import query from "@/utils/queryClinet";
 import useUpdatePowerType from "@/utils/mutations/useUpdatePowerType";
 import CustomerImage from "../CustomImage";
 
-const PowerTypesDialogBox = ({ onCancel, setOpen, refecth, token, edit }) => {
+const PowerTypesDialogBox = ({ onCancel, setOpen, refetch, token, edit }) => {
   const { register, handleSubmit, reset, control } = useForm();
   const { mutate: update } = useUpdatePowerType(edit?.id);
-  const [data, setdata] = useState([]);
   const [image, setImage] = useState(null);
   const {
     mutate,
@@ -25,11 +24,11 @@ const PowerTypesDialogBox = ({ onCancel, setOpen, refecth, token, edit }) => {
   } = useMutation({
     mutationFn: CreatePowerType,
     onSuccess: () => {
-      toast.success("PowerType created succesfully");
+      toast.success("PowerType created successfully");
       query.invalidateQueries({ queryKey: ["api/PowerType"] });
-      refecth(!token);
+      refetch(!token);
     },
-    onError: (err) => {
+    onError: () => {
       toast.error("Error occurred");
     },
   });
@@ -37,47 +36,45 @@ const PowerTypesDialogBox = ({ onCancel, setOpen, refecth, token, edit }) => {
   const onSubmit = async (data) => {
     const formData = new FormData();
 
-    if (edit == undefined || Object.keys(edit).length === 0) {
-      formData.append(
-        "data",
-        JSON.stringify({ title: data.title, description: data.description })
-      );
+    if (!edit) {
+      formData.append("data", JSON.stringify({ title: data.title, description: data.description }));
       formData.append("file", image);
       mutate(formData);
       onCancel();
-
     } else {
-      formData.append("file", data?.file[0]);
-      delete data.file
-      formData.append('data', JSON.stringify(data))
-      update(formData)
+      if (data?.file?.[0]) {
+        formData.append("file", data.file[0]);
+      }
+      formData.append('data', JSON.stringify(data));
+      update(formData);
       onCancel();
-
     }
   };
+
   useEffect(() => {
-    if (datas) {
-      setdata(datas);
+    if (edit) {
+      reset({
+        ...edit,
+        title: edit.name,
+      });
     }
-    reset({
-      ...edit,
-      title: edit?.name,
-    })
-  }, [datas, reset, edit]);
-  console.log(image, 'image')
+  }, [edit, reset]);
+
   return (
     <div className="relative border tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
       <h1 className="text-md font-semibold text-center text-gray-700 mt-3">
-        Add Power Types
+        {edit ? "Edit Power Type" : "Add Power Type"}
       </h1>
       <form
         className="flex flex-col items-center justify-between gap-6 px-6 pb-6"
         onSubmit={handleSubmit(onSubmit)}
       >
-
         <CustomerImage
-        value={image ?? edit?.image}
-        onChange={(e)=>setImage(e)}
+          value={image ?? edit?.image}
+          onChange={(e) => {
+            setImage(e)
+            console.log(e, 'image')
+          }}
         />
 
         <TextField
@@ -101,9 +98,7 @@ const PowerTypesDialogBox = ({ onCancel, setOpen, refecth, token, edit }) => {
 
         <button
           type="submit"
-          className="text-white bg-sky-400 hover:bg-sky-500  focus:outline-none font-medium rounded-lg text-sm inline-flex items-center px-5 py-2 text-center mr-2"
-          //   onClick={}
-          onSubmit={handleSubmit}
+          className="text-white bg-sky-400 hover:bg-sky-500 focus:outline-none font-medium rounded-lg text-sm inline-flex items-center px-5 py-2 text-center"
         >
           Add <AddIcon className="ml-1 font-bold text-base" />
         </button>
