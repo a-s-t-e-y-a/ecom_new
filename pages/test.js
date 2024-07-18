@@ -9,6 +9,7 @@ function Test() {
   return (
     <div className="h-screen grid place-content-center bg-slate-200">
       <CustomerImage
+      register={register}
       />
     </div>
   );
