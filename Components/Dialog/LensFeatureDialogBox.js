@@ -76,7 +76,7 @@ const LensFeatureDialogBox = ({ onCancel, refetch, token, edit }) => {
         className="flex flex-col items-center justify-between gap-6 px-6 pb-6"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <FileInput title="" register={register} />
+        <FileInput title="" register={register} image={edit?.image}/>
         <Controller
           name="power_type_id"
           control={control}

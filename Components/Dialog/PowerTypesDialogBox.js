@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import FileInput from "../Admin/FileInput";
 import { TextField } from "@mui/material";
 import { useDispatch } from "react-redux";
@@ -11,12 +11,11 @@ import toast from "react-hot-toast";
 import Loader from "../Loader";
 import query from "@/utils/queryClinet";
 import useUpdatePowerType from "@/utils/mutations/useUpdatePowerType";
-import CustomerImage from "../CustomImage";
 
-const PowerTypesDialogBox = ({ onCancel, setOpen, refetch, token, edit }) => {
-  const { register, handleSubmit, reset, watch, setValue } = useForm();
+const PowerTypesDialogBox = ({ onCancel, setOpen, refecth, token, edit }) => {
+  const { register, handleSubmit, reset } = useForm();
   const { mutate: update } = useUpdatePowerType(edit?.id);
-  const [image, setImage] = useState(null);
+  const [data, setdata] = useState([]);
   const {
     mutate,
     data: datas,
@@ -24,60 +23,59 @@ const PowerTypesDialogBox = ({ onCancel, setOpen, refetch, token, edit }) => {
   } = useMutation({
     mutationFn: CreatePowerType,
     onSuccess: () => {
-      toast.success("PowerType created successfully");
+      toast.success("PowerType created succesfully");
       query.invalidateQueries({ queryKey: ["api/PowerType"] });
-      refetch(!token);
+      refecth(!token);
     },
-    onError: () => {
+    onError: (err) => {
       toast.error("Error occurred");
     },
   });
 
+  const dispatch = useDispatch();
   const onSubmit = async (data) => {
+    console.log(data, 'data')
     const formData = new FormData();
-
-    if (!edit) {
-      formData.append("data", JSON.stringify({ title: data.title, description: data.description }));
-      formData.append("file", image);
+    
+    if (edit==undefined || Object.keys(edit).length === 0) {
+      formData.append(
+        "data",
+        JSON.stringify({ title: data.title, description: data.description })
+      );
+      formData.append("file", data?.file[0]);
       mutate(formData);
       onCancel();
+      
     } else {
-      if (data?.file?.[0]) {
-        formData.append("file", data.file[0]);
-      }
-      formData.append('data', JSON.stringify(data));
-      update(formData);
+      formData.append("file", data?.file[0]);
+      delete data.file
+      formData.append('data',JSON.stringify(data))
+      update(formData)
       onCancel();
+     
     }
   };
-
   useEffect(() => {
-    if (edit) {
-      reset({
-        ...edit,
-        title: edit.name,
-      });
+    if (datas) {
+      setdata(datas);
     }
-  }, [edit, reset]);
-
-  const imageFile = watch('image');
+   
+    reset({
+      ...edit,
+      title: edit?.name
+    })
+  }, [datas, reset, edit]);
 
   return (
     <div className="relative border tracking-wide space-y-5 rounded-md shadow-lg h-[calc(100%-1rem)] max-h-full">
       <h1 className="text-md font-semibold text-center text-gray-700 mt-3">
-        {edit ? "Edit Power Type" : "Add Power Type"}
+        Add Power Types
       </h1>
       <form
         className="flex flex-col items-center justify-between gap-6 px-6 pb-6"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <CustomerImage
-          register={register}
-          setValue={setValue}
-          name="image" // This should match the field name in your form
-          value={imageFile} // Provide the current value for image preview
-        />
-
+        <FileInput title="" register={register} image={edit?.image}/>
         <TextField
           fullWidth
           label="Title"
@@ -99,7 +97,9 @@ const PowerTypesDialogBox = ({ onCancel, setOpen, refetch, token, edit }) => {
 
         <button
           type="submit"
-          className="text-white bg-sky-400 hover:bg-sky-500 focus:outline-none font-medium rounded-lg text-sm inline-flex items-center px-5 py-2 text-center"
+          className="text-white bg-sky-400 hover:bg-sky-500  focus:outline-none font-medium rounded-lg text-sm inline-flex items-center px-5 py-2 text-center mr-2"
+          //   onClick={}
+          onSubmit={handleSubmit}
         >
           Add <AddIcon className="ml-1 font-bold text-base" />
         </button>

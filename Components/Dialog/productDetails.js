@@ -161,6 +161,9 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
     }
   };
 
+  const images = editValue?.product_images.split(',');
+  console.log(images[0]);
+
   return (
     <div className="relative border mt-[1100px] md:mt-[300px] rounded-md shadow-lg w-full md:w-auto h-[calc(100%-1rem)] max-h-full ">
       <h1 className="text-md font-semibold text-center text-gray-700 mt-3 mb-5">
@@ -171,7 +174,7 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
         onSubmit={handleSubmit(OnSubmit)}
       >
         <div className="grid grid-cols-1 md:grid-cols-2  items-center justify-between w-full gap-4">
-          <FileInput title="Main Image" register={register} name="main" />
+          <FileInput title="Main Image" register={register} name="main" image={images[0]}/>
           <FileInput title="Other imsges" register={register} />
           <TextField
             fullWidth

@@ -1,16 +1,16 @@
 import React from "react";
 import Image from "next/image";
 
-const FileInput = ({ title, register, name = "file" }) => {
+const FileInput = ({ title, register, name = "file", image }) => {
   return (
     <div className="flex items-center space-x-4">
       <div className="shrink-0 flex flex-col items-center">
         <Image
-          width={50}
-          height={50}
+          width={100}
+          height={100}
           className="object-cover rounded-full"
           src={
-            "https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143__340.png"
+            image || "https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143__340.png"
           }
           alt="profile photo"
         />

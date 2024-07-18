@@ -78,9 +78,9 @@ const LensDetailDialogBox = ({ onCancel, refetch, token, edit }) => {
       // onCancel();
       refetch();
     } else {
-      // update(formData);
+      update(formData);
       // onCancel();
-      // refetch();
+      refetch();
     }
   };
 
@@ -94,7 +94,7 @@ const LensDetailDialogBox = ({ onCancel, refetch, token, edit }) => {
         onSubmit={handleSubmit(onSubmit)}
       >
         <div className="grid grid-cols-3 items-center justify-between gap-3">
-          <FileInput title="" register={register} />
+          <FileInput title="" register={register} image={edit?.image}/>
           <Controller
             name="power_type_id"
             control={control}
