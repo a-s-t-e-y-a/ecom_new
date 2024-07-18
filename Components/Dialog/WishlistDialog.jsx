@@ -1,12 +1,25 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { RiCloseLine } from "react-icons/ri";
 import useGetAllWhishlist from "@/utils/queries/useGetAllWhishlist";
 import WhishlistSingleItem from "../whishlistSIngleItem";
+import api from "@/api";
+import useDeleteWhishlist from "@/utils/mutations/useDeleteWhishlist";
 
 const WishlistDialog = (props) => {
   const { open, setOpen } = props;
-  const { data, isLoading } = useGetAllWhishlist();
+  const [reset, setReset] = useState(false)
+  const { data, isLoading, refetch,  } = useGetAllWhishlist();
+  const {mutate} = useDeleteWhishlist(refetch)
+  useEffect(()=>{
+    refetch()
+  }, [refetch, reset])
+
+  const removeItem = (id) =>{
+    console.log(id);
+    mutate(id)
+  }
+
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -56,7 +69,7 @@ const WishlistDialog = (props) => {
                         </div>
                       </div>
                       {data?.map((info) => (
-                        <WhishlistSingleItem key={info.p_id} item={info.pId} />
+                        <WhishlistSingleItem key={info.p_id} item={info.pId} info={info} removeItem={removeItem}/>
                       ))}
                     </div>
                   </div>

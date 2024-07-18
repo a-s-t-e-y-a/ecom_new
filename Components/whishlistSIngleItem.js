@@ -1,17 +1,10 @@
 import api from "@/api";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 
-const WhishlistSingleItem = ({ item }) => {
+const WhishlistSingleItem = ({ item, info, removeItem }) => {
   const product = item;
-
-  const removeItem = (id) => {
-    api.delete(`cart/${id}`).then((result) => {
-      if (result?.data?.message == "Data fetch successfully") {
-        fetchData();
-      }
-    });
-  };
   const images = product?.product_images.split(",")
   return (
     <div>
@@ -43,7 +36,7 @@ const WhishlistSingleItem = ({ item }) => {
                 <div className="flex text-xs tracking-wide">
                   <button
                     type="button"
-                    onClick={() => removeItem(item.id)}
+                    onClick={() => removeItem(info?.id)}
                     className="font-medium text-orange-600 hover:text-indigo-500"
                   >
                     Remove
