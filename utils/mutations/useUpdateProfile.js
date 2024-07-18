@@ -6,7 +6,7 @@ const UpdateProfile = (id) => {
     const update = useMutation({
         mutationKey: ["api/profile"],
         mutationFn: async (data) => {
-            const res = await api.patch(`/auth/${id}`, data);
+            const res = await Imageapi.patch(`/auth/${id}`, data);
             return res.data;
         },
         onSuccess: () => {

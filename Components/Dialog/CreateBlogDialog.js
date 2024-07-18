@@ -81,7 +81,7 @@ const CreateBlogDialog = ({ closeModal, edit, refetch }) => {
               PDF, JPG, GIF, PNG, JPEG
             </p>
             <div className="w-[80%] mx-auto p-2">
-              <FileInput title="main_image" register={register} />
+              <FileInput title="main_image" register={register} image={edit?.image}/>
             </div>
 
             <Input label="Heading" name="heading" {...register("heading")} />
@@ -109,7 +109,10 @@ const CreateBlogDialog = ({ closeModal, edit, refetch }) => {
               <Button
                 variant="text"
                 color="red"
-                onClick={() => closeModal()}
+                onClick={()=>{
+                  closeModal()
+                  console.log("close modal")
+                }}
                 className="mr-1"
               >
                 <span>Cancel</span>

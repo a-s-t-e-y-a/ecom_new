@@ -1,7 +1,7 @@
-import api from "@/api";
+import {Imageapi} from "@/api";
 
 
 const CreateLenseFeature = (data) => {
-  return api.post("/lense-feature", data);
+  return Imageapi.post("/lense-feature", data);
 };
 export default CreateLenseFeature;

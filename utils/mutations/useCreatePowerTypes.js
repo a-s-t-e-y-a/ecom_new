@@ -1,7 +1,6 @@
-import api from "@/api";
-
+import { Imageapi } from "@/api";
 
 const CreatePowerType = (data) => {
-  return api.post("/power-type", data);
+  return Imageapi.post("/power-type", data);
 };
 export default CreatePowerType;

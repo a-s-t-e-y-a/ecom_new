@@ -1,6 +1,6 @@
-import api from "@/api";
+import {Imageapi} from "@/api";
 
 const CreateBlog = (data) => {
-  return api.post("/blogs", data);
+  return Imageapi.post("/blogs", data);
 };
 export default CreateBlog;

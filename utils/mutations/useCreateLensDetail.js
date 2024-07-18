@@ -1,6 +1,6 @@
-import api from "@/api";
+import {Imageapi} from "@/api";
 
 const CreateLensDeatils = (data) => {
-  return api.post("/lenses", data);
+  return Imageapi.post("/lenses", data);
 };
 export default CreateLensDeatils;

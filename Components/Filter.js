@@ -70,8 +70,8 @@ const Filter = () => {
       </motion.span>
       <motion.div className={`${display ? "hidden" : ""} w-full mt-3 p-3`}>
         {renderCheckBoxGroup("Size", size, "size")}
-        {renderCheckBoxGroup("Frame Width", frameWidth, "frameWidth")}
-        {renderCheckBoxGroup("Lens Width", lensWidth, "lensWidth")}
+        {/* {renderCheckBoxGroup("Frame Width", frameWidth, "frameWidth")}
+        {renderCheckBoxGroup("Lens Width", lensWidth, "lensWidth")} */}
         {renderCheckBoxGroup("Shape", shape, "shape")}
         {renderCheckBoxGroup("Style", style, "style")}
         {renderCheckBoxGroup("Gender", gender, "gender")}

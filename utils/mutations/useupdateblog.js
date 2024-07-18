@@ -6,7 +6,7 @@ const UpdateBlog = (id, closeModal, refetch) => {
     const update = useMutation({
         mutationKey: ["api/product"],
         mutationFn: async (data) => {
-            const res =  api.put(`/blogs/${id}`, data);
+            const res =  Imageapi.put(`/blogs/${id}`, data);
             return res.data;
         },
         onSuccess: () => {
