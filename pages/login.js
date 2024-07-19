@@ -7,11 +7,12 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import axios from "axios";
 import toast from "react-hot-toast";
+import useLogin from "@/utils/mutations/useLogin";
 
 export default function Example() {
   const [show, setShow] = useState(false);
   const router = useRouter();
-
+  const { mutate } = useLogin()
   const {
     register,
     handleSubmit,
@@ -20,33 +21,7 @@ export default function Example() {
   } = useForm();
 
   const onSubmit = async (data) => {
-    try {
-      const response = await axios.post(
-        `https://api.akkukachasma.com/api/auth/login`,
-        {
-          email: data?.email,
-          password: data?.password,
-        }
-      );
-      if (response?.data?.data) {
-        localStorage.setItem(
-          "user_info",
-          JSON.stringify(response?.data?.data?.token)
-        );
-        localStorage.setItem(
-          "user_data",
-          JSON.stringify(response?.data?.data?.info_user)
-        );
-        Cookie
-        router.push("/");
-      } else {
-        toast.error("User not exist");
-      }
-      // Depending on the response, you can do:
-    } catch (error) {
-      toast.error(error);
-      // setMessage(error.response?.data?.message || 'Invalid credential'); // Set error message from API or a generic one
-    }
+    mutate(data);
   };
   return (
     <section className="bg-gray-50 ">

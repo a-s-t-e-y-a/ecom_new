@@ -177,7 +177,7 @@ function Home() {
             </div>
             <SwiperContainer data={geometric} />
           </div>
-          <div className="mt-7">
+          {/* <div className="mt-7">
             <div className="p-2 rounded-md mb-4">
               <h1 className="tracking-wide text-xl text-center">
                 <span className="uppercase text-gray-600 mr-2">
@@ -189,7 +189,7 @@ function Home() {
               </h1>
             </div>
             <SwiperContainer data={rectangle} />
-          </div>
+          </div> */}
         </div>
 
         <div className="w-full space-y-3">
