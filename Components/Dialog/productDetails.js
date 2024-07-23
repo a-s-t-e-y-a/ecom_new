@@ -161,8 +161,8 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
     }
   };
 
-  const images = editValue?.product_images.split(',');
-  console.log(images[0]);
+  const images = editValue?.product_images?.split(',') || [];
+  console.log(images);
 
   return (
     <div className="relative border mt-[1100px] md:mt-[300px] rounded-md shadow-lg w-full md:w-auto h-[calc(100%-1rem)] max-h-full ">

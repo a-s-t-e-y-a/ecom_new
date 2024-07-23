@@ -3,79 +3,75 @@ import ProductDetailDialog from "@/Components/Dialog/productDetails";
 import AdminLayout from "@/Layout/AdminLayout";
 import IconButton from "@/Components/Admin/IconButton";
 import Modal from "@/Components/Dialog/Modal";
-import { InputAdornment, TextField } from "@mui/material";
-import { MdOutlineLensBlur } from "react-icons/md";
-import { BiSearch } from "react-icons/bi";
+import { TextField } from "@mui/material";
 import { IsAuth } from "@/utils/IsAuth";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import useGetAllProducts from "@/utils/queries/admin/UseProductGetAll";
 import Pagination from "@/Components/Pagination/Pagination";
 
 const ProductDetail = () => {
   const [open, setOpen] = useState(false);
-  const [page, setpage] = useState(1);
+  const [page, setPage] = useState(1);
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);
   const router = useRouter();
   const { data, isLoading, refetch } = useGetAllProducts(page);
-  const [logged, setlogged] = useState(false);
-  const [Products, setproducts] = useState([]);
-  const [edit, setedit] = useState({});
+  const [logged, setLogged] = useState(false);
+  const [products, setProducts] = useState([]);
+  const [edit, setEdit] = useState({});
 
   useEffect(() => {
     if (IsAuth("admin_info")) {
-      setlogged(true);
+      setLogged(true);
     } else {
       router.replace("login");
     }
     if (data) {
-      setproducts(data.products);
+      setProducts(data.products);
     }
     refetch();
   }, [router, refetch, data]);
-  
-  const NumberOfProducts = (e) => {
-    const Numbers = e?.target?.value;
-    if (Numbers > 0) {
-      const Newarr = data?.products?.filter(
-        (Value, index) => index + 1 <= Numbers
-      );
-      setproducts(Newarr);
+
+  const numberOfProducts = (e) => {
+    const numbers = e.target.value;
+    if (numbers > 0) {
+      const newArr = data.products.filter((value, index) => index + 1 <= numbers);
+      setProducts(newArr);
     } else {
-      setproducts(data?.products);
+      setProducts(data.products);
     }
   };
-  const SearchHandler = (e) => {
-    const seacrchValue = e?.target?.value;
-    if (seacrchValue !== "" || undefined || null) {
-      const Newarry = data?.products?.filter((value) =>
-        value?.product_model_name?.includes(seacrchValue)
+
+  const searchHandler = (e) => {
+    const searchValue = e.target.value;
+    if (searchValue !== "" || undefined || null) {
+      const newArr = data.products.filter((value) =>
+        value.product_model_name.includes(searchValue)
       );
-      setproducts(Newarry);
+      setProducts(newArr);
     } else {
-      setproducts(data?.products);
+      setProducts(data.products);
     }
+  };
+
+  const handlePageChange = (newPage) => {
+    setPage(newPage);
   };
 
   if (logged) {
     return (
       <AdminLayout>
         <Modal isOpen={open} closeModal={onHide} fullWidth={false}>
-          <ProductDetailDialog
-            onCancel={onHide}
-            refetch={refetch}
-            editValue={edit}
-          />
+          <ProductDetailDialog onCancel={onHide} refetch={refetch} editValue={edit} />
         </Modal>
         <div className="w-full px-4">
           <button
             onClick={() => {
               handleOpen();
-              setedit({});
+              setEdit({});
             }}
-            className=" mb-3"
+            className="mb-3"
           >
             <IconButton label="Add product details" />
           </button>
@@ -83,21 +79,19 @@ const ProductDetail = () => {
             <h2 className="font-bold text-lg">All Product Details</h2>
             <div className="flex gap-2">
               <TextField
-                className="outline-none focus:ring-0 w-24 "
-                sx={{}}
+                className="outline-none focus:ring-0 w-24"
                 color="warning"
                 size="small"
                 label="Show"
                 type="number"
-                onChange={(e) => NumberOfProducts(e)}
+                onChange={(e) => numberOfProducts(e)}
               />
               <TextField
-                className="outline-none focus:ring-0 w-48  "
-                sx={{}}
+                className="outline-none focus:ring-0 w-48"
                 color="secondary"
                 size="small"
                 label="Search..."
-                onChange={(e) => SearchHandler(e)}
+                onChange={(e) => searchHandler(e)}
               />
             </div>
           </div>
@@ -105,17 +99,17 @@ const ProductDetail = () => {
             <div className="w-full">
               {isLoading && <p>Loading...</p>}
               <ProductDetailTable
-                data={Products}
+                data={products}
                 refetch={refetch}
                 open={handleOpen}
-                setedit={setedit}
+                setEdit={setEdit}
                 opensEdit={setOpen}
               />
               <div className="mt-4">
                 <Pagination
-                  setpage={setpage}
-                  curr={page}
-                  total={data?.totalPages}
+                  currentPage={page}
+                  totalPages={data?.totalPages || 1}
+                  onPageChange={handlePageChange}
                 />
               </div>
             </div>
@@ -123,6 +117,9 @@ const ProductDetail = () => {
         </div>
       </AdminLayout>
     );
+  } else {
+    return null;
   }
 };
+
 export default ProductDetail;
