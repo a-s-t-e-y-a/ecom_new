@@ -28,6 +28,7 @@ const LensDetail = () => {
   const { data: Detail, refetch } = useGetAllLensDetails();
   const [get, setget] = useState(false);
   const [edit, setedit] = useState({});
+
   useEffect(() => {
     if (IsAuth("admin_info")) {
       setlogged(true);
@@ -62,6 +63,9 @@ const LensDetail = () => {
   const deleteHandelr = (id) => {
     mutate(id);
   };
+
+  console.log(Detail, 'Detail');
+
   if (logged) {
     return (
       <AdminLayout>
