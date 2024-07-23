@@ -23,7 +23,6 @@ const Index = () => {
     [, type, TypeSlug] = slug;
   }
 
-
   // utils/slugUtils.js
   const processSlug = (type, TypeSlug) => {
     if (typeof TypeSlug !== "string" && !Array.isArray(TypeSlug)) {

@@ -11,11 +11,10 @@ import { useSelector } from "react-redux";
 const Index = () => {
   const [page, setPage] = useState(1);
   const router = useRouter();
-  const slug = router.query?.slugs;
+  const { slugs } = router.query
   const selector = useSelector((state) => state?.filterProduct);
   const { category, label } = selector;
-  const { data, isLoading, isError } = useCategoryByURL(slug, page, category, label);
-
+  const { data, isLoading, isError } = useCategoryByURL(slugs, page, category, label);
   const navigateToSingleProduct = (url) => {
     router.push(`/product/${url}`);
   };
@@ -53,7 +52,7 @@ const Index = () => {
                 <SingleGlassItem value={val} />
               </div>
             );
-          }) : <p>No Product Found !</p>}
+          }) : <p className="mx-auto">No Product Found !</p>}
         </div>
       </section>
       <div className="flex justify-center my-10 px-10">
