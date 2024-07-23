@@ -13,7 +13,7 @@ import useUpdateLensFeature from "@/utils/mutations/useUpdateLensFeature";
 
 const LensFeatureDialogBox = ({ onCancel, refetch, token, edit }) => {
   const { register, handleSubmit, control, reset } = useForm();
-  const { mutate: update } = useUpdateLensFeature(edit?.id);
+  const { mutate: update } = useUpdateLensFeature(edit?.id, refetch, token);
   const { mutate } = useMutation({
     mutationFn: CreateLenseFeature,
     onSuccess: () => {
@@ -91,7 +91,7 @@ const LensFeatureDialogBox = ({ onCancel, refetch, token, edit }) => {
         />
         <TextField
           fullWidth
-          label="Title"
+          placeholder="Title"
           name="title"
           id="title"
           size="small"
@@ -100,7 +100,7 @@ const LensFeatureDialogBox = ({ onCancel, refetch, token, edit }) => {
         />
         <TextField
           fullWidth
-          label="Description"
+          placeholder="Description"
           name="description"
           id="description"
           size="small"
