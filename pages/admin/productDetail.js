@@ -102,7 +102,7 @@ const ProductDetail = () => {
                 data={products}
                 refetch={refetch}
                 open={handleOpen}
-                setEdit={setEdit}
+                setedit={setEdit}
                 opensEdit={setOpen}
               />
               <div className="mt-4">
