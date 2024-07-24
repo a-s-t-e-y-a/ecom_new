@@ -39,7 +39,7 @@ const Filter = () => {
   const renderCheckBoxGroup = (label, data, category) => (
     <div key={category}>
       <span className="font-semibold tracking-wide text-sm">{label}</span>
-      <FormGroup className={category !== "frameWidth" && category !== "lensWidth" ? "grid grid-cols-1" : "grid grid-cols-4"}>
+      <FormGroup className={"grid grid-cols-1"}>
         {data?.map((item) => (
           <MyCheckBox
             key={item.name || item}

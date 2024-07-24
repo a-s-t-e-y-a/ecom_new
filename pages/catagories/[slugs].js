@@ -41,7 +41,7 @@ const Index = () => {
         <div className="w-fit absolute lg:relative lg:top-4 left-1 top-14 me-5">
           <Filter />
         </div>
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 my-5">
+        <div className="w-full flex flex-wrap gap-16 my-4 px-auto">
           {data?.products.length > 0 ? data?.products?.map((val, index) => {
             return (
               <div
