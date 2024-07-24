@@ -106,15 +106,14 @@ const SingleProduct = () => {
         />
       </Head>
       <LensForm show={isOpen} onHide={() => setIsOpen(false)} />
-      <section className="text-gray-600">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mx-auto mt-8">
+      <section className="text-gray-600 flex flex-col flex-wrap">
+        <div className="flex flex-wrap items-center justify-between py-8">
           {/* Swiper Field */}
-          <div className="md:max-w-full md:ml-[25px] flex items-center mr-[80px] w-[280px] md:w-[3000px]">
+          <div className="w-[65%] md:max-w-full flex items-center">
             <SwiperThumbs images={productData?.product_images} />
           </div>
-
           {/* Detail */}
-          <div className="px-5  md:ml-[200px] ">
+          <div className="w-[26%]">
             <div className="flex justify-between items-center mb-5">
               <h1 className="font-semibold capitalize text-2xl md:text-4xl">
                 {productData?.product_model_name}
@@ -138,9 +137,9 @@ const SingleProduct = () => {
             </div>
             <div className="flex items-center justify-between">
               <div>
-                <div className="flex flex-col gap-5 items-center">
+                <div className="flex flex-col gap-4 items-center justify-around">
                   <div className="w-auto h-8">
-                    <img src="/1 (1).jpeg" className="h-full" />
+                    <img src="/Frame Width.png" className="h-full" />
                   </div>
                   <div className="flex flex-col items-center ">
                     <span className="font-bold text-sm tracking-wider">
@@ -153,7 +152,7 @@ const SingleProduct = () => {
               <div>
                 <div className="flex flex-col gap-5 items-center">
                   <div className="w-auto h-8">
-                    <img src="/1 (2).jpeg" className="h-full" />
+                    <img src="/lensWidth.png" className="h-full" />
                   </div>
                   <div className="flex flex-col items-center ">
                     <span className="font-bold text-sm tracking-wider">
@@ -166,7 +165,7 @@ const SingleProduct = () => {
               <div>
                 <div className="flex flex-col gap-5 items-center">
                   <div className="w-auto h-8">
-                    <img src="/1 (3).jpeg" className="h-full" />
+                    <img src="/Lens Height.png" className="h-full" />
                   </div>
                   <div className="flex flex-col items-center ">
                     <span className="font-bold text-sm tracking-wider">
@@ -178,7 +177,7 @@ const SingleProduct = () => {
               </div>
             </div>
             {/* Buttons */}
-            <div className="flex flex-col mt-4 md:flex-row md:items-center gap-3 text-xs justify-between mb-5">
+            <div className="flex flex-col my-4 md:flex-row md:items-center gap-3 text-xs justify-between">
               <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
                 <button className="flex w-full items-center justify-center gap-2 bg-gray-700 hover:bg-gray-800 text-white p-2 rounded-md">
                   <HiOutlineShoppingCart strokeWidth={2} className="h-4 w-4" />{" "}

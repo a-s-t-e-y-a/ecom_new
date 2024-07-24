@@ -60,7 +60,7 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
   const { data: style } = useGetAllStyle();
   const [activePOwer, setAcative] = useState(true);
   const { mutate: update } = UpdateProudct(editValue?.p_id);
-
+  console.log(editValue, "editValue");
   useEffect(() => {
     if (Object.keys(editValue).length > 1) {
       const payload = {
@@ -74,7 +74,6 @@ const ProductDetailDialog = ({ onCancel, refetch, editValue }) => {
         power_type_id: editValue?.power_type,
         select_Lens:editValue?.show_lens_list==1?"Yes":"No"
       };
-
       reset(payload);
     }
   }, [editValue, reset, categories]);
