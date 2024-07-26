@@ -107,7 +107,7 @@ const SingleProduct = () => {
       </Head>
       <LensForm show={isOpen} onHide={() => setIsOpen(false)} />
       <section className="text-gray-600 flex flex-col flex-wrap">
-        <divreact-query"w-full flex flex-wrap items-center justify-between py-8">
+        <div className"w-full flex flex-wrap items-center justify-between py-8">
           {/* Swiper Field */}
           <div className="w-[50%] flex items-center">
             <SwiperThumbs images={productData?.product_images} />
