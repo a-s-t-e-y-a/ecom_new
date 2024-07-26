@@ -17,7 +17,7 @@ const SwiperThumbs = ({ images }) => {
           return (
             <div key={index} className="">
               <Image
-                width={1000}
+                width={700}
                 height={200}
                 alt=""
                 src={item.trim()}
