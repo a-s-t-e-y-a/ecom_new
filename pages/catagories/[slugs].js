@@ -42,7 +42,7 @@ const Index = () => {
           <Filter />
         </div>
         <div className="w-full flex flex-wrap gap-16 my-4 px-auto">
-          {data?.products.length > 0 ? data?.products?.map((val, index) => {
+          {data?.products.length > 0 ? data?.category?.map((val, index) => {
             return (
               <div
                 key={index}
