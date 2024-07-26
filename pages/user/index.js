@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { Avatar } from "@material-tailwind/react";
 import UserSideBar from "@/Components/SideBar/UserSideBar";
 import AccountInformation from "@/Components/User/AccountInformation";
+import { customLocalStorage } from "@/utils/Helpers";
 
 const Index = () => {
   // Sidebar active state change events
   const [Show, setShow] = useState(true);
-
+  const user_data = customLocalStorage.getItem("user_data")
   return (
     <div className="w-[95%] h-screen mx-auto text-gray-700 overflow-hidden flex flex-col">
       {/* Header  */}
@@ -27,7 +28,7 @@ const Index = () => {
           <h1 className="font-semibold tracking-wider text-2xl">
             Akku ka chashma
           </h1>
-          <h2 className="font-normal text-md">akkukachashma@gmail.com</h2>
+          <h2 className="font-normal text-md">{user_data?.email}</h2>
         </div>
       </div>
 

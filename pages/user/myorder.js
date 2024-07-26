@@ -2,8 +2,10 @@ import React from "react";
 import { Avatar } from "@material-tailwind/react";
 import UserSideBar from "@/Components/SideBar/UserSideBar";
 import MyOrder from "@/Components/User/MyOrder";
+import { customLocalStorage } from "@/utils/Helpers";
 
 const myorder = () => {
+  const user_data = customLocalStorage.getItem("user_data")
   return (
     <div className="w-[95%] h-screen mx-auto text-gray-700 overflow-hidden flex flex-col">
       {/* Header  */}
@@ -18,7 +20,7 @@ const myorder = () => {
           <h1 className="font-semibold tracking-wider text-2xl">
             Akku ka chashma
           </h1>
-          <h2 className="font-normal text-md">ankit@gmail.com</h2>
+          <h2 className="font-normal text-md">{ user_data?.email}</h2>
         </div>
       </div>
 

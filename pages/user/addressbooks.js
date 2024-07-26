@@ -20,10 +20,6 @@ const Addressbooks = () => {
     mutate(id);
   };
 
-  if (isLoading) {
-    return <>Loading....!!!!</>;
-  }
-
   return (
     <div className="w-[95%] h-screen mx-auto text-gray-700  flex flex-col">
       {/* Header  */}
@@ -75,7 +71,7 @@ const Addressbooks = () => {
           </div>
           <section className="w-full h-[30rem] overflow-y-auto scrollbar-default border rounded-lg px-4 my-4">
             {/* Save Address  */}
-            {data.map((info, index) => (
+            {data?.map((info, index) => (
               <div
                 key={index}
                 className=" relative w-[70%] text-sm mt-5 border p-2 rounded-md space-y-2 pl-5"
