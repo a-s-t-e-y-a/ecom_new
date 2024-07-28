@@ -6,7 +6,7 @@ const SwiperThumbs = ({ images }) => {
   const imageArray = images?.split(",");
   return (
     <Carousel
-      className="h-full max-w-[90%] ml-16"
+      className="h-full max-w-[90%] lg:ml-16"
       showArrows={true}
       infiniteLoop
       useKeyboardArrows
