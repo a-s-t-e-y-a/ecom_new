@@ -106,14 +106,14 @@ const SingleProduct = () => {
         />
       </Head>
       <LensForm show={isOpen} onHide={() => setIsOpen(false)} />
-      <section className="text-gray-600 flex flex-col flex-wrap">
-        <div className="grid grid-cols-1 lg:grid-cols-2 md:grid-row-2 gap-8 items-center mx-auto">
+      <section className="w-full text-gray-600 grid grid-cols-1">
+        <div className="grid sm:grid-cols-1 lg:grid-cols-2 md:grid-row-2 gap-4 items-center ">
           {/* Swiper Field */}
-          <div className="w-[50%] flex items-center">
+          <div className="w-full">
             <SwiperThumbs images={productData?.product_images} />
           </div>
           {/* Detail */}
-          <div className="w-[26%]">
+          <div className="">
             <div className="flex justify-between items-center mb-5">
               <h1 className="font-semibold capitalize text-2xl md:text-4xl">
                 {productData?.product_model_name}
@@ -234,7 +234,7 @@ const SingleProduct = () => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col">
+        <div className="max-w-full flex flex-col">
           <div className="font-bold text-black  text-lg my-4 md:px-2 md:py-2 flex justify-center items-center rounded-md w-[100%] shadow-lg md:w-[12%]">
             Related Products
           </div>

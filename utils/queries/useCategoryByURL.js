@@ -3,13 +3,13 @@ import api from "@/api";
 import toast from "react-hot-toast";
 
 const useCategoryByURL = (slugs, page, category, label) => {
+
   const categoryData = useQuery({
-    queryKey: ["api/categories", slugs, page, category, label],
+    queryKey: ["api/categories", slugs, page],
     queryFn: async () => {
       try {
-        const res = await api.get(
-          `categories/${slugs}?${category}=${label}`);
-        return res?.data?.data[0];
+        const res = await api.get(`categories/${slugs}`);
+        return res?.data?.data;
       } catch (error) {
         toast.error("Error fetching data");
         throw error;
