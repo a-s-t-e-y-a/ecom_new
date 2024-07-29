@@ -106,24 +106,24 @@ const SingleProduct = () => {
         />
       </Head>
       <LensForm show={isOpen} onHide={() => setIsOpen(false)} />
-      <section className="w-full text-gray-600 grid grid-cols-1">
-        <div className="grid sm:grid-cols-1 lg:grid-cols-2 md:grid-row-2 gap-4 items-center ">
+      <section className="w-full text-gray-600 grid grid-cols-1 sm:grid-cols-1">
+        <div className="grid sm:grid-cols-1 lg-w-full lg:flex lg:items-center lg:justify-between md:grid-row-2 gap-4 items-center mt-4">
           {/* Swiper Field */}
-          <div className="w-full">
+          <div className="lg:w-[65%] sm:[100%] sm:mx-auto">
             <SwiperThumbs images={productData?.product_images} />
           </div>
           {/* Detail */}
-          <div className="">
-            <div className="flex justify-between items-center mb-5">
-              <h1 className="font-semibold capitalize text-2xl md:text-4xl">
+          <div className="w-[35%] flex flex-col justify-center">
+            <div className="flex justify-between items-center gap-8">
+              <h1 className="font-bold capitalize text-3xl">
                 {productData?.product_model_name}
               </h1>
               <span className="text-xl font-semibold cursor-pointer" onClick={() => mutate({ pId: productDetails?.p_id })}>
                 <AiOutlineHeart />
               </span>
             </div>
-            <div className="flex items-center justify-between mb-4">
-              <p className="text-sm font-semibold">
+            <div className="flex items-center justify-between">
+              <p className="text-sm md:text-lg font-semibold">
                 {productData?.product_color_?.name}
               </p>
               <span className="font-semibold tracking-wider text-lg">
