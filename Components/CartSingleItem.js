@@ -69,7 +69,7 @@ const CartSingleItem = ({ item }) => {
                 <div className="flex text-xs tracking-wide">
                   <button
                     type="button"
-                    onClick={() => removeItem(item.id)}
+                    onClick={() => removeItem(product?.p_id)}
                     className="font-medium text-orange-600 hover:text-indigo-500"
                   >
                     Remove
