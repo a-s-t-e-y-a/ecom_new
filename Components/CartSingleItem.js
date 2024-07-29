@@ -4,10 +4,23 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 
 const CartSingleItem = ({ item }) => {
-  const {product, lens } = item
+  const { product, lens } = item;
   
+  // Get the delete mutation function from the hook
+  const { mutate: deleteCartItem } = useDeleteCart();
+
   const removeItem = (id) => {
-   useDeleteCart(id)
+    // Call the mutation function to remove the item
+    deleteCartItem(id, {
+      onSuccess: () => {
+        // Optionally, handle any side effects or refetch data
+        console.log(`Item with id ${id} removed successfully.`);
+      },
+      onError: (error) => {
+        // Optionally, handle any errors
+        console.error("Failed to remove item:", error);
+      },
+    });
   };
 
   return (
