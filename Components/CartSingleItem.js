@@ -1,4 +1,5 @@
 import api from "@/api";
+import useDeleteCart from "@/utils/mutations/useDeleteCart";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
@@ -6,13 +7,7 @@ const CartSingleItem = ({ item }) => {
   const {product, lens } = item
   
   const removeItem = (id) => {
-    api
-      .delete(`cart/${id}`)
-      .then((result) => {
-        if (result?.data?.message == "Data fetch successfully") {
-          fetchData();
-        }
-      });
+   useDeleteCart(id)
   };
 
   return (
