@@ -27,6 +27,10 @@ const Index = () => {
     return <div>Error fetching data</div>;
   }
 
+  const handlePageChange = (pageNo) => {
+    setPage(pageNo);
+  }
+
   return (
     <Layout>
       <Head>
@@ -56,7 +60,11 @@ const Index = () => {
         </div>
       </section>
       <div className="flex justify-center my-10 px-10">
-        <Pagination pages={setPage} curr={page} total={data?.totalPages} />
+        <Pagination
+          currentPage={page}
+          totalPages={data?.totalPages || 1}
+          onPageChange={handlePageChange}
+        />
       </div>
     </Layout>
   );

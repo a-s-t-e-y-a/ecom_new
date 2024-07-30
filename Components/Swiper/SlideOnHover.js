@@ -7,7 +7,7 @@ const SlideOnHover = ({ data }) => {
   const [play, setPlay] = React.useState(false);
   const imageArray = data?.product_images?.split(",");
   return (
-    <div className="w-full mx-auto ">
+    <div className="w-full">
       <Carousel
         infiniteLoop
         useKeyboardArrows
@@ -20,14 +20,14 @@ const SlideOnHover = ({ data }) => {
       >
         {data.map((item, index) => (
           <div
-            className="cursor-pointer  py-2  mx-auto px-5"
+            className="cursor-pointer"
             key={index}
             onMouseEnter={() => setPlay(true)}
             onMouseLeave={() => setPlay(false)}
           >
             <Image
-              width={500}
-              height={200}
+              width={650}
+              height={250}
               alt="Image loading..."
               src={item}
               className=""

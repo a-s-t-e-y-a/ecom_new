@@ -11,15 +11,16 @@ import useGetAllProducts from "@/utils/queries/admin/UseProductGetAll";
 import Pagination from "@/Components/Pagination/Pagination";
 
 const ProductDetail = () => {
-  const [open, setOpen] = useState(false);
   const [page, setPage] = useState(1);
+  const [edit, setEdit] = useState({});
+  const [open, setOpen] = useState(false);
+  const [logged, setLogged] = useState(false);
+  const [products, setProducts] = useState([]);
+  
   const handleOpen = () => setOpen(!open);
   const onHide = () => setOpen(false);
   const router = useRouter();
   const { data, isLoading, refetch } = useGetAllProducts(page);
-  const [logged, setLogged] = useState(false);
-  const [products, setProducts] = useState([]);
-  const [edit, setEdit] = useState({});
 
   useEffect(() => {
     if (IsAuth("admin_info")) {

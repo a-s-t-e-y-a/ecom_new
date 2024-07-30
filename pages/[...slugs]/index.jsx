@@ -51,9 +51,13 @@ const Index = () => {
     router.push(`/product/${url}`);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
 
   }, [category])
+
+  const handlePageChange = (newPage) => {
+    setPage(newPage);
+  }
 
   return (
     <Layout>
@@ -65,11 +69,11 @@ const Index = () => {
         <meta property="og:image" content={data?.image} />
         <meta property="og:url" content={data?.url} />
       </Head>
-      <section className="w-full flex px-5">
+      <section className="w-full h-[100vh] flex px-5 mt-4">
         <div className="w-fit absolute lg:relative lg:top-2 left-1 top-14 me-5">
           <Filter />
         </div>
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mb-4">
+        <div className="w-full h-fit mt-4 flex flex-wrap md:grid-cols-2 xl:grid-cols-3 lg:grid-cols-3 gap-2">
           {data?.products?.map((val, index) => {
             return (
               <div
@@ -84,7 +88,11 @@ const Index = () => {
         </div>
       </section>
       <div className="flex justify-center my-10 px-10">
-        <Pagination pages={setPage} curr={page} total={data?.totalPages} />
+        <Pagination
+          currentPage={page}
+          totalPages={data?.totalPages || 1}
+          onPageChange={handlePageChange}
+        />
       </div>
     </Layout>
   );
