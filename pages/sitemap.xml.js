@@ -27,7 +27,6 @@ export async function getServerSideProps({ res }) {
   // We make an API call to gather the URLs for our site
   const request = await api.get("/blogs");
   // We generate the XML sitemap with the posts data
-  console.log(request?.data)
   const sitemap = generateSiteMap(request?.data);
 
   res.setHeader('Content-Type', 'text/xml');

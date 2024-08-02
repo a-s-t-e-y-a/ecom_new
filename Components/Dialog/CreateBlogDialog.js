@@ -2,64 +2,54 @@ import React, { useEffect } from "react";
 import { Button, Dialog, DialogBody, Input, Textarea } from "@material-tailwind/react";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import CreateBlog from "@/utils/mutations/useCreateblog";
 import { Controller, useForm } from "react-hook-form";
 import FileInput from "../Admin/FileInput";
 import QuillEditor from "../Admin/QuillEditor";
-import UpdateBlog from "@/utils/mutations/useupdateblog";
+import useUpdateBlog from "@/utils/mutations/useupdateblog";
+import useCreateBlog from "@/utils/mutations/useCreateblog";
 
 const CreateBlogDialog = ({ closeModal, edit, refetch }) => {
   const { register, handleSubmit, control, reset } = useForm();
-  const { mutate: update } = UpdateBlog(edit?.id, closeModal, refetch)
-  const { mutate, isLoading } = useMutation({
-    mutationFn: CreateBlog,
-    onSuccess: () => {
-      toast.success("Blog created successfully");
-      refetch();
-      closeModal();
-    },
-    onError: (error) => {
-      console.error("Error creating blog:", error);
-      toast.error("Failed to create blog");
-    },
-  });
+  const { mutate: update } = useUpdateBlog(edit?.id, closeModal, refetch);
+  const { mutate, isLoading } = useCreateBlog();
 
   useEffect(() => {
     if (edit) {
       const editPayload = {
-        heading: edit?.heading,
-        thumb: edit?.thumb,
-        description: edit?.description,
-        url: edit?.url,
-        seo_title: edit?.heading,
-        tags: edit?.tags,
-        metaDescription: edit?.MetaDescription?.metaDescription,
+        heading: edit.heading || "",
+        thumb: edit.thumb || "",
+        description: edit.description || "",
+        url: edit.url || "",
+        seo_title: edit.heading || "",
+        tags: edit.tags || "",
+        metaDescription: edit.MetaDescription?.metaDescription || "",
       };
       reset(editPayload);
     }
   }, [edit, reset]);
 
   const onSubmit = async (data) => {
-    console.log(data, 'data')
     const form = new FormData();
-    form.append("file", data.file[0]);
+    if (data.file) {
+      form.append("file", data.file[0]);
+    }
     delete data.file;
 
     const payload = {
-      description: data?.description,
-      heading: data?.heading,
-      tags: data?.tags,
-      metaDescription: data?.metaDescription,
-      seo_title: data?.heading,
-      thumb: data?.thumb,
+      description: data.description,
+      heading: data.heading,
+      tags: data.tags,
+      metaDescription: data.metaDescription,
+      seo_title: data.heading,
+      thumb: data.thumb,
       url: data.url,
     };
     form.append("data", JSON.stringify(payload));
 
-    if (Object.keys(edit).length === 0) {
-      mutate(form);
-    } else {
+    if (edit && Object.keys(edit).length > 0) {
       update(form);
+    } else {
+      mutate(form);
     }
   };
 
@@ -72,9 +62,7 @@ const CreateBlogDialog = ({ closeModal, edit, refetch }) => {
             <p className="text-sm tracking-wide font-semibold">
               You can easily upload your file in any of the following formats: PDF, JPG, GIF, PNG, JPEG
             </p>
-            <div className="w-[80%] mx-auto p-2">
-              <FileInput title="main_image" register={register} image={edit?.image} />
-            </div>
+            <FileInput title="main_image" register={register} image={edit?.image} />
             <Input label="Heading" name="heading" {...register("heading")} />
             <Input label="SEO URI" name="url" {...register("url")} />
             <Input label="Thumb" name="thumb" {...register("thumb")} />
@@ -93,7 +81,7 @@ const CreateBlogDialog = ({ closeModal, edit, refetch }) => {
             <Textarea label="Tags" name="tags" {...register("tags")} />
             <Textarea label="Meta description" name="metaDescription" {...register("metaDescription")} />
             <div className="flex justify-end">
-              <Button variant="text" color="red" onClick={()=>window.location.reload()} className="mr-1">
+              <Button variant="text" color="red" onClick={closeModal} className="mr-1">
                 <span>Cancel</span>
               </Button>
               <Button variant="text" color="green" type="submit" disabled={isLoading}>

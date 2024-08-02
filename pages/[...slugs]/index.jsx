@@ -17,7 +17,6 @@ const Index = () => {
   const { data: shape } = useGetAllShape();
   const { data: style } = useGetAllStyle();
   const slug = router.query?.slugs;
-  // Ensure slug is an array before destructuring
   let type, TypeSlug, TypeData;
   if (Array.isArray(slug)) {
     [, type, TypeSlug] = slug;
@@ -50,10 +49,6 @@ const Index = () => {
   const navigateToSingleProduct = (url) => {
     router.push(`/product/${url}`);
   };
-
-  useEffect(() => {
-
-  }, [category])
 
   const handlePageChange = (newPage) => {
     setPage(newPage);
