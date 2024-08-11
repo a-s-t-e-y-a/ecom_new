@@ -139,7 +139,7 @@ const SingleProduct = () => {
               <div>
                 <div className="flex flex-col gap-4 items-center justify-around">
                   <div className="w-auto h-8">
-                    <img src="/Frame Width.png" className="h-full" />
+                    <img src="/frame_width.png" className="h-full" alt="frame width" />
                   </div>
                   <div className="flex flex-col items-center ">
                     <span className="font-bold text-sm tracking-wider">
